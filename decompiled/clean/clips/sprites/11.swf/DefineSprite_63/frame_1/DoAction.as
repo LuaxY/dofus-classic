@@ -1,0 +1,1 @@
+WEAPONS.applyWeapon(this,"R");

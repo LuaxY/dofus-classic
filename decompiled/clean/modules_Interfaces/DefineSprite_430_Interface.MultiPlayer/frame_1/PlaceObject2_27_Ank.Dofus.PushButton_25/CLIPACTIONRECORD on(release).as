@@ -1,0 +1,10 @@
+on(release){
+   if(!DATACENTER.Game.isRandom)
+   {
+      if(DATACENTER.Game.isPlayerIn)
+      {
+         AKS.Game.leave();
+      }
+      this._parent.Tabs.showLayer("TabPlayDofusStart");
+   }
+}

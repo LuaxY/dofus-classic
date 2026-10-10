@@ -1,0 +1,15 @@
+{
+ "provenance": "Base stats are not in the client and no beta source gives them: lp and ap are authored; close combat (cc) is authored except Iop and Ecaflip (cc_provenance). The weapon is not sent (ASK part 10 empty) so the client draws the class default G.w[0]_1. Names and ids are beta (GUILD_NAMES, AKSClient/Dofus.Kernel.Init.as:56). spells = class spell ids, taken from GUILD_SPELLS[class] (AKSClient/__Packages/dofus/Constants.as:23, 20 ids per class) — the ids follow the lang reconstruction's identification (web/public/lang/fr.json S, docs/content-reconstruction.md); see spells.json for each spell's provenance. Sprite gfx = class * 10 + sex.",
+ "classes": [
+  { "id": 1, "name": "Féca", "lp": 55, "ap": 6, "cc": { "ap": 4, "dice": [1, 6, 0] }, "spells": [1, 2, 4], "provenance": "authored" },
+  { "id": 2, "name": "Osamodas", "lp": 45, "ap": 6, "cc": { "ap": 4, "dice": [1, 5, 0] }, "spells": [21, 22, 23, 24, 32], "provenance": "authored" },
+  { "id": 3, "name": "Enutrof", "lp": 50, "ap": 6, "cc": { "ap": 4, "dice": [1, 6, 1] }, "spells": [41, 42, 43], "provenance": "authored" },
+  { "id": 4, "name": "Sram", "lp": 50, "ap": 6, "cc": { "ap": 3, "dice": [1, 6, 0] }, "spells": [61, 63, 67], "provenance": "authored" },
+  { "id": 5, "name": "Xélor", "lp": 45, "ap": 6, "cc": { "ap": 4, "dice": [1, 5, 0] }, "spells": [81, 82, 83, 84], "provenance": "authored" },
+  { "id": 6, "name": "Ecaflip", "lp": 50, "ap": 6, "cc": { "ap": 3, "dice": [1, 5, 0] }, "spells": [101, 102, 103], "provenance": "authored", "cc_provenance": "beta_sibling: 1D5 for 3 PA before beta 9b (v9b changelog, docs/content-reconstruction.md G.cc)" },
+  { "id": 7, "name": "Eniripsa", "lp": 45, "ap": 6, "cc": { "ap": 4, "dice": [1, 4, 0] }, "spells": [121, 122, 123, 124, 126], "provenance": "authored" },
+  { "id": 8, "name": "Iop", "lp": 55, "ap": 6, "cc": { "ap": 3, "dice": [1, 5, 0] }, "spells": [141, 142, 143], "provenance": "authored", "cc_provenance": "beta_sibling: 1D5 for 3 PA before beta 9b (v9b changelog, docs/content-reconstruction.md G.cc)" },
+  { "id": 9, "name": "Crâ", "lp": 45, "ap": 6, "cc": { "ap": 4, "dice": [1, 4, 0] }, "spells": [161, 162, 163, 166], "provenance": "authored" },
+  { "id": 10, "name": "Sadida", "lp": 50, "ap": 6, "cc": { "ap": 4, "dice": [1, 6, 0] }, "spells": [181, 182, 183], "provenance": "authored" }
+ ]
+}

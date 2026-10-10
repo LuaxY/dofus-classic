@@ -1,0 +1,3613 @@
+{
+ "provenance": "Per spell: `provenance` says where the name/identity comes from, `source` cites it, every level has its own `provenance` for its numbers. Ids are the client's spell ids (icon clips/spells/icons/<id>.swf, lang S[id]) as identified by the lang reconstruction (web/public/lang/fr.json, docs/content-reconstruction.md). `anim` (clips/spells/<anim>.swf) and `launch_type` are authored (the pairing is UNKNOWN in the client): types 10/11 never wait on the spell SWF, 30/31 use arc SWFs ended by launchToArc. Range 0 + on_itself = the descriptions' 'PO : -1' (self). Levels 2-5 are authored (+1 to dice bonuses per level) unless tagged otherwise.",
+ "spells": [
+  {
+   "id": 1,
+   "name": "Attaque au bâton",
+   "element": "E",
+   "anim": 101,
+   "launch_type": 11,
+   "provenance": "authored",
+   "source": "fr.json S[1] is an unidentified placeholder ('Sort 1')",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "Double dégâts",
+   "element": "F",
+   "anim": 105,
+   "launch_type": 10,
+   "provenance": "beta_forum",
+   "source": "beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: 'le lanceur perd maintenant 1D10 + 5 points de vie'",
+   "note": "name and the 1D10+5 self-damage are beta_forum; the id (2, not placed by the lang reconstruction), AP, delay and the +3 damage for 2 turns are authored",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 4,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 3,
+       "turns": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        10,
+        5
+       ]
+      }
+     ],
+     "provenance": "beta_forum"
+    },
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 4,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 3,
+       "turns": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        10,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 4,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 4,
+       "turns": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        10,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 4,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 4,
+       "turns": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        10,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 4,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 5,
+       "turns": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        10,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "name": "Renvoi de sorts",
+   "element": "A",
+   "anim": 104,
+   "launch_type": 10,
+   "provenance": "beta_forum",
+   "source": "beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html; id 4 medium confidence (docs/content-reconstruction.md)",
+   "note": "no numbers in any source: modelled as a damage reflection on the caster (authored)",
+   "levels": [
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 3,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        4,
+        0
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 3,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        4,
+        1
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 3,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        4,
+        2
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 3,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        4,
+        3
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 3,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        4,
+        4
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "name": "Chien",
+   "element": "E",
+   "anim": 201,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/2.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[21].l1): 'PO : 3 PA : 4 1dé5+2'",
+   "note": "summon in the beta text; this server has no summons, so it hits directly (authored)",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        2
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        5,
+        6
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "name": "Cri de l'ours",
+   "element": "W",
+   "anim": 205,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/2.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[22].l1): 'PO : 6 PA : 4'; the 8 Jan 2004 forum post lowers it to 2 PA (not applied)",
+   "note": "AP/PO beta; removing 1 AP in a radius of 2 is authored from the paragraph ('plusieurs cibles dans un rayon délimité')",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 6,
+     "los": true,
+     "per_turn": 1,
+     "zone": "C2",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 1
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "los": true,
+     "per_turn": 1,
+     "zone": "C2",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 1
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "los": true,
+     "per_turn": 1,
+     "zone": "C2",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 1
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "los": true,
+     "per_turn": 1,
+     "zone": "C2",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "los": true,
+     "per_turn": 1,
+     "zone": "C2",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "name": "Chat",
+   "element": "E",
+   "anim": 202,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/2.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[23].l1): 'PO : 3 PA : 4 1dé3+2'",
+   "note": "'2 cibles' modelled as a radius-1 zone (authored)",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        2
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 3,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        6
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "name": "Corbeau",
+   "element": "F",
+   "anim": 207,
+   "launch_type": 30,
+   "provenance": "beta_forum",
+   "source": "beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: 'le sort n'a plus de ligne de vue'; id 24 medium confidence",
+   "note": "no line of sight is beta_forum; numbers authored",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 5,
+     "los": false,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 5,
+     "los": false,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 5,
+     "los": false,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 5,
+     "los": false,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 5,
+     "los": false,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 32,
+   "name": "La Mouche Tueuse",
+   "element": "A",
+   "anim": 206,
+   "launch_type": 11,
+   "provenance": "beta_forum",
+   "source": "beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: 'les dégâts au lanceur du sort passent de 10 à 5 points de vie'; id 32 low confidence (icon of a winged insect)",
+   "note": "5 LP to the caster is beta_forum; damage, AP and range authored",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        2
+       ]
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        0,
+        0,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        3
+       ]
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        0,
+        0,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        4
+       ]
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        0,
+        0,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        5
+       ]
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        0,
+        0,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        6
+       ]
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        0,
+        0,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 41,
+   "name": "Armure pelleteuse",
+   "element": "E",
+   "anim": 301,
+   "launch_type": 10,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/3.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[41].l1): 'PO : +1'; beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: 'une fois tous les 5 tours ... non cumulable. Au niveau 3 ... +3 en portée'",
+   "note": "+1 range (beta), level 3 +3 and the 5-turn delay (beta_forum); AP and the 3-turn duration authored",
+   "levels": [
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 5,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 1,
+       "turns": 3
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 5,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 2,
+       "turns": 3
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 5,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 3,
+       "turns": 3
+      }
+     ],
+     "provenance": "beta_forum"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 5,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 3,
+       "turns": 4
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "delay": 5,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 3,
+       "turns": 5
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 42,
+   "name": "Troc",
+   "element": "W",
+   "anim": 303,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/3.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[42].l1): '1 dé10 d'or volé par attaque'",
+   "note": "1d10 gold (beta); modelled as an active spell with AP, range and a small hit (authored)",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "steal_gold",
+       "dice": [
+        1,
+        10,
+        0
+       ]
+      },
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "steal_gold",
+       "dice": [
+        1,
+        10,
+        1
+       ]
+      },
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "steal_gold",
+       "dice": [
+        1,
+        10,
+        2
+       ]
+      },
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "steal_gold",
+       "dice": [
+        1,
+        10,
+        3
+       ]
+      },
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "steal_gold",
+       "dice": [
+        1,
+        10,
+        4
+       ]
+      },
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 43,
+   "name": "Lancer de pelle",
+   "element": "E",
+   "anim": 305,
+   "launch_type": 30,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/3.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[43].l1): '1dé6 +1', 'faible portée'",
+   "note": "damage beta; AP 3 and range 2 authored",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        1
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 61,
+   "name": "Coup sournois",
+   "element": "E",
+   "anim": 402,
+   "launch_type": 11,
+   "provenance": "authored",
+   "source": "fr.json S[61] is an unidentified placeholder",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        6
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 63,
+   "name": "Piège sournois",
+   "element": "F",
+   "anim": 403,
+   "launch_type": 11,
+   "provenance": "authored",
+   "source": "fr.json S[63] is an unidentified placeholder",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "C1",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 67,
+   "name": "Peur",
+   "element": "A",
+   "anim": 401,
+   "launch_type": 11,
+   "provenance": "beta_forum",
+   "source": "beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: 'le coût du sort en PA passe de 1 à 2'; id 67 candidate (retro 67 = Peur)",
+   "note": "2 AP is beta_forum; pushing back 2 cells and range 2 authored",
+   "levels": [
+    {
+     "ap": 2,
+     "range": 2,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "beta_forum"
+    },
+    {
+     "ap": 2,
+     "range": 2,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 2,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 2,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 2,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 81,
+   "name": "Ralentissement",
+   "element": "W",
+   "anim": 501,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/5.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[81].l1): 'PA : 1 PO : 4 - 1 PA à l'ennemi', 'ne peut être ciblé qu'une fois par tour'",
+   "levels": [
+    {
+     "ap": 1,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 1
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 1,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 1
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 1,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 1
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 1,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 1,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 82,
+   "name": "Contre",
+   "element": "A",
+   "anim": 502,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/5.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[82].l1): 'PA : 2 PO : 10 Dégâts : 1dé2 retournés'",
+   "note": "the 2-turn duration and targeting allies/self are authored",
+   "levels": [
+    {
+     "ap": 2,
+     "range": 10,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        2,
+        0
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 2,
+     "range": 10,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        2,
+        1
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 10,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        2,
+        2
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 10,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        2,
+        3
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 10,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "reflect",
+       "dice": [
+        1,
+        2,
+        4
+       ],
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 83,
+   "name": "Aiguille",
+   "element": "F",
+   "anim": 505,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/5.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[83].l1): 'PA : 4 PO : 6 dégâts : 1dé6 +2'; beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: levels 4-5 cost 3 PA",
+   "note": "levels 4-5 AP 3 is beta_forum; their damage is authored",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        2
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        5
+       ]
+      }
+     ],
+     "provenance": "beta_forum"
+    },
+    {
+     "ap": 3,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        6
+       ]
+      }
+     ],
+     "provenance": "beta_forum"
+    }
+   ]
+  },
+  {
+   "id": 84,
+   "name": "Lévitation",
+   "element": "A",
+   "anim": 506,
+   "launch_type": 10,
+   "provenance": "beta_forum",
+   "source": "beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: 'le sort fait effet pendant toute la partie'",
+   "note": "whole-game duration is beta_forum; the id (84, not placed) and the +1 range effect are authored",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "range",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 101,
+   "name": "Roulette",
+   "element": "F",
+   "anim": 602,
+   "launch_type": 10,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/6.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[101].l1): 'PO : -1 PA : 4 +1 dég. pour 2 PA 2 tours'",
+   "note": "PO -1 = self only (range 0); +1 damage for 2 turns beta; delay authored",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 2,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 1,
+       "turns": 2
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 2,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 1,
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 2,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 2,
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 2,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 2,
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 2,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 3,
+       "turns": 2
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 102,
+   "name": "Pile ou face",
+   "element": "E",
+   "anim": 603,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/6.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[102].l1): 'PO : 6 PA : 2 1dé8 de dég. et 1dé4 de PDV'",
+   "note": "the 1d4 heal on failure is not modelled (no criticals/failures on this server)",
+   "levels": [
+    {
+     "ap": 2,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        8,
+        0
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 2,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        8,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        8,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        8,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 6,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        8,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 103,
+   "name": "Chance d'Ecaflip",
+   "element": "W",
+   "anim": 601,
+   "launch_type": 10,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/6.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[103].l1): 'PO : -1 vPA : 2 1dé4 dég. récup en PDV'",
+   "note": "modelled as a 1d4 self heal (authored reading of 'récup en PDV')",
+   "levels": [
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        0
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 0,
+     "on_itself": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 121,
+   "name": "Mot curatif",
+   "element": "W",
+   "anim": 702,
+   "launch_type": 10,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/7.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[121].l1): 'PO : -1 PA : 4 rend 1dé4 de PDV'",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        0
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        4,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 122,
+   "name": "Mot blessant",
+   "element": "A",
+   "anim": 703,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/7.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[122].l1): 'PO : 5 PA : 3 1dé4 +1 de dégâts'",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 5,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        1
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 3,
+     "range": 5,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 5,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 5,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 5,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        4,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 123,
+   "name": "Mot drainant",
+   "element": "E",
+   "anim": 704,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/7.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[123].l1): 'PO : 1 PA : 1'",
+   "note": "AP/PO beta; -1 AP to the target and 1d3 to the caster authored from the paragraph",
+   "levels": [
+    {
+     "ap": 1,
+     "range": 1,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 1
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        3,
+        0
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 1,
+     "range": 1,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 1
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        3,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 1,
+     "range": 1,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 1
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        3,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 1,
+     "range": 1,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        3,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 1,
+     "range": 1,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        3,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 124,
+   "name": "Mot soignant",
+   "element": "W",
+   "anim": 706,
+   "launch_type": 11,
+   "provenance": "beta_forum",
+   "source": "beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: 'le sort rend plus de vie'; id 124 candidate (retro 124)",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 4,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 4,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 4,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 4,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 4,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        6
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 126,
+   "name": "Mot stimulant",
+   "element": "F",
+   "anim": 705,
+   "launch_type": 11,
+   "provenance": "beta_forum",
+   "source": "beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: 'le lanceur du sort subit 1D6 en dégât'; id 126 candidate (retro 126)",
+   "note": "1D6 to the caster beta_forum; +2 AP to the target, AP and range authored",
+   "levels": [
+    {
+     "ap": 1,
+     "range": 3,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_gain",
+       "value": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        6,
+        0
+       ]
+      }
+     ],
+     "provenance": "beta_forum"
+    },
+    {
+     "ap": 1,
+     "range": 3,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_gain",
+       "value": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        6,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 1,
+     "range": 3,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_gain",
+       "value": 2
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        6,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 1,
+     "range": 3,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_gain",
+       "value": 3
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        6,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 1,
+     "range": 3,
+     "los": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_gain",
+       "value": 3
+      },
+      {
+       "kind": "self_damage",
+       "dice": [
+        1,
+        6,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 141,
+   "name": "Pression",
+   "element": "E",
+   "anim": 801,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/8.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[141].l1): 'PA : 3 PO : 2 Dégâts : 1dé6 +2'",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        2
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 2,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        6
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 142,
+   "name": "Bond",
+   "element": "A",
+   "anim": 802,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/8.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[142].l1): 'PA : 4 PO : 6'; beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html mentions a range change 4 → 5 (not applied)",
+   "note": "jump onto a free cell (authored from 'sauter'); the turn loss on failure is not modelled",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 6,
+     "free_cell": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "jump"
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "free_cell": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "jump"
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "free_cell": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "jump"
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "free_cell": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "jump"
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 6,
+     "free_cell": true,
+     "per_turn": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "jump"
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 143,
+   "name": "Intimidation",
+   "element": "E",
+   "anim": 804,
+   "launch_type": 11,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/8.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[143].l1): 'PA : 2 PO : 1 dégâts : 1 recul : 2'",
+   "levels": [
+    {
+     "ap": 2,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        0,
+        0,
+        1
+       ]
+      },
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 2,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        0,
+        0,
+        2
+       ]
+      },
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        0,
+        0,
+        3
+       ]
+      },
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        0,
+        0,
+        4
+       ]
+      },
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 2,
+     "range": 1,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        0,
+        0,
+        5
+       ]
+      },
+      {
+       "kind": "push",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 161,
+   "name": "Flèche magique",
+   "element": "F",
+   "anim": 901,
+   "launch_type": 31,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/9.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[161].l1): 'PA : 4 PO : 4 Dégâts : 2dé4'",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        0
+       ]
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 4,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        4,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 162,
+   "name": "Tir critique",
+   "element": "A",
+   "anim": 903,
+   "launch_type": 10,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/9.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[162].l1): 'PA : 4 + aux coups critiques', 'pendant toute la partie'",
+   "note": "no criticals on this server: the whole-game critical bonus is modelled as +1 damage for the rest of the fight (authored)",
+   "levels": [
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 4,
+     "range": 0,
+     "on_itself": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "buff",
+       "stat": "damage",
+       "value": 1,
+       "turns": 63
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 163,
+   "name": "Flèche glacée",
+   "element": "W",
+   "anim": 902,
+   "launch_type": 31,
+   "provenance": "beta",
+   "source": "clips/guilds/descriptions/9.swf (icon pixel-match, docs/content-reconstruction.md; web/public/lang/fr.json S[163].l1): 'PA : 3 PO : 3 dégâts : 1dé3 +-1 PA'",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        0
+       ]
+      },
+      {
+       "kind": "ap_loss",
+       "value": 1
+      }
+     ],
+     "provenance": "beta"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        1
+       ]
+      },
+      {
+       "kind": "ap_loss",
+       "value": 1
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        2
+       ]
+      },
+      {
+       "kind": "ap_loss",
+       "value": 1
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        3
+       ]
+      },
+      {
+       "kind": "ap_loss",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        3,
+        4
+       ]
+      },
+      {
+       "kind": "ap_loss",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 166,
+   "name": "Tir puissant",
+   "element": "E",
+   "anim": 905,
+   "launch_type": 31,
+   "provenance": "beta_forum",
+   "source": "beta forum 8 Jan 2004, vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html: 'ne peut maintenant être lancé qu'une seule fois par partie'; id 166 candidate (retro 166)",
+   "note": "once per fight is beta_forum (delay 63 = never again); damage, AP, range authored",
+   "levels": [
+    {
+     "ap": 5,
+     "range": 6,
+     "los": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        6,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 5,
+     "range": 6,
+     "los": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        6,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 5,
+     "range": 6,
+     "los": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        6,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 5,
+     "range": 6,
+     "los": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        6,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 5,
+     "range": 6,
+     "los": true,
+     "delay": 63,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        2,
+        6,
+        6
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 181,
+   "name": "Épine",
+   "element": "E",
+   "anim": 1001,
+   "launch_type": 11,
+   "provenance": "authored",
+   "source": "fr.json S[181] is an unidentified placeholder",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "los": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "damage",
+       "dice": [
+        1,
+        6,
+        5
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 182,
+   "name": "Racines",
+   "element": "E",
+   "anim": 1002,
+   "launch_type": 11,
+   "provenance": "authored",
+   "source": "fr.json S[182] is an unidentified placeholder",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 2
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 3
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 4,
+     "los": true,
+     "per_target": 1,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "ap_loss",
+       "value": 3
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  },
+  {
+   "id": 183,
+   "name": "Sève",
+   "element": "W",
+   "anim": 1003,
+   "launch_type": 11,
+   "provenance": "authored",
+   "source": "fr.json S[183] is an unidentified placeholder",
+   "levels": [
+    {
+     "ap": 3,
+     "range": 3,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        0
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        1
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        2
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        3
+       ]
+      }
+     ],
+     "provenance": "authored"
+    },
+    {
+     "ap": 3,
+     "range": 3,
+     "on_itself": true,
+     "zone": "P",
+     "effects": [
+      {
+       "kind": "heal",
+       "dice": [
+        1,
+        6,
+        4
+       ]
+      }
+     ],
+     "provenance": "authored"
+    }
+   ]
+  }
+ ]
+}

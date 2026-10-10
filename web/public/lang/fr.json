@@ -1,0 +1,1517 @@
+{
+ "ACCESS_DENIED": "Connexion refusée. \nNom de compte ou mot de passe incorrect.",
+ "ACCOUNT": "Compte",
+ "ACTIONPOINTS": "Points d'action",
+ "ACTION_POINTS": "Points d'actions",
+ "ADD": "Ajouter",
+ "ADD_A_FRIEND": "Ajouter",
+ "ADD_TEAMMATE": "Ajouter",
+ "ADD_TO_FRIENDS": "Ajouter à mes amis",
+ "ADD_TO_FRIEND_LIST": "%1 a été ajouté à ta liste d'amis.",
+ "AGILITY": "Agilité",
+ "AIR": "Air",
+ "ALIVE": "Vivant",
+ "ALREADY_LOGGED": "Déjà en connexion. Veuillez réessayer.",
+ "ALREADY_YOUR_FRIEND": "Déjà dans ta liste d'amis.",
+ "AP": "PA",
+ "BACK": "Retour",
+ "BAD_VERSION": "La version %1 de DOFUS installée est trop ancienne. Pour accéder au jeu, installe la nouvelle version.",
+ "BONUS": "Bonus",
+ "BOOST": "Boost",
+ "BOOST_ACTION_POINTS": "<b>%1</b> augmente ses points d'action de <b>%2</b>",
+ "BOOST_CRITICAL_HIT": "<b>%1</b> augmente ses coups critiques de <b>%2</b>",
+ "BOOST_DAMAGES": "<b>%1</b> augmente ses dommages de <b>%2</b>.",
+ "BOOST_FRIEND_ACTION_POINTS": "<b>%1</b> augmente les points d'action de son équipe de <b>%2</b>.",
+ "BOOST_FRIEND_DAMAGES": "<b>%1</b> augmente les dommages de son équipe de <b>%2</b>.",
+ "BOOST_FRIEND_LIFE_POINTS": "<b>%1</b> augmente les points de vie de son équipe de <b>%2</b>.",
+ "BOOST_LIFE_POINTS": "<b>%1</b> augmente ses points de vie de <b>%2</b>.",
+ "CANCEL": "Annuler",
+ "CANCEL_SMALL": "Annuler",
+ "CANT_ADD_FRIEND_NOT_FOUND": "Impossible, ce perso ou compte n'existe pas ou n'est pas connecté.",
+ "CANT_ADD_YOU": "Impossible de t'ajouter en ami.",
+ "CANT_BOOST_IN_GAME": "Impossible de booster un sort en partie.",
+ "CANT_CHANGE_TEAM": "Impossible de changer l'équipe.",
+ "CANT_CONNECT": "Le serveur est introuvable. Connexion impossible.",
+ "CANT_EQUIP": "Ne peut être équipé.",
+ "CANT_LAUNCH_BEFORE": "Ce sort ne peut pas être lancé avant <b>%1</b> tour(s).",
+ "CANT_LAUNCH_MORE": "Ce sort ne peut être lancé plus de <b>%1</b> fois par tour.",
+ "CANT_MOVEOUT": "Le jet d'esquive a échoué.",
+ "CANT_MOVE_ITEM_IN_GAME": "Impossible de déplacer un objet en partie.",
+ "CANT_ON_THIS_PLAYER": "Dans ce tour, impossible de relancer ce sort sur ce joueur.",
+ "CANT_RELAUNCH": "Ce sort ne peut plus être relancé de la partie.",
+ "CANT_WISP_YOURSELF": "Tu ne peux pas t'écrire à toi-même.",
+ "CARD": "Carte",
+ "CC_DAMAGES": "Attaque au corps à corps",
+ "CHANNEL": "Salon",
+ "CHARACTER": "Perso",
+ "CHARACTERISTICS": "Caractéristiques",
+ "CHARISM": "Charisme",
+ "CHAT_TYPE1": "Affiche/Cache les messages communs.",
+ "CHAT_TYPE2": "Affiche/Cache les messages privés.",
+ "CHAT_TYPE3": "Affiche/Cache les messages d'information.",
+ "CHAT_TYPE4": "Affiche / Cache les messages d'erreur.",
+ "CHOOSE_TITLE": "Choisis ton personnage",
+ "CLOSE": "Fermer",
+ "CONNECTED": "Connectés",
+ "CONNECT_NOT_FINISHED": "Connexion non encore achevée.",
+ "COST": "Coût",
+ "CREATE": "Créer",
+ "CREATE_CHARACTER_NAME": "Nom du personnage",
+ "CREATE_COLOR": "Couleurs",
+ "CREATE_GAME": "Créer une partie",
+ "CREATE_GUILD": "Guilde",
+ "CREATE_NAME": "Nom",
+ "CREATE_SEX": "Sexe",
+ "CREATE_SMALL": "Créer",
+ "CREATE_TITLE": "Crée ton personnage",
+ "CRITICAL_HIT": "Coup critique",
+ "CRITICAL_MISS": "Echec critique",
+ "DAMAGES": "Dommages",
+ "DEAD": "Mort",
+ "DELETE": "Supprimer",
+ "DELTA_LEVEL": "Niveaux d'écart",
+ "DESCRIPTION_RANDOM": "<p align=\"left\"><font face=\"Verdana\" size=\"11\" color=\"#ffffff\">- Jouer seul</font></p><p align=\"left\"><font face=\"Verdana\" size=\"11\" color=\"#ffffff\">Affronte un adversaire choisi au hasard.</font></p><p align=\"left\"><font face=\"Verdana\" size=\"11\" color=\"#ffffff\">- Constituer une équipe</font></p><p align=\"left\"><font face=\"Verdana\" size=\"11\" color=\"#ffffff\">Invite tes amis dans ton équipe et affrontez ensemble une autre équipe.</font></p>",
+ "DIE": "<b>%1</b> est mort !",
+ "DISCONNECT": "Connexion interrompue avec le serveur.",
+ "DOFUS_STATS": "Stats Dofus",
+ "DO_U_ACCEPT_INVITATION": "%1 t'invite à rejoindre son équipe. Acceptes-tu ?",
+ "DO_U_DISCONNECT": "Cette action va quitter toutes les parties en cours, veux-tu continuer ?",
+ "DO_U_DROP": "Veux-tu jeter %1 ?",
+ "DO_U_GIVEUP": "Si tu abandonnes, tu seras considéré comme perdant du combat. Le veux-tu vraiment ?",
+ "DO_U_QUIT": "Cette action va quitter toutes les parties en cours, veux-tu continuer ?",
+ "DROP_FULL": "Plus de place pour jeter cet objet !",
+ "EARTH": "Terre",
+ "EMPTY": "vide",
+ "EMPTY_FRIEND_LIST": "Ta liste d'amis est vide.",
+ "ENTER_CHANNEL": "<b>%1</b> arrive dans le channel",
+ "ENTER_DOFUS": "Ton ami <b>%2</b> (%1) vient de se connecter.",
+ "ERROR": "Erreur : %1",
+ "ERROR_CREATING_GAME": "Erreur lors de la création de la partie",
+ "ERROR_CREATING_m": "carte inconnue",
+ "ERROR_CREATING_n": "ce nom de partie est déjà utilisé",
+ "ERROR_CREATING_o": "options de partie invalides",
+ "ERROR_JOINING_GAME": "Impossible de rejoindre la partie",
+ "ERROR_JOINING_a": "tu es déjà dans une partie",
+ "ERROR_JOINING_f": "la partie est complète",
+ "ERROR_JOINING_n": "cette partie n'existe plus",
+ "ERROR_JOINING_p": "mot de passe incorrect",
+ "ERROR_JOINING_s": "la partie a déjà commencé",
+ "EXPERIMENT": "Expérience",
+ "FIRE": "Feu",
+ "FORCE": "Force",
+ "FREE_TEAMMATE": "Ajouter",
+ "FRIENDS": "Amis",
+ "FROM": "de",
+ "GAMECOUNT": "Nb de parties",
+ "GAME_LAUNCH": "La partie est lancée",
+ "GAME_NAME": "Nom de Partie",
+ "GAME_RESULTS": "Résultat du combat",
+ "GUIFTS": "Ta récompense",
+ "HAS_ATTACK_CC": "<b>%1</b> attaque au corps à corps.",
+ "HAS_LAUNCH_SPELL": "<b>%1</b> lance <b>%2</b>.",
+ "HELP_1": "Jouer : affronte d'autres joueurs en partie aléatoire, seul ou en équipe.",
+ "HELP_10": "Envoie ton message aux joueurs du channel.",
+ "HELP_11": "Les joueurs présents dans le channel, avec leur niveau entre parenthèses.",
+ "HELP_2": "Entraînement : crée ou rejoins une partie pour t'entraîner avec tes amis.",
+ "HELP_3": "Amis : gère ta liste d'amis et vois où ils se trouvent.",
+ "HELP_4": "Retour au village : quitte la Console Multi et retourne dans le village.",
+ "HELP_5": "Ouvre le menu principal.",
+ "HELP_6": "Coche ou décoche ces cases pour afficher ou cacher les messages communs, privés, d'information et d'erreur.",
+ "HELP_7": "Choisis le channel dans lequel tu veux discuter.",
+ "HELP_8": "Zone de chat : les messages des joueurs du channel et les informations du jeu s'affichent ici.",
+ "HELP_9": "Tape ton message ici puis appuie sur Entrée. Pour un message privé : /w nom message",
+ "HELP_FRIENDS_12": "Entre le nom d'un perso puis clique sur Ajouter pour l'ajouter à ta liste d'amis.",
+ "HELP_FRIENDS_12B": "Entre le nom d'un compte puis clique sur Ajouter : tous les persos de ce compte seront ajoutés à ta liste d'amis.",
+ "HELP_FRIENDS_13": "Tes amis connectés : le nom de leur compte et du perso qu'ils jouent.",
+ "HELP_FRIENDS_14": "Le niveau du perso joué par ton ami.",
+ "HELP_FRIENDS_15": "Indique où se trouve ton ami : dans un channel, dans le village ou en combat.",
+ "HELP_FRIENDS_16": "Tes amis qui ne sont pas connectés.",
+ "HELP_FRIENDS_17": "Met à jour ta liste d'amis.",
+ "HELP_JOINED_12": "Les informations de la partie : nom, carte, mot de passe, temps par tour, niveaux d'écart et nombre de joueurs.",
+ "HELP_JOINED_13": "Aperçu de la carte sur laquelle se déroulera le combat.",
+ "HELP_JOINED_14": "Lance le combat. Seul le créateur de la partie peut le faire.",
+ "HELP_JOINED_15": "Quitte cette partie.",
+ "HELP_JOINED_16": "Le créateur de la partie peut exclure un joueur en cliquant ici.",
+ "HELP_JOINED_17": "Les joueurs inscrits dans la partie : nom, guilde et niveau.",
+ "HELP_JOINED_18": "Choisis ton équipe.",
+ "HELP_JOIN_12": "Choisis la partie que tu veux rejoindre. Le nombre de joueurs inscrits est indiqué entre parenthèses.",
+ "HELP_JOIN_13": "Met à jour la liste des parties.",
+ "HELP_JOIN_14": "Si la partie est protégée, entre ici son mot de passe.",
+ "HELP_JOIN_15": "Rejoins la partie choisie.",
+ "HELP_JOIN_16": "Donne un nom à ta partie.",
+ "HELP_JOIN_17": "Tu peux protéger ta partie par un mot de passe. Laisse vide pour l'ouvrir à tous.",
+ "HELP_JOIN_18": "Choisis le nombre de joueurs de chaque équipe.",
+ "HELP_JOIN_19": "Choisis l'écart de niveau maximum autorisé entre les joueurs.",
+ "HELP_JOIN_20": "Choisis la carte sur laquelle se déroulera le combat.",
+ "HELP_JOIN_21": "Choisis le temps dont chaque joueur dispose pour jouer son tour.",
+ "HELP_JOIN_22": "Aperçu de la carte choisie.",
+ "HELP_JOIN_23": "Crée la partie. Tu pourras lancer le combat quand tous les joueurs seront là.",
+ "HELP_PLAYSTART_12": "Joue seul contre un adversaire choisi au hasard.",
+ "HELP_PLAYSTART_13": "Constitue une équipe avec tes amis pour affronter une autre équipe.",
+ "HELP_PLAYSTART_15": "Tes amis connectés. Double-clique sur un nom pour lui envoyer un message privé.",
+ "HELP_PLAYSTART_16": "Met à jour la liste de tes amis connectés.",
+ "HELP_PLAY_12": "Un membre de ton équipe, avec son nom, son niveau et ses points de vie.",
+ "HELP_PLAY_13": "Rechercher : lance la recherche d'une équipe adverse. Seul le chef d'équipe peut le faire.",
+ "HELP_PLAY_14": "Retire ce joueur de l'équipe.",
+ "HELP_PLAY_15": "Un coéquipier. Un point d'interrogation indique un coéquipier choisi au hasard.",
+ "HELP_PLAY_16": "Un coéquipier.",
+ "HELP_PLAY_17": "Un coéquipier.",
+ "HELP_PLAY_18": "Choisis un ami à inviter, ou « Aléatoire » pour qu'un coéquipier soit choisi au hasard.",
+ "HELP_PLAY_19": "Met à jour la liste de tes amis connectés.",
+ "HELP_PLAY_20": "Inviter : invite l'ami choisi à rejoindre ton équipe.",
+ "HIDE": "Cacher",
+ "IMPOSSIBLE_INVITATION": "Impossible d'inviter %1.",
+ "INFORMATIONS": "Informations",
+ "INTELLIGENCE": "Intelligence",
+ "INVENTORY_FULL": "Ton inventaire est plein.",
+ "INVILLAGECOUNT": "Dans le village",
+ "INVISIBILITY": "<b>%1</b> se rend invisible.",
+ "IN_CHANNEL": "dans un channel.",
+ "IN_MULTI": "dans un combat.",
+ "IN_RANDOM": "dans une partie aléatoire.",
+ "IN_SOLO": "dans le village.",
+ "IN_UNKNOW": "Quelque part !",
+ "IN_WAINTING": "En attente ",
+ "IS_BUT_WHERE": "<b>%1</b> (%2) : position inconnue",
+ "IS_ENTERING_GAME": "<b>%1</b> (%2) entre dans une partie",
+ "IS_INCLOSE_GAME": "<b>%1</b> (%2) est dans la partie aléatoire <b>%3</b>",
+ "IS_IN_CHANNEL": "<b>%1</b> (%2) est dans le channel <b>%3</b>",
+ "IS_IN_OPEN_GAME": "<b>%1</b> (%2) est dans la partie d'entraînement <b>%3</b>",
+ "IS_IN_SINGLE_GAME": "<b>%1</b> (%2) est dans le village",
+ "I_AM_BUT_WHERE": "Je suis <b>%1</b> (%2), mais je ne sais pas où !",
+ "I_AM_ENTERING_GAME": "Je suis <b>%1</b> (%2) et j'entre dans une partie.",
+ "I_AM_IN_CHANNEL": "Je suis <b>%1</b> (%2) dans le channel <b>%3</b>.",
+ "I_AM_IN_CLOSE_GAME": "Je suis <b>%1</b> (%2) dans la partie aléatoire <b>%3</b>.",
+ "I_AM_IN_OPEN_GAME": "Je suis <b>%1</b> (%2) dans la partie d'entraînement <b>%3</b>.",
+ "I_AM_IN_SINGLE_GAME": "Je suis <b>%1</b> (%2) dans le village.",
+ "I_CANT_GO": "Je ne peux \npas y aller !",
+ "JOIN_GAME": "Rejoindre une partie",
+ "JOIN_SMALL": "Rejoindre",
+ "KARMA": "Karma",
+ "LEAVE": "Quitter",
+ "LEAVE_DOFUS": "Ton ami <b>%2</b> (%1) vient de se déconnecter.",
+ "LEAVE_GAME": "<b>%1</b> quitte la partie.",
+ "LEVEL": "Niveau",
+ "LEVEL_SMALL": "Niv.",
+ "LIFEPOINTS": "Points de vie",
+ "LOADING_MAP": "Chargement de la carte ...",
+ "LONG_CHARACTER_NAME": "%1 est trop long (%2 caractères maximum).",
+ "LOSERS": "Perdants",
+ "LOST_AP": "<b>%1</b> perd <b>%2</b> PA.",
+ "LOST_LP": "<b>%1</b> perd <b>%2</b> PDV.",
+ "LP": "PDV",
+ "MAKE_TEAM": "Constituer une équipe",
+ "MENU": "Menu principal",
+ "MENU_BUG": "Rapport de bug",
+ "MENU_DOWNLOAD": "Téléchargements",
+ "MENU_INFOS": "Infos personnelles",
+ "MENU_INSTRUCTIONS": "Guide de l'utilisateur",
+ "MENU_PLAY": "Jouer",
+ "MENU_RULES": "Charte des bêtas",
+ "MENU_TITLE": "Menu principal",
+ "MODERATE_AGILITY": "L'agilité de <b>%1</b> varie de <b>%2</b>",
+ "MODERATE_CHARISM": "Le charisme de <b>%1</b> varie de <b>%2</b>",
+ "MODERATE_INTELLIGENCE": "L'intelligence de <b>%1</b> varie de <b>%2</b>",
+ "MODERATE_KARMA": "Le karma de <b>%1</b> varie de <b>%2</b>",
+ "MODERATE_RANGE": "La portée de <b>%1</b> varie de <b>%2</b>",
+ "MODERATE_STRENGTH": "La force de <b>%1</b> varie de <b>%2</b>",
+ "MODERATE_VITALITY": "La vitalité de <b>%1</b> varie de <b>%2</b>",
+ "MSG": "msg",
+ "MULTIPLICATE_DAMAGES": "<b>%1</b> multiplie ses dommages par <b>%2</b>",
+ "MULTI_GAME": "Entraînement",
+ "MUSICS": "Musiques",
+ "MUTE_MUSIC": "Coupe la musique",
+ "MUTE_SOUNDS": "Coupe les sons",
+ "NAME": "nom",
+ "NEED_CHARACTER_NAME": "Entre un nom pour ton personnage.",
+ "NEW_CHARACTERISTICS": "Nouvelles caractéristiques",
+ "NEXT_PLAYER": "Joueur suivant",
+ "NO": "Non",
+ "NOCHANGE_LP": "<b>%1</b> n'a rien subi.",
+ "NOT_ENOUGH_AP": "Tu n'as pas assez de points d'action.",
+ "NOT_ENOUGTH_BONUSPOINTS": "Tu n'as pas assez de points de bonification.",
+ "OFFLINE": "Non connectés",
+ "ONLINE": "Connectés",
+ "OPTIONS": "Options",
+ "PASSWORD": "Mot de passe",
+ "PLACE_CHARACTER": "Place ton personnage.",
+ "PLACE_SPELL_HERE": "Glisse un sort pour le booster",
+ "PLAY": "Jouer",
+ "PLAYER_CONNECTED": "Actuellement <b>%1</b> joueur(s) connecté(s)",
+ "PLAYER_COUNT": "Nombre de joueurs",
+ "PLAYER_TURN": "C'est à %1 de jouer",
+ "PLAY_DOFUS": "Jouer",
+ "PLAY_DUEL": "Jouer seul",
+ "PLAY_SMALL": "Jouer",
+ "QUESTION": "Question",
+ "RANDOM": "Aléatoire",
+ "RANGE": "PO",
+ "RANGEFULL": "Portée",
+ "REDUCE_DAMAGES": "<b>%1</b> réduit les dommages de <b>%2</b>.",
+ "REFUSE_INVITATION": "%1 refuse ton invitation.",
+ "REMOVE_FRIEND_OK": "Tu viens de perdre un ami.",
+ "RESISTANCES": "Résistances",
+ "RETURN_DAMAGES": "<b>%1</b> renvoie <b>%2</b> de dommages.",
+ "RETURN_SPELL_NO": "<b>%1</b> échoue dans le renvoi du sort.",
+ "RETURN_SPELL_OK": "<b>%1</b> renvoie le sort.",
+ "RETURN_TO_VILLAGE": "Retour au village",
+ "Range": "PO",
+ "SEARCHING_RANDOM": "Recherche en cours ",
+ "SELECT_CHARACTER": "Sélectionne un personnage.",
+ "SEND": "Envoyer",
+ "SHOW": "Afficher",
+ "SOUNDS": "Sons",
+ "SPELL_TAB_AIR": "Air",
+ "SPELL_TAB_AIR_TITLE": "Sorts d'Air",
+ "SPELL_TAB_EARTH": "Terre",
+ "SPELL_TAB_EARTH_TITLE": "Sorts de Terre",
+ "SPELL_TAB_FIRE": "Feu",
+ "SPELL_TAB_FIRE_TITLE": "Sorts de Feu",
+ "SPELL_TAB_GUILD": "Guilde",
+ "SPELL_TAB_GUILD_TITLE": "Sorts de Guilde",
+ "SPELL_TAB_WATER": "Eau",
+ "SPELL_TAB_WATER_TITLE": "Sorts d'Eau",
+ "SRV_MSG_0": "Trop de spam !",
+ "SRV_MSG_001": "Le serveur va redémarrer. Termine vite tes combats !",
+ "SRV_MSG_1": "Tu es resté trop longtemps inactif.",
+ "SRV_MSG_16": "Connexion temporairement refusée : le serveur reçoit trop de connexions simultanées. Merci de réessayer dans quelques secondes.",
+ "SRV_MSG_2": "Ton personnage a atteint le niveau maximum autorisé.",
+ "SRV_MSG_3": "Pour des raisons de maintenance, le serveur va être coupé d'ici quelques minutes.",
+ "SRV_MSG_4": "Votre connexion a été coupée pour des raisons de maintenance.",
+ "SRV_MSG_42": "Tu as été déconnecté par un administrateur.",
+ "STATS": "Statistiques",
+ "STEAL_GOLD": "<b>%1</b> vole <b>%2</b> pièce(s) d'or",
+ "SYNTAX_ERROR": "Erreur de syntaxe : %1",
+ "TITLE_RANDOM": "Parties aléatoires",
+ "TO": "à",
+ "TOO_LOW_LEVEL_FOR_ITEM": "Ton niveau est trop faible pour prendre cet objet.",
+ "TURN_DELAY": "Temps par tour",
+ "UNKNOW_COMMAND": "Commande non reconnue : <b>%1</b>",
+ "USER_NOT_CONNECTED": "Le joueur <b>%1</b> n'est pas connecté.",
+ "USER_STATS": "Stats perso",
+ "VALIDATE": "Valider",
+ "VERSUS": "contre",
+ "VITALITY": "Vitalité",
+ "WAITING_OTHER": "En attente des autres joueurs ...",
+ "WATER": "Eau",
+ "WINNERS": "Gagnants",
+ "WIN_LP": "<b>%1</b> gagne <b>%2</b> PDV.",
+ "WISPER_MESSAGE": "Message privé",
+ "XP": "XP",
+ "YES": "Oui",
+ "YOUR_FRIEND_LIST": "Ta liste d'amis",
+ "YOU_ARE_IN_CHANNEL": "Tu es désormais dans le channel <b>%1</b>",
+ "YOU_FIND_GOLD": "Tu as trouvé %1 pièce(s) d'or",
+ "YOU_FIND_NEW_ITEM": "Nouvel objet",
+ "YOU_FIND_SOMTHING": "Tu as trouvé quelquechose.",
+ "S": {
+  "1": {
+   "n": "Sort 1",
+   "d": ""
+  },
+  "2": {
+   "n": "Sort 2",
+   "d": ""
+  },
+  "3": {
+   "n": "Sort 3",
+   "d": ""
+  },
+  "4": {
+   "n": "Renvoi de sorts",
+   "d": "Le Renvoi de Sorts permet de renvoyer un sort occasionnant une perte de PDV ou de PA."
+  },
+  "5": {
+   "n": "Sort 5",
+   "d": ""
+  },
+  "6": {
+   "n": "Sort 6",
+   "d": ""
+  },
+  "7": {
+   "n": "Sort 7",
+   "d": ""
+  },
+  "8": {
+   "n": "Sort 8",
+   "d": ""
+  },
+  "9": {
+   "n": "Sort 9",
+   "d": ""
+  },
+  "10": {
+   "n": "Sort 10",
+   "d": ""
+  },
+  "11": {
+   "n": "Sort 11",
+   "d": ""
+  },
+  "12": {
+   "n": "Sort 12",
+   "d": ""
+  },
+  "13": {
+   "n": "Sort 13",
+   "d": ""
+  },
+  "14": {
+   "n": "Sort 14",
+   "d": ""
+  },
+  "15": {
+   "n": "Sort 15",
+   "d": ""
+  },
+  "16": {
+   "n": "Sort 16",
+   "d": ""
+  },
+  "17": {
+   "n": "Sort 17",
+   "d": ""
+  },
+  "18": {
+   "n": "Sort 18",
+   "d": ""
+  },
+  "19": {
+   "n": "Sort 19",
+   "d": ""
+  },
+  "20": {
+   "n": "Sort 20",
+   "d": ""
+  },
+  "21": {
+   "n": "Chien",
+   "d": "Le chien inflige des dégâts aux ennemis.",
+   "l1": [
+    "1dé5+2",
+    "",
+    4,
+    3
+   ]
+  },
+  "22": {
+   "n": "Cri de l'ours",
+   "d": "Le Cri de l’ours permet de retirer des PA à plusieurs cibles dans un rayon délimité.",
+   "l1": [
+    "",
+    "",
+    4,
+    6
+   ]
+  },
+  "23": {
+   "n": "Chat",
+   "d": "Le chat peut toucher 2 cibles différentes dans un rayon inférieur 5 cases.",
+   "l1": [
+    "1dé3+2",
+    "",
+    4,
+    3
+   ]
+  },
+  "24": {
+   "n": "Corbeau",
+   "d": "Le Corbeau inflige des dégats de Feu à l'ennemi, et n'a pas besoin de ligne de vue pour être lancé."
+  },
+  "25": {
+   "n": "Sort 25",
+   "d": ""
+  },
+  "26": {
+   "n": "Sort 26",
+   "d": ""
+  },
+  "27": {
+   "n": "Sort 27",
+   "d": ""
+  },
+  "28": {
+   "n": "Sort 28",
+   "d": ""
+  },
+  "29": {
+   "n": "Sort 29",
+   "d": ""
+  },
+  "30": {
+   "n": "Sort 30",
+   "d": ""
+  },
+  "31": {
+   "n": "Sort 31",
+   "d": ""
+  },
+  "32": {
+   "n": "Sort 32",
+   "d": ""
+  },
+  "33": {
+   "n": "Sort 33",
+   "d": ""
+  },
+  "41": {
+   "n": "Armure pelleteuse",
+   "d": "Cette armure permet aux disciples de cette guilde d'augmenter sa portée pendant quelques tours.",
+   "l1": [
+    "PO : +1",
+    ""
+   ]
+  },
+  "42": {
+   "n": "Troc",
+   "d": "Le troc permet à chaque joueur infligeant des points de dégâts de voler de l'or.",
+   "l1": [
+    "1 dé10 d'or volé par attaque",
+    ""
+   ]
+  },
+  "43": {
+   "n": "Lancer de pelle",
+   "d": "Le lancer de pelle est la spécialité du disciple d'Enutrof. Ce sort occasionne des dégats important mais n'a qu'un faible portée.",
+   "l1": [
+    "1dé6 +1",
+    ""
+   ]
+  },
+  "44": {
+   "n": "Sort 44",
+   "d": ""
+  },
+  "45": {
+   "n": "Sort 45",
+   "d": ""
+  },
+  "46": {
+   "n": "Sort 46",
+   "d": ""
+  },
+  "47": {
+   "n": "Sort 47",
+   "d": ""
+  },
+  "48": {
+   "n": "Sort 48",
+   "d": ""
+  },
+  "61": {
+   "n": "Sort 61",
+   "d": ""
+  },
+  "62": {
+   "n": "Sort 62",
+   "d": ""
+  },
+  "63": {
+   "n": "Sort 63",
+   "d": ""
+  },
+  "64": {
+   "n": "Sort 64",
+   "d": ""
+  },
+  "65": {
+   "n": "Sort 65",
+   "d": ""
+  },
+  "66": {
+   "n": "Sort 66",
+   "d": ""
+  },
+  "67": {
+   "n": "Sort 67",
+   "d": ""
+  },
+  "68": {
+   "n": "Sort 68",
+   "d": ""
+  },
+  "69": {
+   "n": "Sort 69",
+   "d": ""
+  },
+  "70": {
+   "n": "Sort 70",
+   "d": ""
+  },
+  "71": {
+   "n": "Sort 71",
+   "d": ""
+  },
+  "72": {
+   "n": "Sort 72",
+   "d": ""
+  },
+  "73": {
+   "n": "Sort 73",
+   "d": ""
+  },
+  "74": {
+   "n": "Sort 74",
+   "d": ""
+  },
+  "75": {
+   "n": "Sort 75",
+   "d": ""
+  },
+  "76": {
+   "n": "Sort 76",
+   "d": ""
+  },
+  "77": {
+   "n": "Sort 77",
+   "d": ""
+  },
+  "78": {
+   "n": "Sort 78",
+   "d": ""
+  },
+  "79": {
+   "n": "Sort 79",
+   "d": ""
+  },
+  "80": {
+   "n": "Sort 80",
+   "d": ""
+  },
+  "81": {
+   "n": "Ralentissement",
+   "d": "Retire des PA à une cible unique. Un même joueur ne peut être ciblé qu'une fois par tour par ce sort.",
+   "l1": [
+    "- 1 PA à l'ennemi",
+    "",
+    1,
+    4
+   ]
+  },
+  "82": {
+   "n": "Contre",
+   "d": "Le disciple de cette guilde peut renvoyer des dégâts à son ennemi lorsque ce dernier lui lance une attaque magique ou de CAC.",
+   "l1": [
+    "Dégâts : 1dé2 retournés",
+    "",
+    2,
+    10
+   ]
+  },
+  "83": {
+   "n": "Aiguille",
+   "d": "Sort d'attaque qui occasionne des dégâts directs.",
+   "l1": [
+    "dégâts : 1dé6 +2",
+    "",
+    4,
+    6
+   ]
+  },
+  "84": {
+   "n": "Sort 84",
+   "d": ""
+  },
+  "85": {
+   "n": "Sort 85",
+   "d": ""
+  },
+  "86": {
+   "n": "Sort 86",
+   "d": ""
+  },
+  "87": {
+   "n": "Sort 87",
+   "d": ""
+  },
+  "88": {
+   "n": "Sort 88",
+   "d": ""
+  },
+  "89": {
+   "n": "Sort 89",
+   "d": ""
+  },
+  "90": {
+   "n": "Sort 90",
+   "d": ""
+  },
+  "91": {
+   "n": "Sort 91",
+   "d": ""
+  },
+  "92": {
+   "n": "Sort 92",
+   "d": ""
+  },
+  "93": {
+   "n": "Sort 93",
+   "d": ""
+  },
+  "94": {
+   "n": "Sort 94",
+   "d": ""
+  },
+  "95": {
+   "n": "Sort 95",
+   "d": ""
+  },
+  "96": {
+   "n": "Sort 96",
+   "d": ""
+  },
+  "97": {
+   "n": "Sort 97",
+   "d": ""
+  },
+  "98": {
+   "n": "Sort 98",
+   "d": ""
+  },
+  "99": {
+   "n": "Sort 99",
+   "d": ""
+  },
+  "100": {
+   "n": "Sort 100",
+   "d": ""
+  },
+  "101": {
+   "n": "Roulette",
+   "d": "Ce sort occasionne des dégâts à tous les joueurs utilisant des PA. Plus le sort est puissant plus il fait mal et plus il reste en jeu.",
+   "l1": [
+    "+1 dég. pour 2 PA 2 tours",
+    "",
+    4,
+    -1
+   ]
+  },
+  "102": {
+   "n": "Pile ou face",
+   "d": "Enlève des PDV à l'ennemi et lui en rend en cas d'échec",
+   "l1": [
+    "1dé8 de dég. et 1dé4 de PDV",
+    "",
+    2,
+    6
+   ]
+  },
+  "103": {
+   "n": "Chance d'Ecaflip",
+   "d": "Le disciple à l'occasion une fois par tour de tenter de ne se prendre aucun dommage sur une attaque.",
+   "l1": [
+    "1dé4 dég. récup en PDV",
+    "",
+    2,
+    -1
+   ]
+  },
+  "104": {
+   "n": "Sort 104",
+   "d": ""
+  },
+  "105": {
+   "n": "Sort 105",
+   "d": ""
+  },
+  "106": {
+   "n": "Sort 106",
+   "d": ""
+  },
+  "107": {
+   "n": "Sort 107",
+   "d": ""
+  },
+  "108": {
+   "n": "Sort 108",
+   "d": ""
+  },
+  "109": {
+   "n": "Sort 109",
+   "d": ""
+  },
+  "110": {
+   "n": "Sort 110",
+   "d": ""
+  },
+  "111": {
+   "n": "Sort 111",
+   "d": ""
+  },
+  "112": {
+   "n": "Sort 112",
+   "d": ""
+  },
+  "113": {
+   "n": "Sort 113",
+   "d": ""
+  },
+  "114": {
+   "n": "Sort 114",
+   "d": ""
+  },
+  "115": {
+   "n": "Sort 115",
+   "d": ""
+  },
+  "116": {
+   "n": "Sort 116",
+   "d": ""
+  },
+  "117": {
+   "n": "Sort 117",
+   "d": ""
+  },
+  "118": {
+   "n": "Sort 118",
+   "d": ""
+  },
+  "119": {
+   "n": "Sort 119",
+   "d": ""
+  },
+  "120": {
+   "n": "Sort 120",
+   "d": ""
+  },
+  "121": {
+   "n": "Mot curatif",
+   "d": "Le mot curatif permet au disciple de cette guilde de récupérer des points de vie.",
+   "l1": [
+    "rend 1dé4 de PDV",
+    "",
+    4,
+    -1
+   ]
+  },
+  "122": {
+   "n": "Mot blessant",
+   "d": "Ce mot blesse les ennemis du disciple de cette guilde.",
+   "l1": [
+    "1dé4 +1 de dégâts",
+    "",
+    3,
+    5
+   ]
+  },
+  "123": {
+   "n": "Mot drainant",
+   "d": "Ce sort permet aux disciples de cette guilde de retirer des PA à leurs ennemis mais lui inflige des points de dégâts.",
+   "l1": [
+    "",
+    "",
+    1,
+    1
+   ]
+  },
+  "124": {
+   "n": "Sort 124",
+   "d": ""
+  },
+  "125": {
+   "n": "Sort 125",
+   "d": ""
+  },
+  "126": {
+   "n": "Sort 126",
+   "d": ""
+  },
+  "127": {
+   "n": "Sort 127",
+   "d": ""
+  },
+  "128": {
+   "n": "Sort 128",
+   "d": ""
+  },
+  "129": {
+   "n": "Sort 129",
+   "d": ""
+  },
+  "130": {
+   "n": "Sort 130",
+   "d": ""
+  },
+  "141": {
+   "n": "Pression",
+   "d": "Ce sort permet d'augmenter considérablement les dégâts infligés par les disciples de cette guilde.",
+   "l1": [
+    "Dégâts : 1dé6 +2",
+    "",
+    3,
+    2
+   ]
+  },
+  "142": {
+   "n": "Bond",
+   "d": "Ce sort permet de sauter pour attaquer un ennemi plus vite. En cas d'échec, le joueur passe son tour.",
+   "l1": [
+    "",
+    "",
+    4,
+    6
+   ]
+  },
+  "143": {
+   "n": "Intimidation",
+   "d": "Ce sort permet de faire reculer un ennemi.",
+   "l1": [
+    "dégâts : 1 recul : 2",
+    "",
+    2,
+    1
+   ]
+  },
+  "144": {
+   "n": "Sort 144",
+   "d": ""
+  },
+  "145": {
+   "n": "Sort 145",
+   "d": ""
+  },
+  "146": {
+   "n": "Sort 146",
+   "d": ""
+  },
+  "147": {
+   "n": "Sort 147",
+   "d": ""
+  },
+  "148": {
+   "n": "Sort 148",
+   "d": ""
+  },
+  "149": {
+   "n": "Sort 149",
+   "d": ""
+  },
+  "150": {
+   "n": "Sort 150",
+   "d": ""
+  },
+  "151": {
+   "n": "Sort 151",
+   "d": ""
+  },
+  "152": {
+   "n": "Sort 152",
+   "d": ""
+  },
+  "153": {
+   "n": "Sort 153",
+   "d": ""
+  },
+  "154": {
+   "n": "Sort 154",
+   "d": ""
+  },
+  "155": {
+   "n": "Sort 155",
+   "d": ""
+  },
+  "156": {
+   "n": "Sort 156",
+   "d": ""
+  },
+  "157": {
+   "n": "Sort 157",
+   "d": ""
+  },
+  "158": {
+   "n": "Sort 158",
+   "d": ""
+  },
+  "159": {
+   "n": "Sort 159",
+   "d": ""
+  },
+  "160": {
+   "n": "Sort 160",
+   "d": ""
+  },
+  "161": {
+   "n": "Flèche magique",
+   "d": "Cette flèche enchantée occasionne plus de dégâts que n'importe qu'elle autre simple flèche.",
+   "l1": [
+    "Dégâts : 2dé4",
+    "",
+    4,
+    4
+   ]
+  },
+  "162": {
+   "n": "Tir critique",
+   "d": "Une fois le tir critique lancé, les disciples de cette guilde bénéficient d'un bonus aux coups critique pendant toute la partie.",
+   "l1": [
+    "+ aux coups critiques",
+    "",
+    4
+   ]
+  },
+  "163": {
+   "n": "Flèche glacée",
+   "d": "Sort d'attaque qui occasionne des dégâts directs et fait perdre des points d'action.",
+   "l1": [
+    "dégâts : 1dé3 +-1 PA",
+    "",
+    3,
+    3
+   ]
+  },
+  "164": {
+   "n": "Sort 164",
+   "d": ""
+  },
+  "165": {
+   "n": "Sort 165",
+   "d": ""
+  },
+  "166": {
+   "n": "Sort 166",
+   "d": ""
+  },
+  "167": {
+   "n": "Sort 167",
+   "d": ""
+  },
+  "168": {
+   "n": "Sort 168",
+   "d": ""
+  },
+  "169": {
+   "n": "Sort 169",
+   "d": ""
+  },
+  "170": {
+   "n": "Sort 170",
+   "d": ""
+  },
+  "171": {
+   "n": "Sort 171",
+   "d": ""
+  },
+  "172": {
+   "n": "Sort 172",
+   "d": ""
+  },
+  "173": {
+   "n": "Sort 173",
+   "d": ""
+  },
+  "174": {
+   "n": "Sort 174",
+   "d": ""
+  },
+  "175": {
+   "n": "Sort 175",
+   "d": ""
+  },
+  "176": {
+   "n": "Sort 176",
+   "d": ""
+  },
+  "177": {
+   "n": "Sort 177",
+   "d": ""
+  },
+  "178": {
+   "n": "Sort 178",
+   "d": ""
+  },
+  "179": {
+   "n": "Sort 179",
+   "d": ""
+  },
+  "180": {
+   "n": "Sort 180",
+   "d": ""
+  },
+  "181": {
+   "n": "Sort 181",
+   "d": ""
+  },
+  "182": {
+   "n": "Sort 182",
+   "d": ""
+  },
+  "183": {
+   "n": "Sort 183",
+   "d": ""
+  },
+  "189": {
+   "n": "Sort 189",
+   "d": ""
+  },
+  "190": {
+   "n": "Sort 190",
+   "d": ""
+  },
+  "191": {
+   "n": "Sort 191",
+   "d": ""
+  },
+  "192": {
+   "n": "Sort 192",
+   "d": ""
+  },
+  "193": {
+   "n": "Sort 193",
+   "d": ""
+  },
+  "194": {
+   "n": "Sort 194",
+   "d": ""
+  },
+  "198": {
+   "n": "Sort 198",
+   "d": ""
+  },
+  "199": {
+   "n": "Sort 199",
+   "d": ""
+  },
+  "200": {
+   "n": "Sort 200",
+   "d": ""
+  }
+ },
+ "CC": {
+  "1": "Attaque au corps à corps avec un bâton.",
+  "2": "Attaque au corps à corps avec un marteau.",
+  "3": "Attaque au corps à corps avec une pelle.",
+  "4": "Attaque au corps à corps avec des dagues.",
+  "5": "Attaque au corps à corps avec un marteau.",
+  "6": "Attaque au corps à corps avec une épée.",
+  "7": "Attaque au corps à corps avec une baguette.",
+  "8": "Attaque au corps à corps avec une épée.",
+  "9": "Attaque au corps à corps avec un arc.",
+  "10": "Attaque au corps à corps avec un bâton."
+ },
+ "M": {
+  "12": {
+   "n": "Carte 12",
+   "d": ""
+  },
+  "13": {
+   "n": "Carte 13",
+   "d": ""
+  },
+  "15": {
+   "n": "Carte 15",
+   "d": ""
+  },
+  "20": {
+   "n": "Carte 20",
+   "d": ""
+  },
+  "35": {
+   "n": "Le village",
+   "d": ""
+  },
+  "42": {
+   "n": "Le village",
+   "d": ""
+  },
+  "48": {
+   "n": "Le village",
+   "d": ""
+  },
+  "52": {
+   "n": "Le village",
+   "d": ""
+  },
+  "53": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "57": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "101": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "161": {
+   "n": "Le village",
+   "d": ""
+  },
+  "178": {
+   "n": "Port de Madrestam",
+   "d": ""
+  },
+  "181": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "182": {
+   "n": "Port de Madrestam",
+   "d": ""
+  },
+  "489": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "501": {
+   "n": "Le village",
+   "d": ""
+  },
+  "504": {
+   "n": "Le village",
+   "d": ""
+  },
+  "505": {
+   "n": "Le village",
+   "d": ""
+  },
+  "507": {
+   "n": "Le village",
+   "d": ""
+  },
+  "509": {
+   "n": "Le village",
+   "d": ""
+  },
+  "567": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "578": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "661": {
+   "n": "Le village",
+   "d": ""
+  },
+  "671": {
+   "n": "Le coin des Boos",
+   "d": ""
+  },
+  "673": {
+   "n": "Le coin des Boos",
+   "d": ""
+  },
+  "740": {
+   "n": "La montagne des Craqueleurs",
+   "d": ""
+  },
+  "909": {
+   "n": "Port de Madrestam",
+   "d": ""
+  },
+  "914": {
+   "n": "Port de Madrestam",
+   "d": ""
+  },
+  "946": {
+   "n": "Le coin des Boos",
+   "d": ""
+  },
+  "1117": {
+   "n": "La plage de Moon",
+   "d": ""
+  },
+  "1275": {
+   "n": "La péninsule des gelées",
+   "d": ""
+  },
+  "1278": {
+   "n": "La péninsule des gelées",
+   "d": ""
+  },
+  "1370": {
+   "n": "La péninsule des gelées",
+   "d": ""
+  },
+  "1371": {
+   "n": "La péninsule des gelées",
+   "d": ""
+  },
+  "1375": {
+   "n": "La péninsule des gelées",
+   "d": ""
+  },
+  "1426": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1427": {
+   "n": "Le village",
+   "d": ""
+  },
+  "1490": {
+   "n": "Garnison d'Amakna",
+   "d": ""
+  },
+  "1493": {
+   "n": "Garnison d'Amakna",
+   "d": ""
+  },
+  "1520": {
+   "n": "La montagne des Craqueleurs",
+   "d": ""
+  },
+  "1561": {
+   "n": "Port de Madrestam",
+   "d": ""
+  },
+  "1562": {
+   "n": "Port de Madrestam",
+   "d": ""
+  },
+  "1586": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1589": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1590": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1594": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1601": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1605": {
+   "n": "Le village",
+   "d": ""
+  },
+  "1607": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1608": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1610": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1611": {
+   "n": "Port de Madrestam",
+   "d": ""
+  },
+  "1621": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "1634": {
+   "n": "Port de Madrestam",
+   "d": ""
+  },
+  "1636": {
+   "n": "Port de Madrestam",
+   "d": ""
+  },
+  "1665": {
+   "n": "Le village",
+   "d": ""
+  }
+ },
+ "G": {
+  "1": {
+   "sn": "Féca",
+   "ln": "Guilde du bouclier Féca",
+   "d": "Non disponible",
+   "cc": [],
+   "w": [
+    4
+   ]
+  },
+  "2": {
+   "sn": "Osamodas",
+   "ln": "Guilde du fouet d'Osamodas",
+   "d": "Les disciples de cette guilde élèvent des créatures et les dressent pour qu'elles combattent pour eux. Ils possèdent une parfaite connaissance de la nature. Leur dieu, Osamodas est le maître de trois dragons rouges qui règnent sur toutes les créatures du monde.",
+   "cc": [],
+   "w": [
+    7
+   ]
+  },
+  "3": {
+   "sn": "Enutrof",
+   "ln": "Guilde des chercheurs d'Enutrof",
+   "d": "Ils sont à même de découvrir les meilleurs objets de l'univers d'Amakna. Les bons chasseurs de trésors ne sont pas vraiment bercés dans l'art du combat, mais peuvent au fil du temps devenir des adversaires redoutables grâce à leurs objets.",
+   "cc": [],
+   "w": [
+    8
+   ]
+  },
+  "4": {
+   "sn": "Sram",
+   "ln": "Guilde de l'ombre de Sram",
+   "d": "Non disponible",
+   "cc": [],
+   "w": [
+    5
+   ]
+  },
+  "5": {
+   "sn": "Xélor",
+   "ln": "Guilde du sablier de Xélor",
+   "d": "Les disciples du sablier de Xélor jouent sur les distorsions du temps. Ils peuvent ralentir ou accélérer ennemis et alliés. Leur dieu Xélor a, paraît-il, la forme d'une horloge.\nSes disciples vivent beaucoup plus longtemps que des êtres humains ordinaires - ils ont une moyenne d'âge de 150 ans. Cette longévité leur vient de leur connaissance du temps et de l'évolution des entités.",
+   "cc": [],
+   "w": [
+    7
+   ]
+  },
+  "6": {
+   "sn": "Ecaflip",
+   "ln": "Guilde de la pièce d'Ecaflip",
+   "d": "Les disciples de cette guilde sont des joueurs-nés. Ils sont capables de risquer leur vie pour l'amour du jeu. Leurs sorts risquent donc à tout instant de se retourner contre eux. Dans la guilde Ecaflip, manquer l’incantation d’un sort signifie en assumer les conséquences et en subir les effets.\nLeur dieu, Ecaflip, a perdu sa compagne la déesse Tarot lors d'une partie...",
+   "cc": [
+    1,
+    5,
+    null,
+    3
+   ],
+   "w": [
+    6
+   ]
+  },
+  "7": {
+   "sn": "Eniripsa",
+   "ln": "Guilde des mains d'Eniripsa",
+   "d": "Les sorts des guérisseurs sont des paroles, des mots, des prières. La plupart d'entre eux fonctionnent donc si la portée permet à l'ennemi d'entendre le sort. Très respectueux de la vie, les disciples de cette guilde passent leur temps à soigner et à prévenir des attaques.",
+   "cc": [],
+   "w": [
+    3
+   ]
+  },
+  "8": {
+   "sn": "Iop",
+   "ln": "Guilde du coeur d'Iop",
+   "d": "Iop, dieu de la puissance et du pouvoir, méprise les faibles et ses disciples qui ne doivent pas s'attendre à le voir intervenir à tout moment. Ce dieu ne vient en aide qu'aux plus braves.\nLe courage et la confiance en soi sont les deux qualités premières pour faire partie de la guilde d'Iop.",
+   "cc": [
+    1,
+    5,
+    null,
+    3
+   ],
+   "w": [
+    6
+   ]
+  },
+  "9": {
+   "sn": "Crâ",
+   "ln": "Guilde de l'Etendue de Crâ",
+   "d": "Précision, agilité et dextérité sont les maîtres mots de cette guilde. Ces disciples sont, tout simplement, des archers reconvertis. Leur arc ne suffisant plus à se défendre des monstres de plus en plus résistant, leur dieu, Crâ, leur a légué une partie de sa puissance. Crâ est certainement la divinité la plus proche de ses disciples, car il est le seul dieu à avoir accepté de perdre une partie de son pouvoir.",
+   "cc": [],
+   "w": [
+    2
+   ]
+  },
+  "10": {
+   "sn": "Sadida",
+   "ln": "Guilde du soulier de Sadida",
+   "d": "Non disponible",
+   "cc": [],
+   "w": [
+    4
+   ]
+  }
+ },
+ "I": {
+  "t": {
+   "1": {
+    "n": "Amulette",
+    "t": 1,
+    "g": 1,
+    "s": false
+   },
+   "2": {
+    "n": "Arc",
+    "t": 2,
+    "g": 0,
+    "s": false
+   },
+   "3": {
+    "n": "Baguette",
+    "t": 2,
+    "g": 1,
+    "s": false
+   },
+   "4": {
+    "n": "Bâton",
+    "t": 2,
+    "g": 0,
+    "s": false
+   },
+   "5": {
+    "n": "Dagues",
+    "t": 2,
+    "g": 1,
+    "s": true
+   },
+   "6": {
+    "n": "Epée",
+    "t": 2,
+    "g": 1,
+    "s": false
+   },
+   "7": {
+    "n": "Marteau",
+    "t": 2,
+    "g": 0,
+    "s": false
+   },
+   "8": {
+    "n": "Pelle",
+    "t": 2,
+    "g": 1,
+    "s": false
+   },
+   "9": {
+    "n": "Anneau",
+    "t": 3,
+    "g": 0,
+    "s": false
+   },
+   "10": {
+    "n": "Ceinture",
+    "t": 4,
+    "g": 1,
+    "s": false
+   },
+   "11": {
+    "n": "Bottes",
+    "t": 5,
+    "g": 1,
+    "s": true
+   }
+  },
+  "st": {
+   "1": "Amulettes",
+   "2": "Armes",
+   "3": "Anneaux",
+   "4": "Ceintures",
+   "5": "Bottes",
+   "6": "Consommables",
+   "7": "Boucliers"
+  },
+  "e": {
+   "5": {
+    "n": "repoussant{~fe}{~ps}",
+    "d": "fait reculer de #1case(s)"
+   },
+   "100": {
+    "n": "de boisaille",
+    "d": "dommages : #1{~1D}#2{~2~3+}#3"
+   },
+   "123": {
+    "n": "karmique{~ps}",
+    "d": "+#1 au karma"
+   }
+  }
+ }
+}

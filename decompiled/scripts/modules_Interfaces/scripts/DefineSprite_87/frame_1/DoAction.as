@@ -1,0 +1,64 @@
+if(this.curseur.hitTest(_parent.pos1))
+{
+   _parent.clip_mc.gotoAndPlay("StaticR");
+}
+if(this.curseur.hitTest(_parent.pos2))
+{
+   _parent.clip_mc.gotoAndPlay("StaticL");
+}
+if(this.curseur.hitTest(_parent.pos3))
+{
+   _parent.clip_mc.gotoAndPlay("WaitR");
+}
+if(this.curseur.hitTest(_parent.pos4))
+{
+   _parent.clip_mc.gotoAndPlay("WaitL");
+}
+if(this.curseur.hitTest(_parent.pos5))
+{
+   _parent.clip_mc.gotoAndPlay("WalkR");
+}
+if(this.curseur.hitTest(_parent.pos6))
+{
+   _parent.clip_mc.gotoAndPlay("WalkL");
+}
+if(this.curseur.hitTest(_parent.pos7))
+{
+   _parent.clip_mc.gotoAndPlay("RunR");
+}
+if(this.curseur.hitTest(_parent.pos8))
+{
+   _parent.clip_mc.gotoAndPlay("RunL");
+}
+if(this.curseur.hitTest(_parent.pos9))
+{
+   _parent.clip_mc.gotoAndPlay("CastR");
+}
+if(this.curseur.hitTest(_parent.pos10))
+{
+   _parent.clip_mc.gotoAndPlay("CastL");
+}
+if(this.curseur.hitTest(_parent.pos11))
+{
+   _parent.clip_mc.gotoAndPlay("ShootR");
+}
+if(this.curseur.hitTest(_parent.pos12))
+{
+   _parent.clip_mc.gotoAndPlay("ShootL");
+}
+if(this.curseur.hitTest(_parent.pos13))
+{
+   _parent.clip_mc.gotoAndPlay("HitR");
+}
+if(this.curseur.hitTest(_parent.pos14))
+{
+   _parent.clip_mc.gotoAndPlay("HitL");
+}
+if(this.curseur.hitTest(_parent.pos15))
+{
+   _parent.clip_mc.gotoAndPlay("DieR");
+}
+if(this.curseur.hitTest(_parent.pos16))
+{
+   _parent.clip_mc.gotoAndPlay("DieL");
+}

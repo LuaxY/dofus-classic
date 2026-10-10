@@ -1,0 +1,2 @@
+removeMovieClip(this);
+stop();

@@ -1,0 +1,1 @@
+gotoAndPlay(random(10));

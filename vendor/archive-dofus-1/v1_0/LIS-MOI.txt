@@ -1,0 +1,47 @@
+
+     +----------------------------------------+
+     |######  ####### ####### #     #  #####  |
+     |#     # #     # #       #     # #     # |
+     |#     # #     # #       #     # #       |
+     |#     # #     # #####   #     #  #####  |
+     |#     # #     # #       #     #       # |
+     |#     # #     # #       #     # #     # |
+     |######  ####### #        #####   #####  |
+     |                                        |
+     |              VERSION 1.0               |
+     +----------------------------------------+
+
+
+Le 23 août 2004.
+
+
+
+Tu viens de télécharger et d’installer les fichiers qui vont te permettre de jouer
+à Dofus.
+
+
+Pour pouvoir jouer, rends-toi à la page http://jouer.dofus.com.
+
+Identifie-toi, puis sélectionne JOUER.
+
+
+A la première utilisation, notre serveur te demandera d’indiquer l’emplacement du fichier DOFUS.swf
+(ou DOFUS si l'affichage des extensions n'est pas activé sur ta machine).
+Celui-ci se trouve dans le dossier que tu viens d’installer (« c:\jeux\dofus » par exemple).
+Lors des utilisations suivantes, tu n’auras pas à effectuer ces manipulations
+à moins que tu aies déplacé le dossier contenant le fichier DOFUS.swf ou
+que tu te connectes depuis un autre ordinateur.
+
+
+
+Avertissement :
+
+Les Fichiers d’installation de Dofus sont garantis sans virus, chevaux de troie
+ou autres spywares connus. Ankama Studio ne pourrait être tenu responsable
+en cas de mauvaise utilisation et/ou de pertes d’informations.
+
+
+________________________________________________________________
+
+
+DOFUS - © 2003-2004 Ankama Studio – Tous droits réservés

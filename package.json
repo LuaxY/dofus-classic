@@ -1,0 +1,16 @@
+{
+  "name": "dofus-nostalgie",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite web",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "^0.1.80",
+    "@types/bun": "latest",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0"
+  }
+}

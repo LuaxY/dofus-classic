@@ -1,0 +1,2 @@
+stop();
+removeMovieClip(_parent);

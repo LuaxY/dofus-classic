@@ -1,0 +1,1963 @@
+[
+ {
+  "file": "clips-sprites-10__63__f1.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "sprite",
+  "characterId": 63,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   42,
+   54
+  ],
+  "origin": [
+   19.5,
+   49.9
+  ]
+ },
+ {
+  "file": "clips-sprites-10__99__f1.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "sprite",
+  "characterId": 99,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 15,
+  "size": [
+   45,
+   56
+  ],
+  "origin": [
+   18.65,
+   50.5
+  ]
+ },
+ {
+  "file": "clips-sprites-10__99__f6.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "sprite",
+  "characterId": 99,
+  "linkage": null,
+  "frame": 6,
+  "frameCount": 15,
+  "size": [
+   45,
+   56
+  ],
+  "origin": [
+   18.65,
+   50.5
+  ]
+ },
+ {
+  "file": "clips-sprites-10__99__f10.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "sprite",
+  "characterId": 99,
+  "linkage": null,
+  "frame": 10,
+  "frameCount": 15,
+  "size": [
+   45,
+   56
+  ],
+  "origin": [
+   18.65,
+   50.5
+  ]
+ },
+ {
+  "file": "clips-sprites-10__99__f15.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "sprite",
+  "characterId": 99,
+  "linkage": null,
+  "frame": 15,
+  "frameCount": 15,
+  "size": [
+   45,
+   56
+  ],
+  "origin": [
+   18.65,
+   50.5
+  ]
+ },
+ {
+  "file": "clips-sprites-10__147__f1.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "sprite",
+  "characterId": 147,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 37,
+  "size": [
+   65,
+   85
+  ],
+  "origin": [
+   31.5,
+   80.8
+  ]
+ },
+ {
+  "file": "clips-sprites-10__147__f13.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "sprite",
+  "characterId": 147,
+  "linkage": null,
+  "frame": 13,
+  "frameCount": 37,
+  "size": [
+   65,
+   85
+  ],
+  "origin": [
+   31.5,
+   80.8
+  ]
+ },
+ {
+  "file": "clips-sprites-10__147__f25.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "sprite",
+  "characterId": 147,
+  "linkage": null,
+  "frame": 25,
+  "frameCount": 37,
+  "size": [
+   65,
+   85
+  ],
+  "origin": [
+   31.5,
+   80.8
+  ]
+ },
+ {
+  "file": "clips-sprites-10__147__f37.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "sprite",
+  "characterId": 147,
+  "linkage": null,
+  "frame": 37,
+  "frameCount": 37,
+  "size": [
+   65,
+   85
+  ],
+  "origin": [
+   31.5,
+   80.8
+  ]
+ },
+ {
+  "file": "clips-sprites-10__0__f2.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 2,
+  "frameCount": 116,
+  "size": [
+   28,
+   56
+  ],
+  "origin": [
+   14,
+   51
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-sprites-10__0__f29.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 29,
+  "frameCount": 116,
+  "size": [
+   29,
+   53
+  ],
+  "origin": [
+   12,
+   48
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-sprites-10__0__f30.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 30,
+  "frameCount": 116,
+  "size": [
+   28,
+   54
+  ],
+  "origin": [
+   12,
+   49
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-sprites-10__0__f31.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 31,
+  "frameCount": 116,
+  "size": [
+   26,
+   54
+  ],
+  "origin": [
+   12,
+   49
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-sprites-10__0__f110.png",
+  "swf": "clips/sprites/10.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 110,
+  "frameCount": 116,
+  "size": [
+   23,
+   28
+  ],
+  "origin": [
+   14,
+   28
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-sprites-1000__43__f1.png",
+  "swf": "clips/sprites/1000.swf",
+  "kind": "sprite",
+  "characterId": 43,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   44,
+   74
+  ],
+  "origin": [
+   18.7,
+   65.85
+  ]
+ },
+ {
+  "file": "clips-sprites-1000__77__f1.png",
+  "swf": "clips/sprites/1000.swf",
+  "kind": "sprite",
+  "characterId": 77,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 11,
+  "size": [
+   56,
+   79
+  ],
+  "origin": [
+   28.3,
+   68.55
+  ]
+ },
+ {
+  "file": "clips-sprites-1000__77__f4.png",
+  "swf": "clips/sprites/1000.swf",
+  "kind": "sprite",
+  "characterId": 77,
+  "linkage": null,
+  "frame": 4,
+  "frameCount": 11,
+  "size": [
+   56,
+   79
+  ],
+  "origin": [
+   28.3,
+   68.55
+  ]
+ },
+ {
+  "file": "clips-sprites-1000__77__f8.png",
+  "swf": "clips/sprites/1000.swf",
+  "kind": "sprite",
+  "characterId": 77,
+  "linkage": null,
+  "frame": 8,
+  "frameCount": 11,
+  "size": [
+   56,
+   79
+  ],
+  "origin": [
+   28.3,
+   68.55
+  ]
+ },
+ {
+  "file": "clips-sprites-1000__77__f11.png",
+  "swf": "clips/sprites/1000.swf",
+  "kind": "sprite",
+  "characterId": 77,
+  "linkage": null,
+  "frame": 11,
+  "frameCount": 11,
+  "size": [
+   56,
+   79
+  ],
+  "origin": [
+   28.3,
+   68.55
+  ]
+ },
+ {
+  "file": "clips-sprites-1000__1__f1.png",
+  "swf": "clips/sprites/1000.swf",
+  "kind": "shape",
+  "characterId": 1,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   38,
+   9
+  ],
+  "origin": [
+   18.65,
+   4.45
+  ]
+ },
+ {
+  "file": "clips-sprites-1000__0__f2.png",
+  "swf": "clips/sprites/1000.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 2,
+  "frameCount": 115,
+  "size": [
+   45,
+   75
+  ],
+  "origin": [
+   25,
+   66
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-sprites-1000__0__f28.png",
+  "swf": "clips/sprites/1000.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 28,
+  "frameCount": 115,
+  "size": [
+   44,
+   72
+  ],
+  "origin": [
+   18,
+   65
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-sprites-1000__0__f30.png",
+  "swf": "clips/sprites/1000.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 30,
+  "frameCount": 115,
+  "size": [
+   35,
+   72
+  ],
+  "origin": [
+   19,
+   67
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-spells-101__14__f1.png",
+  "swf": "clips/spells/101.swf",
+  "kind": "sprite",
+  "characterId": 14,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 102,
+  "size": [
+   47,
+   31
+  ],
+  "origin": [
+   22.55,
+   15
+  ]
+ },
+ {
+  "file": "clips-spells-101__14__f35.png",
+  "swf": "clips/spells/101.swf",
+  "kind": "sprite",
+  "characterId": 14,
+  "linkage": null,
+  "frame": 35,
+  "frameCount": 102,
+  "size": [
+   47,
+   31
+  ],
+  "origin": [
+   22.55,
+   15
+  ]
+ },
+ {
+  "file": "clips-spells-101__14__f68.png",
+  "swf": "clips/spells/101.swf",
+  "kind": "sprite",
+  "characterId": 14,
+  "linkage": null,
+  "frame": 68,
+  "frameCount": 102,
+  "size": [
+   47,
+   31
+  ],
+  "origin": [
+   22.55,
+   15
+  ]
+ },
+ {
+  "file": "clips-spells-101__14__f102.png",
+  "swf": "clips/spells/101.swf",
+  "kind": "sprite",
+  "characterId": 14,
+  "linkage": null,
+  "frame": 102,
+  "frameCount": 102,
+  "size": [
+   47,
+   31
+  ],
+  "origin": [
+   22.55,
+   15
+  ]
+ },
+ {
+  "file": "clips-spells-903__15__f1.png",
+  "swf": "clips/spells/903.swf",
+  "kind": "sprite",
+  "characterId": 15,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 25,
+  "size": [
+   198,
+   103
+  ],
+  "origin": [
+   -7.1,
+   52.55
+  ]
+ },
+ {
+  "file": "clips-spells-903__15__f9.png",
+  "swf": "clips/spells/903.swf",
+  "kind": "sprite",
+  "characterId": 15,
+  "linkage": null,
+  "frame": 9,
+  "frameCount": 25,
+  "size": [
+   198,
+   103
+  ],
+  "origin": [
+   -7.1,
+   52.55
+  ]
+ },
+ {
+  "file": "clips-spells-903__15__f17.png",
+  "swf": "clips/spells/903.swf",
+  "kind": "sprite",
+  "characterId": 15,
+  "linkage": null,
+  "frame": 17,
+  "frameCount": 25,
+  "size": [
+   198,
+   103
+  ],
+  "origin": [
+   -7.1,
+   52.55
+  ]
+ },
+ {
+  "file": "clips-spells-903__15__f25.png",
+  "swf": "clips/spells/903.swf",
+  "kind": "sprite",
+  "characterId": 15,
+  "linkage": null,
+  "frame": 25,
+  "frameCount": 25,
+  "size": [
+   198,
+   103
+  ],
+  "origin": [
+   -7.1,
+   52.55
+  ]
+ },
+ {
+  "file": "clips-spells-903__fumee__f1.png",
+  "swf": "clips/spells/903.swf",
+  "kind": "sprite",
+  "characterId": 4,
+  "linkage": "fumee",
+  "frame": 1,
+  "frameCount": 12,
+  "size": [
+   33,
+   33
+  ],
+  "origin": [
+   14.35,
+   18.6
+  ]
+ },
+ {
+  "file": "clips-spells-903__fumee__f5.png",
+  "swf": "clips/spells/903.swf",
+  "kind": "sprite",
+  "characterId": 4,
+  "linkage": "fumee",
+  "frame": 5,
+  "frameCount": 12,
+  "size": [
+   33,
+   33
+  ],
+  "origin": [
+   14.35,
+   18.6
+  ]
+ },
+ {
+  "file": "clips-spells-903__fumee__f8.png",
+  "swf": "clips/spells/903.swf",
+  "kind": "sprite",
+  "characterId": 4,
+  "linkage": "fumee",
+  "frame": 8,
+  "frameCount": 12,
+  "size": [
+   33,
+   33
+  ],
+  "origin": [
+   14.35,
+   18.6
+  ]
+ },
+ {
+  "file": "clips-spells-903__fumee__f12.png",
+  "swf": "clips/spells/903.swf",
+  "kind": "sprite",
+  "characterId": 4,
+  "linkage": "fumee",
+  "frame": 12,
+  "frameCount": 12,
+  "size": [
+   33,
+   33
+  ],
+  "origin": [
+   14.35,
+   18.6
+  ]
+ },
+ {
+  "file": "clips-spells-305__shoot__f1.png",
+  "swf": "clips/spells/305.swf",
+  "kind": "sprite",
+  "characterId": 28,
+  "linkage": "shoot",
+  "frame": 1,
+  "frameCount": 53,
+  "size": [
+   109,
+   68
+  ],
+  "origin": [
+   43.6,
+   63.4
+  ]
+ },
+ {
+  "file": "clips-spells-305__shoot__f18.png",
+  "swf": "clips/spells/305.swf",
+  "kind": "sprite",
+  "characterId": 28,
+  "linkage": "shoot",
+  "frame": 18,
+  "frameCount": 53,
+  "size": [
+   109,
+   68
+  ],
+  "origin": [
+   43.6,
+   63.4
+  ]
+ },
+ {
+  "file": "clips-spells-305__shoot__f36.png",
+  "swf": "clips/spells/305.swf",
+  "kind": "sprite",
+  "characterId": 28,
+  "linkage": "shoot",
+  "frame": 36,
+  "frameCount": 53,
+  "size": [
+   109,
+   68
+  ],
+  "origin": [
+   43.6,
+   63.4
+  ]
+ },
+ {
+  "file": "clips-spells-305__shoot__f53.png",
+  "swf": "clips/spells/305.swf",
+  "kind": "sprite",
+  "characterId": 28,
+  "linkage": "shoot",
+  "frame": 53,
+  "frameCount": 53,
+  "size": [
+   109,
+   68
+  ],
+  "origin": [
+   43.6,
+   63.4
+  ]
+ },
+ {
+  "file": "clips-ground__49__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 37,
+  "linkage": "49",
+  "frame": 1,
+  "frameCount": 15,
+  "size": [
+   102,
+   70
+  ],
+  "origin": [
+   48.95,
+   46.85
+  ]
+ },
+ {
+  "file": "clips-ground__49__f6.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 37,
+  "linkage": "49",
+  "frame": 6,
+  "frameCount": 15,
+  "size": [
+   102,
+   70
+  ],
+  "origin": [
+   48.95,
+   46.85
+  ]
+ },
+ {
+  "file": "clips-ground__49__f10.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 37,
+  "linkage": "49",
+  "frame": 10,
+  "frameCount": 15,
+  "size": [
+   102,
+   70
+  ],
+  "origin": [
+   48.95,
+   46.85
+  ]
+ },
+ {
+  "file": "clips-ground__49__f15.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 37,
+  "linkage": "49",
+  "frame": 15,
+  "frameCount": 15,
+  "size": [
+   102,
+   70
+  ],
+  "origin": [
+   48.95,
+   46.85
+  ]
+ },
+ {
+  "file": "clips-ground__57__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 58,
+  "linkage": "57",
+  "frame": 1,
+  "frameCount": 11,
+  "size": [
+   56,
+   29
+  ],
+  "origin": [
+   27.65,
+   14.55
+  ]
+ },
+ {
+  "file": "clips-ground__57__f4.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 58,
+  "linkage": "57",
+  "frame": 4,
+  "frameCount": 11,
+  "size": [
+   56,
+   29
+  ],
+  "origin": [
+   27.65,
+   14.55
+  ]
+ },
+ {
+  "file": "clips-ground__57__f8.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 58,
+  "linkage": "57",
+  "frame": 8,
+  "frameCount": 11,
+  "size": [
+   56,
+   29
+  ],
+  "origin": [
+   27.65,
+   14.55
+  ]
+ },
+ {
+  "file": "clips-ground__57__f11.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 58,
+  "linkage": "57",
+  "frame": 11,
+  "frameCount": 11,
+  "size": [
+   56,
+   29
+  ],
+  "origin": [
+   27.65,
+   14.55
+  ]
+ },
+ {
+  "file": "clips-ground__27__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 185,
+  "linkage": "27",
+  "frame": 1,
+  "frameCount": 10,
+  "size": [
+   60,
+   32
+  ],
+  "origin": [
+   29.9,
+   15.55
+  ]
+ },
+ {
+  "file": "clips-ground__27__f4.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 185,
+  "linkage": "27",
+  "frame": 4,
+  "frameCount": 10,
+  "size": [
+   60,
+   32
+  ],
+  "origin": [
+   29.9,
+   15.55
+  ]
+ },
+ {
+  "file": "clips-ground__27__f7.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 185,
+  "linkage": "27",
+  "frame": 7,
+  "frameCount": 10,
+  "size": [
+   60,
+   32
+  ],
+  "origin": [
+   29.9,
+   15.55
+  ]
+ },
+ {
+  "file": "clips-ground__27__f10.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 185,
+  "linkage": "27",
+  "frame": 10,
+  "frameCount": 10,
+  "size": [
+   60,
+   32
+  ],
+  "origin": [
+   29.9,
+   15.55
+  ]
+ },
+ {
+  "file": "clips-ground__455__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 215,
+  "linkage": "455",
+  "frame": 1,
+  "frameCount": 36,
+  "size": [
+   54,
+   28
+  ],
+  "origin": [
+   27,
+   14
+  ]
+ },
+ {
+  "file": "clips-ground__455__f13.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 215,
+  "linkage": "455",
+  "frame": 13,
+  "frameCount": 36,
+  "size": [
+   54,
+   28
+  ],
+  "origin": [
+   27,
+   14
+  ]
+ },
+ {
+  "file": "clips-ground__455__f24.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 215,
+  "linkage": "455",
+  "frame": 24,
+  "frameCount": 36,
+  "size": [
+   54,
+   28
+  ],
+  "origin": [
+   27,
+   14
+  ]
+ },
+ {
+  "file": "clips-ground__455__f36.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 215,
+  "linkage": "455",
+  "frame": 36,
+  "frameCount": 36,
+  "size": [
+   54,
+   28
+  ],
+  "origin": [
+   27,
+   14
+  ]
+ },
+ {
+  "file": "clips-ground__2__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 355,
+  "linkage": "2",
+  "frame": 1,
+  "frameCount": 7,
+  "size": [
+   53,
+   28
+  ],
+  "origin": [
+   26.2,
+   14.45
+  ]
+ },
+ {
+  "file": "clips-ground__2__f3.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 355,
+  "linkage": "2",
+  "frame": 3,
+  "frameCount": 7,
+  "size": [
+   53,
+   28
+  ],
+  "origin": [
+   26.2,
+   14.45
+  ]
+ },
+ {
+  "file": "clips-ground__2__f5.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 355,
+  "linkage": "2",
+  "frame": 5,
+  "frameCount": 7,
+  "size": [
+   53,
+   28
+  ],
+  "origin": [
+   26.2,
+   14.45
+  ]
+ },
+ {
+  "file": "clips-ground__2__f7.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 355,
+  "linkage": "2",
+  "frame": 7,
+  "frameCount": 7,
+  "size": [
+   53,
+   28
+  ],
+  "origin": [
+   26.2,
+   14.45
+  ]
+ },
+ {
+  "file": "clips-ground__61__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 45,
+  "linkage": "61",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   110,
+   57
+  ],
+  "origin": [
+   54.9,
+   42.6
+  ]
+ },
+ {
+  "file": "clips-ground__72__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 74,
+  "linkage": "72",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   857,
+   499
+  ],
+  "origin": [
+   61.05,
+   38
+  ]
+ },
+ {
+  "file": "clips-ground__500__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 91,
+  "linkage": "500",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   56,
+   30
+  ],
+  "origin": [
+   27.75,
+   14.75
+  ]
+ },
+ {
+  "file": "clips-ground__505__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 90,
+  "linkage": "505",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   56,
+   30
+  ],
+  "origin": [
+   27.75,
+   14.8
+  ]
+ },
+ {
+  "file": "clips-ground__119__f1.png",
+  "swf": "clips/ground.swf",
+  "kind": "sprite",
+  "characterId": 120,
+  "linkage": "119",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   53,
+   27
+  ],
+  "origin": [
+   26.5,
+   13.55
+  ]
+ },
+ {
+  "file": "clips-objects__18__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 78,
+  "linkage": "18",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   46,
+   110
+  ],
+  "origin": [
+   30.5,
+   103.9
+  ]
+ },
+ {
+  "file": "clips-objects__418__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 394,
+  "linkage": "418",
+  "frame": 1,
+  "frameCount": 12,
+  "size": [
+   46,
+   63
+  ],
+  "origin": [
+   29.95,
+   54.15
+  ]
+ },
+ {
+  "file": "clips-objects__418__f5.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 394,
+  "linkage": "418",
+  "frame": 5,
+  "frameCount": 12,
+  "size": [
+   46,
+   63
+  ],
+  "origin": [
+   29.95,
+   54.15
+  ]
+ },
+ {
+  "file": "clips-objects__418__f8.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 394,
+  "linkage": "418",
+  "frame": 8,
+  "frameCount": 12,
+  "size": [
+   46,
+   63
+  ],
+  "origin": [
+   29.95,
+   54.15
+  ]
+ },
+ {
+  "file": "clips-objects__418__f12.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 394,
+  "linkage": "418",
+  "frame": 12,
+  "frameCount": 12,
+  "size": [
+   46,
+   63
+  ],
+  "origin": [
+   29.95,
+   54.15
+  ]
+ },
+ {
+  "file": "clips-objects__106__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 123,
+  "linkage": "106",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   94,
+   54
+  ],
+  "origin": [
+   46.45,
+   42.1
+  ]
+ },
+ {
+  "file": "clips-objects__545__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 776,
+  "linkage": "545",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   82,
+   83
+  ],
+  "origin": [
+   39.7,
+   63.1
+  ]
+ },
+ {
+  "file": "clips-objects__1041__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 1173,
+  "linkage": "1041",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   447,
+   450
+  ],
+  "origin": [
+   366.1,
+   284.2
+  ]
+ },
+ {
+  "file": "clips-objects__885__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 1276,
+  "linkage": "885",
+  "frame": 1,
+  "frameCount": 56,
+  "size": [
+   134,
+   173
+  ],
+  "origin": [
+   63.7,
+   99.65
+  ]
+ },
+ {
+  "file": "clips-objects__885__f19.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 1276,
+  "linkage": "885",
+  "frame": 19,
+  "frameCount": 56,
+  "size": [
+   134,
+   173
+  ],
+  "origin": [
+   63.7,
+   99.65
+  ]
+ },
+ {
+  "file": "clips-objects__885__f38.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 1276,
+  "linkage": "885",
+  "frame": 38,
+  "frameCount": 56,
+  "size": [
+   134,
+   173
+  ],
+  "origin": [
+   63.7,
+   99.65
+  ]
+ },
+ {
+  "file": "clips-objects__885__f56.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 1276,
+  "linkage": "885",
+  "frame": 56,
+  "frameCount": 56,
+  "size": [
+   134,
+   173
+  ],
+  "origin": [
+   63.7,
+   99.65
+  ]
+ },
+ {
+  "file": "clips-objects__23__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 1974,
+  "linkage": "23",
+  "frame": 1,
+  "frameCount": 6,
+  "size": [
+   33,
+   23
+  ],
+  "origin": [
+   17,
+   15.25
+  ]
+ },
+ {
+  "file": "clips-objects__23__f3.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 1974,
+  "linkage": "23",
+  "frame": 3,
+  "frameCount": 6,
+  "size": [
+   33,
+   23
+  ],
+  "origin": [
+   17,
+   15.25
+  ]
+ },
+ {
+  "file": "clips-objects__23__f4.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 1974,
+  "linkage": "23",
+  "frame": 4,
+  "frameCount": 6,
+  "size": [
+   33,
+   23
+  ],
+  "origin": [
+   17,
+   15.25
+  ]
+ },
+ {
+  "file": "clips-objects__23__f6.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 1974,
+  "linkage": "23",
+  "frame": 6,
+  "frameCount": 6,
+  "size": [
+   33,
+   23
+  ],
+  "origin": [
+   17,
+   15.25
+  ]
+ },
+ {
+  "file": "clips-objects__72__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 11,
+  "linkage": "72",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   79,
+   142
+  ],
+  "origin": [
+   47.75,
+   45.2
+  ]
+ },
+ {
+  "file": "clips-objects__463__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 37,
+  "linkage": "463",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   28,
+   49
+  ],
+  "origin": [
+   14.55,
+   160.35
+  ]
+ },
+ {
+  "file": "clips-objects__342__f1.png",
+  "swf": "clips/objects.swf",
+  "kind": "sprite",
+  "characterId": 63,
+  "linkage": "342",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   262,
+   202
+  ],
+  "origin": [
+   128.05,
+   151.65
+  ]
+ },
+ {
+  "file": "clips-spells-icons-23__0__f1.png",
+  "swf": "clips/spells/icons/23.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   40,
+   40
+  ],
+  "origin": [
+   0,
+   0
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-spells-icons-31__0__f1.png",
+  "swf": "clips/spells/icons/31.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   40,
+   40
+  ],
+  "origin": [
+   0,
+   0
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-spells-icons-122__0__f1.png",
+  "swf": "clips/spells/icons/122.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   40,
+   40
+  ],
+  "origin": [
+   0,
+   0
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-items-1-1__1__f1.png",
+  "swf": "clips/items/1/1.swf",
+  "kind": "shape",
+  "characterId": 1,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   39,
+   38
+  ],
+  "origin": [
+   -255.7,
+   -181.55
+  ]
+ },
+ {
+  "file": "clips-items-1-1__0__f1.png",
+  "swf": "clips/items/1/1.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   40,
+   38
+  ],
+  "origin": [
+   -255,
+   -181
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-items-5-1__0__f1.png",
+  "swf": "clips/items/5/1.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   22,
+   59
+  ],
+  "origin": [
+   -264,
+   -171
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-items-10-1__0__f1.png",
+  "swf": "clips/items/10/1.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   48,
+   24
+  ],
+  "origin": [
+   -251,
+   -188
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-guilds-artwork-big-50__0__f1.png",
+  "swf": "clips/guilds/artwork/big/50.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   116,
+   206
+  ],
+  "origin": [
+   45,
+   186
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-guilds-artwork-mini-10__0__f1.png",
+  "swf": "clips/guilds/artwork/mini/10.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   17,
+   18
+  ],
+  "origin": [
+   1,
+   1
+  ],
+  "cropped": true
+ },
+ {
+  "file": "clips-ccicon__1__f1.png",
+  "swf": "clips/ccicon.swf",
+  "kind": "shape",
+  "characterId": 1,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   40,
+   40
+  ],
+  "origin": [
+   0.05,
+   0.05
+  ]
+ },
+ {
+  "file": "clips-circle__5__f1.png",
+  "swf": "clips/circle.swf",
+  "kind": "sprite",
+  "characterId": 5,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 6,
+  "size": [
+   41,
+   21
+  ],
+  "origin": [
+   20.45,
+   10.35
+  ]
+ },
+ {
+  "file": "clips-circle__5__f2.png",
+  "swf": "clips/circle.swf",
+  "kind": "sprite",
+  "characterId": 5,
+  "linkage": null,
+  "frame": 2,
+  "frameCount": 6,
+  "size": [
+   41,
+   21
+  ],
+  "origin": [
+   20.45,
+   10.35
+  ]
+ },
+ {
+  "file": "clips-circle__5__f3.png",
+  "swf": "clips/circle.swf",
+  "kind": "sprite",
+  "characterId": 5,
+  "linkage": null,
+  "frame": 3,
+  "frameCount": 6,
+  "size": [
+   41,
+   21
+  ],
+  "origin": [
+   20.45,
+   10.35
+  ]
+ },
+ {
+  "file": "clips-circle__5__f4.png",
+  "swf": "clips/circle.swf",
+  "kind": "sprite",
+  "characterId": 5,
+  "linkage": null,
+  "frame": 4,
+  "frameCount": 6,
+  "size": [
+   41,
+   21
+  ],
+  "origin": [
+   20.45,
+   10.35
+  ]
+ },
+ {
+  "file": "clips-circle__5__f5.png",
+  "swf": "clips/circle.swf",
+  "kind": "sprite",
+  "characterId": 5,
+  "linkage": null,
+  "frame": 5,
+  "frameCount": 6,
+  "size": [
+   41,
+   21
+  ],
+  "origin": [
+   20.45,
+   10.35
+  ]
+ },
+ {
+  "file": "clips-circle__5__f6.png",
+  "swf": "clips/circle.swf",
+  "kind": "sprite",
+  "characterId": 5,
+  "linkage": null,
+  "frame": 6,
+  "frameCount": 6,
+  "size": [
+   41,
+   21
+  ],
+  "origin": [
+   20.45,
+   10.35
+  ]
+ },
+ {
+  "file": "clips-circle__Mc_SelectionAnimate__f1.png",
+  "swf": "clips/circle.swf",
+  "kind": "sprite",
+  "characterId": 2,
+  "linkage": "Mc_SelectionAnimate",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   38,
+   19
+  ],
+  "origin": [
+   18.6,
+   9.45
+  ]
+ },
+ {
+  "file": "clips-circle__0__f1.png",
+  "swf": "clips/circle.swf",
+  "kind": "frame",
+  "characterId": 0,
+  "linkage": null,
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   38,
+   20
+  ],
+  "origin": [
+   19,
+   10
+  ],
+  "cropped": true
+ },
+ {
+  "file": "modules-Interfaces__Interface_Window__f1.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "sprite",
+  "characterId": 157,
+  "linkage": "Interface::Window",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   49,
+   48
+  ],
+  "origin": [
+   0,
+   0
+  ]
+ },
+ {
+  "file": "modules-Interfaces__Interface_WindowBox__f1.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "sprite",
+  "characterId": 144,
+  "linkage": "Interface::WindowBox",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   742,
+   550
+  ],
+  "origin": [
+   0,
+   0
+  ]
+ },
+ {
+  "file": "modules-Interfaces__Interface_CheckBox__f1.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "sprite",
+  "characterId": 249,
+  "linkage": "Interface::CheckBox",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   10,
+   10
+  ],
+  "origin": [
+   4.95,
+   5
+  ]
+ },
+ {
+  "file": "modules-Interfaces__SpellBar__f1.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "sprite",
+  "characterId": 128,
+  "linkage": "SpellBar",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   493,
+   43
+  ],
+  "origin": [
+   1.5,
+   1.5
+  ]
+ },
+ {
+  "file": "modules-Interfaces__Ank_Dofus_PushButton__f1.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "sprite",
+  "characterId": 27,
+  "linkage": "Ank::Dofus::PushButton",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   100,
+   20
+  ],
+  "origin": [
+   0,
+   0
+  ]
+ },
+ {
+  "file": "modules-Interfaces__Interface_BtnQuit__f1.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "sprite",
+  "characterId": 135,
+  "linkage": "Interface::BtnQuit",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   28,
+   28
+  ],
+  "origin": [
+   13.75,
+   13.75
+  ]
+ },
+ {
+  "file": "modules-Interfaces__dofus_graphics_gui_UICreateCharacter__f1.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "sprite",
+  "characterId": 141,
+  "linkage": "dofus::graphics::gui::UICreateCharacter",
+  "frame": 1,
+  "frameCount": 1,
+  "size": [
+   775,
+   553
+  ],
+  "origin": [
+   17,
+   0
+  ]
+ },
+ {
+  "file": "modules-Interfaces__ButtonClose__f1.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "button",
+  "characterId": 210,
+  "linkage": "ButtonClose",
+  "frame": 1,
+  "state": "up",
+  "frameCount": 1,
+  "size": [
+   12,
+   12
+  ],
+  "origin": [
+   6,
+   6
+  ]
+ },
+ {
+  "file": "modules-Interfaces__ButtonClose__f2.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "button",
+  "characterId": 210,
+  "linkage": "ButtonClose",
+  "frame": 2,
+  "state": "over",
+  "frameCount": 1,
+  "size": [
+   12,
+   12
+  ],
+  "origin": [
+   6,
+   6
+  ]
+ },
+ {
+  "file": "modules-Interfaces__ButtonClose__f3.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "button",
+  "characterId": 210,
+  "linkage": "ButtonClose",
+  "frame": 3,
+  "state": "down",
+  "frameCount": 1,
+  "size": [
+   12,
+   12
+  ],
+  "origin": [
+   6,
+   6
+  ]
+ },
+ {
+  "file": "modules-Interfaces__BtnRefresh__f1.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "button",
+  "characterId": 258,
+  "linkage": "BtnRefresh",
+  "frame": 1,
+  "state": "up",
+  "frameCount": 1,
+  "size": [
+   25,
+   24
+  ],
+  "origin": [
+   12.6,
+   11.85
+  ]
+ },
+ {
+  "file": "modules-Interfaces__BtnRefresh__f2.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "button",
+  "characterId": 258,
+  "linkage": "BtnRefresh",
+  "frame": 2,
+  "state": "over",
+  "frameCount": 1,
+  "size": [
+   25,
+   24
+  ],
+  "origin": [
+   12.6,
+   11.85
+  ]
+ },
+ {
+  "file": "modules-Interfaces__BtnRefresh__f3.png",
+  "swf": "modules/Interfaces.swf",
+  "kind": "button",
+  "characterId": 258,
+  "linkage": "BtnRefresh",
+  "frame": 3,
+  "state": "down",
+  "frameCount": 1,
+  "size": [
+   25,
+   24
+  ],
+  "origin": [
+   12.6,
+   11.85
+  ]
+ }
+]

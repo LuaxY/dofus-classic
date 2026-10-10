@@ -1,0 +1,12 @@
+[package]
+name = "dofus-server"
+version = "0.1.0"
+edition = "2021"
+description = "Lightweight game server for the Dofus beta 5b client (13 January 2004)"
+
+[dependencies]
+tokio = { version = "1.53", features = ["rt-multi-thread", "macros", "net", "time", "sync"] }
+tokio-tungstenite = "0.26"
+futures-util = { version = "0.3", default-features = false, features = ["sink", "std"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

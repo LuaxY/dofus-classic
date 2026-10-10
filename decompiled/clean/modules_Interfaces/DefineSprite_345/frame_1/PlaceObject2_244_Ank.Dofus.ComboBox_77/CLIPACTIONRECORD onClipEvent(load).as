@@ -1,0 +1,5 @@
+onClipEvent(load){
+   if(false)
+   {
+   }
+}

@@ -1,0 +1,1 @@
+pied.gotoAndPlay(62);

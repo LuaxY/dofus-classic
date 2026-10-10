@@ -1,0 +1,9 @@
+node_modules/
+tools/jre/
+tools/ffdec/
+decompiled/xml/
+web/public/assets/
+.DS_Store
+vendor/archive-dofus-1/downloads/
+server/target/
+server/data/runtime/

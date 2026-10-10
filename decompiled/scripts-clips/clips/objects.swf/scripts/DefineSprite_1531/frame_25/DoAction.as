@@ -1,0 +1,2 @@
+this.stop();
+this.end();

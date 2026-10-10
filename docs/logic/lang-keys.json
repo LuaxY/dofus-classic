@@ -1,0 +1,2270 @@
+{
+ "_about": "Beta 5b language inventory. keys: every getText(\"KEY\", params) call in decompiled/clean (AKSClient, modules_Interfaces, modules_Sound has none). params = length of the params array at the call sites (= number of %n placeholders the string may use). retro_fr = same-named string from vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta, 2004+; SUBSTITUTE, not beta data); retro_params = highest %n in that substitute when it differs from beta params. SWF6 is case-insensitive, so SHARED_OBJECT.data lookups ignore case. See lang.md.",
+ "keys": {
+  "ACCESS_DENIED": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Client.DataProcessor.as:92"
+   ],
+   "retro_fr": "Connexion refusée. \nNom de compte ou mot de passe incorrect."
+  },
+  "ACCOUNT": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:7",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:8",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:9"
+   ],
+   "retro_fr": "Compte"
+  },
+  "ACTIONPOINTS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:13",
+    "modules_Interfaces/Interface.Banner.Panel.PlayerInfos.as:13"
+   ],
+   "retro_fr": "Points d'actions"
+  },
+  "ACTION_POINTS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.Infos.as:12",
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/SpellInfosViewer.as:28"
+   ],
+   "retro_fr": "Points d'actions"
+  },
+  "ADD": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:11",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:12"
+   ],
+   "retro_fr": "Ajouter"
+  },
+  "ADD_A_FRIEND": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Ajouter un ami"
+  },
+  "ADD_TEAMMATE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabPlayDofus_TeamMateChoose.as:3"
+   ],
+   "retro_fr": null
+  },
+  "ADD_TO_FRIENDS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_895_boxWhisper/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_9/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Ajouter à mes amis"
+  },
+  "ADD_TO_FRIEND_LIST": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:77"
+   ],
+   "retro_fr": "%1 a été ajouté à ta liste d'amis."
+  },
+  "AGILITY": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:23"
+   ],
+   "retro_fr": "Agilité"
+  },
+  "AIR": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:16"
+   ],
+   "retro_fr": "Air"
+  },
+  "ALIVE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:33",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:53",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:32",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:47"
+   ],
+   "retro_fr": "Vivant"
+  },
+  "ALREADY_LOGGED": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Client.as:63",
+    "AKSClient/Dofus.Client.DataProcessor.as:85"
+   ],
+   "retro_fr": "Déjà en connexion. Veuillez réessayer."
+  },
+  "ALREADY_YOUR_FRIEND": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:90"
+   ],
+   "retro_fr": "Déjà dans ta liste d'amis."
+  },
+  "AP": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:439",
+    "modules_Interfaces/Interface.Banner.Panel.Spells.Infos.as:12",
+    "modules_Interfaces/Interface.Banner.Panel.Spells.BoostInfos.as:15",
+    "modules_Interfaces/Interface.Banner.Panel.Spells.BoostInfos.as:19",
+    "modules_Interfaces/Interface.ButtonSpellBanner.as:21",
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/SpellInfosViewer.as:28",
+    "modules_Interfaces/DefineButton2_970/BUTTONCONDACTION on(rollOver).as:5"
+   ],
+   "retro_fr": "PA"
+  },
+  "BACK": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_141_dofus.graphics.gui.UICreateCharacter/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_15/CLIPACTIONRECORD onClipEvent(load).as:3",
+    "modules_Interfaces/DefineSprite_644_Interface.Characters/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_65/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Retour"
+  },
+  "BAD_VERSION": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Dofus.Client.DataProcessor.as:88"
+   ],
+   "retro_fr": "La version %1 de DOFUS installée est trop ancienne. Pour accéder au jeu, la version %2 est nécessaire.",
+   "retro_params": 2
+  },
+  "BONUS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:23",
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:25"
+   ],
+   "retro_fr": "Bonus"
+  },
+  "BOOST": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:54"
+   ],
+   "retro_fr": "Boost"
+  },
+  "BOOST_ACTION_POINTS": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:640"
+   ],
+   "retro_fr": "<b>%1</b> augmente ses points d'action de <b>%2</b>"
+  },
+  "BOOST_CRITICAL_HIT": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:662"
+   ],
+   "retro_fr": "<b>%1</b> augmente ses coups critiques de <b>%2</b>"
+  },
+  "BOOST_DAMAGES": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:648"
+   ],
+   "retro_fr": "<b>%1</b> augmente ses dommages de <b>%2</b>."
+  },
+  "BOOST_FRIEND_ACTION_POINTS": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:705"
+   ],
+   "retro_fr": "<b>%1</b> augmente ses dommages physiques de <b>%2</b>."
+  },
+  "BOOST_FRIEND_DAMAGES": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:713"
+   ],
+   "retro_fr": "<b>%1</b> augmente les dommages de son équipe de <b>%2</b>."
+  },
+  "BOOST_FRIEND_LIFE_POINTS": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:695"
+   ],
+   "retro_fr": "<b>%1</b> augmente les points de vie de son équipe de <b>%2</b>."
+  },
+  "BOOST_LIFE_POINTS": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:632"
+   ],
+   "retro_fr": "<b>%1</b> augmente ses points de vie de <b>%2</b>."
+  },
+  "CANCEL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_286/frame_1/PlaceObject2_285_47/CLIPACTIONRECORD onClipEvent(load).as:4"
+   ],
+   "retro_fr": null
+  },
+  "CANCEL_SMALL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_895_boxWhisper/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_3/CLIPACTIONRECORD onClipEvent(load).as:3",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_309_74/CLIPACTIONRECORD onClipEvent(load).as:10"
+   ],
+   "retro_fr": "Annuler"
+  },
+  "CANT_ADD_FRIEND_NOT_FOUND": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:84",
+    "AKSClient/Events.AKS.Account.as:155"
+   ],
+   "retro_fr": "Impossible, ce perso ou compte n'existe pas ou n'est pas connecté."
+  },
+  "CANT_ADD_YOU": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:87"
+   ],
+   "retro_fr": "Impossible de t'ajouter en ami."
+  },
+  "CANT_BOOST_IN_GAME": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_858_Interface.Banner.Panel.Spells/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_49/CLIPACTIONRECORD on(release).as:7"
+   ],
+   "retro_fr": "Impossible de booster un sort en partie."
+  },
+  "CANT_CHANGE_TEAM": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:403"
+   ],
+   "retro_fr": "Impossible de changer l'équipe."
+  },
+  "CANT_CONNECT": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Client.as:94"
+   ],
+   "retro_fr": "Le serveur est introuvable. Connexion impossible.\n\n<u><a href=\"http://support.ankama-games.com/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=956&_gid=1&languageid=2&group=dofusfr\" target=\"_blank\"><font color=\"#0000FF\">Cliquez ici pour essayer de résoudre ce problème.</font></a></u>"
+  },
+  "CANT_EQUIP": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/InventoryViewer.as:92"
+   ],
+   "retro_fr": "Ne peut être équipé."
+  },
+  "CANT_LAUNCH_BEFORE": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Dofus.SpellsManager.as:121"
+   ],
+   "retro_fr": "Ce sort ne peut pas être lancé avant <b>%1</b> tour(s)."
+  },
+  "CANT_LAUNCH_MORE": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Dofus.SpellsManager.as:85"
+   ],
+   "retro_fr": "Ce sort ne peut être lancé plus de <b>%1</b> fois par tour."
+  },
+  "CANT_MOVEOUT": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:608"
+   ],
+   "retro_fr": "Le jet d'esquive a échoué."
+  },
+  "CANT_MOVE_ITEM_IN_GAME": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/EquipementItemContainer.as:130",
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/InventoryItemContainer.as:44"
+   ],
+   "retro_fr": null
+  },
+  "CANT_ON_THIS_PLAYER": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.SpellsManager.as:102"
+   ],
+   "retro_fr": "Dans ce tour, impossible de relancer ce sort sur ce joueur."
+  },
+  "CANT_RELAUNCH": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.SpellsManager.as:117"
+   ],
+   "retro_fr": "Ce sort ne peut plus être relancé de la partie."
+  },
+  "CANT_WISP_YOURSELF": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Client.Chat.as:13"
+   ],
+   "retro_fr": "Tu ne peux pas t'écrire à toi-même."
+  },
+  "CARD": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:10",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_309_74/CLIPACTIONRECORD onClipEvent(load).as:6"
+   ],
+   "retro_fr": "Carte"
+  },
+  "CC_DAMAGES": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_970/BUTTONCONDACTION on(rollOver).as:5"
+   ],
+   "retro_fr": "Attaque au corps à corps"
+  },
+  "CHANNEL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.MultiPlayer.as:19"
+   ],
+   "retro_fr": "Salon de discussion"
+  },
+  "CHARACTER": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:6",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:8"
+   ],
+   "retro_fr": "Perso"
+  },
+  "CHARACTERISTICS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:11",
+    "modules_Interfaces/Interface.Banner.Panel.PlayerInfos.as:11"
+   ],
+   "retro_fr": "Caractéristiques"
+  },
+  "CHARISM": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:21"
+   ],
+   "retro_fr": null
+  },
+  "CHAT_TYPE1": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_791_Interface.Banner.Main/frame_1/PlaceObject2_249_Interface.CheckBox_149/CLIPACTIONRECORD onClipEvent(load).as:2",
+    "modules_Interfaces/DefineSprite_430_Interface.MultiPlayer/frame_1/PlaceObject2_249_Interface.CheckBox_96/CLIPACTIONRECORD onClipEvent(load).as:2"
+   ],
+   "retro_fr": "Affiche/Cache les messages communs."
+  },
+  "CHAT_TYPE2": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_791_Interface.Banner.Main/frame_1/PlaceObject2_249_Interface.CheckBox_153/CLIPACTIONRECORD onClipEvent(load).as:2",
+    "modules_Interfaces/DefineSprite_430_Interface.MultiPlayer/frame_1/PlaceObject2_249_Interface.CheckBox_100/CLIPACTIONRECORD onClipEvent(load).as:2"
+   ],
+   "retro_fr": "Affiche/Cache les messages privés."
+  },
+  "CHAT_TYPE3": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_791_Interface.Banner.Main/frame_1/PlaceObject2_249_Interface.CheckBox_145/CLIPACTIONRECORD onClipEvent(load).as:2",
+    "modules_Interfaces/DefineSprite_430_Interface.MultiPlayer/frame_1/PlaceObject2_249_Interface.CheckBox_92/CLIPACTIONRECORD onClipEvent(load).as:2"
+   ],
+   "retro_fr": "Affiche/Cache les messages d'information."
+  },
+  "CHAT_TYPE4": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_791_Interface.Banner.Main/frame_1/PlaceObject2_249_Interface.CheckBox_157/CLIPACTIONRECORD onClipEvent(load).as:2",
+    "modules_Interfaces/DefineSprite_430_Interface.MultiPlayer/frame_1/PlaceObject2_249_Interface.CheckBox_104/CLIPACTIONRECORD onClipEvent(load).as:2"
+   ],
+   "retro_fr": "Affiche / Cache les messages d'erreur."
+  },
+  "CHOOSE_TITLE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Characters.as:20"
+   ],
+   "retro_fr": "Choisis ton personnage"
+  },
+  "CLOSE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_909_boxMessage/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_2/CLIPACTIONRECORD onClipEvent(load).as:3",
+    "modules_Interfaces/DefineSprite_906_boxOptions/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_1/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Fermer"
+  },
+  "CONNECTED": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabStart_GlobalStats.as:11"
+   ],
+   "retro_fr": "Connectés"
+  },
+  "CONNECT_NOT_FINISHED": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Client.as:67"
+   ],
+   "retro_fr": "Connexion non encore achevée."
+  },
+  "COST": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Spells.as:20"
+   ],
+   "retro_fr": "Coût"
+  },
+  "CREATE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Characters.as:17",
+    "modules_Interfaces/DefineSprite_107/frame_14/PlaceObject2_27_Ank.Dofus.PushButton_10/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Créer"
+  },
+  "CREATE_CHARACTER_NAME": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_107/frame_14/DoAction.as:3"
+   ],
+   "retro_fr": "Nom du personnage"
+  },
+  "CREATE_COLOR": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_108/frame_1/DoAction.as:3"
+   ],
+   "retro_fr": "Couleurs"
+  },
+  "CREATE_GAME": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:4"
+   ],
+   "retro_fr": "Créer une partie"
+  },
+  "CREATE_GUILD": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_108/frame_1/DoAction.as:1"
+   ],
+   "retro_fr": "Classe"
+  },
+  "CREATE_NAME": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_108/frame_1/DoAction.as:4"
+   ],
+   "retro_fr": null
+  },
+  "CREATE_SEX": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_108/frame_1/DoAction.as:2"
+   ],
+   "retro_fr": "Sexe"
+  },
+  "CREATE_SMALL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:13"
+   ],
+   "retro_fr": "Créer"
+  },
+  "CREATE_TITLE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UICreateCharacter.as:30"
+   ],
+   "retro_fr": "Crée ton personnage"
+  },
+  "CRITICAL_HIT": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:788",
+    "AKSClient/Events.AKS.Game.as:815"
+   ],
+   "retro_fr": "Coup critique"
+  },
+  "CRITICAL_MISS": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:801",
+    "AKSClient/Events.AKS.Game.as:823"
+   ],
+   "retro_fr": "Echec critique"
+  },
+  "DAMAGES": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_970/BUTTONCONDACTION on(rollOver).as:5"
+   ],
+   "retro_fr": "Dommages"
+  },
+  "DEAD": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:33",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:53",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:32",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:47"
+   ],
+   "retro_fr": "Mort"
+  },
+  "DELETE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Characters.as:18"
+   ],
+   "retro_fr": "Supprimer",
+   "retro_match": "case-insensitive (delete)"
+  },
+  "DELTA_LEVEL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:11",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_309_74/CLIPACTIONRECORD onClipEvent(load).as:7"
+   ],
+   "retro_fr": null
+  },
+  "DESCRIPTION_RANDOM": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_263_TabPlayDofusStart_4/CLIPACTIONRECORD onClipEvent(load).as:4"
+   ],
+   "retro_fr": null
+  },
+  "DIE": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:602"
+   ],
+   "retro_fr": "<b>%1</b> est mort{~fe} !"
+  },
+  "DISCONNECT": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.as:22"
+   ],
+   "retro_fr": "Connexion interrompue avec le serveur."
+  },
+  "DOFUS_STATS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabStart_GlobalStats.as:10"
+   ],
+   "retro_fr": null
+  },
+  "DO_U_ACCEPT_INVITATION": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:267"
+   ],
+   "retro_fr": null
+  },
+  "DO_U_DISCONNECT": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Kernel.as:310"
+   ],
+   "retro_fr": "Cette action va quitter toutes les parties en cours, veux-tu continuer ?"
+  },
+  "DO_U_DROP": {
+   "params": 1,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/InventoryViewer.as:166"
+   ],
+   "retro_fr": "Veux-tu jeter %1 ?"
+  },
+  "DO_U_GIVEUP": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Kernel.as:327"
+   ],
+   "retro_fr": "Si tu abandonnes, tu seras considéré comme perdant du combat. Le veux-tu vraiment ?"
+  },
+  "DO_U_QUIT": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Kernel.as:302"
+   ],
+   "retro_fr": "Cette action va quitter toutes les parties en cours, veux-tu continuer ?"
+  },
+  "DROP_FULL": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Items.as:18"
+   ],
+   "retro_fr": "Plus de place pour jeter cet objet !"
+  },
+  "EARTH": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:18"
+   ],
+   "retro_fr": "Maîtrise"
+  },
+  "EMPTY": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_267/frame_1/DoAction.as:1"
+   ],
+   "retro_fr": null
+  },
+  "EMPTY_FRIEND_LIST": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:131"
+   ],
+   "retro_fr": "Ta liste d'amis est vide."
+  },
+  "ENTER_CHANNEL": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Channel.as:20"
+   ],
+   "retro_fr": "<b>%1</b> arrive dans le salon de discussion"
+  },
+  "ENTER_DOFUS": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:165"
+   ],
+   "retro_fr": null
+  },
+  "ERROR": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Chat.as:64"
+   ],
+   "retro_fr": "Erreur : %1"
+  },
+  "ERROR_CREATING_GAME": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:62"
+   ],
+   "retro_fr": "Erreur lors de la création de la partie."
+  },
+  "ERROR_JOINING_GAME": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:100"
+   ],
+   "retro_fr": "Impossible de rejoindre la partie."
+  },
+  "EXPERIMENT": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabStart_SelfStats.as:22",
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:10",
+    "modules_Interfaces/Interface.Banner.Panel.PlayerInfos.as:10"
+   ],
+   "retro_fr": "Expérience"
+  },
+  "FIRE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:15"
+   ],
+   "retro_fr": "Invocation"
+  },
+  "FORCE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:19"
+   ],
+   "retro_fr": "Force"
+  },
+  "FREE_TEAMMATE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabPlayDofus_TeamMateFree.as:3"
+   ],
+   "retro_fr": null
+  },
+  "FRIENDS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.MultiPlayer.as:16"
+   ],
+   "retro_fr": "Amis"
+  },
+  "FROM": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Chat.as:35"
+   ],
+   "retro_fr": "de"
+  },
+  "GAMECOUNT": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabStart_GlobalStats.as:12"
+   ],
+   "retro_fr": "Nb de parties"
+  },
+  "GAME_LAUNCH": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:414"
+   ],
+   "retro_fr": "La partie est lancée"
+  },
+  "GAME_NAME": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:5",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:6",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_309_74/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": null
+  },
+  "GAME_RESULTS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:15",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:15"
+   ],
+   "retro_fr": "Résultat du combat"
+  },
+  "GUIFTS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_956_Interface.Banner.Panel.GameResultRandom/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_17/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Ta récompense"
+  },
+  "HAS_ATTACK_CC": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:808",
+    "AKSClient/Events.AKS.Game.as:822"
+   ],
+   "retro_fr": "<b>%1</b> attaque au corps à corps."
+  },
+  "HAS_LAUNCH_SPELL": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:773",
+    "AKSClient/Events.AKS.Game.as:800"
+   ],
+   "retro_fr": "<b>%1</b> lance <b>%2</b>."
+  },
+  "HELP_1": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_374/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_10": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_382/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_11": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_383/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_2": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_375/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_3": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_376/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_4": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_377/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_5": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_378/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_6": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_380/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_7": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_384/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_8": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_379/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_9": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_381/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_FRIENDS_12": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_385/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_FRIENDS_12B": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_386/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_FRIENDS_13": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_387/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_FRIENDS_14": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_388/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_FRIENDS_15": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_389/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_FRIENDS_16": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_390/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_FRIENDS_17": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_391/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOINED_12": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_393/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOINED_13": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_394/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOINED_14": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_395/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOINED_15": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_396/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOINED_16": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_397/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOINED_17": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_398/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOINED_18": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_399/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_12": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_401/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_13": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_411/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_14": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_402/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_15": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_403/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_16": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_404/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_17": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_405/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_18": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_406/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_19": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_408/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_20": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_407/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_21": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_409/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_22": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_412/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_JOIN_23": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_410/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAYSTART_12": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_414/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAYSTART_13": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_415/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAYSTART_15": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_416/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAYSTART_16": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_417/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAY_12": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_421/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAY_13": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_419/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAY_14": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_420/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAY_15": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_422/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAY_16": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_423/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAY_17": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_424/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAY_18": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_427/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAY_19": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_426/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HELP_PLAY_20": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineButton2_425/BUTTONCONDACTION on(rollOver).as:2"
+   ],
+   "retro_fr": null
+  },
+  "HIDE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/InventoryViewer.as:187"
+   ],
+   "retro_fr": "Cacher"
+  },
+  "IMPOSSIBLE_INVITATION": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:282"
+   ],
+   "retro_fr": "Impossible d'inviter %1."
+  },
+  "INFORMATIONS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Dofus.Interface.as:110"
+   ],
+   "retro_fr": "Informations"
+  },
+  "INTELLIGENCE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:24"
+   ],
+   "retro_fr": "Intelligence"
+  },
+  "INVENTORY_FULL": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Items.as:3"
+   ],
+   "retro_fr": "Ton inventaire est plein."
+  },
+  "INVILLAGECOUNT": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabStart_GlobalStats.as:13"
+   ],
+   "retro_fr": "Dans le village"
+  },
+  "INVISIBILITY": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:757"
+   ],
+   "retro_fr": "<b>%1</b> se rend invisible."
+  },
+  "IN_CHANNEL": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:139",
+    "AKSClient/Dofus.Client.Account.as:89"
+   ],
+   "retro_fr": null,
+   "dynamic": "getText(friend.state); state set in Client.Account.innerOnAddFirend from server code C/1/2/3/? (DISCONNECT never passed to getText)"
+  },
+  "IN_MULTI": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:139",
+    "AKSClient/Dofus.Client.Account.as:95"
+   ],
+   "retro_fr": "dans un combat.",
+   "dynamic": "getText(friend.state); state set in Client.Account.innerOnAddFirend from server code C/1/2/3/? (DISCONNECT never passed to getText)"
+  },
+  "IN_RANDOM": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:139",
+    "AKSClient/Dofus.Client.Account.as:98"
+   ],
+   "retro_fr": null,
+   "dynamic": "getText(friend.state); state set in Client.Account.innerOnAddFirend from server code C/1/2/3/? (DISCONNECT never passed to getText)"
+  },
+  "IN_SOLO": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:139",
+    "AKSClient/Dofus.Client.Account.as:92"
+   ],
+   "retro_fr": "dans le village.",
+   "dynamic": "getText(friend.state); state set in Client.Account.innerOnAddFirend from server code C/1/2/3/? (DISCONNECT never passed to getText)"
+  },
+  "IN_UNKNOW": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:139",
+    "AKSClient/Dofus.Client.Account.as:101"
+   ],
+   "retro_fr": "Quelque part !",
+   "dynamic": "getText(friend.state); state set in Client.Account.innerOnAddFirend from server code C/1/2/3/? (DISCONNECT never passed to getText)"
+  },
+  "IN_WAINTING": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabPlayDofus_TeamMateWaiting.as:10"
+   ],
+   "retro_fr": "En attente"
+  },
+  "IS_BUT_WHERE": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:69"
+   ],
+   "retro_fr": null
+  },
+  "IS_ENTERING_GAME": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:57"
+   ],
+   "retro_fr": null
+  },
+  "IS_INCLOSE_GAME": {
+   "params": 3,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:63"
+   ],
+   "retro_fr": null
+  },
+  "IS_IN_CHANNEL": {
+   "params": 3,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:54"
+   ],
+   "retro_fr": null
+  },
+  "IS_IN_OPEN_GAME": {
+   "params": 3,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:60"
+   ],
+   "retro_fr": null
+  },
+  "IS_IN_SINGLE_GAME": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:66"
+   ],
+   "retro_fr": "<b>%1</b> (%2) est dans le village"
+  },
+  "I_AM_BUT_WHERE": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:42"
+   ],
+   "retro_fr": null
+  },
+  "I_AM_ENTERING_GAME": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:30"
+   ],
+   "retro_fr": null
+  },
+  "I_AM_IN_CHANNEL": {
+   "params": 3,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:27"
+   ],
+   "retro_fr": null
+  },
+  "I_AM_IN_CLOSE_GAME": {
+   "params": 3,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:36"
+   ],
+   "retro_fr": null
+  },
+  "I_AM_IN_OPEN_GAME": {
+   "params": 3,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:33"
+   ],
+   "retro_fr": null
+  },
+  "I_AM_IN_SINGLE_GAME": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:39"
+   ],
+   "retro_fr": "Je suis <b>%1</b> (%2) dans le village."
+  },
+  "I_CANT_GO": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.PathFinding.as:44"
+   ],
+   "retro_fr": "Je ne peux \npas y aller !"
+  },
+  "JOIN_GAME": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": null
+  },
+  "JOIN_SMALL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:14"
+   ],
+   "retro_fr": "Rejoindre"
+  },
+  "KARMA": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:22"
+   ],
+   "retro_fr": null
+  },
+  "LEAVE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:19",
+    "modules_Interfaces/DefineSprite_956_Interface.Banner.Panel.GameResultRandom/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_11/CLIPACTIONRECORD onClipEvent(load).as:3",
+    "modules_Interfaces/DefineSprite_962_Interface.Banner.Panel.GameResultFree/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_11/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Quitter"
+  },
+  "LEAVE_DOFUS": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:174"
+   ],
+   "retro_fr": null
+  },
+  "LEAVE_GAME": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:140"
+   ],
+   "retro_fr": "<b>%1</b> quitte la partie."
+  },
+  "LEVEL": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Spells.as:19",
+    "AKSClient/Events.AKS.Account.as:139",
+    "modules_Interfaces/Interface.Banner.Panel.Spells.Infos.as:11",
+    "modules_Interfaces/Interface.Characters.as:51",
+    "modules_Interfaces/TabStart_SelfStats.as:31",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:30",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:50",
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:50",
+    "modules_Interfaces/Interface.Banner.Panel.Spells.BoostInfos.as:14",
+    "modules_Interfaces/Interface.Banner.Panel.Spells.BoostInfos.as:18",
+    "modules_Interfaces/Interface.Banner.Panel.PlayerInfos.as:51",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:31",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:46",
+    "modules_Interfaces/Interface.TeamWatcherCharacter.as:27",
+    "modules_Interfaces/TabPlayDofus_TeamMate.as:37",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:10",
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/SpellInfosViewer.as:27"
+   ],
+   "retro_fr": "Niveau"
+  },
+  "LEVEL_SMALL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabStart_Podium.as:31"
+   ],
+   "retro_fr": "Niv."
+  },
+  "LIFEPOINTS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:12",
+    "modules_Interfaces/Interface.Banner.Panel.PlayerInfos.as:12"
+   ],
+   "retro_fr": "Points de vie"
+  },
+  "LOADING_MAP": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:518",
+    "AKSClient/Dofus.Client.Game.as:58"
+   ],
+   "retro_fr": "Chargement de la carte ..."
+  },
+  "LONG_CHARACTER_NAME": {
+   "params": 2,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UICreateCharacter.as:81",
+    "modules_Interfaces/DefineButton2_711/BUTTONCONDACTION on(release).as:10"
+   ],
+   "retro_fr": "%1 est trop long (%2 caractères maximum)."
+  },
+  "LOSERS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:17",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:17"
+   ],
+   "retro_fr": null
+  },
+  "LOST_AP": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:594"
+   ],
+   "retro_fr": "<b>%1</b> perd <b>%2</b> PA."
+  },
+  "LOST_LP": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:572",
+    "AKSClient/Events.AKS.Game.as:575"
+   ],
+   "retro_fr": "<b>%1</b> perd <b>%2</b> PDV.",
+   "dynamic": "txt = dLP >= 0 ? \"WIN_LP\" : \"LOST_LP\" (Events.AKS.Game.as:572)"
+  },
+  "LP": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabPlayDofus_TeamMate.as:39"
+   ],
+   "retro_fr": "PDV"
+  },
+  "MAKE_TEAM": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_263_TabPlayDofusStart/frame_1/DoAction.as:2"
+   ],
+   "retro_fr": null
+  },
+  "MENU": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Dofus.Interface.as:130"
+   ],
+   "retro_fr": "Menu principal"
+  },
+  "MENU_BUG": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UIStartMenu.as:19"
+   ],
+   "retro_fr": "Rapport de bug"
+  },
+  "MENU_DOWNLOAD": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UIStartMenu.as:17"
+   ],
+   "retro_fr": "Téléchargements"
+  },
+  "MENU_INFOS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UIStartMenu.as:18"
+   ],
+   "retro_fr": "Infos personnelles"
+  },
+  "MENU_INSTRUCTIONS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UIStartMenu.as:20"
+   ],
+   "retro_fr": "Guide de l'utilisateur"
+  },
+  "MENU_PLAY": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UIStartMenu.as:16"
+   ],
+   "retro_fr": "Jouer"
+  },
+  "MENU_RULES": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UIStartMenu.as:21"
+   ],
+   "retro_fr": "Charte des bêtas"
+  },
+  "MENU_TITLE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UIStartMenu.as:12"
+   ],
+   "retro_fr": "Menu principal"
+  },
+  "MODERATE_AGILITY": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:684"
+   ],
+   "retro_fr": "L'agilité de <b>%1</b> varie de <b>%2</b>"
+  },
+  "MODERATE_CHARISM": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:728"
+   ],
+   "retro_fr": "La sagesse de <b>%1</b> varie de <b>%2</b>"
+  },
+  "MODERATE_INTELLIGENCE": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:744"
+   ],
+   "retro_fr": "L'intelligence de <b>%1</b> varie de <b>%2</b>"
+  },
+  "MODERATE_KARMA": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:720"
+   ],
+   "retro_fr": "La chance de <b>%1</b> varie de <b>%2</b>"
+  },
+  "MODERATE_RANGE": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:669"
+   ],
+   "retro_fr": "La portée de <b>%1</b> varie de <b>%2</b>"
+  },
+  "MODERATE_STRENGTH": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:676"
+   ],
+   "retro_fr": "La force de <b>%1</b> varie de <b>%2</b>"
+  },
+  "MODERATE_VITALITY": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:736"
+   ],
+   "retro_fr": "La vitalité de <b>%1</b> varie de <b>%2</b>"
+  },
+  "MSG": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Client.Console.as:51",
+    "AKSClient/Dofus.Client.DataProcessor.as:394"
+   ],
+   "retro_fr": "msg"
+  },
+  "MULTIPLICATE_DAMAGES": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:655"
+   ],
+   "retro_fr": "<b>%1</b> multiplie ses dommages par <b>%2</b>"
+  },
+  "MULTI_GAME": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.MultiPlayer.as:15"
+   ],
+   "retro_fr": "Entraînement"
+  },
+  "MUSICS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/boxOptions.as:9"
+   ],
+   "retro_fr": "Musiques"
+  },
+  "MUTE_MUSIC": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_906_boxOptions/frame_1/PlaceObject2_900_Interface.ButtonMute_13/CLIPACTIONRECORD onClipEvent(load).as:4"
+   ],
+   "retro_fr": "Coupe la musique"
+  },
+  "MUTE_SOUNDS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_906_boxOptions/frame_1/PlaceObject2_900_Interface.ButtonMute_15/CLIPACTIONRECORD onClipEvent(load).as:4"
+   ],
+   "retro_fr": "Coupe les sons"
+  },
+  "NAME": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Client.Console.as:51",
+    "AKSClient/Dofus.Client.Console.as:70",
+    "AKSClient/Dofus.Client.Console.as:84",
+    "AKSClient/Dofus.Client.Console.as:102",
+    "AKSClient/Dofus.Client.DataProcessor.as:394"
+   ],
+   "retro_fr": "nom"
+  },
+  "NEED_CHARACTER_NAME": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UICreateCharacter.as:76",
+    "modules_Interfaces/DefineButton2_711/BUTTONCONDACTION on(release).as:5"
+   ],
+   "retro_fr": "Entre un nom pour ton personnage."
+  },
+  "NEW_CHARACTERISTICS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.BoostInfos.as:3",
+    "modules_Interfaces/Interface.Banner.Panel.Spells.BoostInfos.as:13"
+   ],
+   "retro_fr": "Nouvelles caractéristiques"
+  },
+  "NEXT_PLAYER": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.NextTurn.as:3"
+   ],
+   "retro_fr": null
+  },
+  "NO": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_897_boxYesNo/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_2/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Non"
+  },
+  "NOCHANGE_LP": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:580"
+   ],
+   "retro_fr": "<b>%1</b> n'a rien subi."
+  },
+  "NOT_ENOUGH_AP": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Kernel.as:124",
+    "AKSClient/Dofus.Kernel.as:200"
+   ],
+   "retro_fr": "Tu n'as pas assez de points d'action."
+  },
+  "NOT_ENOUGTH_BONUSPOINTS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_858_Interface.Banner.Panel.Spells/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_49/CLIPACTIONRECORD on(release).as:12"
+   ],
+   "retro_fr": "Tu n'as pas assez de points de bonification."
+  },
+  "OFFLINE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:5"
+   ],
+   "retro_fr": "Non connectés"
+  },
+  "ONLINE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_328_114/CLIPACTIONRECORD onClipEvent(load).as:4"
+   ],
+   "retro_fr": "Connectés"
+  },
+  "OPTIONS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Dofus.Interface.as:125"
+   ],
+   "retro_fr": "Options"
+  },
+  "PASSWORD": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:7",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:8",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_309_74/CLIPACTIONRECORD onClipEvent(load).as:5"
+   ],
+   "retro_fr": "Mot de passe"
+  },
+  "PLACE_CHARACTER": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.Battlefield.Map.as:48"
+   ],
+   "retro_fr": "Place ton personnage."
+  },
+  "PLACE_SPELL_HERE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:24"
+   ],
+   "retro_fr": "Glisse un sort pour le booster"
+  },
+  "PLAY": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Characters.as:19"
+   ],
+   "retro_fr": null
+  },
+  "PLAYER_CONNECTED": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Infos.as:3"
+   ],
+   "retro_fr": "Actuellement <b>%1</b> joueur(s) connecté(s)"
+  },
+  "PLAYER_COUNT": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:9",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_309_74/CLIPACTIONRECORD onClipEvent(load).as:4"
+   ],
+   "retro_fr": "Nombre de joueurs"
+  },
+  "PLAYER_TURN": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:440"
+   ],
+   "retro_fr": "C'est à %1 de jouer"
+  },
+  "PLAY_DOFUS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.MultiPlayer.as:14"
+   ],
+   "retro_fr": "Jouer"
+  },
+  "PLAY_DUEL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_263_TabPlayDofusStart/frame_1/DoAction.as:1"
+   ],
+   "retro_fr": null
+  },
+  "PLAY_SMALL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_309_74/CLIPACTIONRECORD onClipEvent(load).as:9"
+   ],
+   "retro_fr": "Jouer"
+  },
+  "QUESTION": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Dofus.Interface.as:115"
+   ],
+   "retro_fr": "Question"
+  },
+  "RANDOM": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Dofus.Client.Game.as:188",
+    "modules_Interfaces/TabPlayDofus_TeamMateChoose.as:18",
+    "modules_Interfaces/TabPlayDofus_TeamMate.as:27"
+   ],
+   "retro_fr": "Aléatoire",
+   "retro_match": "case-insensitive (random)"
+  },
+  "RANGE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.Infos.as:13",
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/SpellInfosViewer.as:29"
+   ],
+   "retro_fr": "PO"
+  },
+  "RANGEFULL": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.Infos.as:13",
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/SpellInfosViewer.as:29"
+   ],
+   "retro_fr": "Portée"
+  },
+  "REDUCE_DAMAGES": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:614"
+   ],
+   "retro_fr": "<b>%1</b> réduit les dommages de <b>%2</b>."
+  },
+  "REFUSE_INVITATION": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:285"
+   ],
+   "retro_fr": "%1 refuse ton invitation."
+  },
+  "REMOVE_FRIEND_OK": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:150"
+   ],
+   "retro_fr": "Tu viens de perdre un ami."
+  },
+  "RESISTANCES": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:14"
+   ],
+   "retro_fr": "Résistances"
+  },
+  "RETURN_DAMAGES": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:625"
+   ],
+   "retro_fr": "<b>%1</b> renvoie <b>%2</b> de dommages."
+  },
+  "RETURN_SPELL_NO": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:619"
+   ],
+   "retro_fr": "<b>%1</b> échoue dans le renvoi du sort."
+  },
+  "RETURN_SPELL_OK": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:619"
+   ],
+   "retro_fr": "<b>%1</b> renvoie le sort."
+  },
+  "RETURN_TO_VILLAGE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.MultiPlayer.as:17"
+   ],
+   "retro_fr": "Retour au village"
+  },
+  "Range": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.BoostInfos.as:16",
+    "modules_Interfaces/Interface.Banner.Panel.Spells.BoostInfos.as:20"
+   ],
+   "retro_fr": "PO",
+   "retro_match": "case-insensitive (RANGE)"
+  },
+  "SEARCHING_RANDOM": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_286/frame_1/PlaceObject2_285_47/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Recherche de partie en cours"
+  },
+  "SELECT_CHARACTER": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_644_Interface.Characters/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_83/CLIPACTIONRECORD on(release).as:4",
+    "modules_Interfaces/DefineSprite_644_Interface.Characters/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_77/CLIPACTIONRECORD on(release).as:9"
+   ],
+   "retro_fr": "Sélectionne un personnage."
+  },
+  "SEND": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.MultiPlayer.as:18",
+    "modules_Interfaces/DefineSprite_895_boxWhisper/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_15/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Envoyer"
+  },
+  "SHOW": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/InventoryViewer.as:187"
+   ],
+   "retro_fr": "Afficher"
+  },
+  "SOUNDS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/boxOptions.as:10"
+   ],
+   "retro_fr": "Sons"
+  },
+  "SPELL_TAB_AIR": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:16"
+   ],
+   "retro_fr": "Spécial"
+  },
+  "SPELL_TAB_AIR_TITLE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:21"
+   ],
+   "retro_fr": "Sorts Spéciaux"
+  },
+  "SPELL_TAB_EARTH": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:15"
+   ],
+   "retro_fr": "Maîtrise"
+  },
+  "SPELL_TAB_EARTH_TITLE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:20"
+   ],
+   "retro_fr": "Sorts de Maîtrise"
+  },
+  "SPELL_TAB_FIRE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:14"
+   ],
+   "retro_fr": "Invocation"
+  },
+  "SPELL_TAB_FIRE_TITLE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:19"
+   ],
+   "retro_fr": "Sorts d'Invocation"
+  },
+  "SPELL_TAB_GUILD": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:17"
+   ],
+   "retro_fr": "Classe"
+  },
+  "SPELL_TAB_GUILD_TITLE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:22"
+   ],
+   "retro_fr": "Sorts de Classe"
+  },
+  "SPELL_TAB_WATER": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:13"
+   ],
+   "retro_fr": "Elémentaire"
+  },
+  "SPELL_TAB_WATER_TITLE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Spells.as:18"
+   ],
+   "retro_fr": "Sorts Elémentaires"
+  },
+  "STATS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:18",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:18"
+   ],
+   "retro_fr": "Statistiques"
+  },
+  "STEAL_GOLD": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:751"
+   ],
+   "retro_fr": "<b>%1</b> vole <b>%2</b> kama{~ps}"
+  },
+  "SYNTAX_ERROR": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Dofus.Client.Console.as:51",
+    "AKSClient/Dofus.Client.Console.as:70",
+    "AKSClient/Dofus.Client.Console.as:84",
+    "AKSClient/Dofus.Client.Console.as:102",
+    "AKSClient/Dofus.Client.DataProcessor.as:394"
+   ],
+   "retro_fr": "Erreur de syntaxe : %1"
+  },
+  "TITLE_RANDOM": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_286_26/CLIPACTIONRECORD onClipEvent(load).as:3",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_263_TabPlayDofusStart_4/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Partie aléatoire"
+  },
+  "TO": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Chat.as:40",
+    "modules_Interfaces/Dofus.Interface.as:120"
+   ],
+   "retro_fr": "à"
+  },
+  "TOO_LOW_LEVEL_FOR_ITEM": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Items.as:7"
+   ],
+   "retro_fr": "Ton niveau est trop faible pour prendre cet objet."
+  },
+  "TURN_DELAY": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_345_184/CLIPACTIONRECORD onClipEvent(load).as:12",
+    "modules_Interfaces/DefineSprite_372_Interface.MultiPlayer.Tabs/frame_1/PlaceObject2_309_74/CLIPACTIONRECORD onClipEvent(load).as:8"
+   ],
+   "retro_fr": "Temps par tour"
+  },
+  "UNKNOW_COMMAND": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Dofus.Client.Console.as:106"
+   ],
+   "retro_fr": "Commande non reconnue : <b>%1</b>"
+  },
+  "USER_NOT_CONNECTED": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Dofus.Client.DataProcessor.as:398"
+   ],
+   "retro_fr": "Le joueur <b>%1</b> n'est pas connecté."
+  },
+  "USER_STATS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabStart_SelfStats.as:13"
+   ],
+   "retro_fr": null
+  },
+  "VALIDATE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_100/frame_14/PlaceObject2_27_Ank.Dofus.PushButton_10/CLIPACTIONRECORD onClipEvent(load).as:3",
+    "modules_Interfaces/DefineSprite_79/frame_14/PlaceObject2_27_Ank.Dofus.PushButton_21/CLIPACTIONRECORD onClipEvent(load).as:3",
+    "modules_Interfaces/DefineSprite_64/frame_14/PlaceObject2_27_Ank.Dofus.PushButton_42/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Valider"
+  },
+  "VERSUS": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:83"
+   ],
+   "retro_fr": "contre"
+  },
+  "VITALITY": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:20"
+   ],
+   "retro_fr": "Vitalité"
+  },
+  "WAITING_OTHER": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.Battlefield.Map.as:9"
+   ],
+   "retro_fr": "En attente des autres joueurs ..."
+  },
+  "WATER": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.Inventory.as:17"
+   ],
+   "retro_fr": "Eau"
+  },
+  "WINNERS": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:16",
+    "modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:16"
+   ],
+   "retro_fr": "Gagnants"
+  },
+  "WIN_LP": {
+   "params": 2,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:572",
+    "AKSClient/Events.AKS.Game.as:575"
+   ],
+   "retro_fr": "<b>%1</b> gagne <b>%2</b> PDV.",
+   "dynamic": "txt = dLP >= 0 ? \"WIN_LP\" : \"LOST_LP\" (Events.AKS.Game.as:572)"
+  },
+  "WISPER_MESSAGE": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/Dofus.Interface.as:120"
+   ],
+   "retro_fr": "Message privé"
+  },
+  "XP": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/TabStart_Podium.as:31"
+   ],
+   "retro_fr": null
+  },
+  "YES": {
+   "params": 0,
+   "sites": [
+    "modules_Interfaces/DefineSprite_897_boxYesNo/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_8/CLIPACTIONRECORD onClipEvent(load).as:3"
+   ],
+   "retro_fr": "Oui"
+  },
+  "YOUR_FRIEND_LIST": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Account.as:127"
+   ],
+   "retro_fr": "Ta liste d'amis"
+  },
+  "YOU_ARE_IN_CHANNEL": {
+   "params": 1,
+   "sites": [
+    "modules_Interfaces/Interface.MultiPlayer.as:36"
+   ],
+   "retro_fr": null
+  },
+  "YOU_FIND_GOLD": {
+   "params": 1,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:555",
+    "AKSClient/Dofus.Client.Items.as:57"
+   ],
+   "retro_fr": "Tu as trouvé %1 kama{~ps}"
+  },
+  "YOU_FIND_NEW_ITEM": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:560",
+    "AKSClient/Dofus.Client.Items.as:69"
+   ],
+   "retro_fr": "Nouvel objet"
+  },
+  "YOU_FIND_SOMTHING": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:563",
+    "AKSClient/Dofus.Client.Items.as:75"
+   ],
+   "retro_fr": "Tu as trouvé quelquechose."
+  }
+ },
+ "dynamic_patterns": {
+  "SRV_MSG_<id>": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.as:25",
+    "AKSClient/Events.AKS.as:74"
+   ],
+   "dynamic": "\"SRV_MSG_\" + server message id (M packet, Dofus.Client.DataProcessor.as:34-36); ids UNKNOWN — not in code",
+   "retro_fr_candidates": {
+    "SRV_MSG_0": "Trop de spam !",
+    "SRV_MSG_1": "Tu es resté trop longtemps inactif.",
+    "SRV_MSG_10": "Il vous faut au moins %1 kamas pour accéder à votre coffre.",
+    "SRV_MSG_11": "Ton énergie est dangereusement basse !\n%1 point(s)",
+    "SRV_MSG_12": "Tu viens de succomber à tes blessures. \nTu peux attendre qu'un prêtre vienne te sauver ou libérer ton âme pour rejoindre le cimetière le plus proche.",
+    "SRV_MSG_13": "Le serveur est actuellement en maintenance.\nMerci de votre compréhension.\n\n<u><a href=\"http://ankama-games.com/game.php\" target=\"_blank\"><font color=\"#0000FF\">Profitez-en pour découvrir les différents jeux Ankama-Games !</font></a></u>",
+    "SRV_MSG_14": "Cette classe est réservée aux abonnés.",
+    "SRV_MSG_15": "Tu as désormais rejoint le monde des esprits. \nSi tu veux retourner dans le monde des vivants, il te faut trouver une statue de phoenix ou un prêtre. \nN'oublies pas à l'avenir de reprendre de l'énergie en te reposant dans les tavernes ou grâce à des potions.",
+    "SRV_MSG_16": "Connexion temporairement refusée : le serveur reçoit trop de connexions simultanées. Merci de réessayer dans quelques secondes.",
+    "SRV_MSG_17": "L'un de vos enclos vient d'être acheté %1 kamas par la guilde %2. La somme a été placée sur votre compte en banque.",
+    "SRV_MSG_2": "Ton personnage a atteint le niveau maximum autorisé.",
+    "SRV_MSG_3": "Pour des raisons de maintenance, le serveur va être coupé d'ici quelques minutes.",
+    "SRV_MSG_4": "Votre connexion a été coupée pour des raisons de maintenance.",
+    "SRV_MSG_5": "L'une de vos maisons vient d'être achetée %1 kamas par %2. La somme a été placée sur votre compte en banque.",
+    "SRV_MSG_6": "Le nombre maximum d'objets pour cet inventaire est déjà atteint.",
+    "SRV_MSG_7": "Cette opération n'est pas autorisée ici.",
+    "SRV_MSG_8": "Cet objet n'est plus disponible.",
+    "SRV_MSG_9": "Plus rien à acheter :  le magasin est vide"
+   }
+  },
+  "ERROR_CREATING_<c>": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:62"
+   ],
+   "dynamic": "\"ERROR_CREATING_\" + 4th char of GC error reply (Dofus.Client.DataProcessor.as:236 -> Client.Game.innerOnCreate -> onCreateMulti); codes UNKNOWN — not in code",
+   "retro_fr_candidates": {
+    "ERROR_CREATING_GAME": "Erreur lors de la création de la partie."
+   }
+  },
+  "ERROR_JOINING_<c>": {
+   "params": 0,
+   "sites": [
+    "AKSClient/Events.AKS.Game.as:100"
+   ],
+   "dynamic": "\"ERROR_JOINING_\" + 4th char of GJ error reply (Dofus.Client.DataProcessor.as:254 -> Client.Game.innerOnJoin -> onJoin); codes UNKNOWN — not in code",
+   "retro_fr_candidates": {
+    "ERROR_JOINING_GAME": "Impossible de rejoindre la partie."
+   }
+  }
+ },
+ "tables": {
+  "S": {
+   "accessor": "getSpellText(spellID) = SHARED_OBJECT.data.S[spellID] (no fallback)",
+   "shape": "S[spellID] = { n: string /*name*/, d: string /*description*/, l1..l5?: [normalHitDescription: string, criticalHitDescription: string, apCost, range, ...] } — level key is \"l\" + m_Level; only indices 0..3 of l<N> are read, and only l1[2]/l1[3] for apCost/range",
+   "sites": [
+    "AKSClient/Dofus.Kernel.Init.as:98-101",
+    "AKSClient/Copie de Dofus.DataCenter.Spell.as:78-102",
+    "AKSClient/Events.AKS.Game.as:773",
+    "AKSClient/Events.AKS.Game.as:800",
+    "modules_Interfaces/__Packages/dofus/Translator.as:14-17",
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/SpellInfosViewer.as:33-43"
+   ],
+   "retro_substitute": "vendor spells_fr_100: S[id] = {n, d, l1..l6: [effectsNormal[], effectsCritical[], apCost, rangeMin?, rangeMax?, ...]} — n/d compatible; l<N>[0]/[1] are effect arrays, NOT description strings; spell ids may differ"
+  },
+  "CC": {
+   "accessor": "getCCText(guildID) = SHARED_OBJECT.data.CC[guildID] || \"?\"",
+   "shape": "CC[guildID] = string (close-combat description)",
+   "sites": [
+    "AKSClient/Dofus.Kernel.Init.as:102-110",
+    "AKSClient/Dofus.DataCenter.Player.as:72"
+   ],
+   "retro_substitute": "none found (retro classes have G[id].cc as a data array, not a string)"
+  },
+  "M": {
+   "accessor": "getMapText(mapID) = SHARED_OBJECT.data.M[Number(mapID)] || {n:\"?\",d:\"?\"}",
+   "shape": "M[mapID] = { n: string /*map name*/, d: string /*description, never read*/ }",
+   "sites": [
+    "AKSClient/Dofus.Kernel.Init.as:111-119",
+    "AKSClient/Events.AKS.Game.as:17",
+    "AKSClient/Events.AKS.Game.as:36",
+    "AKSClient/Events.AKS.Game.as:84"
+   ],
+   "retro_substitute": "vendor maps_fr_35: MA.m[id]={x,y,sa,d?}, MA.sa[id], MA.a[id]={n,sua}, MA.sua[id]=string — no per-map name; beta arena map ids UNKNOWN"
+  },
+  "G": {
+   "accessor": "getGuildText(guildID) = SHARED_OBJECT.data.G[Number(guildID)] || {sn:\"?\",ln:\"?\",d:\"?\",cc:\"?\"}; also dofus.Translator.getGuildInfos",
+   "shape": "G[guildID] = { sn: string /*short name*/, ln: string /*long name*/, d: string /*description*/, cc: [p1, p2, p3, apCost] /*close-combat dice params for PatternDecoder \"#1{~1D}#2{~2~3+}#3\"; cc[3] = AP cost*/, w: number[] /*allowed weapon item types; w[0] = default weapon type*/ } (fallback object has no w)",
+   "sites": [
+    "AKSClient/Dofus.Kernel.Init.as:120-128",
+    "AKSClient/Dofus.CharactersManager.as:53",
+    "AKSClient/Dofus.CharactersWeapons.as:38",
+    "AKSClient/Dofus.DataCenter.Item.as:115",
+    "modules_Interfaces/DefineButton2_970/BUTTONCONDACTION on(rollOver).as:4-5",
+    "modules_Interfaces/__Packages/dofus/graphics/gui/UICreateCharacter.as:47-48",
+    "modules_Interfaces/DefineSprite_64/frame_2/DoAction.as:1"
+   ],
+   "retro_substitute": "vendor classes_fr_31: G[id] = {sn, ln, d, s:spellIds[], cc:[[effects],...], b10..b15:boost cost tables} — sn/ln/d compatible (same 10 class ids 1..10 as GUILD_NAMES); cc shape differs; no w"
+  },
+  "I.t": {
+   "accessor": "getItemTypeText(typeID) = SHARED_OBJECT.data.I.t[Number(typeID)] || {n:\"?\",t:\"?\",g:\"?\",s:\"?\"}",
+   "shape": "I.t[typeID] = { n: string /*type name, lowercase first letter allowed*/, t: number /*superType id*/, g: 0|1|2 /*index into [\"m\",\"f\",\"n\"] gender*/, s: boolean /*singular*/ }",
+   "sites": [
+    "AKSClient/Dofus.Kernel.Init.as:129-137",
+    "AKSClient/Dofus.DataCenter.Item.as:48-86"
+   ],
+   "retro_substitute": "vendor items_fr_13: I.t[id] = {n, t, z?} — n/t compatible, no g/s"
+  },
+  "I.st": {
+   "accessor": "getItemSuperTypeText(superTypeID) = SHARED_OBJECT.data.I.st[Number(id)] (returns \"?\" only if .length == 0)",
+   "shape": "I.st[superTypeID] = string (supertype name)",
+   "sites": [
+    "AKSClient/Dofus.Kernel.Init.as:138-146",
+    "AKSClient/Dofus.DataCenter.Item.as:58-61",
+    "modules_Interfaces/__Packages/dofus/graphics/gui/common/InventoryViewer.as:191"
+   ],
+   "retro_substitute": "vendor items_fr_13: I.st[id] = boolean — incompatible"
+  },
+  "I.e": {
+   "accessor": "getItemEffectText(effectID) = SHARED_OBJECT.data.I.e[Number(id)] || {n:\"?\",c:\"?\"}",
+   "shape": "I.e[effectID] = { n: string /*name suffix, ank.PatternDecoder.combine pattern with ~m ~f ~n ~p ~s and {..}*/, d: string /*description, ank.PatternDecoder.getDescription pattern with #1..#3, ~N, {..}*/ }",
+   "sites": [
+    "AKSClient/Dofus.Kernel.Init.as:147-155",
+    "AKSClient/Dofus.DataCenter.Item.as:82",
+    "AKSClient/Dofus.DataCenter.Item.as:99"
+   ],
+   "retro_substitute": "vendor effects_fr_90: E[id] = {d, c, o, e?} — d uses the same #1/{~1~2 à }#2 pattern syntax; no n; effect ids may differ"
+  }
+ }
+}

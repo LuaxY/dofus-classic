@@ -1,0 +1,3 @@
+on(rollOut){
+   INTERFACE.hideToolTip();
+}

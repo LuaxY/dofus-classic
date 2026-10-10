@@ -1,0 +1,13 @@
+nat6._xscale = 110;
+nat6._yscale = 110;
+nat6.nate.nat._xscale = 70;
+nat6.nate.nat._yscale = 70;
+nat7._xscale = 120;
+nat7._yscale = 120;
+nat7.nate.nat._xscale = 50;
+nat7.nate.nat._yscale = 50;
+nat8._xscale = 130;
+nat8._yscale = 130;
+nat8.nate.nat._xscale = 20;
+nat8.nate.nat._yscale = 20;
+nat8.nate.nat.gotoAndStop(2);

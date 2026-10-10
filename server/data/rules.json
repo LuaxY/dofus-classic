@@ -1,0 +1,30 @@
+{
+ "provenance": {
+  "turn_ms": "authored (the client only shows the duration the server sends in GTS)",
+  "placement_ms": "authored (placement end is not in the client; the fight starts when every player has picked a cell or when this expires)",
+  "max_level": "beta_faq: 'Pour cette bêta 5, il a été fixé à 30' (vendor/wayback-dofus-2004/pages/forum.dofus.com_FAQDeDofus_20040213.html)",
+  "xp": "authored: total XP to reach level i+1 = 50 * (i+1) * i",
+  "bonus_per_level": "authored",
+  "lp_per_level": "authored",
+  "xp_win_per_opponent_level": "authored",
+  "xp_loss_per_opponent_level": "authored",
+  "gold_win_per_opponent_level": "authored",
+  "spell_boost_bonus": "beta: SPELL_BOOST_BONUS = [0,5,8,13,20] (AKSClient/Dofus.Kernel.Init.as:58)",
+  "village_map": "authored: a fully beta-covered post-beta 2004 map (maps.json) used as the solo village the client loads before the multiplayer screen",
+  "default_channel": "beta: first preset label of the channel combo (modules_Interfaces/DefineSprite_430_Interface.MultiPlayer)",
+  "max_characters": "beta: 10 character slots (modules_Interfaces/Interface.Characters.as:40-73)"
+ },
+ "turn_ms": 30000,
+ "placement_ms": 30000,
+ "max_level": 30,
+ "xp": [0, 100, 300, 600, 1000, 1500, 2100, 2800, 3600, 4500, 5500, 6600, 7800, 9100, 10500, 12000, 13600, 15300, 17100, 19000, 21000, 23100, 25300, 27600, 30000, 32500, 35100, 37800, 40600, 43500],
+ "bonus_per_level": 5,
+ "lp_per_level": 5,
+ "xp_win_per_opponent_level": 40,
+ "xp_loss_per_opponent_level": 10,
+ "gold_win_per_opponent_level": 10,
+ "spell_boost_bonus": [0, 5, 8, 13, 20],
+ "village_map": 914,
+ "default_channel": "France",
+ "max_characters": 10
+}
