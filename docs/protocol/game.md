@@ -416,7 +416,9 @@ without the waiting box (`send(…, false)`, `AKSClient/Dofus.Client.as:75-89`),
 then sends `GC1` by itself after `ASK` (`AKSClient/Events.AKS.Account.as:12`), which is why the flag travels in its own
 frame. `GW` is unused in both directions by the beta client (no `send("GW` in `decompiled/clean/`, no `GW` rubrique in
 `AKSClient/Dofus.Client.DataProcessor.as`). Before `PS` the server drops it (no character); `PS` clears the flag, and
-only `PS`: a flagged player back from a game ("Retour au village") rejoins the village map.
+only `PS`: a flagged player back from a game ("Retour au village") rejoins the village map. A session without `GW`
+is flagged by the server after its first bounce (`GAx;3`), so "Retour au village" and the random gift button take
+every player to the shared map; the only way back to the lobby is the menu's "Changer de perso", then "Jouer".
 
 What the server (`server/src/world.rs`) does for a flagged session, with only frames the 5b client already handles in
 the village (`Game.state == 1`):

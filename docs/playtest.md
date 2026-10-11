@@ -69,9 +69,9 @@ without any possible action (`stalled`, with a diagnosis of positions, reach and
    A's losers. No client error anywhere.
 4. **coverage** — five pairings, every class casting each of its level-1 spells (and a close combat); a pairing that
    ends before its lists are done is replayed once on a spare map; the scenario fails if any spell was never cast.
-5. **random** — four players (Enutrof A, Crâ B, Féca C, Sadida D). A goes to the village and back
-   ("Retour au village"). A and B "Jouer seul": B is matched at once with the waiting A, random 1v1 on a random map,
-   `GameResultRandom`; the winner takes "Ta récompense" (`GQ` + `GC1` → village → lobby), the loser "Quitter". C adds
+5. **random** — four players (Enutrof A, Crâ B, Féca C, Sadida D). A takes "Retour au village" to the shared
+   map, then "Changer de perso" → "Jouer" back to the lobby. A and B "Jouer seul": B is matched at once with the waiting A, random 1v1 on a random map,
+   `GameResultRandom`; the winner takes "Ta récompense" (`GQ` + `GC1` → shared map, then "Changer de perso" → "Jouer"), the loser "Quitter". C adds
    D as a friend (Amis tab), "Constituer une équipe", invites D: D says Non (`REFUSE_INVITATION` in C's chat); C
    invites again and withdraws it (D's box closes); C invites a third time, D says Oui: both see both cards; C adds an
    "Aléatoire" slot ("?" card on both sides) and removes it; C "Rechercher" (both under the search mask); A and B

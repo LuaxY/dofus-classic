@@ -851,7 +851,8 @@ impl World {
 
     /// Village (state 1): `GDM` role-play, the player on its cell, then `GA x;3` straight to the multiplayer
     /// screen — beta 5 "ne contient que les combats". A social session (`GW`) stays, on the village map (or the world
-    /// map it already stands on): `show_map`.
+    /// map it already stands on): `show_map`. Only the first village after `PS` bounces: the session turns social, so
+    /// "Retour au village" and the random gift button (`GQ` + `GC1`) land on the shared map.
     fn village_map(&mut self, sid: Sid, me: u32) {
         let (social, spot, village) = (self.sessions[&sid].social, self.sessions[&sid].spot, self.data.rules.village_map);
         if spot.is_none() {
@@ -861,6 +862,7 @@ impl World {
         if !social {
             self.send(sid, self.map_frame(village));
             self.send(sid, format!("GM|{}", Self::solo_entry(&self.store.characters[&me], (self.free_cell_near(village, middle), 1))));
+            self.sessions.get_mut(&sid).unwrap().social = true;
             return self.send(sid, format!("GAx;3;{me}"));
         }
         if spot.is_none() {

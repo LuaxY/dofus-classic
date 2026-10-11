@@ -268,7 +268,13 @@ const scenarios: Record<string, () => Promise<void>> = {
     const who = (bot: Bot, account: string, character: string, guild: number, sex: 0 | 1): Who => ({ bot, account, password: account + "-pw", character, guild, sex });
     const [a, b, c, d] = [who(A!, "gina", "Ginette", 3, 1), who(B!, "hugo", "Hugolin", 9, 0), who(C!, "iris", "Irmine", 1, 1), who(D!, "jules", "Julot", 10, 0)];
     await Promise.all([a, b, c, d].map((w) => enter(w, true)));
+    // the shared map has no way to the lobby but the menu's "Changer de perso", then "Jouer"
+    const toLobby = async (w: Who) => {
+      await w.bot.do({ do: "changeCharacter" });
+      await w.bot.do({ do: "selectCharacter", name: w.character });
+    };
     await A!.do({ do: "village" });
+    await toLobby(a);
     // (a) solo queue
     await A!.do({ do: "playAlone" });
     await B!.do({ do: "playAlone" });
@@ -279,6 +285,7 @@ const scenarios: Record<string, () => Promise<void>> = {
     const [win, lose] = ra.result == "won" ? [A!, B!] : [B!, A!];
     if (new Set([ra.result, rb.result]).size != 2) throw new Error(`1v1: A ${String(ra.result)}, B ${String(rb.result)}`);
     await Promise.all([win.do({ do: "gift" }), lose.do({ do: "leaveResult" })]);
+    await toLobby(win == A ? a : b);
     // (b) a team built by invitation
     await C!.do({ do: "addFriend", name: d.character });
     await C!.do({ do: "makeTeam" });

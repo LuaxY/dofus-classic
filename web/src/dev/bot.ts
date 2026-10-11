@@ -180,10 +180,11 @@ const card = (name: string, waiting?: boolean) =>
   });
 const searching = () => !!teamTab()?.maskSearch?._visible && DC().Game.bInSearch;
 /** Wait for the multiplayer screen drawn again after a trip through the village (GC1 … GA x;3, then CJ → CJK). */
-async function backFromVillage(r0: number) {
+/** "Retour au village" / the gift button: past the first bounce after `PS`, the server keeps the player on the shared map. */
+async function toSharedMap(r0: number) {
   await h.need("village (GCK|1)", () => h.received.slice(r0).includes("GCK|1"), 10000);
-  await h.need("back to the multiplayer screen", () => h.received.slice(r0).some((f) => f.startsWith("GAx;3;")) && !gone(G.INTERFACE.UIInterfaceMultiPlayer), 15000);
-  await h.need("channel joined", () => h.received.slice(r0).some((f) => f.startsWith("CJK")) && DC().Channel.m_name, 10000);
+  await h.need("shared map with me on it", () => h.received.slice(r0).some((f) => f.startsWith("GM|")) && G.BATTLEFIELD.Container._visible && me()?.cell != undefined && drawn(me()), 20000);
+  if (h.received.slice(r0).some((f) => f.startsWith("GAx;3;"))) throw new Error("sent to the multiplayer screen");
   await h.run(1000);
 }
 
@@ -755,9 +756,9 @@ async function step(s: Step): Promise<Record<string, unknown>> {
     case "village": {
       const r0 = h.received.length;
       h.click("return to the village", G.INTERFACE.UIInterfaceMultiPlayer!.btnReturn as DisplayObject);
-      await backFromVillage(r0);
-      h.shot("back-from-village");
-      return { channel: DC().Channel.m_name };
+      await toSharedMap(r0);
+      h.shot("village-from-lobby");
+      return { cell: Number(me().cell) };
     }
     case "addFriend": {
       const mp = G.INTERFACE.UIInterfaceMultiPlayer!;
@@ -850,9 +851,9 @@ async function step(s: Step): Promise<Record<string, unknown>> {
       const result = resultPanel(), r0 = h.received.length;
       if (result?._name != "GameResultRandom") throw new Error("no random result panel");
       h.click("gift", result.$childAt(17 - 16384)); // S956/PB_17: AKS.Game.leave(); AKS.Game.CreateSolo()
-      await backFromVillage(r0);
-      h.shot("back-from-gift");
-      return { channel: DC().Channel.m_name };
+      await toSharedMap(r0);
+      h.shot("village-from-gift");
+      return { cell: Number(me().cell) };
     }
     case "joinMap": {
       const list = G.INTERFACE.UIInterfaceCharacters!, r0 = h.received.length;

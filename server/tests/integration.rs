@@ -850,6 +850,16 @@ async fn social_village_map() {
     }
     c.send("BM*|lobby\n").await;
     assert_eq!(c.expect("cMK").await, format!("cMK*|{}|Socc|lobby", c.id));
+    // "Retour au village" (`GC1` from the lobby): past its first bounce, the normal session lands on the shared map.
+    c.send("GC1\n").await;
+    c.expect("GCK|1").await;
+    c.send("GD\n").await;
+    c.expect("GDM|").await;
+    let gm = c.expect("GM|+").await;
+    assert!(gm.contains(&format!("+{};Soca;", a.id)) && gm.contains(&format!("+{};Socc;", c.id)), "{gm}");
+    for cl in [&mut a, &mut b] {
+        assert!(cl.expect("GM|").await.starts_with(&format!("GM|+{};Socc;", c.id)));
+    }
     // B drops: A sees it go.
     b.ws.close(None).await.unwrap();
     assert_eq!(a.expect("GM|-").await, format!("GM|-{}", b.id));
