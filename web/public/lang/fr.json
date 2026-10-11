@@ -107,6 +107,7 @@
  "GAME_LAUNCH": "La partie est lancée",
  "GAME_NAME": "Nom de Partie",
  "GAME_RESULTS": "Résultat du combat",
+ "GO_TO_FIGHTS": "Aller aux combats",
  "GUIFTS": "Ta récompense",
  "HAS_ATTACK_CC": "<b>%1</b> attaque au corps à corps.",
  "HAS_LAUNCH_SPELL": "<b>%1</b> lance <b>%2</b>.",
@@ -1109,7 +1110,15 @@
    "n": "Carte 20",
    "d": ""
   },
+  "33": {
+   "n": "Le village",
+   "d": ""
+  },
   "35": {
+   "n": "Le village",
+   "d": ""
+  },
+  "38": {
    "n": "Le village",
    "d": ""
   },
@@ -1117,8 +1126,24 @@
    "n": "Le village",
    "d": ""
   },
+  "43": {
+   "n": "Le village",
+   "d": ""
+  },
+  "44": {
+   "n": "Le village",
+   "d": ""
+  },
   "48": {
    "n": "Le village",
+   "d": ""
+  },
+  "49": {
+   "n": "Le village",
+   "d": ""
+  },
+  "50": {
+   "n": "Le temple Xélor",
    "d": ""
   },
   "52": {
@@ -1165,6 +1190,14 @@
    "n": "La forêt d'Amakna",
    "d": ""
   },
+  "287": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "485": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
   "489": {
    "n": "Amakna",
    "d": ""
@@ -1189,6 +1222,14 @@
    "n": "Le village",
    "d": ""
   },
+  "517": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "520": {
+   "n": "Amakna",
+   "d": ""
+  },
   "525": {
    "n": "La forêt d'Amakna",
    "d": ""
@@ -1201,8 +1242,28 @@
    "n": "La forêt d'Amakna",
    "d": ""
   },
+  "531": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
   "536": {
    "n": "Le champ des Ingals",
+   "d": ""
+  },
+  "537": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "538": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "539": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "542": {
+   "n": "La forêt d'Amakna",
    "d": ""
   },
   "544": {
@@ -1214,6 +1275,10 @@
    "d": ""
   },
   "546": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "547": {
    "n": "La forêt d'Amakna",
    "d": ""
   },
@@ -1229,7 +1294,31 @@
    "n": "La forêt d'Amakna",
    "d": ""
   },
+  "552": {
+   "n": "Le champ des Ingals",
+   "d": ""
+  },
   "554": {
+   "n": "Le champ des Ingals",
+   "d": ""
+  },
+  "555": {
+   "n": "Le champ des Ingals",
+   "d": ""
+  },
+  "557": {
+   "n": "Le champ des Ingals",
+   "d": ""
+  },
+  "558": {
+   "n": "Le champ des Ingals",
+   "d": ""
+  },
+  "559": {
+   "n": "Le champ des Ingals",
+   "d": ""
+  },
+  "560": {
    "n": "Le champ des Ingals",
    "d": ""
   },
@@ -1265,6 +1354,10 @@
    "n": "Amakna",
    "d": ""
   },
+  "577": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
   "578": {
    "n": "La forêt d'Amakna",
    "d": ""
@@ -1290,6 +1383,10 @@
    "d": ""
   },
   "584": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "585": {
    "n": "La forêt d'Amakna",
    "d": ""
   },
@@ -1357,6 +1454,10 @@
    "n": "Le coin des Bouftous",
    "d": ""
   },
+  "604": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
   "607": {
    "n": "Le coin des Bouftous",
    "d": ""
@@ -1374,6 +1475,26 @@
    "d": ""
   },
   "612": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "620": {
+   "n": "Bord de la fôret maléfique",
+   "d": ""
+  },
+  "641": {
+   "n": "Bord de la fôret maléfique",
+   "d": ""
+  },
+  "642": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "654": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "655": {
    "n": "La forêt d'Amakna",
    "d": ""
   },
@@ -1401,12 +1522,40 @@
    "n": "Port de Madrestam",
    "d": ""
   },
+  "932": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "933": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "941": {
+   "n": "Amakna",
+   "d": ""
+  },
   "946": {
    "n": "Le coin des Boos",
    "d": ""
   },
   "1012": {
    "n": "Amakna",
+   "d": ""
+  },
+  "1069": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "1071": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "1072": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "1073": {
+   "n": "La forêt d'Amakna",
    "d": ""
   },
   "1117": {

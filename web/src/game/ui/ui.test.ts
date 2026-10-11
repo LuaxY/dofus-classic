@@ -19,7 +19,7 @@ const SWF = join(ROOT, "web/public/assets/swf"), PREVIEW = join(ROOT, "web/publi
 mkdirSync(PREVIEW, { recursive: true });
 for (const f of ["Verdana-c2158db2.ttf", "Verdana-bold-a1ed6d4e.ttf", "bitMini6-477eb65d.ttf"]) GlobalFonts.registerFromPath(join(ROOT, "web/public/assets/media/fonts", f));
 // authored test strings (the lang data is lost; tests do not depend on them, they only make the previews readable)
-setLangData({ INFORMATIONS: "Informations", QUESTION: "Question", CLOSE: "Fermer", YES: "Oui", NO: "Non" });
+setLangData({ INFORMATIONS: "Informations", QUESTION: "Question", CLOSE: "Fermer", YES: "Oui", NO: "Non", GO_TO_FIGHTS: "Aller aux combats" });
 
 isolateGlobals();
 let p: Player;
@@ -277,8 +277,23 @@ test("menuBox / wisperBox: hard-coded labels, KERNEL calls, Enter sends once (le
   expect(m.quit_btn!.getLabel()).toBe("Changer de perso");
   expect(m.giveup_btn!._visible).toBe(false); // no DATACENTER: Game.isRunning falsy
   png("menu.png");
+  expect(m.lobby_btn).toBeUndefined(); // the authored entry is only offered on the village map
   click(m.quit_btn!);
   expect(calls).toEqual(["quit", "keys true"]);
+  // on the shared village map (Game.state 1): "Aller aux combats" in the slot of the hidden "Abandonner", sends GX
+  g.DATACENTER = { Game: { state: 1, isRunning: false } };
+  (g.AKS as Record<string, unknown>).send = (d: string, w: boolean) => calls.push(`raw ${JSON.stringify(d)} ${w}`);
+  G.INTERFACE.menuBox();
+  tick(2);
+  const v = G.INTERFACE.BoxLayer_mc.boxMenu!.window_mc!.main_mc.container_mc as MovieClip & Record<string, FPushButtonClass>;
+  expect(v.lobby_btn!.getLabel()).toBe("Aller aux combats");
+  expect([v.lobby_btn!._x, v.lobby_btn!._y, v.lobby_btn!._xscale]).toEqual([v.giveup_btn!._x, v.giveup_btn!._y, v.quit_btn!._xscale]);
+  expect(Math.round(v.lobby_btn!._width)).toBe(Math.round(v.quit_btn!._width));
+  png("menu-village.png");
+  click(v.lobby_btn!);
+  expect(calls.slice(-2)).toEqual(['raw "GX\\n" false', "keys true"]);
+  expect(G.INTERFACE.BoxLayer_mc.boxMenu).toBeUndefined();
+  delete g.DATACENTER;
   G.INTERFACE.wisperBox("Nergal");
   tick(2);
   const w = G.INTERFACE.BoxLayer_mc.boxWhisper!.window_mc!.main_mc.container_mc as MovieClip & { txtZone: { text: string } };

@@ -6,7 +6,7 @@ import { G } from "../game/globals.ts";
 import { Button, type DisplayObject, MovieClip, TextField } from "../runtime/player.ts";
 import { goalDistEstimate, PathFinding } from "../core/pathfinding.ts";
 import { Cell } from "../game/battlefield/interaction.ts";
-import { buttonIn, Headless } from "./headless-client.ts";
+import { buttonIn, Headless, inside } from "./headless-client.ts";
 
 const [name = "A", url = "ws://127.0.0.1:5555", shotDir] = process.argv.slice(2);
 
@@ -80,8 +80,20 @@ export type Step =
   | { do: "travel"; cell: number; map: number }
   /** Village map: wait until the sprite of `name` is drawn (its SWF loaded) and standing on `cell` (any), or is gone. */
   | { do: "sprite"; name: string; cell?: number; gone?: boolean }
+  /** Village banner: the inventory button (B752) → the Inventory panel; returns the items the client holds. */
+  | { do: "inventory" }
+  /** Inventory panel: drag item `id` from the bag onto equipment slot `slot` (OM<id>|<slot>); `slot` -1: from its slot
+   *  back to the bag (OM<id>|-1, InventoryViewer.onTestMouse). */
+  | { do: "equip"; id: number; slot: number }
+  /** Inventory panel: drag bag item `id` onto the drop zone, Oui in the question box (OD<id>) → ODK<id>, gone. */
+  | { do: "drop"; id: number }
   /** Banner menu → "Changer de perso" → Oui → reconnect → the character list. */
-  | { do: "changeCharacter" };
+  | { do: "changeCharacter" }
+  /** Village map: banner menu → "Aller aux combats" (authored GX) → GAx;3 → the multiplayer screen with the channel joined. */
+  | { do: "toLobby" }
+  /** Banner smiley bar (B779) → smiley `index` (BS) → cS → shown over my sprite. With `from`: wait for the smiley over
+   *  the sprite of `from` (it goes after SMILEY_DELAY = 3 s, so run it alongside the sender's step). */
+  | { do: "smiley"; index?: number; from?: string };
 
 export type Policy = {
   /** Spell ids to cast at least once, in this order (each when it is castable). */
@@ -186,6 +198,33 @@ async function toSharedMap(r0: number) {
   await h.need("shared map with me on it", () => h.received.slice(r0).some((f) => f.startsWith("GM|")) && G.BATTLEFIELD.Container._visible && me()?.cell != undefined && drawn(me()), 20000);
   if (h.received.slice(r0).some((f) => f.startsWith("GAx;3;"))) throw new Error("sent to the multiplayer screen");
   await h.run(1000);
+}
+
+// ---- inventory (banner panel S602, InventoryViewer S598) -------------------------------------------------------------
+type Viewer = MovieClip & { inventoryScroller_mc?: MovieClip & { selectedItem?: { m_ID: unknown }; selectedIndex: number; scroller_mc?: MovieClip }; drop_mc?: MovieClip; objectInfosViewer_mc?: MovieClip };
+const viewer = () => (G.INTERFACE.UIInterfaceBanner?.panels.Inventory as MovieClip | undefined)?.inventoryViewer_mc as Viewer | undefined;
+const itemOf = (id: number) => DC().Player.Inventory.find((i) => Number(i.m_ID) == id);
+const bag = () => DC().Player.Inventory.map((i) => ({ id: i.m_ID, type: i.m_Type, gfx: i.m_Gfx, position: i.m_Position, name: i.name, description: i.description.trim() }));
+/** A player's drag: press on `from`, move onto `to`, release (the inventory drags with setSpellCursor; the drop target
+ *  gets its `release` through trackAsMenu). `on`: the release must land on `to`. */
+async function drag(label: string, from: DisplayObject | undefined, to: DisplayObject | undefined, on = true) {
+  if (!from || !to) throw new Error(`${label}: nothing to drag`);
+  const a = h.centre(from), b = h.centre(to);
+  h.p.mouseMove(a.x, a.y);
+  if (!inside(h.p.target(), from)) throw new Error(`${label}: the press lands on ${String(h.p.target())}`);
+  h.p.mouseDown();
+  for (let k = 1; k <= 5; k++) h.p.mouseMove(a.x + ((b.x - a.x) * k) / 5, a.y + ((b.y - a.y) * k) / 5), await h.run(60);
+  if (on && !inside(h.p.target(), to)) throw new Error(`${label}: the release lands on ${String(h.p.target())}`);
+  h.p.mouseUp();
+  await h.run(300);
+}
+/** Turn the bag carousel (B556, `move(true)`) until item `id` is the centred one, the only one enabled (finalizeScroll). */
+async function centreItem(v: Viewer, id: number) {
+  const arrow = findClip(v, "", (o) => o instanceof Button && o.$.id == 556);
+  for (let n = 0; n < 40 && Number(v.inventoryScroller_mc?.selectedItem?.m_ID) != id; n++) h.click("bag arrow", arrow), await h.run(600);
+  const sc = v.inventoryScroller_mc;
+  if (Number(sc?.selectedItem?.m_ID) != id) throw new Error(`item ${id} is not in the bag`);
+  return sc?.scroller_mc?.[`item${sc.selectedIndex}_mc`] as MovieClip | undefined;
 }
 
 // ---- fight ----------------------------------------------------------------------------------------------------------
@@ -540,9 +579,12 @@ async function fight(p: Policy): Promise<Record<string, unknown>> {
   }
   await h.run(1500);
   h.shot("result");
+  // a winner's item (OAK → msgBox "Nouvel objet : <name>"), read and closed as a player does before going on
+  const award = messageBox() && String((findClip(messageBox(), "", (o) => o instanceof TextField && o.text.length > 3) as TextField | undefined)?.text);
+  await closeMessages();
   if (p.hear && !heard) await h.need(`fight chat line "${p.hear}"`, listen, 3000);
   const won = DC().Game.Results.winners?.some((w) => String((w as { id?: unknown }).id) == myID());
-  return { ...log, result: won ? "won" : "lost", wantLeft: want, ccLeft: ccWanted, results: DC().Game.Results };
+  return { ...log, result: won ? "won" : "lost", wantLeft: want, ccLeft: ccWanted, results: DC().Game.Results, ...(award ? { award } : {}) };
 }
 
 async function step(s: Step): Promise<Record<string, unknown>> {
@@ -924,6 +966,43 @@ async function step(s: Step): Promise<Record<string, unknown>> {
       const c = characterNamed(s.name), sp = spriteOf(c);
       return { cell: sp ? Number(c?.cell) : undefined, tree: h.dump(sp, 2) };
     }
+    case "inventory": {
+      h.click("inventory", findClip(G.INTERFACE.UIInterfaceBanner?.banner, "", (o) => o instanceof Button && o.$.id == 752)); // showPanel("Inventory")
+      await h.need("inventory panel", () => G.INTERFACE.UIInterfaceBanner?.getCurrentPanel() == "Inventory" && viewer()?.inventoryScroller_mc, 3000);
+      await h.run(800); // item icons load
+      h.shot("inventory");
+      return { items: bag() };
+    }
+    case "equip": {
+      const v = viewer(), item = itemOf(s.id), s0 = h.sent.length;
+      if (!v || !item) throw new Error(`equip: no inventory panel, or no item ${s.id}`);
+      const from = Number(item.m_Position);
+      if (s.slot >= 0) await drag(`item ${s.id} → slot ${s.slot}`, await centreItem(v, s.id), v[`equipement${s.slot}_mc`] as MovieClip | undefined);
+      // off the slot onto the panel (the info box: no slot, no drop zone → onTestMouse); outside the panel would close it
+      else await drag(`slot ${from} → bag`, v[`equipement${from}_mc`] as MovieClip | undefined, v.objectInfosViewer_mc, false);
+      const om = `OM${s.id}|${s.slot}\n`;
+      await h.need(om.trim() + " sent", () => h.sent.slice(s0).includes(om), 3000);
+      const slot = v[`equipement${s.slot >= 0 ? s.slot : from}_mc`] as MovieClip & { data?: unknown; isEmpty?: boolean };
+      if (G.INTERFACE.UIInterfaceBanner?.getCurrentPanel() != "Inventory") throw new Error("equip: the inventory panel closed");
+      if (Number(item.m_Position) != s.slot || (s.slot >= 0 ? slot.data !== item : !slot.isEmpty)) throw new Error(`equip: item at ${String(item.m_Position)}, slot ${s.slot >= 0 ? s.slot : from} shows ${String(slot.data)}`);
+      await h.run(500);
+      h.shot(s.slot >= 0 ? `equipped-${s.slot}` : "unequipped");
+      return { sent: om.trim(), items: bag() };
+    }
+    case "drop": {
+      const v = viewer(), s0 = h.sent.length, r0 = h.received.length;
+      if (!v) throw new Error("drop: no inventory panel");
+      await drag(`item ${s.id} → drop zone`, await centreItem(v, s.id), v.drop_mc);
+      await h.need("question box", () => findClip(G.INTERFACE.BoxLayer_mc, "yes_btn"), 3000);
+      await h.run(300);
+      h.shot("drop-question");
+      const question = String((findClip(G.INTERFACE.BoxLayer_mc, "", (o) => o instanceof TextField && o.text.length > 12) as TextField | undefined)?.text);
+      h.click("yes", findClip(G.INTERFACE.BoxLayer_mc, "yes_btn"));
+      await h.need(`ODK${s.id}, item gone`, () => h.received.slice(r0).includes(`ODK${s.id}`) && !itemOf(s.id), 5000);
+      await h.run(500);
+      h.shot("dropped");
+      return { question, sent: h.sent.slice(s0).map((f) => f.trim()), items: bag() };
+    }
     case "changeCharacter": {
       h.click("menu", menuButton());
       await h.need("menu box", () => findClip(G.INTERFACE.BoxLayer_mc, "quit_btn"), 3000);
@@ -936,6 +1015,48 @@ async function step(s: Step): Promise<Record<string, unknown>> {
       await h.run(500);
       h.shot("characters-again");
       return { login: h.received.filter((f) => f.startsWith("Al")).slice(-2) };
+    }
+    case "toLobby": {
+      const r0 = h.received.length, s0 = h.sent.length;
+      h.click("menu", menuButton());
+      await h.need("menu box with the map entry", () => findClip(G.INTERFACE.BoxLayer_mc, "lobby_btn"), 3000);
+      await h.run(300);
+      h.shot("menu-box-village");
+      h.click("go to the fights", findClip(G.INTERFACE.BoxLayer_mc, "lobby_btn"));
+      await h.need("GX sent, GAx;3 back", () => h.sent.slice(s0).includes("GX\n") && h.received.slice(r0).includes(`GAx;3;${myID()}`), 5000);
+      await h.need("multiplayer screen", () => !gone(G.INTERFACE.UIInterfaceMultiPlayer) && h.received.slice(r0).some((f) => f.startsWith("CJK")) && DC().Channel.m_name, 15000);
+      await h.need("channel users", () => h.received.slice(r0).some((f) => f.startsWith("CLK")), 5000);
+      await h.run(800);
+      h.shot("lobby-from-map");
+      return { sent: h.sent.slice(s0).map((f) => f.trim()), channel: DC().Channel.m_name };
+    }
+    case "smiley": {
+      // Character.smiley attaches SmileyOverHead to the controller as `smiley_mc` (Character.as:318-324)
+      const shown = (c: Char | null | undefined) => {
+        const sm = (c?.clip as { smiley_mc?: MovieClip } | null | undefined)?.smiley_mc;
+        return !!sm && !sm.$.removed && sm._visible;
+      };
+      if (s.from != undefined) {
+        const from = s.from;
+        await h.need(`smiley over ${from}`, () => shown(characterNamed(from)), 10000);
+        await h.run(300);
+        h.shot(`smiley-of-${from}`);
+        return { cS: h.received.filter((f) => f.startsWith("cS")).at(-1) };
+      }
+      const toggle = findClip(h.p.root, "", (o) => o instanceof Button && o.$.id == 779); // on(release): SmileyBar.openClose
+      const bar = toggle?._parent as (MovieClip & { simleys_mc?: MovieClip }) | undefined;
+      const icon = bar?.simleys_mc?.[`smiley${s.index ?? 1}`] as MovieClip | undefined;
+      h.click("smiley bar", toggle);
+      await h.need("smiley bar open", () => bar?.simleys_mc?._visible && icon && icon.getBounds(h.p.root).xMax > icon.getBounds(h.p.root).xMin, 5000);
+      await h.run(300);
+      const s0 = h.sent.length, r0 = h.received.length;
+      h.click(`smiley ${s.index ?? 1}`, icon);
+      await h.need("BS sent, cS back", () => h.sent.slice(s0).some((f) => f.startsWith("BS")) && h.received.slice(r0).some((f) => f.startsWith(`cS${myID()}|`)), 5000);
+      await h.need("my smiley", () => shown(me()), 3000);
+      await h.run(200);
+      h.shot("smiley");
+      h.click("smiley bar", toggle); // closed again
+      return { sent: h.sent.slice(s0).find((f) => f.startsWith("BS"))?.trim() };
     }
     case "frames":
       return { sent: h.sent.slice(-(s.last ?? 20)), received: h.received.slice(-(s.last ?? 20)) };

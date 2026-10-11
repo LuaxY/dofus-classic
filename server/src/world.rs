@@ -6,7 +6,8 @@ use crate::crypt;
 use crate::data::GameData;
 use crate::fight::{color, Fighter, Game, Phase, Rng};
 use crate::pathfinding::{distance, path_find};
-use crate::store::{Account, Character, KnownSpell, Store};
+use crate::data::CloseCombat;
+use crate::store::{Account, Character, Item, KnownSpell, Store};
 use std::collections::{BTreeMap, HashMap, HashSet};
 use tokio::sync::mpsc::UnboundedSender;
 
@@ -157,10 +158,32 @@ impl World {
         self.sessions.get(&sid).map_or(Place::None, |s| s.place.clone())
     }
 
+    /// Entering a game (free game, random party, match) withdraws the session's pending random-team invitations.
     fn set_place(&mut self, sid: Sid, place: Place) {
-        if let Some(s) = self.sessions.get_mut(&sid) {
-            s.place = place;
+        let Some(s) = self.sessions.get_mut(&sid) else { return };
+        let entered = matches!(place, Place::Game(_)).then_some(s.character).flatten();
+        s.place = place;
+        if let Some(me) = entered {
+            self.withdraw_invitations(me);
         }
+    }
+
+    /// Pending random-team invitations of `me` go (it disconnected or entered a game): the inviter's waiting card is
+    /// removed (`GiE<me>|<name>`, IMPOSSIBLE_INVITATION) and the invitee's yes/no box closes (`Gy`).
+    fn withdraw_invitations(&mut self, me: u32) {
+        let mut creators = Vec::new();
+        for g in self.games.values_mut().filter(|g| g.invited.contains(&me)) {
+            g.invited.retain(|&i| i != me);
+            creators.push(g.creator);
+        }
+        if creators.is_empty() {
+            return;
+        }
+        let name = self.store.characters.get(&me).map_or(String::new(), |c| c.name.clone());
+        for k in creators.into_iter().filter_map(|c| self.sid_of(c)) {
+            self.send(k, format!("GiE{me}|{name}"));
+        }
+        self.sid_of(me).into_iter().for_each(|k| self.send(k, "Gy"));
     }
 
     fn schedule(&self, ms: u64, game: u32, serial: u64) {
@@ -272,9 +295,11 @@ impl World {
             "SM" => self.spell_position(sid, rest),
             "SB" => self.spell_boost(sid, rest),
             "SI" => self.spell_infos(sid, rest),
+            "OM" => self.item_move(sid, rest),
+            "OD" => self.item_drop(sid, rest),
             "BL" => self.send(sid, format!("mL{}", self.data.maps.iter().map(|m| m.id.to_string()).collect::<Vec<_>>().join("|"))),
             _ if code.starts_with('G') => self.game_command(sid, msg),
-            _ => {} // OM/OD (no items on this server), unknown codes
+            _ => {} // unknown codes
         }
     }
 
@@ -352,6 +377,7 @@ impl World {
             bonus: 0,
             stats: BTreeMap::new(),
             spells,
+            items: Vec::new(),
         };
         self.store.characters.insert(id, c);
         self.store.save();
@@ -397,7 +423,7 @@ impl World {
         let stats: Vec<String> = [10, 11, 6, 7, 8, 9, 12, 13, 14, 15].iter().map(|&i| c.stat(i).to_string()).collect();
         let col = c.colors.map(color);
         let ask = format!(
-            "ASK|{}|{}|{}|{}|{}|{}|{}|{}|{}||{low}|{}|{high}|{}|{}|{}|{}|{}|{}|{}|",
+            "ASK|{}|{}|{}|{}|{}|{}|{}|{}|{}||{low}|{}|{high}|{}|{}|{}|{}|{}|{}|{}|{}",
             c.id,
             c.name,
             c.level,
@@ -414,7 +440,8 @@ impl World {
             stats.join("|"),
             c.bonus,
             class.cc.ap,
-            spells.join(";")
+            spells.join(";"),
+            c.items.iter().map(Item::entry).collect::<Vec<_>>().join(";")
         );
         debug_assert_eq!(ask.split('|').count(), 31);
         self.send(sid, ask);
@@ -501,6 +528,68 @@ impl World {
         self.send(sid, format!("SI{}|{next}|{}|{}", k.id, l.ap, l.range));
     }
 
+    // ───────────── items ─────────────
+    // The banner's inventory exists in the village and in fights, and the client refuses every change in a fight
+    // (`isFight`, EquipementItemContainer/InventoryItemContainer `press`), so `OM`/`OD` come from the village: they are
+    // ignored in a game, which keeps the close combat of a fighter (built when it joins) right.
+
+    /// `OM<id>|<pos>` (no answer, InventoryViewer.onEquipItem): `pos` 0..5 equips the item if the slot takes it
+    /// (`Items::can_equip`); the item the slot held goes back to the bag (the client's `onReplaceItem` sends nothing).
+    /// `-1` = back to the bag (dragged off its slot, `onTestMouse`, InventoryViewer.as:200-223).
+    fn item_move(&mut self, sid: Sid, rest: &str) {
+        if matches!(self.place(sid), Place::Game(_)) {
+            return;
+        }
+        let Some((id, pos)) = rest.split_once('|').and_then(|(i, p)| Some((i.parse::<u32>().ok()?, p.parse::<i32>().ok()?))) else { return };
+        let me = self.sessions[&sid].character.unwrap();
+        let c = self.store.characters.get_mut(&me).unwrap();
+        let Some(item) = c.items.iter().find(|i| i.id == id) else { return };
+        let pos = match pos {
+            -1 => None,
+            0..=5 if self.data.items.can_equip(c.class, item.kind, pos as usize) => Some(pos as u8),
+            _ => return,
+        };
+        for i in &mut c.items {
+            if i.id == id {
+                i.position = pos;
+            } else if pos.is_some() && i.position == pos {
+                i.position = None;
+            }
+        }
+        self.store.save();
+    }
+
+    /// `OD<id>` (after the client's yes/no box, no spinner) → the item is destroyed, `ODK<id>` (decimal).
+    fn item_drop(&mut self, sid: Sid, rest: &str) {
+        if matches!(self.place(sid), Place::Game(_)) {
+            return;
+        }
+        let me = self.sessions[&sid].character.unwrap();
+        let c = self.store.characters.get_mut(&me).unwrap();
+        let Some(k) = rest.parse::<u32>().ok().and_then(|id| c.items.iter().position(|i| i.id == id)) else { return };
+        let id = c.items.remove(k).id;
+        self.store.save();
+        self.send(sid, format!("ODK{id}"));
+    }
+
+    /// Fight-end drop (authored rule, docs/server.md "Items"): a random template of items.json that the winner can
+    /// equip, into the bag → `OAKO<entry>`, one item per frame (`innerOnAdd` reuses its loop index,
+    /// docs/protocol/items.md), or `OAEF` (bag full).
+    fn award(&mut self, id: u32) -> Option<String> {
+        let items = &self.data.items;
+        let c = self.store.characters.get_mut(&id)?;
+        if c.items.len() >= items.max_items {
+            return Some("OAEF".into());
+        }
+        let usable: Vec<_> = items.items.iter().filter(|t| (0..6).any(|s| items.can_equip(c.class, t.kind, s))).collect();
+        let t = usable[(self.rng.next_u64() % usable.len() as u64) as usize]; // never empty: GameData::validate
+        let item = Item { id: self.store.next_item, kind: t.kind, gfx: t.gfx, position: None, effects: t.effects.clone() };
+        self.store.next_item += 1;
+        let frame = format!("OAKO{}", item.entry());
+        c.items.push(item);
+        Some(frame)
+    }
+
     // ───────────── channels, chat, infos ─────────────
 
     fn leave_place(&mut self, sid: Sid, silent: bool) {
@@ -534,6 +623,17 @@ impl World {
         };
         if !valid_name(&name, 1) || matches!(self.place(sid), Place::Game(_)) {
             return self.send(sid, format!("CJE{name}"));
+        }
+        // Already there: the second `CJ` after a result panel (docs/protocol/channel.md) gets its `CJK`, no `CM|-`/`CM|+`.
+        if self.place(sid) == Place::Channel(name.clone()) {
+            return self.send(sid, format!("CJK{name}"));
+        }
+        // On its way to the village (`GQ` + `GC1`: "Retour au village" from a lobby, the random gift button), `GV` →
+        // `onLeave` sends this `CJ` between `GC1` and `GD` (Events.AKS.Game.as:245). No answer: `CJK`'s `onJoin` would
+        // reset `DATACENTER.Game` after `GCK|1` set state 1 (Events.AKS.Channel.as:3), and the channel would see the
+        // player arrive and leave. The `GCK|1` already behind `GV` closes the spinner (DataProcessor.as:12).
+        if self.place(sid) == Place::Village && self.sessions[&sid].spot.is_none() {
+            return;
         }
         self.leave_place(sid, true);
         let s = self.sessions.get_mut(&sid).unwrap();
@@ -602,12 +702,12 @@ impl World {
         }
     }
 
-    /// `BS<n>` → `cS<id>|<n>` to the game (the smiley is drawn over the sprite); elsewhere only back to the sender,
-    /// whose spinner needs an answer (other channel members have no sprite for it).
+    /// `BS<n>` → `cS<id>|<n>` to the game or the village map (the smiley is drawn over the sprite, which every occupant
+    /// has); in a channel only back to the sender, whose spinner needs an answer (the others have no sprite for it).
     fn smiley(&self, sid: Sid, rest: &str) {
         let Ok(n) = rest.parse::<u32>() else { return };
         let id = self.sessions[&sid].character.unwrap();
-        let to = if matches!(self.place(sid), Place::Game(_)) { self.audience(sid, false) } else { vec![sid] };
+        let to = if matches!(self.place(sid), Place::Channel(_)) { vec![sid] } else { self.audience(sid, false) };
         to.into_iter().for_each(|to| self.send(to, format!("cS{id}|{n}")));
     }
 
@@ -740,15 +840,7 @@ impl World {
         if let Some(me) = self.sessions.get(&sid).and_then(|s| s.character) {
             self.leave_place(sid, true);
             self.notify_friends(sid, 'O');
-            // pending random-team invitations of this character: the inviter's waiting card goes (IMPOSSIBLE_INVITATION)
-            let name = self.store.characters.get(&me).map_or(String::new(), |c| c.name.clone());
-            for g in self.games.values_mut().filter(|g| g.invited.contains(&me)) {
-                g.invited.retain(|&i| i != me);
-                let creator = g.creator;
-                if let Some(k) = self.sessions.iter().find(|(_, s)| s.character == Some(creator)).map(|(&k, _)| k) {
-                    let _ = self.sessions[&k].tx.send(format!("GiE{me}|{name}"));
-                }
-            }
+            self.withdraw_invitations(me);
         }
         self.sessions.remove(&sid);
     }
@@ -758,7 +850,9 @@ impl World {
     fn fighter(&self, c: &Character) -> Fighter {
         let class = &self.data.classes[&c.class];
         let spells: HashMap<u32, usize> = c.spells.iter().map(|s| (s.id, s.level)).collect();
-        Fighter::new(c.id, c.name.clone(), c.level, c.class, c.sex, c.colors, self.lp_max(c), class.ap, class.cc.clone(), spells, c.gold)
+        // The equipped weapon's damage replaces the class dice; the AP cost stays the class one (`ASK` part 28).
+        let cc = CloseCombat { ap: class.cc.ap, dice: c.weapon_dice().unwrap_or(class.cc.dice) };
+        Fighter::new(c.id, c.name.clone(), c.level, c.class, c.sex, c.colors, self.lp_max(c), class.ap, cc, spells, c.gold)
     }
 
     fn game_command(&mut self, sid: Sid, msg: &str) {
@@ -785,6 +879,12 @@ impl World {
             // server reads between `GC1` and `GD`.
             ("GD", None) => self.village_map(sid, me),
             ("GW", None) => self.sessions.get_mut(&sid).unwrap().social = true, // authored, sent without a spinner
+            // Authored (banner menu "Aller aux combats", docs/protocol/game.md `GX`): off the map (`GM|-me` to its occupants)
+            // to the multiplayer screen, with the village's own `GAx;3`. The session stays social.
+            ("GX", None) if self.sessions[&sid].spot.is_some() => {
+                self.leave_place(sid, true);
+                self.send(sid, format!("GAx;3;{me}"));
+            }
             ("GA", None) if self.sessions[&sid].spot.is_some() => self.village_move(sid, me, rest),
             ("GKE", None) if self.sessions[&sid].spot.is_some() => self.village_stop(sid, rest),
             ("GKK", None) if self.sessions[&sid].spot.is_some() => self.village_walked(sid, me),
@@ -1126,25 +1226,36 @@ impl World {
 
     /// Match-making over the searching parties, oldest first: two teams of the same size `n` (members + random slots);
     /// the first party's random slots, the other's, or a whole missing opposing team are filled with players searching
-    /// alone (parties of one without random slots).
-    // ponytail: greedy first fit on every search start / departure; a skill or level criterion would go here.
+    /// alone (parties of one without random slots). Authored level preference (docs/server.md "Match-making"): among the
+    /// opposing parties that complete a match, the nearest mean level (then the oldest), and fillers by nearest level;
+    /// level never prevents a match that one of the candidates completes.
+    // ponytail: greedy on every search start / departure, nearest mean level; a rating would replace `level` here.
     fn match_random(&mut self) {
         loop {
             let queue: Vec<&Game> = self.games.values().filter(|g| g.random && g.searching && g.phase == Phase::Lobby).collect();
             let size = |g: &Game| g.members.len() + g.placeholders as usize;
             let solo = |g: &Game| g.members.len() == 1 && g.placeholders == 0;
+            let level = |g: &Game| g.members.iter().map(|f| f.level).sum::<u32>() / g.members.len().max(1) as u32;
             let found = queue.iter().find_map(|a| {
                 let n = size(a);
-                let b = queue.iter().find(|b| b.id != a.id && size(b) == n);
-                let need = a.placeholders as usize + b.map_or(n, |b| b.placeholders as usize);
-                let fill: Vec<&Game> = queue.iter().filter(|f| f.id != a.id && Some(f.id) != b.map(|b| b.id) && solo(f)).take(need).copied().collect();
-                (fill.len() == need).then(|| {
-                    let ids = |gs: &[&Game]| gs.iter().flat_map(|g| g.members.iter().map(|f| f.id)).collect::<Vec<_>>();
-                    let (fa, fb) = fill.split_at(a.placeholders as usize);
-                    let team0 = [ids(&[a]), ids(fa)].concat();
-                    let team1 = [b.map_or(vec![], |b| ids(&[b])), ids(fb)].concat();
-                    let parties: Vec<u32> = [a.id].into_iter().chain(b.map(|b| b.id)).chain(fill.iter().map(|f| f.id)).collect();
-                    (team0, team1, parties)
+                let near = |g: &Game| level(g).abs_diff(level(a));
+                let mut bs: Vec<&Game> = queue.iter().filter(|b| b.id != a.id && size(b) == n).copied().collect();
+                bs.sort_by_key(|b| near(b)); // stable: the oldest among equals
+                let bs: Vec<Option<&Game>> = if bs.is_empty() { vec![None] } else { bs.into_iter().map(Some).collect() };
+                bs.into_iter().find_map(|b| {
+                    let need = a.placeholders as usize + b.map_or(n, |b| b.placeholders as usize);
+                    let mut fill: Vec<&Game> =
+                        queue.iter().filter(|f| f.id != a.id && Some(f.id) != b.map(|b| b.id) && solo(f)).copied().collect();
+                    fill.sort_by_key(|f| near(f));
+                    fill.truncate(need);
+                    (fill.len() == need).then(|| {
+                        let ids = |gs: &[&Game]| gs.iter().flat_map(|g| g.members.iter().map(|f| f.id)).collect::<Vec<_>>();
+                        let (fa, fb) = fill.split_at(a.placeholders as usize);
+                        let team0 = [ids(&[a]), ids(fa)].concat();
+                        let team1 = [b.map_or(vec![], |b| ids(&[b])), ids(fb)].concat();
+                        let parties: Vec<u32> = [a.id].into_iter().chain(b.map(|b| b.id)).chain(fill.iter().map(|f| f.id)).collect();
+                        (team0, team1, parties)
+                    })
                 })
             });
             let Some((team0, team1, parties)) = found else { return };
@@ -1350,6 +1461,12 @@ impl World {
                 }
                 None => format!("1;{id};{level};1;0;0;0;0;0"),
             });
+        }
+        let winners: Vec<u32> = g.members.iter().filter(|f| winner == Some(f.team)).map(|f| f.id).collect();
+        for id in winners {
+            if let (Some(frame), Some(sid)) = (self.award(id), self.sid_of(id)) {
+                after.push((sid, frame));
+            }
         }
         self.store.save();
         self.games.get_mut(&gid).unwrap().members.iter_mut().for_each(|f| f.gold_change = 0); // applied above

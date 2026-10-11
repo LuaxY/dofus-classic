@@ -1,4 +1,5 @@
 //! Accounts and characters, persisted as one JSON file (server/data/runtime/store.json by default).
+use crate::data::{Dice, ITEM_DAMAGE};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::path::PathBuf;
@@ -18,6 +19,29 @@ pub struct KnownSpell {
     pub position: Option<u8>,
 }
 
+/// An owned item (docs/protocol/items.md). No colour: the entry carries one but `Item.colorObject` has no reader.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct Item {
+    pub id: u32,
+    #[serde(rename = "type")]
+    pub kind: u32,
+    pub gfx: u32,
+    /// Equipment slot 0..5; `None` = in the bag.
+    pub position: Option<u8>,
+    /// `[id, p1, p2, p3]`, 0 = parameter absent.
+    pub effects: Vec<[u32; 4]>,
+}
+
+impl Item {
+    /// `<idHex>~<typeHex>~<gfxHex>~<RRGGBB>~<positionHex or empty>~<effect>,…`, effect `<idHex>#<p1Hex>#<p2Hex>#<p3Hex>`
+    /// (AKSClient/Dofus.CharactersManager.as:176-194, Dofus.DataCenter.Item.as:12-37).
+    pub fn entry(&self) -> String {
+        let effects: Vec<String> = self.effects.iter().map(|e| format!("{:x}#{:x}#{:x}#{:x}", e[0], e[1], e[2], e[3])).collect();
+        let pos = self.position.map_or(String::new(), |p| format!("{p:x}"));
+        format!("{:x}~{:x}~{:x}~FFFFFF~{pos}~{}", self.id, self.kind, self.gfx, effects.join(","))
+    }
+}
+
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Character {
     pub id: u32,
@@ -34,6 +58,8 @@ pub struct Character {
     /// Boostable characteristics by `PB` id (6 rFire … 15 intelligence, Dofus.Client.Account.as:169-231).
     pub stats: BTreeMap<u8, i32>,
     pub spells: Vec<KnownSpell>,
+    #[serde(default)]
+    pub items: Vec<Item>,
 }
 
 impl Character {
@@ -43,6 +69,12 @@ impl Character {
     pub fn stat(&self, id: u8) -> i32 {
         self.stats.get(&id).copied().unwrap_or(0)
     }
+    /// Close-combat dice of the weapon in slot 1 (the only slot taking weapons): its damage effect `[count, faces,
+    /// bonus]`. Server rule (authored): nothing the client shows depends on it (docs/server.md "Items").
+    pub fn weapon_dice(&self) -> Option<Dice> {
+        let weapon = self.items.iter().find(|i| i.position == Some(1))?;
+        weapon.effects.iter().find(|e| e[0] == ITEM_DAMAGE).map(|e| [e[1] as i32, e[2] as i32, e[3] as i32])
+    }
 }
 
 #[derive(Serialize, Deserialize, Default)]
@@ -50,6 +82,9 @@ pub struct Store {
     pub accounts: BTreeMap<String, Account>,
     pub characters: BTreeMap<u32, Character>,
     pub next_id: u32,
+    /// Item ids, global (the client only needs them unique within one inventory).
+    #[serde(default)]
+    pub next_item: u32,
     #[serde(skip)]
     path: Option<PathBuf>,
 }
@@ -63,6 +98,7 @@ impl Store {
             .map(|t| serde_json::from_str(&t).expect("corrupt store file"))
             .unwrap_or_default();
         s.next_id = s.next_id.max(1);
+        s.next_item = s.next_item.max(1);
         s.path = path;
         s
     }
@@ -84,5 +120,25 @@ impl Store {
 
     pub fn by_name(&self, name: &str) -> Option<&Character> {
         self.characters.values().find(|c| c.name.eq_ignore_ascii_case(name))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn item_entries_weapon_dice_and_old_store_files() {
+        // A character saved before items existed still loads.
+        let old = r#"{"id":1,"account":"a","name":"Bob","class":8,"sex":0,"colors":[-1,-1,-1],"level":1,"xp":0,"gold":0,"bonus":0,"stats":{},"spells":[]}"#;
+        let mut c: Character = serde_json::from_str(old).unwrap();
+        assert!(c.items.is_empty() && c.weapon_dice().is_none());
+        let staff = Item { id: 26, kind: 4, gfx: 3, position: None, effects: vec![[100, 1, 6, 2], [123, 10, 0, 0]] };
+        assert_eq!(staff.entry(), "1a~4~3~FFFFFF~~64#1#6#2,7b#a#0#0");
+        c.items.push(staff);
+        assert!(c.weapon_dice().is_none(), "in the bag");
+        c.items[0].position = Some(1);
+        assert_eq!(c.items[0].entry(), "1a~4~3~FFFFFF~1~64#1#6#2,7b#a#0#0");
+        assert_eq!(c.weapon_dice(), Some([1, 6, 2]));
     }
 }

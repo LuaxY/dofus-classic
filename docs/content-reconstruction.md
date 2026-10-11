@@ -25,7 +25,8 @@ Every value is tagged with the first tier that supplies it.
 | `beta` | Text baked in a beta 5b SWF, or a 5b code/asset fact | `dofus-5b/modules/Interfaces.swf` field texts and PushButton default labels; `dofus-5b/clips/guilds/descriptions/*.swf`; `GUILD_NAMES`; weapon imports of the class sprites |
 | `beta_screenshot` | Rendered in a dated beta screenshot (v4b–v6b) | `vendor/wayback-dofus-2004/screenshots/` (`docs/missing-data-search.md` §4) |
 | `beta_forum` | **Added tier** (not in the brief): named in a beta-era official forum post | `vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html` (8 Jan 2004) |
-| `beta_sibling` | Later beta material | `vendor/dofushistory/changelogsbeta.md` (v9b), `vendor/archive-dofus-1/` |
+| `beta_sibling` | Later beta material | `vendor/dofushistory/changelogsbeta.md` (v9b), `vendor/archive-dofus-1/` (v7b-v17_2b; also the ground/object graphics beta 5b lacks, `web/public/assets/swf/clips/*.fill.json`, `docs/assets-format.md` §11) |
+| `release_sibling` | **Added tier** (assets only, no lang value uses it): the first non-beta official client, Dofus 1.0 (23 Aug 2004), unpacked from Ankama's installer | `vendor/archive-dofus-1/v1_0/` (ground/object graphics that no beta build has, `docs/assets-format.md` §11) |
 | `retro_fr` | dofedex 2004+ lang SWFs, post-beta | `vendor/dofedex/lang-fr/` (`lang_fr_7`, `spells_fr_100`, `classes_fr_31`, `items_fr_13`, `maps_fr_35`) |
 | `retro_emulator` | **Added tier** (server data only, no lang value uses it): a Dofus Retro emulator's database, community-sniffed, much later than beta 5b (1.39.8) | `vendor/starloco/` (map teleport cells and positions; used for the links of the world maps, `server/data/maps.json`, `docs/server.md` "World maps") |
 | `authored` | Written for this port | — |
@@ -62,14 +63,14 @@ Every value is tagged with the first tier that supplies it.
 
 Keys are counted per key; tables per field (one field of one entry = 1).
 
-| Source | Inventory keys (289) | Dynamic keys (11) | Table fields (676) |
+| Source | Inventory keys (289) | Dynamic keys (11) | Table fields (750) |
 |---|---|---|---|
 | `beta` | 59 | 0 | 100 (S 63, G 37) |
 | `beta_screenshot` | 27 | 0 | 6 (I.e 6) |
 | `beta_forum` | 0 | 0 | 2 (S 2) |
 | `beta_sibling` | 0 | 0 | 2 (G 2) |
-| `retro_fr` | 119 | 6 | 126 (M 102, I.t 22, S 2) |
-| `authored` | 84 (15 adapted from retro_fr, 69 written) | 5 | 440 (S 280, M 110, I.t 22, G 11, CC 10, I.st 7) |
+| `retro_fr` | 119 | 6 | 163 (M 139, I.t 22, S 2) |
+| `authored` | 84 (15 adapted from retro_fr, 69 written) | 5 | 477 (S 280, M 147, I.t 22, G 11, CC 10, I.st 7) |
 
 Most authored table fields are the 140 placeholder spells (`n` = `"Sort <id>"`, `d` = `""`).
 
@@ -140,7 +141,7 @@ distinctive icon.
 
 ### `M` (maps)
 
-106 entries: the 53 maps of `server/data/maps.json` (`retro_fr`, confidence low), 49 world maps (`retro_fr`, below)
+143 entries: the 53 maps of `server/data/maps.json` (`retro_fr`, confidence low), 86 world maps (`retro_fr`, below)
 and 4 authored placeholders.
 
 **Server maps (53, `retro_fr`).** Names come from `vendor/dofedex/lang-fr/maps_fr_35.swf` (decompiled with
@@ -167,10 +168,12 @@ table only resolves to sub-areas. The map combo (`AKSClient/Events.AKS.Game.as:3
 `Le village`. Coordinates were not added to `n`: that would be authored text, and they don't separate every map
 anyway (501, 504 and 505 are all at 2,-2).
 
-**World maps (49, `retro_fr`, confidence low).** The maps of `server/data/maps.json` `world` that had no entry
-(567 and 578 are also fight maps), added by `scripts/server-data/maps.ts` with the same rule and record format:
-`La forêt d'Amakna` (`MA.sa[4]`) 20, `Le coin des Bouftous` (`MA.sa[5]`) 18, `Amakna` (`MA.a[0]`, sub-area 0) 9,
-`Le champ des Ingals` (`MA.sa[3]`) 2. `getMapText` is only used for `DATACENTER.Map.name` there.
+**World maps (86, `retro_fr`, confidence low).** The maps of `server/data/maps.json` `world` that had no entry
+(42, 48, 567 and 578 are also fight maps), added by `scripts/server-data/maps.ts` with the same rule and record
+format: `La forêt d'Amakna` (`MA.sa[4]`) 37, `Le coin des Bouftous` (`MA.sa[5]`) 19, `Amakna` (`MA.a[0]`, sub-area 0)
+14, `Le champ des Ingals` (`MA.sa[3]`) 8, `Le village` (`MA.sa[10]`) 5, `Bord de la fôret maléfique` (sic,
+`MA.sa[22]`) 2, `Le temple Xélor` (`MA.sa[17]`) 1. 49 came with the first 51-map world, 37 with the 90-map world built
+on the filled graphics (`docs/server.md` "World maps"). `getMapText` is only used for `DATACENTER.Map.name` there.
 
 **Placeholders (4, `authored`, confidence unknown).** `Carte 12`, `Carte 13`, `Carte 15`, `Carte 20`. The ids
 are the examples of `docs/protocol/game.md` and `protocol.test.ts`, and none of them is in `MA.m`.
@@ -206,6 +209,11 @@ which is undefined, so the game always gets the `"?"` fallback (`web/src/core/da
   `5` `{n: "repoussant{~fe}{~ps}", d: "fait reculer de #1case(s)"}`. Text from the screenshot; the ids are authored
   (100 = the `docs/protocol/items.md` example, 123 and 5 = the retro ids of chance and push-back), confidence low.
   The field `c` of the lang.ts fallback is never read and is omitted.
+- Server items (`server/data/items.json`, generated by `scripts/server-data/items.ts`, `docs/server.md` "Items"): one
+  template per item icon (137), named by the client from `I.t` + `I.e`, so they rest on the authored effect ids above:
+  weapons carry `100` (authored dice 1D4-1D8 +0-3, e.g. `Bâton de boisaille`, `dommages : 1D4`), the others `123`
+  (`+<gfx> au karma`, e.g. `Anneau karmique`). `5` is not used. If the ids change here, re-run the script (it fails on
+  any name or description showing `?`).
 
 ## 4. Authored keys
 
@@ -355,6 +363,7 @@ lang evidence in the sibling build.
 7. **Lobby help tooltips** (`HELP_*`, 50 keys) and the `/whoami` `/whois` lines (`I_AM_*`, `IS_*`): any original
    wording you remember? All are authored.
 8. **Item effects.** Did beta weapon names come from effects (`de boisaille` attached to the damage effect), and what
-   were the effect ids?
+   were the effect ids? Which items existed in 5b, and how were they obtained (the server now awards one random item
+   to each winner of a fight)?
 9. `ADD_A_FRIEND`, `ADD_TEAMMATE`, `FREE_TEAMMATE` are all `Ajouter` from baked fields; retro has `Ajouter un ami`.
    Were they longer?

@@ -42,6 +42,17 @@ fn spell_entry(s: &str) -> bool {
             && is_b64(&p[3][9..])
     }
 }
+/// `<idHex>~<typeHex>~<gfxHex>~<RRGGBB>~<positionHex or empty>~<effect>,…`, effect `<id>#<p1>#<p2>#<p3>` in hex
+/// (docs/protocol/items.md).
+fn item_entry(e: &str) -> bool {
+    let hex = |s: &str| !s.is_empty() && s.bytes().all(|b| b.is_ascii_hexdigit());
+    let f: Vec<&str> = e.split('~').collect();
+    f.len() == 6
+        && [f[0], f[1], f[2], f[3]].iter().all(|x| hex(x))
+        && f[3].len() == 6
+        && (f[4].is_empty() || hex(f[4]))
+        && f[5].split(',').all(|x| x.split('#').count() == 4 && x.split('#').all(hex))
+}
 /// Multiplayer `GM` add entry (13 fields) or solo (12 fields).
 fn gm_entry(e: &str) -> bool {
     let f: Vec<&str> = e.split(';').collect();
@@ -72,7 +83,7 @@ fn check_frame(m: &str) {
                 && p[10].is_empty()
                 && nums(&p[11..29])
                 && p[29].split(';').all(spell_entry)
-                && p[30].is_empty()
+                && (p[30].is_empty() || p[30].split(';').all(item_entry))
         }
         _ if m == "AAK" || m == "AAE" || m == "ASE" || m == "GtE" || m == "GR" || m == "GS" || m == "GV" || m == "FDK" || m == "SUE" => {
             true
@@ -83,6 +94,9 @@ fn check_frame(m: &str) {
         _ if m.starts_with("ABK") => {
             nums(&[&p[0][3..]]) && p[1..].iter().all(|s| s.split(';').count() == 2 && nums(&s.split(';').collect::<Vec<_>>()))
         }
+        _ if m.starts_with("OAKO") => item_entry(&m[4..]), // one item per frame (docs/protocol/items.md)
+        _ if m == "OAEF" => true,
+        _ if m.starts_with("ODK") => is_num(&m[3..]),
         _ if m.starts_with("AN") => p.len() == 5 && nums(&[&p[0][2..]]) && nums(&p[1..]),
         _ if m.starts_with("AW|") => p.len() == 2 || (p.len() == 6 && p[5].is_empty()),
         _ if m.starts_with("CJK") => m.len() > 3,
@@ -537,6 +551,7 @@ async fn two_clients_play_a_full_duel() {
     assert_eq!(loser[3], "1", "the loser is dead");
     let (win, lose) = if winner == ida { (&mut a, &mut b) } else { (&mut b, &mut a) };
     assert_eq!(win.expect("ABK").await, format!("ABK{winner}|2;10"), "gold won");
+    win.expect("OAKO").await; // the winner's item
     win.send("GQ\n").await;
     win.expect("GV").await;
     win.send("CJ\n").await; // `AKS.Channels.join()` after GV sends "CJ" (SWF6) …
@@ -674,6 +689,7 @@ async fn random_games_match_solo_players_and_parties() {
     let ge = a.expect("GE").await;
     assert!(ge.starts_with(&format!("GE{ida}|2;{ida};")) && ge.contains(&format!("|1;{idb};1;1;")), "{ge}");
     a.until("ABK").await;
+    a.expect("OAKO").await; // the winner's item
     a.send("GQ\n").await;
     a.expect("GV").await;
 
@@ -1011,5 +1027,295 @@ async fn garbage_frames_do_not_kill_the_world() {
     c.send(&"é".repeat(200)).await;
     c.send("IC\n").await;
     c.until("IC").await; // the world task survived every frame
+    let _ = std::fs::remove_file(&store);
+}
+
+/// The shared map and the lobby: smileys reach every occupant of the map (only the sender in a channel); the authored
+/// `GX` (banner menu "Aller aux combats") takes a "Jouer" session and a `GW` session off the map to the multiplayer
+/// screen (`GM|-` to the occupants, `GAx;3`), and "Retour au village" (`GC1` + `GD`) brings them back; a repeated `CJ`
+/// for the channel one is already in gets `CJK` without a second `CM|+`.
+#[tokio::test]
+async fn map_to_lobby_smileys_and_repeated_cj() {
+    let store = std::env::temp_dir().join(format!("dofus-it-polish-{}.json", std::process::id()));
+    let addr = start_server(&store, net::Overrides { turn_ms: None, placement_ms: None }).await;
+    let (mut a, mut b, mut c) = (Client::connect(&addr).await, Client::connect(&addr).await, Client::connect(&addr).await);
+    for (cl, acc) in [(&mut a, "pola"), (&mut b, "polb"), (&mut c, "polc")] {
+        assert_eq!(cl.register(acc, "pw").await, "AlKfr");
+    }
+    enter_social(&mut a, "PAPola|1|0|-1|-1|-1\n", "Pola").await;
+    enter(&mut b, "PAPolb|2|1|-1|-1|-1\n", "Polb").await; // a "Jouer" session: bounced to the multiplayer screen
+    enter(&mut c, "PAPolc|3|0|-1|-1|-1\n", "Polc").await;
+    let (ida, idb, idc) = (a.id, b.id, c.id);
+    c.send("CJ\n").await;
+    c.expect("CJKFrance").await;
+    b.send("CJ\n").await;
+    b.expect("CJKFrance").await;
+    assert_eq!(c.expect("CM|").await, "CM|+Polb;1;21");
+    // "Retour au village" from the lobby: B lands on the shared map with A.
+    async fn to_map(cl: &mut Client, lobby: &mut Client, others: &mut Client) {
+        cl.send("GC1\n").await;
+        cl.expect("GCK|1").await;
+        assert!(lobby.expect("CM|-").await.starts_with("CM|-"));
+        cl.send("GD\n").await;
+        cl.expect("GDM|").await;
+        let gm = cl.expect("GM|+").await;
+        assert!(gm.contains(&format!("+{};", cl.id)) && gm.contains(&format!("+{};", others.id)), "{gm}");
+        assert!(others.expect("GM|+").await.starts_with(&format!("GM|+{};", cl.id)));
+    }
+    to_map(&mut b, &mut c, &mut a).await;
+    // Smileys: to every occupant of the map (the sprite is drawn on each client); in a channel only to the sender.
+    a.send("BS3\n").await;
+    for cl in [&mut a, &mut b] {
+        assert_eq!(cl.expect("cS").await, format!("cS{ida}|3"));
+    }
+    c.send("BS5\n").await;
+    assert_eq!(c.expect("cS").await, format!("cS{idc}|5"));
+    // B ("Jouer" session) takes the menu's "Aller aux combats": A sees it go, B is sent to the multiplayer screen.
+    b.send("GX\n").await;
+    assert_eq!(a.expect("GM|-").await, format!("GM|-{idb}"));
+    assert_eq!(b.expect("GA").await, format!("GAx;3;{idb}"));
+    b.send("CJ\n").await; // the multiplayer screen's combo
+    b.expect("CJKFrance").await;
+    assert_eq!(c.expect("CM|").await, "CM|+Polb;1;21");
+    b.send("CJ\n").await; // a second `CJ` for the same channel: `CJK` again, nothing to the others
+    b.expect("CJKFrance").await;
+    c.send("IC\n").await;
+    c.expect("IC").await;
+    b.send("GX\n").await; // off the map: ignored
+    b.send("IC\n").await;
+    b.expect("IC").await;
+    to_map(&mut b, &mut c, &mut a).await;
+    // A (`GW` session) too, and back.
+    a.send("GX\n").await;
+    assert_eq!(b.expect("GM|-").await, format!("GM|-{ida}"));
+    assert_eq!(a.expect("GA").await, format!("GAx;3;{ida}"));
+    a.send("CJ\n").await;
+    a.expect("CJKFrance").await;
+    assert_eq!(c.expect("CM|").await, "CM|+Pola;1;10");
+    to_map(&mut a, &mut c, &mut b).await;
+    // "Retour au village" from a game lobby: `GQ` + `GC1`, then `GV` → `onLeave` sends a `CJ` before the `GD`. That `CJ`
+    // gets no `CJK` (its onJoin would reset the client's game state after `GCK|1`) and the channel sees nothing.
+    b.send("GX\n").await;
+    a.expect("GM|-").await;
+    b.expect("GAx;3;").await;
+    b.send("CJ\n").await;
+    b.expect("CJKFrance").await;
+    c.expect("CM|+").await;
+    b.send(&format!("GC2Lobby|{}|AA|\n", GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap().maps[0].id)).await;
+    b.until("GM|+").await;
+    c.expect("CM|-").await;
+    for f in ["GQ\n", "GC1\n", "CJ\n", "GD\n"] {
+        b.send(f).await;
+    }
+    b.expect("GV").await;
+    b.expect("GCK|1").await;
+    b.expect("GDM|").await;
+    assert!(b.expect("GM|+").await.contains(&format!("+{ida};")));
+    assert!(a.expect("GM|+").await.starts_with(&format!("GM|+{idb};")));
+    c.send("IC\n").await;
+    c.expect("IC").await;
+    let _ = std::fs::remove_file(&store);
+}
+
+/// A pending random-team invitation is withdrawn when the invitee enters a game: its own party ("Jouer", `GC3`) or a
+/// free game (`GC2`). The inviter's waiting card goes (`GiE`), the invitee's box closes (`Gy`).
+#[tokio::test]
+async fn invitation_withdrawn_when_the_invitee_enters_a_game() {
+    let store = std::env::temp_dir().join(format!("dofus-it-invite-{}.json", std::process::id()));
+    let addr = start_server(&store, net::Overrides { turn_ms: None, placement_ms: None }).await;
+    let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+    let (mut c, mut d, mut e) = (Client::connect(&addr).await, Client::connect(&addr).await, Client::connect(&addr).await);
+    for (cl, acc, pa, name) in [
+        (&mut c, "invc", "PAInvc|1|0|-1|-1|-1\n", "Invc"),
+        (&mut d, "invd", "PAInvd|2|1|-1|-1|-1\n", "Invd"),
+        (&mut e, "inve", "PAInve|3|0|-1|-1|-1\n", "Inve"),
+    ] {
+        assert_eq!(cl.register(acc, "pw").await, "AlKfr");
+        enter(cl, pa, name).await;
+    }
+    let (idd, ide) = (d.id, e.id);
+    c.send("GC3\n").await;
+    c.expect("GCK|3").await;
+    c.expect("GM|+").await;
+    c.send(&format!("Gi{idd}\n")).await;
+    d.expect("GY").await;
+    d.send("GC3\n").await; // D clicks "Jouer" instead of answering
+    d.expect("Gy").await;
+    d.expect("GCK|3").await;
+    assert_eq!(c.expect("Gi").await, format!("GiE{idd}|Invd"));
+    c.send(&format!("Gi{ide}\n")).await;
+    e.expect("GY").await;
+    e.send(&format!("GC2Solo|{}|AA|\n", data.maps[0].id)).await; // E creates a free game
+    e.expect("GCK|2|").await;
+    e.expect("GM|+").await;
+    e.expect("Gy").await;
+    assert_eq!(c.expect("Gi").await, format!("GiE{ide}|Inve"));
+    e.send(&format!("GJ3{}|undefined\n", c.id)).await; // too late
+    e.expect("GJEa").await;
+    let _ = std::fs::remove_file(&store);
+}
+
+/// Match-making prefers the nearest level without delaying a match: three parties of one member and a random slot
+/// search (the second one's member is level 5), then two players search alone. The oldest party is matched against
+/// the third (same level), not the second; the second keeps waiting.
+#[tokio::test]
+async fn matchmaking_prefers_the_nearest_level() {
+    let store = std::env::temp_dir().join(format!("dofus-it-level-{}.json", std::process::id()));
+    let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+    // A level-5 character: created on a first server, then its level (and the XP it needs) written into the store.
+    let first = start_server(&store, net::Overrides { turn_ms: None, placement_ms: None }).await;
+    let mut setup = Client::connect(&first).await;
+    assert_eq!(setup.register("lvlb", "pw").await, "AlKfr");
+    setup.send("PALvlb|2|1|-1|-1|-1\n").await;
+    setup.expect("AAK").await;
+    setup.expect("ALK").await;
+    let mut saved: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&store).unwrap()).unwrap();
+    for ch in saved["characters"].as_object_mut().unwrap().values_mut() {
+        (ch["level"], ch["xp"]) = (5.into(), data.rules.xp[4].into());
+    }
+    std::fs::write(&store, serde_json::to_string(&saved).unwrap()).unwrap();
+    let addr = reopen_server(&store).await;
+    let mut cl = Vec::new();
+    for (acc, pa, name) in [("lvla", "PALvla|1|0|-1|-1|-1\n", "Lvla"), ("lvlb", "", "Lvlb"), ("lvlc", "PALvlc|3|0|-1|-1|-1\n", "Lvlc"),
+        ("lvls", "PALvls|4|1|-1|-1|-1\n", "Lvls"), ("lvlt", "PALvlt|5|0|-1|-1|-1\n", "Lvlt")]
+    {
+        let mut c = Client::connect(&addr).await;
+        if pa.is_empty() {
+            assert_eq!(c.login(acc, "pw").await, "AlKfr");
+            c.send("PL\n").await;
+            let al = c.expect("ALK|").await;
+            assert!(al.contains(&format!(";{name};5;")), "{al}");
+            c.send(&format!("PS{}\n", al[4..].split(';').next().unwrap())).await;
+            c.id = al[4..].split(';').next().unwrap().parse().unwrap();
+            c.until("ASK|").await;
+            c.send("GC1\n").await;
+            c.send("GD\n").await;
+            c.until("GAx;3;").await;
+        } else {
+            assert_eq!(c.register(acc, "pw").await, "AlKfr");
+            enter(&mut c, pa, name).await;
+        }
+        cl.push(c);
+    }
+    let [mut a, mut b, mut c, mut s, mut t] = <[Client; 5]>::try_from(cl).ok().unwrap();
+    for p in [&mut a, &mut b, &mut c] {
+        p.send("GC3\n").await;
+        p.expect("GCK|3").await;
+        p.expect("GM|+").await;
+        p.send("Gi0\n").await;
+        p.expect("GM|+0").await;
+        p.send("Gs\n").await;
+        p.expect("Gs").await;
+    }
+    for x in [&mut s, &mut t] {
+        x.send("GC3\n").await;
+        x.send("Gs\n").await;
+        x.expect("GCK|3").await;
+        x.expect("GM|+").await;
+        x.expect("Gs").await;
+    }
+    let (ida, idc, ids, idt) = (a.id, c.id, s.id, t.id);
+    for p in [&mut a, &mut c] {
+        p.expect("GM|-0").await;
+    }
+    for x in [&mut a, &mut c, &mut s, &mut t] {
+        let gm = x.expect("GM|+").await;
+        let mut ids_in: Vec<u32> = gm.split("|+").skip(1).map(|e| e.split(';').next().unwrap().parse().unwrap()).collect();
+        ids_in.sort();
+        let mut want = vec![ida, idc, ids, idt];
+        want.sort();
+        assert_eq!(ids_in, want, "{gm}");
+        x.expect("GPS").await;
+    }
+    b.send("IC\n").await;
+    b.expect("IC").await; // the level-5 party is still searching, nothing reached it
+    drop(setup);
+    let _ = std::fs::remove_file(&store);
+}
+
+/// A second server on an existing store file (start_server deletes it first).
+async fn reopen_server(store: &Path) -> String {
+    let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+    let world = World::new(data, Store::open(Some(store.to_path_buf())), 42);
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
+    let addr = listener.local_addr().unwrap().to_string();
+    tokio::spawn(net::serve(listener, world, net::Overrides { turn_ms: None, placement_ms: None }));
+    addr
+}
+
+/// Items: the winner of a fight gets one (`OAKO<entry>` after its `ABK`), it is in `ASK` part 30 on every later
+/// selection; `OM` equips it only into a slot that takes it (no answer), `OM…|-1` puts it back in the bag, `OD` drops it
+/// (`ODK`); `OM`/`OD` are ignored while in a game (the client refuses them there).
+#[tokio::test]
+async fn items_awarded_equipped_persisted_and_dropped() {
+    let store = std::env::temp_dir().join(format!("dofus-it-items-{}.json", std::process::id()));
+    let addr = start_server(&store, net::Overrides { turn_ms: Some(60_000), placement_ms: Some(60_000) }).await;
+    let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+    let (mut a, mut b) = (Client::connect(&addr).await, Client::connect(&addr).await);
+    assert_eq!(a.register("itema", "loot").await, "AlKfr");
+    assert_eq!(b.register("itemb", "loot").await, "AlKfr");
+    let ask = enter(&mut a, "PALooter|8|0|-1|-1|-1\n", "Looter").await;
+    assert_eq!(ask[30], "", "no item yet");
+    enter(&mut b, "PALoser|9|1|-1|-1|-1\n", "Loser").await;
+    let (ida, idb) = (a.id, b.id);
+    let map = data.maps[0].id;
+    a.send(&format!("GC2Loot|{map}|AA|\n")).await;
+    a.until("GM|+").await;
+    b.send("GJ2Loot|\n").await;
+    b.until("GM|").await;
+    a.expect("GM|+").await;
+    a.send("GS\n").await;
+    for cl in [&mut a, &mut b] {
+        cl.expect("GPS").await;
+    }
+    // B leaves: A wins and gets an item after its gold.
+    b.send("GQ\n").await;
+    b.expect("GV").await;
+    assert_eq!(a.expect("GM|-").await, format!("GM|-{idb}"));
+    assert!(a.expect("GE").await.starts_with(&format!("GE{ida}|2;{ida};")));
+    a.until("ABK").await;
+    let entry = a.expect("OAKO").await[4..].to_string();
+    let f: Vec<&str> = entry.split('~').collect();
+    let hex = |s: &str| u32::from_str_radix(s, 16).unwrap();
+    let (id, kind) = (hex(f[0]), hex(f[1]));
+    assert_eq!(f[4], "", "awarded into the bag");
+    // Still in the (ended) game: OD is ignored.
+    a.send(&format!("OD{id}\n")).await;
+    a.send("IC\n").await;
+    a.expect("IC").await;
+    a.send("GQ\n").await;
+    a.expect("GV").await;
+    // The village (shared map after the first bounce): a slot of another super type is refused, the right one taken.
+    a.send("GC1\n").await;
+    a.expect("GCK|1").await;
+    a.send("GD\n").await;
+    a.expect("GDM|").await;
+    a.expect("GM|+").await;
+    let slot = (0..6).find(|&s| data.items.can_equip(8, kind, s)).expect("the drop is an item the winner can equip");
+    let wrong = (0..6).find(|&s| !data.items.can_equip(8, kind, s)).unwrap();
+    a.send(&format!("OM{id}|{wrong}\n")).await;
+    a.send(&format!("OM{id}|{slot}\n")).await;
+    a.send("IC\n").await;
+    a.expect("IC").await;
+    // Persisted: a new connection sees it equipped in ASK part 30.
+    a.ws.close(None).await.unwrap();
+    tokio::time::sleep(Duration::from_millis(100)).await;
+    let mut a = Client::connect(&addr).await;
+    assert_eq!(a.login("itema", "loot").await, "AlKfr");
+    async fn select(a: &mut Client, id: u32) -> String {
+        a.send(&format!("PS{id}\n")).await;
+        a.expect("ASK|").await.split('|').nth(30).unwrap().to_string()
+    }
+    assert_eq!(select(&mut a, ida).await, [f[0], f[1], f[2], f[3], &format!("{slot:x}"), f[5]].join("~"));
+    // Back to the bag, then dropped.
+    a.send(&format!("OM{id}|-1\n")).await;
+    assert_eq!(select(&mut a, ida).await, entry);
+    a.send(&format!("OD{id}\n")).await;
+    assert_eq!(a.expect("ODK").await, format!("ODK{id}"));
+    a.send(&format!("OD{id}\n")).await; // already gone: nothing
+    assert_eq!(select(&mut a, ida).await, "");
+    let saved: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&store).unwrap()).unwrap();
+    assert_eq!(saved["characters"][ida.to_string()]["items"], serde_json::json!([]));
+    assert_eq!(saved["next_item"], 2);
     let _ = std::fs::remove_file(&store);
 }

@@ -46,22 +46,23 @@ is seeded: register first (even `bo` / `pass`, the client's DEBUG default).
 |---|---|---|
 | 0. Transport | WebSocket text frames | one message per frame, never a trailing `\n`; 200-char client cap respected (a cut frame without `\n` still parses) |
 | 1. Handshake & login | `H<32>` → `5` → `<login>\n<crypt>` → `AlKfr` / `AlEv` / `AlEx` / `AlEa`; register (authored) `<login>\n+<crypt>` → `AlKfr` / `AlEe` | password checked before the "already logged" test, so `AlEa` does not leak presence to a wrong password |
-| 2. Characters | `PL`→`ALK|…`, `PA`→`AAK`+`ALK`/`AAE`, `PD`→`ALK`, `PS`→`ASK|…` (31 parts) | names 2-20 chars, start with a letter, no `\| ; , ~ * # < > & % " ' \ /`, unique; class 1-10; sex `0`/`1`/`""`/`undefined`; `PA` colours decimal or `-1`, `AL`/`AS`/`GM` colours hex `RRGGBB`; max 10 per account; the weapon field is empty (client draws the class default) |
-| 3. Village | `GC1`→`GCK|1`, `GD`→`GDM|…|1|…` + solo `GM|+…;cell;dir` + `GAx;3;<id>` | beta 5 "ne contient que les combats": the server sends players straight to the multiplayer screen, once per `PS`: the lobby's "Retour au village" and the random result's gift button (`GQ` + `GC1`) then lead to the shared map (stage 3b). `GV` makes the client send a `CJ` before its `GD`, so any `GD` outside a game answers the village |
-| 3b. Social village (authored) | `PS<id>` + `GW` ("Rejoindre la carte") → `GD`→`GDM` + one `GM|+…|+…` (every occupant, itself included) and `GM|+me` to the others, no `GAx;3`; `GA001`→`GA<n>;1;<id>;…` to every occupant of its map / `GAF<id>` if refused; `GKE<n>|<cell>`; `GKK<n>` standing on a map-change plate → to the walker `GM|-<id>` per old occupant, `GM|+me` on the arrival cell, `GDM` of the next map, one `GM|+…` of its occupants; `GM|-me` to the old map, `GM|+me` to the new one; `BM*`→`cMK*` to every occupant of its map; `GM|-<id>` on disconnect or place change | 51 role-play maps linked by their plates ("World maps" below), entered on `village_map` (567), no fights; spawn on the free walkable cell nearest the middle of the map, arrival on the plate that leads back (or the free walkable cell nearest it); occupants, moves and chat per map; moves validated by `pathfinding.rs` with every occupant of the map as a blocker (as on the client, `docs/protocol/game.md` `GW`); leaving = "Changer de perso" (a new session) → "Jouer" |
-| 4. Multiplayer screen | `CJ`→`CJK<name>` (+`CM|+…` to the channel), `CL`→`CLK|…`, `IP`, `IG`, `IC`, `BW`→`AW` | `CJ`/`CJundefined` rejoin the last channel (default `France`); leaving sends `CM|-name`. Verified by the playtest (`docs/playtest.md`) through the UI: the bare `CJ` of the screen's combo on draw, `CJDofus` picked in the combo, and the two `CJ` after leaving a result panel, each answered `CJK<name>` |
-| Chat | `BM*`, `BM#`, `BM<name>` → `cMK*` / `cMK#` / `cMKF`+`cMKT` / `cMEn<name>` / `cMES`; `BS`→`cS` | relayed text: `|` → space, every `/##` removed; `*` = channel, game or village map (stage 3b), `#` = own team; `cS` goes to the game, or only back to the sender outside games |
+| 2. Characters | `PL`→`ALK|…`, `PA`→`AAK`+`ALK`/`AAE`, `PD`→`ALK`, `PS`→`ASK|…` (31 parts) | names 2-20 chars, start with a letter, no `\| ; , ~ * # < > & % " ' \ /`, unique; class 1-10; sex `0`/`1`/`""`/`undefined`; `PA` colours decimal or `-1`, `AL`/`AS`/`GM` colours hex `RRGGBB`; max 10 per account; the weapon field is empty (client draws the class default, see "Items"); part 30 = the character's items |
+| 3. Village | `GC1`→`GCK|1`, `GD`→`GDM|…|1|…` + solo `GM|+…;cell;dir` + `GAx;3;<id>` | beta 5 "ne contient que les combats": the server sends players straight to the multiplayer screen, once per `PS`: the lobby's "Retour au village" and the random result's gift button (`GQ` + `GC1`) then lead to the shared map (stage 3b). `GV` makes the client send a `CJ` between `GC1` and `GD`: no answer (a `CJK` would run `onJoin`, which resets `DATACENTER.Game` after `GCK|1` set state 1, `Events.AKS.Channel.as:3`, and the channel would see the player arrive and leave; the `GCK|1` dispatched right after `GV` closes the spinner, `AKSClient/Dofus.Client.DataProcessor.as:12`), and any `GD` outside a game answers the village |
+| 3b. Social village (authored) | `PS<id>` + `GW` ("Rejoindre la carte") → `GD`→`GDM` + one `GM|+…|+…` (every occupant, itself included) and `GM|+me` to the others, no `GAx;3`; `GA001`→`GA<n>;1;<id>;…` to every occupant of its map / `GAF<id>` if refused; `GKE<n>|<cell>`; `GKK<n>` standing on a map-change plate → to the walker `GM|-<id>` per old occupant, `GM|+me` on the arrival cell, `GDM` of the next map, one `GM|+…` of its occupants; `GM|-me` to the old map, `GM|+me` to the new one; `BM*`→`cMK*` and `BS`→`cS` to every occupant of its map; `GX` (authored, menu "Aller aux combats") → `GM|-<id>` to the occupants, `GAx;3;<id>` to it; `GM|-<id>` on disconnect or place change | 90 role-play maps linked by their plates ("World maps" below), entered on `village_map` (567), no fights; spawn on the free walkable cell nearest the middle of the map, arrival on the plate that leads back (or the free walkable cell nearest it); occupants, moves and chat per map; moves validated by `pathfinding.rs` with every occupant of the map as a blocker (as on the client, `docs/protocol/game.md` `GW`); leaving = the banner menu's "Aller aux combats" (`GX`, `docs/protocol/game.md`: to the multiplayer screen, the session stays social so "Retour au village" comes back to `village_map`) or "Changer de perso" (a new session) |
+| 4. Multiplayer screen | `CJ`→`CJK<name>` (+`CM|+…` to the channel), `CL`→`CLK|…`, `IP`, `IG`, `IC`, `BW`→`AW` | `CJ`/`CJundefined` rejoin the last channel (default `France`); leaving sends `CM|-name`. Verified by the playtest (`docs/playtest.md`) through the UI: the bare `CJ` of the screen's combo on draw, `CJDofus` picked in the combo, and the two `CJ` after leaving a result panel, each answered `CJK<name>`; a `CJ` for the channel the session is already in (the second of those) gets `CJK` alone, no `CM|-`/`CM|+` to the others (they used to see it leave and arrive again) |
+| Chat | `BM*`, `BM#`, `BM<name>` → `cMK*` / `cMK#` / `cMKF`+`cMKT` / `cMEn<name>` / `cMES`; `BS`→`cS` | relayed text: `|` → space, every `/##` removed; `*` = channel, game or village map (stage 3b), `#` = own team; `cS` goes to the game or the village map (every occupant draws it over the sender's sprite), only back to the sender in a channel (no sprites there) |
 | Friends | `FL`→`FLK…`, `FA`→`FAK<entry>`/`FAEf`/`FAEy`/`FAEa`, `FD`→`FDK`/`FDEf`, `Fl`→`FlK…`, `FI`/`FO` | by character name or `*account`; `FI`/`FO<account>;<character>` on character select / disconnect |
 | 5. Free-game lobby | `BL`→`mL…`, `GL2`→`GLK|name;<o0><o1><count>|…`, `GC2…`→`GCK|2|…`+`GM`, `GJ2…`→`GJK|2|…`+`GM` (all members) / `GM|+` (others), `Gt`→`GtK`/`GtE`, `GQ`/`GQ<id>`→`GV`+`GM|-id` | options `AA`-`DD`, optional password; the creator leaving closes the lobby (`GV` to all); one `GM|-id` per frame |
 | 6. Placement | `GS` (creator, full) → `GPS…`; `GD`→`GDM|…|0|…`; all `GR` → `GR`; `Gp<cell>` → `GIC|…` | `GIC` lists only fighters who have picked a cell (listing others would end their drag); the fight starts when everybody picked, or `placement_ms` after the `GR` broadcast (unplaced fighters get their team's first free cell) |
 | 7. Fight | `GS`, `GTL|…`, `GTS<id>|<ms>`; `GA001`/`GA300`/`GA303` → `GAS<id>`, `GA<n>;…`, `GAx;…`, `GAF<id>`; `GT` or timeout → `GTF<id>`, `GTS<next>|<ms>` | see "Fight rules" |
-| 5b. Random games | `GC3`→`GCK|3`+`GM`; `Gi<id>`→`GY<me>|<name>` to the invitee / `GiE<id>|<name>`; `Gi0`→`GM|+0`; `GY<inviter>`→`GiC<me>|<name>` to the inviter; `GJ3<inviter>|…`→`GJK|3`+`GM` / `GJEn`; `GU<id>`→`Gy` to the invitee, `GM|-0`, or a team-mate sent away (`GV` + `GM|-id`); `Gs`→`Gs` to the party, then on a match `GM|-0` per random slot, `GM` of every fighter, `GPS…` | see "Random games" |
-| 8. End | `GE<sender>|…` (+`AN`, `ABK…|2;<gold>`), `GQ`→`GV`, then the client's `CJ` → `CJK` | leavers are listed as dead losers |
+| 5b. Random games | `GC3`→`GCK|3`+`GM`; `Gi<id>`→`GY<me>|<name>` to the invitee / `GiE<id>|<name>`; a pending invitation is withdrawn (`GiE<id>|<name>` to the inviter, `Gy` to the invitee) when the invitee disconnects or enters a game; `Gi0`→`GM|+0`; `GY<inviter>`→`GiC<me>|<name>` to the inviter; `GJ3<inviter>|…`→`GJK|3`+`GM` / `GJEn`; `GU<id>`→`Gy` to the invitee, `GM|-0`, or a team-mate sent away (`GV` + `GM|-id`); `Gs`→`Gs` to the party, then on a match `GM|-0` per random slot, `GM` of every fighter, `GPS…` | see "Random games" |
+| 8. End | `GE<sender>|…` (+`AN`, `ABK…|2;<gold>`, then `OAKO<item>`/`OAEF` to each winner), `GQ`→`GV`, then the client's `CJ` → `CJK` | leavers are listed as dead losers |
+| Items | `OM<id>|<slot>` (no answer), `OD<id>`→`ODK<id>`, fight-end `OAKO<entry>`/`OAEF` | see "Items" |
 | Progression | `PB`→`ABK<id>|<stat>;<v>|3;<bonus>`, `SB`→`SUK<entry>`+`ABK…|3;<bonus>`/`SUE`, `SI`→`SI<id>|<lvl>|<ap>|<range>`, `SM` (saved, no answer) | level-ups give `bonus_per_level` points; spell boosts cost `SPELL_BOOST_BONUS[level]`; no boosts inside a game |
-| Not implemented | `OM`, `OD` (no items: `ASK` part 30 empty); `GKE` in fights (moves are applied at once); `GP`, `Gc`, `GI` (no caller in the client); the `R` family (dead in the client, `docs/protocol/misc.md`) | |
+| Not implemented | `GKE` in fights (moves are applied at once); `GP`, `Gc`, `GI` (no caller in the client); the `R` family (dead in the client, `docs/protocol/misc.md`) | |
 
 Every spinner-opening request gets an answer, with documented exceptions: `GS` from a non-creator or a lobby that is
-not full (the client never sends it), a refused `Gp` while nobody is placed yet (an empty `GIC|` would make the client
+not full (the client never sends it), the `CJ` that `onLeave` sends between `GC1` and `GD` (stage 3), a refused `Gp` while nobody is placed yet (an empty `GIC|` would make the client
 look up an empty id; the client only offers its own team's cells anyway), and malformed requests the real UI cannot
 produce (`BS` with a non-numeric id, `Gt`/`GS`/`GR`/`Gp` outside their phase, `GA` from a fighter whose turn it is
 not). Any text can reach the server through the console's `/c <raw>`; every handler treats it as untrusted (tested
@@ -104,7 +105,9 @@ with non-ASCII junk in every command).
   (`web/src/game/kernel/kernel.test.ts`, integration test, playtest "disruption").
 - **Results**: `GE<lastActor>|<2 winner / 1 loser>;<id>;<level>;<dead>;<lowXp>;<xp − lowXp>;<highXp>;<won XP>;<gold>`.
   XP = `xp_win_per_opponent_level` (40) or `xp_loss_per_opponent_level` (10) × sum of opponent levels, gold for
-  winners; then `AN<level>|…` on level-up (max level 30) and `ABK<id>|2;<gold>`.
+  winners; then `AN<level>|…` on level-up (max level 30) and `ABK<id>|2;<gold>`. Free games get the same XP and gold,
+  but their result panel has no XP or gold column: that matches the original, whose `GameResultFree` shows name, level
+  and alive/dead only (`docs/protocol/game.md` `GE`).
 - No critical hits/failures (`GA` 301/302/304/305 never sent).
 
 Action ids: numeric per game for the requested action (`GA<n>;1`, `;300`, `;303`, which the actor acknowledges with
@@ -123,7 +126,7 @@ What the lobby's buttons send (`modules_Interfaces/DefineSprite_430_Interface.Mu
 | "Jouer" (`btnPlayDofus`) | `Fl` (TabPlayDofusStart's `onFocus`) | `FlK` of online friends |
 | "Jouer seul" (`S263/PB_15`) | `GC3` + `Gs` | `GCK|3`, the creator's `GM`, `Gs` (search mask); a match later |
 | "Constituer une équipe" (`S263/PB_21` → TabPlayDofus `onFocus`) | `GC3` + `Fl` | `GCK|3`, `GM` (own card), `FlK` (the friends to invite, after "Aléatoire") |
-| "Inviter" (`S273/PB_5`, named `btnCancel`) | `Gi<id>` (`Gi0` for "Aléatoire") | invitee online and outside any game: `GY<me>|<name>` (its yes/no box); else `GiE<id>|<name>` (`IMPOSSIBLE_INVITATION`, card removed; also sent if the invitee disconnects before answering); `Gi0`: `GM|+0` to the party (a "?" card) |
+| "Inviter" (`S273/PB_5`, named `btnCancel`) | `Gi<id>` (`Gi0` for "Aléatoire") | invitee online and outside any game: `GY<me>|<name>` (its yes/no box); else `GiE<id>|<name>` (`IMPOSSIBLE_INVITATION`, card removed; also sent, with `Gy` closing the invitee's box, if the invitee disconnects or enters any game before answering: a free game, its own party, another party it accepted, a match); `Gi0`: `GM|+0` to the party (a "?" card) |
 | invitee "Non" / "Oui" (`Events.AKS.Game.as:257-269`) | `GY<inviter>` / `GJ3<inviter>|undefined` | `GiC<me>|<name>` to the inviter (`REFUSE_INVITATION`, card removed) / `GJK|3`, the party's `GM` (members and `+0` slots) to the joiner, its `GM +` to the others (waiting card → team-mate card); `GJEn` if the invitation is gone |
 | "Annuler" on a waiting card (`S884/PB_6`) | `GU<id>` (+ `Fl` from `onRemoveCharacter`) | `Gy` to the invitee (its box closes); the `FlK` ends the inviter's spinner |
 | "Annuler" on a card (`S890/PB_13`) | `GU<id>` | own card: leave (`GV`, `GM|-me` to the others; the creator leaving dissolves the party, `GV` to all and `Gy` to pending invitees); creator on a team-mate: `GV` to it, `GM|-id` to the others; on a "?" card: `GM|-0` |
@@ -137,6 +140,11 @@ What the lobby's buttons send (`modules_Interfaces/DefineSprite_430_Interface.Mu
 party's size is members + random slots. Two parties of the same size meet; the first party's random slots, the
 other's, or a whole missing opposing team are filled with players searching alone (parties of one without random
 slots). So "Jouer seul" meets another solo player (1v1); a team of 2 meets another team of 2 or two solo players.
+**Level (authored):** among the same-size parties that complete a match with the players searching alone, the one
+whose members' mean level is nearest the first party's wins (the oldest among equals), and the solo players filling
+random slots or a missing team are taken by nearest level too; a party with no candidate completing a match keeps
+waiting exactly as before, so level never blocks or delays a match. Matching is greedy after every `Gs`, so two solo
+players never wait together: the preference only acts between parties (and their fillers).
 On a match the parties are replaced by one game on a random map: `GM|-0` per random slot (one per frame, they remove
 the "?" cards), then one `GM` frame with every fighter and its final `team`/`joinPosition` (silent while `bInSearch`:
 no card, no chat user, `Events.AKS.Game.as:141-158,195`; but `team` decides which `GPS` cells are the client's own,
@@ -150,15 +158,32 @@ client shows those buttons to the creator only, `TabPlayDofus_TeamMate.as:7-23`)
 this client: "Entraînement" is the free-game tab, and the only solo state (1, whois `4`) is the village, which the
 server bounces to the lobby (unless the session sent `GW`, stage 3b).
 
+## Items
+
+What the 5b client does with items (`docs/protocol/items.md`) and what the server does with them:
+
+| Client | Server |
+|---|---|
+| `ASK` part 30 = the inventory, entries joined by `;` (`AKSClient/Dofus.CharactersManager.as:148-158`) | the character's items, `<idHex>~<typeHex>~<gfxHex>~FFFFFF~<slotHex or empty>~<effects>`; the colour is a constant (`Item.colorObject` has no reader) |
+| `OAK<award>` and `GA` type 10 add an item and show `Nouvel objet : <name>` (`Dofus.Client.Items.as:27-80`, `Events.AKS.Game.as:541-567`); nothing in the client ties either to an event | authored drop: at the end of a fight, after its `AN`/`ABK`, each winner gets one random `items.json` template **it can equip**, `OAKO<entry>` (one item per frame: `innerOnAdd` reuses its loop index), or `OAEF` (`INVENTORY_FULL`) once it holds `max_items` (30). `GA` type 10 is not used |
+| The inventory is a banner panel; the banner only exists in the village and in fights, where every change is refused (`isFight` in the item containers' `press`): drop on a slot → `OM<id>|<slot>`; drag off a slot onto the panel → `OM<id>|-1` (`InventoryViewer.onTestMouse`); the item a slot held before sends nothing (`onReplaceItem`) | `OM`: slot 0..5 if it takes the item's super type (1, 2, 3, 4, 3, 5, sprite 598) and, for a weapon, the type is in the class list `G[class].w` (`Item.canEquip`); the slot's previous item goes back to the bag; `-1` = back to the bag; persisted, no answer. Ignored in a game |
+| Drop zone → yes/no box → `OD<id>`; `ODK<id>` removes it (`Player.dropItem`) | `OD`: the item is destroyed, `ODK<id>` (decimal); an unknown id gets nothing. Ignored in a game |
+| Close combat: the banner tooltip reads the lang `G[class].cc`, `CCData` the `ASK` part 28 AP cost (`modules_Interfaces/DefineButton2_970`, `Player.setCCData`); `SI` is spells only. **Nothing the client shows depends on the weapon** | authored: the damage effect (100) of the weapon in slot 1 replaces the class `cc.dice`; the AP cost stays `cc.ap`. Taken when the fighter joins a game (`World::fighter`), which stays right since `OM` never comes from a game. The karma effect (123) does nothing |
+| Weapon on the sprite: `ASK` part 10 / `GM` field 9 `<typeHex>,<gfxHex>,<RRGGBB>` → `weapon.gfx = "<type>_<gfx>"`, attached by `WEAPONS.applyWeapon` inside the sprite SWF (`Dofus.CharactersWeapons.as:26-50`), or `OW` | the field stays empty and `OW` is never sent: the attach resolves in the sprite SWF's library and each class sprite imports only one weapon symbol, `<w[0]>_1` (`docs/logic/characters.md` §5), so any other weapon would attach nothing; an empty field falls back to the client's `G[<local class>].w[0] + "_1"` |
+
+Read from the code, not exercised: dropping an *equipped* item leaves its icon in the slot (`InventoryViewer.refresh`
+fills slots but never clears one).
+
 ## Data (`server/data/`)
 
 | File | Content | Provenance |
 |---|---|---|
 | `maps.json` | 49 maps: `id, width, height, backgroundNum, mapData` (verbatim but for `losCleared`), `coverage`, `places` (4 cells per team), `losCleared` (cells whose line-of-sight bit was cleared), `source` | **post-beta 2004 maps** from `vendor/dofedex/maps-2004` (July 2004+), not beta 5b arena maps: 18 fully drawn by beta 5b graphics + 31 with ≥ 98 % coverage and a walkable area ≥ 40 cells. Placement cells and `losCleared` authored by the script, which runs the client's own `Map.build` headless (below). Generated by `bun scripts/server-data/maps.ts` (reproducible: `Math.random` is seeded for the objects that pick a random variant) |
-| `maps.json` `world` | 51 role-play maps of the social village: `id, width, height, backgroundNum, mapData` (verbatim), `coverage`, `links` (plate cell → `[map, arrival cell]`), `source`. Not fight maps: never offered by `BL`/`GC2` or drawn for random games | same 2004 maps (coverage ≥ 80 %); `links` `retro_emulator` (`vendor/starloco/`), see "World maps". Same script |
+| `maps.json` `world` | 90 role-play maps of the social village: `id, width, height, backgroundNum, mapData` (verbatim), `coverage`, `links` (plate cell → `[map, arrival cell]`), `source`. Not fight maps: never offered by `BL`/`GC2` or drawn for random games | same 2004 maps (coverage ≥ 95 % with the filled ground/object libraries, `docs/assets-format.md` §11); `links` `retro_emulator` (`vendor/starloco/`), see "World maps". Same script |
 | `classes.json` | per class: `lp`, `ap`, close combat `cc` (`ap`, `dice`), spell ids | `lp`/`ap`/`cc` authored (10); `cc` of Iop and Ecaflip `beta_sibling` (1D5 for 3 PA before 9b, v9b changelog) |
 | `spells.json` | 36 spells, 5 levels each: AP, range, flags, zone, effects; `anim`, `launch_type` | spell identity: 21 `beta` (guild description SWFs, icon pixel-match), 9 `beta_forum` (8 Jan 2004 post), 6 `authored`; levels: 20 `beta`, 6 `beta_forum`, 154 `authored` (levels 2-5 mostly). Ids follow the lang reconstruction (`web/public/lang/fr.json` `S`, `docs/content-reconstruction.md`) so client tooltips and server rules agree; `anim`/`launch_type` pairings authored |
 | `rules.json` | timers, XP table, level cap, bonus points, LP per level, XP/gold gains, `SPELL_BOOST_BONUS`, village map, default channel, max characters | 3 `beta` (client constants), 1 `beta_faq` (max level 30), 9 `authored` |
+| `items.json` | 137 item templates (`type`, `gfx`, `effects` `[id, p1, p2, p3]`, 0 = absent), `types` (type → super type), `class_weapons` (class → weapon types), `max_items` | one template per beta 5b item icon (`dofus-5b/clips/items/<type>/<gfx>.swf`); types and class weapons from the lang reconstruction (`I.t` `retro_fr`, `G.w` beta asset); effect ids 100 (damage) and 123 (karma) are the lang `I.e` entries (texts `beta_screenshot`, ids authored, low confidence); every number authored (weapons 1D4-1D8 +0-3 by icon, others karma +gfx). Generated by `bun scripts/server-data/items.ts`, which renders every name and description through the client's `Item` and fails on a `?` |
 
 **Placement cells.** A character on cell n is drawn at depth n·100+50 in `Object2.clips`, so the layer-2 objects of
 cells > n are drawn over it (`docs/logic/battlefield.md` §1; layer-1 objects are under every character). The script
@@ -188,18 +213,31 @@ The client and the map data's other cells stay verbatim.
 social village walks the 2004 maps. The map-change plate is object **1030** of `clips/objects.swf` (the round "sun"
 tile at the map edges), usually on object layer 1, sometimes 2. Links come from the teleport cells of the StarLoco
 emulator dump (Dofus Retro 1.39.8, `vendor/starloco/README.md`): 94 % of its unconditional teleports from a dofedex map
-sit on a 2004 plate. `maps.ts` keeps plate p of map A → (B, c) when B has coverage ≥ 0.80 and A's size, and a walkable
-plate of B within 2 cells of c teleports back to A; the arrival cell is that plate (the 1.39 destination cells are
-one cell inside the plate; using them instead is a one-line change), and only links that exist both ways stay. The
-largest set of maps connected this way is 51 maps of Amakna's fields and forest (sub-areas `Amakna`, `Le champ des
-Ingals`, `La forêt d'Amakna`, `Le coin des Bouftous`), 136 links: 276, 279, 286, 525, 526, 530, 536, 544-546, 549-551,
-554, 561, 563, 564, 566-570, 578-584, 586-600, 603, 607-609, 611, 612, 1012. `village_map` moved from 914 (not in it)
-to 567, the only fully covered one, also the solo village of the "Jouer" flow. Bar choice: at 0.98 the largest set is
-9 maps (a mine), at 0.85 13, at 0.80 51; their missing graphics are mostly ground 10 under background 71 (Ground sits
-above the Interaction layer, so no white diamonds) and small layer-2 objects (40, 43, 125, 126, 218, 75xx): 2-14
-unwalkable cells per map that draw nothing (invisible obstacles the path-finders walk around). A fallback on `mappos`
-neighbours + opposite-side plates for plates without a matching teleport was measured and adds no map to the set, so
-it is not implemented. Plates leading out of the set, and plates of fight maps, do nothing.
+sit on a 2004 plate. Coverage here counts the **filled** libraries: beta 5b's ground/object graphics plus the ids 5b
+lacks, taken from later archived clients (`docs/assets-format.md` §11); with them 374 of the 565 maps are fully
+covered (19 with 5b alone) and 472 reach 0.80 (291). `maps.ts` keeps plate p of map A → (B, c) when B has coverage
+≥ 0.95 and A's size, and a walkable plate of B within 2 cells of c teleports back to A; the arrival cell is that plate
+(the 1.39 destination cells are one cell inside the plate; using them instead is a one-line change), and only links
+that exist both ways stay. The largest set of maps connected this way is 90 maps around Amakna's village, fields and
+forest (sub-areas `La forêt d'Amakna` 38, `Le coin des Bouftous` 19, `Amakna` 15, `Le champ des Ingals` 8, `Le
+village` 7, `Bord de la fôret maléfique` 2 (sic), `Le temple Xélor` 1), 254 links, 77 maps fully covered, the lowest 0.951:
+33, 38, 42-44, 48-50, 276, 279, 286, 287, 485, 517, 520, 525, 526, 530, 531, 536-539, 542, 544-547, 549-552, 554, 555,
+557-561, 563, 564, 566-570, 577-600, 603, 604, 607-609, 611, 612, 620, 641, 642, 654, 655, 932, 933, 941, 1012, 1069,
+1071-1073. Bar choice: 0.95 is the highest bar that keeps the set whole (0.80 to 0.95 give the same 90 maps; 0.98
+gives 88, 1.0 57); the next largest sets are 17-24 maps, cut off by missing links, not by graphics. `village_map`
+stays 567 (moved there from 914, which is in no set): fully covered by beta 5b's own graphics, also the solo village
+of the "Jouer" flow. Before the fill the bar was 0.80 and the world 51 maps (136 links: 276, 279, 286, 525, 526, 530,
+536, 544-546, 549-551, 554, 561, 563, 564, 566-570, 578-584, 586-600, 603, 607-609, 611, 612, 1012), whose missing
+graphics (mostly ground 10 under background 71 and layer-2 objects 40, 43, 125, 126, 218, 75xx) left 0-14 unwalkable
+cells per map drawing nothing, 320 in all (invisible obstacles the path-finders walk around). With the fill no
+unwalkable cell of the 90 maps lacks its graphic; the only ids still missing are objects 7519, 7533, 7534 and 7535
+(40 walkable-cell references; in no archived client up to v1_0). A fallback on `mappos` neighbours + opposite-side
+plates for plates without a matching teleport was measured and adds no map to the set, so it is not implemented.
+Plates leading out of the set, and plates of fight maps, do nothing. The fight maps are still chosen, rendered and
+labelled with beta 5b's graphics only (`maps.ts` hides the filled ids from its headless client), so `maps` did not
+change; in game they draw the filled ids too. Rendered with them, 1117 would pass (its bare walkable cells get ground)
+and 6 maps would pick other placement cells because filled layer-2 objects cover > 20 % of a character there: 35, 42,
+57, 578, 671, 909.
 
 Spell entries are built by `GameData::spell_entry`: guild-tab flag `1`, element `A/W/E/F`, bar slots 1..n in class
 order, criticals `a` (unused by the client). The descriptions' `PO : -1` is encoded as range 0 + `on_itself`.
@@ -215,7 +253,8 @@ bun test web/src/core/pathfinding.parity.test.ts   # rewrites server/tests/fixtu
 
 - Unit (`cargo test --lib`): crypt vectors (`pass` + `abcdefghijklmnopqrstuvwxyzABCDEF` → `RFdAvFlc`,
   `dofus2004` → `iUVvgla0ikgdhqzE`) and the login verifier under new keys; map encoding round trip on all 49 maps;
-  path/cell codes; pathfinding basics; turns, AP reset, AP-capped moves, spell range/AP/limits, kill, effect ticks.
+  path/cell codes; pathfinding basics; turns, AP reset, AP-capped moves, spell range/AP/limits, kill, effect ticks;
+  item entries, weapon dice, a store file without items.
 - Parity (`tests/pathfinding_parity.rs`): 784 path cases (in and out of fights, AP 1-12, occupants, tackle zones of
   both teams, unreachable goals) and 490 line-of-sight cases on every map, generated by the TS client port.
 - Integration (`tests/integration.rs`): the real server on a random port and two scripted WebSocket clients sending
@@ -232,11 +271,21 @@ bun test web/src/core/pathfinding.parity.test.ts   # rewrites server/tests/fixtu
   moves broadcast with the stored cell following, a move onto the other's cell refused, `GKE`, chat with the sender id,
   `GM|-` on disconnect); a sixth walks one onto a map-change plate (`GM|-` to the old map, the walker's
   `GM|-`/`GM|+`/`GDM`/`GM`, `GM|+` to the new map when the second follows and lands next to the occupied plate) and
-  back onto the plate it arrived on. Every server frame is validated against its documented format.
+  back onto the plate it arrived on; a seventh takes a "Jouer" session and a `GW` session from the map to the lobby
+  with `GX` (`GM|-` to the occupant, `GAx;3`) and back with `GC1` + `GD`, a smiley on the map (`cS` to both) and in a
+  channel (sender only), a repeated `CJ` (one `CM|+`), `GX` off the map ignored, "Retour au village" from a free-game
+  lobby (`GQ`, `GC1`, `CJ`, `GD`: that `CJ` unanswered, nothing to the channel); an eighth withdraws invitations when
+  the invitee clicks "Jouer" (`GC3`) or creates a free game (`GiE` to the inviter, `Gy` to the invitee); a ninth
+  matches the oldest of three searching parties with the one of the same level, not the older level-5 one (the level
+  written into the store between two servers); a tenth plays items: the winner's `OAKO` after its `ABK`, `OD` ignored
+  in a game, `OM` into a slot of another super type refused and into the right one kept across a new connection
+  (`ASK` part 30), `OM…|-1`, `OD`→`ODK`, the store file. Every server frame is validated against its documented format.
 - Playtest (`bun scripts/playtest.ts`, `docs/playtest.md`): the real client, headless, one process per client, driven
   only through its UI against this server: accounts, characters, chat, free games, random games (solo and team, with
   invitations), the village, placement, full fights with every class spell, results, reconnects, give-ups and killed
-  clients, the social village map (walks, chat bubbles, travel through a map-change plate, "Changer de perso").
+  clients, the social village map (walks, chat bubbles, travel through map-change plates across 3 maps, "Changer de
+  perso"), and between the map and the lobby ("Aller aux combats", "Retour au village", smileys seen by the other player), and items (award box, equip and unequip by drag and drop, kept after "Changer de
+  perso", drop).
 - Smoke (`scripts/server-data/smoke.ts`): the server binary driven by `web/src/core/protocol.ts` builders; every
   received frame goes through `parseServerMessage` (none may be ignored), moves and targets come from the TS
   `PathFinding`, and any action the TS client allows but the server refuses fails the run.
@@ -249,6 +298,8 @@ bun test web/src/core/pathfinding.parity.test.ts   # rewrites server/tests/fixtu
 | What the `AlK` language suffix is | `AlKfr` (unused by the client) |
 | How the player gets from the village to the multiplayer screen | `GAx;3;<id>` right after the village `GM` (only way in; beta 5 had fights only) |
 | How players meet without fighting | authored `GW` after `PS` keeps the session on the village map (stage 3b); everything else there is beta frames |
+| How a player gets from the shared map back to the lobby | authored `GX` (banner menu "Aller aux combats"): `GM|-<id>` to the occupants, then the village's own `GAx;3;<id>` |
+| The two `CJ` after a result panel | both answered `CJK`; the channel's `CM|+` only once (a `CJ` for the current channel is a no-op for the others) |
 | Which char `cM` uses for normal lines | `*` (anything but `F`, `T`, `#`); team = `#` |
 | `m` 2nd char, `GCE`/`GJE` codes | `mL…`; `GCEn` bad/taken name, `GCEm` unknown map, `GCEo` bad options, `GCEr` unknown game type (console only); `GJEn` no such game or invitation gone, `GJEs` started, `GJEf` full, `GJEp` wrong password, `GJEa` already in a game (lang texts authored, `ERROR_CREATING_<c>`/`ERROR_JOINING_<c>` in `fr.json`) |
 | `GCK|3` / `GJK|3` fields | none: the client names a random game `getText("RANDOM")` and reads no params for state 3 (`Dofus.Client.Game.as:187-190`) |
@@ -286,6 +337,6 @@ bun test web/src/core/pathfinding.parity.test.ts   # rewrites server/tests/fixtu
   dereference; the TS port must guard it.
 - Spells: ids, levels and bar slots come in `ASK` part 29 (`<id>~<level>~<zone>~<15 flags>`), all class spells are
   guild-tab spells; spell animations use launch types 10, 11, 30, 31 only.
-- No items, no criticals; `GCE`/`GJE` codes as in the table above.
+- No criticals; `GCE`/`GJE` codes as in the table above; items as in "Items" (a winner's award box opens after `GE`).
 - Random games: after `GCK|3`/`GJK|3` the creator's / party's `GM`; during a search (`Gs`) the `GM` of every fighter
   then `GPS` start the fight; `GM|+0`/`GM|-0` are the random team-mate slots.

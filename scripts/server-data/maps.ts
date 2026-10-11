@@ -10,7 +10,10 @@
 //
 // Decompiles with `tools/ffdec.sh -format script:as -export script <tmp> vendor/dofedex/maps-2004` (cached in
 // $TMPDIR/dofus-maps-2004-as). Coverage = share of non-zero ground/object references of active cells (plus the
-// background) whose linkage id is exported by the beta SWFs (web/public/assets/swf/clips/{ground,objects}.json).
+// background) whose linkage id is exported by web/public/assets/swf/clips/{ground,objects}.json. Those libraries hold
+// beta 5b's graphics plus ids filled from later archived clients (clips/*.fill.json, docs/assets-format.md §11): the
+// fight maps are chosen, rendered and labelled with beta 5b's ids only (the filled ids are hidden from this script's
+// Player), the world maps with the filled libraries.
 // Output is deterministic (sorted by coverage desc, then id; Math.random seeded for the objects that randomise).
 //
 // White tiles: the client attaches an opaque white `Dofus::Cell` diamond under the ground layer for every
@@ -54,12 +57,18 @@ if (!existsSync(CACHE)) {
   if (p.exitCode != 0) throw new Error("ffdec failed: " + p.stderr.toString());
 }
 
-const exportsOf = (f: string) =>
-  new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, "web/public/assets/swf/clips", f), "utf8")).exports).map(Number));
-const ground = exportsOf("ground.json");
-const objects = exportsOf("objects.json");
+const SWF = join(ROOT, "web/public/assets/swf"), W = 742, H = 550;
+const readJson = (f: string) => JSON.parse(readFileSync(join(SWF, f), "utf8"));
+/** Linkage ids filled from later clients, per converted library. */
+const filled: Record<string, Set<string>> = Object.fromEntries(
+  ["clips/ground.json", "clips/objects.json"].map((f) => [f, new Set(Object.keys(readJson(f.replace(".json", ".fill.json"))))]),
+);
+const exportsOf = (f: string, beta: boolean) =>
+  new Set(Object.keys(readJson(f).exports).filter((k) => !beta || !filled[f]!.has(k)).map(Number));
+const [ground, objects] = [exportsOf("clips/ground.json", true), exportsOf("clips/objects.json", true)]; // beta 5b
+const [groundAll, objectsAll] = [exportsOf("clips/ground.json", false), exportsOf("clips/objects.json", false)]; // + filled
 
-function coverage(m: MapData): number {
+function coverage(m: MapData, ground: Set<number>, objects: Set<number>): number {
   let refs = 0, ok = 0;
   const ref = (n: number | undefined, set: Set<number>) => {
     if (!n) return;
@@ -107,10 +116,13 @@ function largestArea(m: MapData): number[] {
 let seed = 2004;
 Math.random = () => (seed = (seed * 16807) % 2147483647) / 2147483647; // objects/grounds that pick a random variant
 (globalThis as { Path2D?: unknown }).Path2D ??= Path2D;
-const SWF = join(ROOT, "web/public/assets/swf"), W = 742, H = 550;
 const player = new Player({
   loader: {
-    json: async (f) => JSON.parse(readFileSync(join(SWF, f), "utf8")),
+    json: async (f) => {
+      const j = readJson(f);
+      for (const k of filled[f] ?? []) delete j.exports[k]; // beta 5b graphics only (fight maps)
+      return j;
+    },
     image: async (f) => (await loadImage(join(SWF, f))) as unknown as CanvasImageSource,
   },
   createCanvas: (w, h) => createCanvas(w, h),
@@ -241,7 +253,7 @@ interface OutMap {
 }
 
 const maps: OutMap[] = [];
-const all: { id: number; dir: string; mapData: string; m: MapData; cov: number }[] = []; // every decodable map (world maps)
+const all: { id: number; dir: string; mapData: string; m: MapData; cov: number }[] = []; // every decodable map (world maps; cov with the filled libraries)
 for (const dir of readdirSync(CACHE).sort()) {
   const as = readFileSync(join(CACHE, dir, "scripts/frame_1/DoAction.as"), "utf8");
   const v = (k: string) => as.match(new RegExp(`^${k} = (.*);$`, "m"))?.[1];
@@ -251,8 +263,8 @@ for (const dir of readdirSync(CACHE).sort()) {
   const m = decode(original);
   const cells = m.data.length;
   if (cells != height! * width! + (height! - 1) * (width! - 1) || cells > 1024) continue; // path codes are 10-bit
-  const cov = coverage(m);
-  all.push({ id: id!, dir, mapData: original, m, cov });
+  const cov = coverage(m, ground, objects);
+  all.push({ id: id!, dir, mapData: original, m, cov: coverage(m, groundAll, objectsAll) });
   if (cov < MIN_PARTIAL) continue;
   layoutMap(m);
   const area = largestArea(m).filter((c) => m.data[c]!.lineOfSight); // fight grid is drawn on line-of-sight cells
@@ -290,10 +302,11 @@ maps.sort((a, b) => b.coverage - a.coverage || a.id - b.id);
 // Plate = object 1030 (the round "sun" tile at the map edges, clips/objects.swf) on either object layer of a walkable
 // cell. Links: the unconditional teleport cells (action 0, event 1) of a Dofus Retro 1.39.8 emulator dump,
 // vendor/starloco/scripted_cells.sql (provenance retro_emulator). Plate p of map A → (B, c) is kept when B is a map of
-// the same size with WORLD_MIN coverage and a plate of B within 2 cells of c teleports back to A; the arrival cell is
-// that plate (the nearest to c), and the link must exist both ways. The world is the largest set of maps connected by
-// such links (a fallback on map positions + plates added no map to it: docs/server.md "World maps").
-const WORLD_MIN = 0.8, PLATE = 1030;
+// the same size with WORLD_MIN coverage (filled libraries) and a plate of B within 2 cells of c teleports back to A; the
+// arrival cell is that plate (the nearest to c), and the link must exist both ways. The world is the largest set of
+// maps connected by such links (a fallback on map positions + plates added no map to it: docs/server.md "World maps").
+// WORLD_MIN is the highest bar that keeps the largest set whole (0.80-0.95 give the same 90 maps, 0.98 gives 88).
+const WORLD_MIN = 0.95, PLATE = 1030;
 const teleports = new Map<string, [number, number]>();
 for (const t of readFileSync(join(ROOT, "vendor/starloco/scripted_cells.sql"), "utf8").matchAll(/^INSERT INTO `scripted_cells` VALUES \((\d+), (\d+), 0, 1, '(\d+),(\d+)', '-1'\);$/gm))
   teleports.set(`${t[1]}:${t[2]}`, [Number(t[3]), Number(t[4])]);
@@ -329,7 +342,7 @@ const worldMaps = world.map((id) => {
     coverage: Math.round(cov * 1000) / 1000,
     links: Object.fromEntries(links.get(id)!),
     source: `vendor/dofedex/maps-2004/${dir}`,
-    provenance: cov == 1 ? "post_beta_2004_full_beta_graphics" : "post_beta_2004_partial_beta_graphics",
+    provenance: cov == 1 ? "post_beta_2004_full_filled_graphics" : "post_beta_2004_partial_filled_graphics",
   };
 });
 
@@ -380,7 +393,7 @@ writeFileSync(
         "Generated by scripts/server-data/maps.ts from vendor/dofedex/maps-2004 (map SWFs dated July 2004 or later, i.e. post-beta 1.0-era maps, NOT beta 5b arena maps). mapData is copied verbatim, except the line-of-sight bit cleared on the cells listed in losCleared (authored: unwalkable cells the map leaves bare, which this client draws as white diamonds; clearing changes no line of sight between cells a character can stand on). coverage = share of ground/object references drawn by beta 5b clips. places = placement cells per team (authored by the script: first/last cells of the largest walkable line-of-sight area where objects drawn in front do not hide a standing character).",
       maps,
       worldProvenance:
-        `world = role-play maps of the social village (docs/server.md stage 3b), same sources; mapData verbatim. links = plate cell → [map, arrival cell]: retro_emulator, the unconditional teleport cells of vendor/starloco/scripted_cells.sql (Dofus Retro 1.39.8 emulator data) kept only where they join two map-change plates (object ${PLATE}) of these 2004 maps, both ways; the arrival cell is the plate of the destination map that teleports back. The world is the largest set of maps with coverage >= ${WORLD_MIN} connected by such links.`,
+        `world = role-play maps of the social village (docs/server.md stage 3b), same sources; mapData verbatim. links = plate cell → [map, arrival cell]: retro_emulator, the unconditional teleport cells of vendor/starloco/scripted_cells.sql (Dofus Retro 1.39.8 emulator data) kept only where they join two map-change plates (object ${PLATE}) of these 2004 maps, both ways; the arrival cell is the plate of the destination map that teleports back. coverage = share of ground/object references drawn by the filled libraries (beta 5b clips plus the ids beta 5b lacks, taken from later archived clients: web/public/assets/swf/clips/*.fill.json, docs/assets-format.md §11). The world is the largest set of maps with coverage >= ${WORLD_MIN} connected by such links.`,
       world: worldMaps,
     },
     null,

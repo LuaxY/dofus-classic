@@ -402,6 +402,15 @@ Panels: `GameResultRandom` if `isRandom`, else `GameResultFree`
 (`modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:7-60`, `modules_Interfaces/Interface.Banner.Panel.GameResultFree.as`). Sets
 `m_bRunning = false`. Example: `GE12|2;12;3;0;100;180;300;80;25|1;7;5;1;400;420;600;10;0\0`.
 
+Only the random panel shows `winXp`, `gold` and the XP bar (`GameResultRandom.as:31-32,35-37,51-52,55-57`). The free
+panel writes `txtName`, `txtLevel` and `txtDead` alone (`modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:29-33,44-48`),
+and its row symbol has no other field: `Interface::Banner::Panel::GameResult::PlayerFree` (`DefineSprite_942`) places
+`txtName`, `txtDead`, `txtLevel` and `clipMe` only, where `…PlayerRandom` (`DefineSprite_948`) adds `txtXP` (x 419) and
+`txtGold` (x 493) (`dofus-5b/modules/Interfaces.swf` PlaceObject2 tags, as converted in
+`web/public/assets/swf/modules/Interfaces.json`; the row scripts are `modules_Interfaces/DefineSprite_942_…/frame_1/DoAction.as`,
+`DefineSprite_948_…/frame_1/DoAction.as`). A free game's XP and gold are still parsed into `DATACENTER.Game.Results`
+(`AKSClient/Dofus.Client.Game.as:378-420`) and applied (`AN`, `AB`); the beta panel just has no column for them.
+
 ---
 
 ## GW — stay on the village map (C→S, **authored**, not in the beta client)
@@ -418,7 +427,8 @@ frame. `GW` is unused in both directions by the beta client (no `send("GW` in `d
 `AKSClient/Dofus.Client.DataProcessor.as`). Before `PS` the server drops it (no character); `PS` clears the flag, and
 only `PS`: a flagged player back from a game ("Retour au village") rejoins the village map. A session without `GW`
 is flagged by the server after its first bounce (`GAx;3`), so "Retour au village" and the random gift button take
-every player to the shared map; the only way back to the lobby is the menu's "Changer de perso", then "Jouer".
+every player to the shared map; the way back to the lobby is the banner menu's authored "Aller aux combats" (`GX`,
+below), or "Changer de perso" then "Jouer".
 
 What the server (`server/src/world.rs`) does for a flagged session, with only frames the 5b client already handles in
 the village (`Game.state == 1`):
@@ -430,6 +440,8 @@ the village (`Game.state == 1`):
 | `GKE<n>\|<cell>` | the mover stopped on `cell` (a cell of its last walk): stored as its position, the `GA001` that follows starts there |
 | `GKK<n>` standing on a map-change plate | travel to the linked map (below) |
 | `BM*\|<text>` | `cMK*\|<id>\|<name>\|<text>` to every occupant (the sender id puts the bubble over its sprite) |
+| `BS<n>` (smiley bar) | `cS<id>\|<n>` to every occupant, the sender included: each has the sender's sprite, over which `onSmiley` draws it (`AKSClient/Events.AKS.Chat.as:1-5`, `AKSClient/Dofus.BattleField.Characters.Character.as:318-324`) |
+| `GX` (authored, below) | `GM\|-<id>` to the remaining occupants, then `GAx;3;<id>` to it |
 | disconnect, or any place change | `GM\|-<id>` to the remaining occupants |
 
 "Occupant" = a flagged session on the same map. The village is several role-play maps (`server/data/maps.json`
@@ -496,3 +508,32 @@ Examples: `GW\n\0`; then `GM|+12;Bobby;3;8;0;80;FF0000;-1;00FF00;;239;1|+7;Ali;5
 `GA1;1;12;dVZtdX\0`, `cMK*|7|Ali|Salut\0`, `GM|-7\0`. Travel of 12 from map 567 (plate 115) with 7 there, to map 563:
 `GKK3\n\0` → to 12 `GM|-7\0`, `GM|+12;Bobby;3;8;0;80;FF0000;-1;00FF00;;102;3\0`, `GDM|563|15|17|1|71|…\0`,
 `GM|+12;Bobby;3;8;0;80;FF0000;-1;00FF00;;102;3\0`; to 7 `GM|-12\0`.
+
+---
+
+## GX — leave the village map for the multiplayer screen (C→S, **authored**, not in the beta client)
+
+```
+GX\n\0
+```
+Written for this port: the beta 5b client has no way from the village back to the multiplayer screen but
+`GAx;3` (game action 3 → `KERNEL.changeToMultiplayer`, `AKSClient/Events.AKS.Game.as:527-528`,
+`AKSClient/Dofus.Kernel.as:103-112`), which only the server can send. The banner menu (`boxMenu`,
+`modules_Interfaces/DefineSprite_907_boxMenu`) gets an entry "Aller aux combats" (`web/src/game/ui/windows.ts`
+`boxMenu.attachLobby`, label `GO_TO_FIGHTS`, provenance `authored`): the same `Ank.Dofus.PushButton` at 80 % in the slot
+of "Abandonner" (`giveup_btn`, y 80), which `boxMenu.init` only shows while a game runs (`modules_Interfaces/boxMenu.as`),
+offered only when `DATACENTER.Game.state == 1` (`STATE_SOLO`, `AKSClient/Dofus.Client.Game.as:7`: the village; the lobby
+and fights have the same menu button, with state 0/2/3). It sends `GX` without the waiting box (`send(…, false)`,
+`AKSClient/Dofus.Client.as:75-89`) and closes the menu. No `GX` exists in either direction in the beta client (no
+`send("GX` in `decompiled/clean/`, no `GX` rubrique in `AKSClient/Dofus.Client.DataProcessor.as`).
+
+| Client | Server |
+|---|---|
+| `GX` from a session standing on a village map | `GM\|-<id>` to the other occupants of its map, its spot cleared, then `GAx;3;<id>`: the client draws `Interface::MultiPlayer`, whose channel combo sends `CJ` ([channel.md](channel.md)) |
+| `GX` anywhere else (lobby, game, before `GD`) | nothing |
+
+The session keeps its social flag, so "Retour au village" (`GC1`, then `GD`) puts it back on `village_map`. It works the
+same for `GW` sessions and "Jouer" sessions (flagged at their first bounce).
+
+Example: 12 and 7 on map 567; 12 sends `GX\n\0` → to 7 `GM|-12\0`; to 12 `GAx;3;12\0`; then 12's `CJ\n\0` →
+`CJKFrance\0`.

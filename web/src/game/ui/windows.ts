@@ -3,6 +3,7 @@
 // Their buttons' clip actions (labels, Yes/No, Send…) are in scripts.ts.
 import { str } from "../../core/swf6.ts";
 import { getText } from "../../core/lang.ts";
+import { toLobby } from "../../core/protocol.ts";
 import { Key, MovieClip, registerClass, Selection, Stage, TextField } from "../../runtime/player.ts";
 import type { FPushButtonClass } from "./controls.ts";
 import { S } from "./siblings.ts";
@@ -146,6 +147,23 @@ export class boxMenu extends BoxContent {
     this.giveup_btn._x = 40;
     this.giveup_btn._visible = !!S.DATACENTER?.Game.isRunning;
     this.cancel_btn._x = 40;
+    if (S.DATACENTER?.Game.state == 1) this.attachLobby();
+  }
+  /** Authored for this port (not beta 5b): on the shared village map (`Game.state` 1 = `STATE_SOLO`,
+   *  `Dofus.Client.Game.as:7`), "Aller aux combats" in the slot of "Abandonner" (shown only while a game runs), same
+   *  PushButton: sends the authored `GX`; the server answers the village's `GAx;3` (docs/protocol/game.md `GX`). */
+  attachLobby() {
+    const g = this.giveup_btn;
+    const b = this.attachMovie("Ank::Dofus::PushButton", "lobby_btn", 30, { label: getText("GO_TO_FIGHTS"), clickHandler: "", labelClipSymbol: "FLabelSymbol" }) as FPushButtonClass | undefined;
+    if (!b) return;
+    b.setSize(g.width, g.height);
+    b._xscale = b._yscale = 80;
+    b._x = 40;
+    b._y = g._y;
+    b.onRelease = () => {
+      S.AKS?.send?.(toLobby(), false);
+      this.owner.hide();
+    };
   }
 }
 registerClass("boxMenu", boxMenu);

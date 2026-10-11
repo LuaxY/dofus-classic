@@ -144,6 +144,7 @@ test("builders: exact wire strings", () => {
   expect(P.createFreeGame("g", 507, "BB", "pw")).toBe("GC2g|507|BB|pw\n");
   expect(P.createSoloGame()).toBe("GC1\n");
   expect(P.joinMap()).toBe("GW\n");
+  expect(P.toLobby()).toBe("GX\n");
   expect(P.createRandomGame()).toBe("GC3\n");
   expect(P.joinGame(2, "g", "")).toBe("GJ2g|\n");
   expect(P.sendActions(1, ["qyaD"])).toBe("GA001qyaD\n");

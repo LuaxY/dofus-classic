@@ -109,7 +109,8 @@ export class Client {
   /**
    * Port addition: Map.build and Container.clear need clips/ground.swf and clips/objects.swf loaded into
    * BATTLEFIELD.Container (loadMovie at boot, Container.as:7-47). Flash had them long before the first map; the browser
-   * fetches ~6.5 MB, so from a map frame (`GDM`) on, frames wait in order until the three layers have run frame 1.
+   * fetches ~13.5 MB of JSON (docs/assets-format.md §11), so from a map frame (`GDM`) on, frames wait in order until
+   * the three layers have run frame 1.
    */
   private receive(ev: ServerEvent, raw: string): void {
     this.inbox.push([ev, raw]);

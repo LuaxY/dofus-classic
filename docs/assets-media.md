@@ -106,6 +106,8 @@ semi-transparent edge pixels keep the solid colour (not darkened), e.g. `clips/g
 `clips/objects.swf/654.png`, `694.png`, `clips/guilds/artwork/big/50.swf/1.png`. Spell icons are one 40×40 JPEG each
 (`clips/spells/icons/<id>.swf/1.jpg`), the Interfaces background is `modules/Interfaces.swf/8.jpg` (742×550). No
 bitmap carries a linkage name. Bitmaps are referenced by shape fill styles (`bitmapId`), which is assets-core's side.
+`media/` covers beta 5b's own files only: the ground/object graphics filled from later 2004 clients (with their
+bitmaps) exist only in `web/public/assets/swf/clips/{ground,objects}.json` (`docs/assets-format.md` §11).
 
 ### Texts — `texts/<swf>.json`
 

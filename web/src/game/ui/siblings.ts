@@ -13,6 +13,7 @@ export type Siblings = {
   };
   AKS?: {
     connect?(server: string, port: number): void; // Dofus.Interface.as:76
+    send?(data: string, waiting?: boolean): void; // authored boxMenu lobby_btn (windows.ts)
     Account?: { getCharacters?(): void; addFriend?(name: unknown): void }; // Dofus.Interface.as:91, S895/PB_9 rel
     Chat?: { send?(text: string, to: unknown): void }; // boxWhisper.as:19, S895/PB_15 rel
   };

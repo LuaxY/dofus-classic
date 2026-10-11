@@ -57,6 +57,11 @@ not spelled out by it.
     the others get its `GM|+`; no step 11. Moves as in step 10, broadcast to every occupant (no `GAS`/`GAF`; refused →
     `GAF12` to the mover alone), `GKE<n>|<cell>` moves its stored cell, `BM*` → `cMK*|12|Bobby|…` to every occupant,
     `GM|-12` to them when it leaves ([game.md](game.md#gw--stay-on-the-village-map-cs-authored-not-in-the-beta-client)).
+    `BS3` → `cS12|3` to every occupant.
+10c. (opt, **authored** by this port, not in the beta client) Back to the lobby: `GX` (banner menu "Aller aux combats",
+    no spinner) from a session on the village map → `GM|-12` to the other occupants, then `GAx;3;12` (step 11); ignore it
+    anywhere else. The session stays flagged, so a later `GC1` + `GD` lands on the map again
+    ([game.md](game.md#gx--leave-the-village-map-for-the-multiplayer-screen-cs-authored-not-in-the-beta-client)).
 
 ## 4. Into the multiplayer screen
 

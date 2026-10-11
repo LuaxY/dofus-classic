@@ -48,8 +48,10 @@ OM<itemIdDecimal>|<position>\n\0
 ```
 `AKSClient/Dofus.Client.Items.as:10-13` (no spinner). Trigger: dropping an item on an equipment slot → `onEquipItem(itemData,
 positionID)` (`modules_Interfaces/__Packages/dofus/graphics/gui/common/InventoryViewer.as:149-153`,
-`modules_Interfaces/__Packages/dofus/graphics/gui/common/EquipementItemContainer.as:165`). `position` = slot 0..5. Un-equipping (`onReplaceItem`) is client-only, nothing
-sent (`modules_Interfaces/__Packages/dofus/graphics/gui/common/InventoryViewer.as:154-157`). No answer is expected.
+`modules_Interfaces/__Packages/dofus/graphics/gui/common/EquipementItemContainer.as:165`). `position` = slot 0..5. Un-equipping: dragging an item off its slot and releasing it anywhere but a slot or the drop
+zone sends `OM<id>|-1` (`EquipementItemContainer.as:146` → `InventoryViewer.onTestMouse`, `InventoryViewer.as:200-223`).
+The item a slot held when another one is dropped on it goes back to the bag client-side only, nothing sent
+(`onReplaceItem`, `modules_Interfaces/__Packages/dofus/graphics/gui/common/InventoryViewer.as:154-157`). No answer is expected.
 
 ## OD — drop an item (C→S, S→C)
 

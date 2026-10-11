@@ -33,6 +33,7 @@ web/public/assets/swf/
   <dir>/<name>.json               one per SWF, e.g. clips/sprites/10.json, modules/Interfaces.json
   <dir>/<name>/<characterId>.png  bitmaps with alpha (DefineBitsJPEG3, DefineBitsLossless*)
   <dir>/<name>/<characterId>.jpg  opaque JPEG bitmaps (DefineBits+JPEGTables, DefineBitsJPEG2), bytes copied
+  clips/{ground,objects}.fill.json  provenance of the linkage ids filled from later clients (§11)
   _preview/                       verification renders written by the test (not part of the format)
 ```
 
@@ -313,3 +314,60 @@ Applying a frame (Flash semantics, PlaceObject2 per SWF19):
 - Audio sample data (assets-media), SoundStreamHead2 (124 heads, no stream blocks in the archive).
 - Protect / EnableDebugger / DebugID tags. Nothing else in the archive is dropped; unknown tags are logged
   as warnings in `index.json`.
+
+## 11. Filled ground/object ids (`clips/ground.json`, `clips/objects.json`)
+
+The 2004 maps the server uses (`vendor/dofedex/maps-2004/`) reference ground and object linkage ids that beta 5b's
+`clips/ground.swf` (105 exports, ids 1-511) and `clips/objects.swf` (493 exports, ids 1-1070) lack. `convertFile`
+therefore adds to these two files every export that 5b lacks and a later archived client has
+(`vendor/archive-dofus-1/<v>/clips/{ground,objects}.swf`, v7b … v1_0), taken from the **earliest** version that has
+it. 5b's own graphic always wins when 5b has the id. The client is unchanged: `attachMovie("<id>")` on the loaded layer
+clip (`AKSClient/Dofus.BattleField.Container.as:16-39`, `clips/ground.swf/frame_1/DoAction.as:1-12`) finds the id in
+`exports` either way.
+
+**Same id scheme.** Every version exports only numeric linkage names (ground 1-511 throughout; objects 1-1070 up to
+v7b, up to 8013 later), and the ids both have show the same subject. Rendering each id 5b shares with a later version
+(frame 1) and comparing pixels (`scripts/assets-media/compare.ts`, ≤ 1 % differing pixels = same): v7b 100 of 105
+ground and 382 of 493 objects, v10b 94/104 and 334/492, v1_0 90/104 and 263/477. The others are the same subject
+redrawn or recoloured (water ground 27-31 blue → green from v10b, house object 315 recoloured, stump 20 and rack 402
+smaller, rock 72 with a water ring in v1_0); only ground 1 and 2 (editor tiles: 5b's 1 is an axis marker, 2 sand)
+became unrelated tiles. Ids are never renumbered, so the same id from a later version is the best available
+substitute.
+
+| Earliest version | Ground ids | Object ids | Provenance tag |
+|---|---|---|---|
+| v7b (25 Feb 2004) | 8 | 30 | `beta_sibling` |
+| v10b | 9 | 40 | `beta_sibling` |
+| v11b | 0 | 15 | `beta_sibling` |
+| v12b | 5 | 42 | `beta_sibling` |
+| v13b | 0 | 11 | `beta_sibling` |
+| v15b (v16b is byte-identical) | 13 | 127 | `beta_sibling` |
+| v17_1b | 2 | 71 | `beta_sibling` |
+| v17_2b | 0 | 9 | `beta_sibling` |
+| v1_0 (23 Aug 2004, the release) | 4 | 59 | `release_sibling` |
+| **total** | **41** | **404** | |
+
+Tags: `docs/content-reconstruction.md` §1.1. Of the ids beta 5b lacks that the 565 dofedex maps reference, 27 of 35
+ground and 242 of 397 object ids are filled; ground 110, 137-143 and 155 object ids (between 701 and 7535) are in no
+archived client up to v1_0 and stay missing.
+
+- **Manifest** `clips/<name>.fill.json`: `{ "<linkage id>": { from: "vendor/archive-dofus-1/<v>/clips/<name>.swf",
+  provenance: "beta_sibling" | "release_sibling" } }` (`FillManifest` in `scripts/assets/convert.ts`). Generated
+  with the JSON, so it always matches it; `scripts/server-data/maps.ts` reads it to tell beta 5b ids from filled ones.
+- **Copy.** Each filled export's symbol closure gets fresh character ids above 5b's highest (children shared within a
+  version are copied once); references are remapped (place-op, button-record and StartSound `id`, fill `bitmap`,
+  text/edittext `font`), bitmaps are written as `<name>/<new id>.<ext>`. The root timeline (frame-1 `clear`/`attach`
+  script) stays 5b's.
+- **No new SWF features.** The tag census (`python3 -I scripts/swf-tags.py`) of every later `ground.swf`/`objects.swf`
+  shows only tag types the converter already reads (DefineShape 1-3, DefineMorphShape, DefineBits/JPEG2/JPEG3 +
+  JPEGTables, DefineBitsLossless/2, DefineFont2, DefineText, DefineEditText, DefineSprite, PlaceObject2,
+  RemoveObject2, DoAction, FrameLabel, ExportAssets); parsing them gives no warning. Their clip scripts are plain AS1
+  (random frames, `_parent` reads, `SOMA.playSound`).
+- **Verified**: the filled ids render pixel-identically to their source version's own conversion (290 ids from v7b,
+  v10b, v15b and v1_0 compared, no differing pixel); `scripts/assets/convert.test.ts` renders ground 10 (v7b) and
+  object 835 (v1_0) and checks the manifest; the 90 world maps and the 49 fight maps render headless for 60 frames
+  with no runtime error.
+- **Size**: `ground.json` 865,851 → 953,601 bytes, `objects.json` 5,636,513 → 12,553,982; bitmap directories
+  656 KB → 1.1 MB and 800 KB → 2.0 MB. The client fetches both libraries whole before the first map
+  (`web/src/game/kernel/client.ts` `flushInbox`): ≈ 16.6 MB instead of ≈ 7.9 MB. Not done: loading ids on demand, or
+  filling only the ids the maps reference.

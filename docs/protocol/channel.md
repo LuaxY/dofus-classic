@@ -44,15 +44,18 @@ Triggers:
   `AKSClient/Dofus.Client.DataProcessor.as:219`; setter `AKSClient/Dofus.DataCenter.Channel.as:7-15`), so the else-branch runs with
   `name = undefined`: `undefined.replace(...)` is undefined and the frame is `"CJ" + undefined`.
   Under SWF6 rules that is `CJ\n` [SWF6 runtime]. **Accept both `CJ` and `CJundefined` and treat them as "rejoin
-  my previous channel".** Bare `CJ` also comes from the combo on every draw of the multiplayer screen (above), with
-  no SWF6 quirk involved.
+  my previous channel".** When the game was left with `GQ` + `GC1` ("Retour au village" from a lobby, the random
+  result's gift button), this `CJ` arrives between `GC1` and `GD`; this server leaves it unanswered, since a `CJK`
+  would reset `DATACENTER.Game` (`AKSClient/Events.AKS.Channel.as:3`) after `GCK|1` (`docs/server.md` stage 3). Bare
+  `CJ` also comes from the combo on every draw of the multiplayer screen (above), with no SWF6 quirk involved.
 - Leaving a finished fight from the result panel sends `CJ\n` **twice**. The button sends `GQ` and redraws the
   multiplayer screen (`modules_Interfaces/DefineSprite_956_Interface.Banner.Panel.GameResultRandom/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_11/CLIPACTIONRECORD on(release).as:2-3`,
   same in `DefineSprite_962_Interface.Banner.Panel.GameResultFree`; `AKSClient/Dofus.Kernel.as:103-112`), so the new
   combo sends `CJ`. The server's `GV` then runs `onLeave`; the game stopped running at `GE`
   (`AKSClient/Events.AKS.Game.as:372`), so it takes the `AKS.Channels.join()` branch (`:245`) and sends the second
   `CJ`. Their order is not fixed by the code. If the server answers both, the client runs `onJoin` twice (chat
-  cleared and `CL` sent twice).
+  cleared and `CL` sent twice). This server answers both with `CJK` but treats a `CJ` for the channel the player is
+  already in as a no-op for the others: no `CM|-`/`CM|+`, so they see "arrive dans le channel" once (`docs/server.md`).
 
 S→C:
 ```

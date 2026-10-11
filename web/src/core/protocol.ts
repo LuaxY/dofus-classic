@@ -587,6 +587,9 @@ export const createSoloGame = (): string => send("GC1\n");
 /** Authored for this port (not in the beta client): after `PS`, stay on the village map ("Rejoindre la carte",
  *  docs/protocol/game.md `GW`). No wait. */
 export const joinMap = (): string => send("GW\n");
+/** Authored for this port: leave the shared village map for the multiplayer screen (banner menu "Aller aux combats",
+ *  docs/protocol/game.md `GX`). No wait. */
+export const toLobby = (): string => send("GX\n");
 /** State guard: only when !DATACENTER.Game.isRandom. */
 export const createRandomGame = (): string => send("GC3\n");
 export const invite = (characID: string | number): string => send("Gi" + characID + "\n"); // no wait

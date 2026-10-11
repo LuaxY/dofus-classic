@@ -27,8 +27,9 @@ Open two tabs at http://localhost:5173, type any account name and password and c
 - **Jouer → Jouer seul** in both tabs: random matchmaking pairs you up (parties of friends via *Constituer une équipe*).
 
 Or, without fighting: **Rejoindre la carte** on the character screen puts you on the village map with everyone else who
-did, to walk around and chat (an addition of this port; leave with menu → *Changer de perso*). Walk onto a round plate
-at a map edge to go to the next map: 51 linked 2004 maps of Amakna (`docs/server.md` "World maps").
+did, to walk around and chat (an addition of this port; menu → *Aller aux combats* goes to the lobby, *Retour au
+village* comes back). Walk onto a round plate
+at a map edge to go to the next map: 90 linked 2004 maps of Amakna (`docs/server.md` "World maps").
 
 - `/?replay=fight` plays a scripted session with no server (login `bo` / `pass`).
 - `/?server=ws://host:port` points the client at another server.
@@ -48,5 +49,6 @@ bun scripts/playtest.ts                # two headless clients play full games ag
 replaced it), `docs/missing-data-search.md`, `docs/playtest.md`.
 
 Lost content (language files, beta maps, login screen, some sounds) is substituted with clearly labelled material:
-2004 maps and early French text from [dofedex](https://github.com/dofera/dofedex), text from beta screenshots, and
-authored placeholders — see `web/public/lang/fr.provenance.json`.
+2004 maps and early French text from [dofedex](https://github.com/dofera/dofedex), the ground/object graphics those maps
+need that beta 5b lacks from later 2004 clients (`vendor/archive-dofus-1/`, `docs/assets-format.md` §11), text from beta
+screenshots, and authored placeholders — see `web/public/lang/fr.provenance.json`.

@@ -1,7 +1,8 @@
 // Playtest: the real Rust server and two (or more) headless clients (web/src/dev/bot.ts), each its own bun process,
-// played only through UI input. Scenarios: fresh, reconnect, disruption, coverage, random, social (docs/playtest.md).
+// played only through UI input. Scenarios: fresh, reconnect, disruption, coverage, random, social, polish, items
+// (docs/playtest.md).
 //
-//   bun scripts/playtest.ts [all | fresh | reconnect | disruption | coverage | random | social ...]
+//   bun scripts/playtest.ts [all | fresh | reconnect | disruption | coverage | random | social | polish | items ...]
 //
 // This process never loads @napi-rs/canvas (a bun process that has loaded it cannot spawn: posix_spawn EBADF).
 // PNG timelines: web/public/assets/port-preview/playtest/<run>/<scenario>/<client>/; logs next to them.
@@ -259,8 +260,9 @@ const scenarios: Record<string, () => Promise<void>> = {
     if (missing.length) throw new Error(`spells never cast: ${missing.map(([g]) => `class ${g}`).join(", ")}`);
   },
 
-  /** 5. The lobby's other entry points: "Retour au village"; "Jouer" → "Jouer seul" for two players → random 1v1 →
-   *  random results (the winner takes the gift button, back through the village); "Jouer" → "Constituer une équipe":
+  /** 5. The lobby's other entry points: "Retour au village" (back with the menu's "Aller aux combats"); "Jouer" →
+   *  "Jouer seul" for two players → random 1v1 → random results (the winner takes the gift button to the shared map,
+   *  then "Aller aux combats"); "Jouer" → "Constituer une équipe":
    *  an invitation refused, one withdrawn, one accepted, a random slot added and removed, "Rechercher" → the two solo
    *  players make the other team → 2v2 → results. */
   async random() {
@@ -268,13 +270,9 @@ const scenarios: Record<string, () => Promise<void>> = {
     const who = (bot: Bot, account: string, character: string, guild: number, sex: 0 | 1): Who => ({ bot, account, password: account + "-pw", character, guild, sex });
     const [a, b, c, d] = [who(A!, "gina", "Ginette", 3, 1), who(B!, "hugo", "Hugolin", 9, 0), who(C!, "iris", "Irmine", 1, 1), who(D!, "jules", "Julot", 10, 0)];
     await Promise.all([a, b, c, d].map((w) => enter(w, true)));
-    // the shared map has no way to the lobby but the menu's "Changer de perso", then "Jouer"
-    const toLobby = async (w: Who) => {
-      await w.bot.do({ do: "changeCharacter" });
-      await w.bot.do({ do: "selectCharacter", name: w.character });
-    };
+    // from the shared map back to the lobby: the banner menu's authored "Aller aux combats" (GX)
     await A!.do({ do: "village" });
-    await toLobby(a);
+    await A!.do({ do: "toLobby" });
     // (a) solo queue
     await A!.do({ do: "playAlone" });
     await B!.do({ do: "playAlone" });
@@ -285,7 +283,7 @@ const scenarios: Record<string, () => Promise<void>> = {
     const [win, lose] = ra.result == "won" ? [A!, B!] : [B!, A!];
     if (new Set([ra.result, rb.result]).size != 2) throw new Error(`1v1: A ${String(ra.result)}, B ${String(rb.result)}`);
     await Promise.all([win.do({ do: "gift" }), lose.do({ do: "leaveResult" })]);
-    await toLobby(win == A ? a : b);
+    await win.do({ do: "toLobby" });
     // (b) a team built by invitation
     await C!.do({ do: "addFriend", name: d.character });
     await C!.do({ do: "makeTeam" });
@@ -320,7 +318,8 @@ const scenarios: Record<string, () => Promise<void>> = {
 
   /** 6. "Rejoindre la carte": two players on the village map, no fight. B arrives after A's map is drawn (A loads B's
    *  sprite on demand); each sees the other, each walks and the other sees the sprite stop on the new cell; chat both
-   *  ways with the speech bubble; B leaves through the menu's "Changer de perso" and A sees B's sprite go. */
+   *  ways with the speech bubble; both travel through a map-change plate; B leaves through the menu's "Changer de
+   *  perso" and A sees B's sprite go; A walks on across the world maps, plate by plate. */
   async social() {
     const [A, B] = await bots("social", "A", "B");
     const a: Who = { bot: A!, account: "kim", password: "kim-pass", character: "Kimette", guild: 4, sex: 1 };
@@ -342,18 +341,103 @@ const scenarios: Record<string, () => Promise<void>> = {
     await B!.do({ do: "waitChat", text: "Salut Leonard, belle journée !", bubble: true });
     await B!.do({ do: "chat", text: "Coucou Kimette", via: "enter" });
     await A!.do({ do: "waitChat", text: "Coucou Kimette", bubble: true });
-    // World maps: A walks onto a map-change plate of the village (the first linked plate, as the Rust test), B sees A
-    // go; B follows and they meet on the next map (docs/server.md stage 3b).
+    // World maps (docs/server.md stage 3b): the shortest plate route from the village to WORLD_TARGET. A walks onto its
+    // first plate, B sees A go; B follows and they meet on the next map; B leaves, A walks on to the target.
+    // 591 drew 12 obstacle cells as bare grass before the missing graphics were filled (docs/assets-format.md §11).
+    const WORLD_TARGET = 591;
     const village = (await Bun.file(join(ROOT, "server/data/rules.json")).json() as { village_map: number }).village_map;
     const world = (await Bun.file(join(ROOT, "server/data/maps.json")).json() as { world: { id: number; links: Record<string, [number, number]> }[] }).world;
-    const [plate, [to]] = Object.entries(world.find((m) => m.id == village)!.links).sort((x, y) => Number(x[0]) - Number(y[0]))[0]!;
-    const ta = await A!.do({ do: "travel", cell: Number(plate), map: to });
+    const prev = new Map<number, [from: number, plate: number]>([[village, [village, -1]]]);
+    for (const q = [village]; q.length; ) {
+      const id = q.shift()!;
+      for (const [p, [to]] of Object.entries(world.find((m) => m.id == id)!.links)) if (!prev.has(to)) prev.set(to, [id, Number(p)]), q.push(to);
+    }
+    if (!prev.has(WORLD_TARGET)) throw new Error(`world map ${WORLD_TARGET} unreachable from ${village}`);
+    const route: [plate: number, map: number][] = [];
+    for (let m = WORLD_TARGET; m != village; m = prev.get(m)![0]) route.unshift([prev.get(m)![1], m]);
+    if (route.length < 3) throw new Error(`route to ${WORLD_TARGET}: ${route.length} plates, want 3+`);
+    const [[plate, to], ...rest] = route as [[number, number], ...[number, number][]];
+    const ta = await A!.do({ do: "travel", cell: plate, map: to });
     await B!.do({ do: "sprite", name: a.character, gone: true });
-    const tb = await B!.do({ do: "travel", cell: Number(plate), map: to });
+    const tb = await B!.do({ do: "travel", cell: plate, map: to });
     await A!.do({ do: "sprite", name: b.character, cell: tb.cell as number });
     await B!.do({ do: "sprite", name: a.character, cell: ta.cell as number });
     await B!.do({ do: "changeCharacter" });
     await A!.do({ do: "sprite", name: b.character, gone: true });
+    for (const [cell, map] of rest) await A!.do({ do: "travel", cell, map });
+    await Promise.all([A!.quit(), B!.quit()]);
+  },
+
+  /** 7. Shared map ↔ lobby: A joins with "Rejoindre la carte" (`GW`), B with "Jouer" then "Retour au village"; A's
+   *  smiley shows over A's sprite on B's screen; B takes the menu's "Aller aux combats" (authored `GX`) to the lobby
+   *  and A sees B's sprite go; "Retour au village" brings B back; then A (the `GW` session) does the same. */
+  async polish() {
+    const [A, B] = await bots("polish", "A", "B");
+    const a: Who = { bot: A!, account: "mia", password: "mia-pass", character: "Mialou", guild: 7, sex: 1 };
+    const b: Who = { bot: B!, account: "nino", password: "nino-pass", character: "Ninoche", guild: 1, sex: 0 };
+    await Promise.all([a, b].map(async (w) => {
+      await logIn(w);
+      await w.bot.do({ do: "characters" });
+      await w.bot.do({ do: "createCharacter", name: w.character, guild: w.guild, sex: w.sex, colors: COLORS[created++ % 2]! });
+    }));
+    const ja = await A!.do({ do: "joinMap", name: a.character });
+    await B!.do({ do: "selectCharacter", name: b.character }); // "Jouer": the multiplayer screen
+    const vb = await B!.do({ do: "village" }); // "Retour au village": the shared map
+    await A!.do({ do: "sprite", name: b.character, cell: vb.cell as number });
+    await B!.do({ do: "sprite", name: a.character, cell: ja.cell as number });
+    await Promise.all([A!.do({ do: "smiley", index: 3 }), B!.do({ do: "smiley", from: a.character })]);
+    await B!.do({ do: "toLobby" });
+    await A!.do({ do: "sprite", name: b.character, gone: true });
+    const back = await B!.do({ do: "village" });
+    await A!.do({ do: "sprite", name: b.character, cell: back.cell as number });
+    await A!.do({ do: "toLobby" });
+    await B!.do({ do: "sprite", name: a.character, gone: true });
+    const va = await A!.do({ do: "village" });
+    await B!.do({ do: "sprite", name: a.character, cell: va.cell as number });
+    await Promise.all([A!.quit(), B!.quit()]);
+  },
+
+  /** 8. Items: Iop A beats a passive Crâ B; A reads and closes its award box (`OAK`, "Nouvel objet : …"); on the shared
+   *  map ("Retour au village") A opens the inventory, drags the item onto its slot (`OM<id>|<slot>`), off it again
+   *  (`OM<id>|-1`) and back; after "Changer de perso" it is still equipped (`ASK` part 30); a second win brings a second
+   *  item, which A drops from the bag (`OD` → `ODK`). */
+  async items() {
+    const [A, B] = await bots("items", "A", "B");
+    const a: Who = { bot: A!, account: "olga", password: "olga-pass", character: "Olgarde", guild: 8, sex: 1 };
+    const b: Who = { bot: B!, account: "paul", password: "paul-pass", character: "Paulin", guild: 9, sex: 0 };
+    type Bag = { id: number; type: number; position: number; name: string }[];
+    const superType = ((await Bun.file(join(ROOT, "web/public/lang/fr.json")).json()) as { I: { t: Record<string, { t: number }> } }).I.t;
+    const slotOf = (type: number) => [1, 2, 3, 4, 3, 5].indexOf(superType[type]!.t); // InventoryViewer S598 slots 0..5
+    const inventory = async () => (await A!.do({ do: "inventory" })).items as Bag;
+    const win = async (game: string) => {
+      const g = await duel(a, b, game, 1426, { cc: true }, { passive: true });
+      if (g.a.result != "won" || !String(g.a.award).startsWith("Nouvel objet : ") || g.b.award) throw new Error(`award boxes: ${String(g.a.award)} / ${String(g.b.award)}`);
+      await Promise.all([A!.do({ do: "leaveResult" }), B!.do({ do: "leaveResult" })]);
+      return String(g.a.award).slice("Nouvel objet : ".length);
+    };
+    await Promise.all([enter(a, true), enter(b, true)]);
+    const first = await win("Butin");
+    await A!.do({ do: "village" });
+    const [item] = await inventory();
+    if (!item || item.name != first || item.position != -1) throw new Error(`award "${first}" vs the bag: ${JSON.stringify(item)}`);
+    const slot = slotOf(item.type);
+    await A!.do({ do: "equip", id: item.id, slot });
+    await A!.do({ do: "equip", id: item.id, slot: -1 });
+    await A!.do({ do: "equip", id: item.id, slot });
+    await A!.do({ do: "changeCharacter" });
+    await A!.do({ do: "selectCharacter", name: a.character });
+    await A!.do({ do: "village" });
+    const [kept] = await inventory();
+    if (kept?.id != item.id || kept.position != slot) throw new Error(`not equipped after "Changer de perso": ${JSON.stringify(kept)}`);
+    await A!.do({ do: "changeCharacter" });
+    await A!.do({ do: "selectCharacter", name: a.character });
+    const second = await win("Butin 2");
+    await A!.do({ do: "village" });
+    const bag = await inventory();
+    const loot = bag.find((i) => i.id != item.id);
+    if (bag.length != 2 || loot?.name != second || loot.position != -1) throw new Error(`second award "${second}" vs the bag: ${JSON.stringify(bag)}`);
+    const left = (await A!.do({ do: "drop", id: loot.id })).items as Bag;
+    if (left.length != 1 || left[0]!.id != item.id || left[0]!.position != slot) throw new Error(`after the drop: ${JSON.stringify(left)}`);
     await Promise.all([A!.quit(), B!.quit()]);
   },
 };

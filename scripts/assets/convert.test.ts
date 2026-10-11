@@ -46,6 +46,8 @@ const CASES: [src: string, id: number | string, frames: number[]][] = [
   ["clips/objects.swf", "5", [1]],
   ["clips/objects.swf", "14", [1]],
   ["clips/objects.swf", "30", [1]],
+  ["clips/ground.swf", "10", [1]], // filled from v7b (docs/assets-format.md §11)
+  ["clips/objects.swf", "835", [1]], // filled from v1_0
   ["modules/Interfaces.swf", "Interface::MultiPlayer", [1]], // static text, edit text, buttons, masks
   ["modules/Interfaces.swf", "Interface::Banner::Main", [1]],
   ["clips/spells/icons/23.swf", 0, [1]],
@@ -62,4 +64,8 @@ test("convert + render samples", async () => {
   const s10 = JSON.parse(readFileSync(join(OUT_DIR, "clips/sprites/10.json"), "utf8"));
   expect(s10.imports[0]).toEqual({ url: "clips/sprites/weapons/weapons.swf", items: [{ name: "4_1", id: 1 }] });
   expect(s10.root.frames[1].label).toBe("StaticR");
+  const fill = (f: string) => JSON.parse(readFileSync(join(OUT_DIR, `clips/${f}.fill.json`), "utf8"));
+  expect(fill("ground")["10"]).toEqual({ from: "vendor/archive-dofus-1/v7b/clips/ground.swf", provenance: "beta_sibling" });
+  expect(fill("objects")["835"]).toEqual({ from: "vendor/archive-dofus-1/v1_0/clips/objects.swf", provenance: "release_sibling" });
+  expect(fill("objects")["1030"]).toBeUndefined(); // beta 5b has it: its own graphic stays
 });

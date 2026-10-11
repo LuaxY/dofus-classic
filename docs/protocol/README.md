@@ -320,7 +320,8 @@ not in code**.
 | `GKE` | move cancelled at cell | [game-actions.md](game-actions.md#gkk--gke--acknowledge--cancel-an-action-cs) |
 
 Plus the console `/c <raw>` escape hatch ([console.md](console.md)), and `GW` (stay on the village map), **authored** by
-this port and not in the beta client ([game.md](game.md#gw--stay-on-the-village-map-cs-authored-not-in-the-beta-client)).
+this port and not in the beta client ([game.md](game.md#gw--stay-on-the-village-map-cs-authored-not-in-the-beta-client)), and `GX` (village map → multiplayer screen, menu *Aller aux combats*), also **authored**
+([game.md](game.md#gx--leave-the-village-map-for-the-multiplayer-screen-cs-authored-not-in-the-beta-client)).
 
 ### Server → client (61, of which 5 dead `R` frames and 3 no-ops)
 
