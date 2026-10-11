@@ -78,7 +78,7 @@ async function enter(c: Client, account: string, password: string, name: string,
   const key = await c.open();
   c.login = account;
   c.send(P.version());
-  c.send(P.login(account, password, key));
+  c.send(P.login(account, password, key, true)); // fresh store: register (the server never creates an account on login)
   await c.next("loginOk");
   c.send(P.getCharacters());
   await c.next("charactersList");

@@ -3,10 +3,10 @@
 // ponytail: one task owns everything; shard per game if a single core ever becomes the limit.
 use crate::codec::{cell_code, compress_path, extract_path};
 use crate::crypt;
+use crate::data::CloseCombat;
 use crate::data::GameData;
 use crate::fight::{color, Fighter, Game, Phase, Rng};
 use crate::pathfinding::{distance, path_find};
-use crate::data::CloseCombat;
 use crate::store::{Account, Character, Item, KnownSpell, Store};
 use std::collections::{BTreeMap, HashMap, HashSet};
 use std::time::{Duration, Instant};
@@ -565,7 +565,9 @@ impl World {
         if matches!(self.place(sid), Place::Game(_)) {
             return;
         }
-        let Some((id, pos)) = rest.split_once('|').and_then(|(i, p)| Some((i.parse::<u32>().ok()?, p.parse::<i32>().ok()?))) else { return };
+        let Some((id, pos)) = rest.split_once('|').and_then(|(i, p)| Some((i.parse::<u32>().ok()?, p.parse::<i32>().ok()?))) else {
+            return;
+        };
         let me = self.sessions[&sid].character.unwrap();
         let c = self.store.characters.get_mut(&me).unwrap();
         let Some(item) = c.items.iter().find(|i| i.id == id) else { return };
@@ -1217,8 +1219,7 @@ impl World {
     /// joiner, its `GM +` to the others (their waiting card becomes a team-mate card). `GJEn` once the invitation is
     /// gone (cancelled, or the party searches).
     fn join_random(&mut self, sid: Sid, me: u32, inviter: &str) {
-        let Some(gid) = self.invited_party(me, inviter).filter(|g| self.games[g].phase == Phase::Lobby && !self.games[g].searching)
-        else {
+        let Some(gid) = self.invited_party(me, inviter).filter(|g| self.games[g].phase == Phase::Lobby && !self.games[g].searching) else {
             return self.send(sid, "GJEn");
         };
         self.leave_place(sid, true);
@@ -1541,7 +1542,8 @@ impl World {
         match phase {
             Phase::Lobby if g.creator == me => {
                 for i in std::mem::take(&mut g.invited) {
-                    self.sid_of(i).into_iter().for_each(|k| self.send(k, "Gy")); // the invitation box closes
+                    self.sid_of(i).into_iter().for_each(|k| self.send(k, "Gy"));
+                    // the invitation box closes
                 }
                 for k in self.game_sids(gid) {
                     self.set_place(k, Place::None);

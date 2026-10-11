@@ -195,7 +195,9 @@ impl Items {
     /// (AKSClient/Dofus.DataCenter.Item.as:107-130) as `EquipementItemContainer.release` checks it.
     pub fn can_equip(&self, class: u8, kind: u32, slot: usize) -> bool {
         let st = self.types.get(&kind).copied();
-        st.is_some() && st == SLOT_SUPER_TYPES.get(slot).copied() && (st != Some(2) || self.class_weapons.get(&class).is_some_and(|w| w.contains(&kind)))
+        st.is_some()
+            && st == SLOT_SUPER_TYPES.get(slot).copied()
+            && (st != Some(2) || self.class_weapons.get(&class).is_some_and(|w| w.contains(&kind)))
     }
 }
 
@@ -275,9 +277,16 @@ impl GameData {
         }
         let items = &self.items;
         if items.items.is_empty()
-            || items.items.iter().any(|t| !items.types.contains_key(&t.kind) || t.effects.is_empty() || t.effects.iter().any(|e| ![ITEM_DAMAGE, ITEM_KARMA].contains(&e[0])))
+            || items.items.iter().any(|t| {
+                !items.types.contains_key(&t.kind)
+                    || t.effects.is_empty()
+                    || t.effects.iter().any(|e| ![ITEM_DAMAGE, ITEM_KARMA].contains(&e[0]))
+            })
         {
-            return Err("items.json: no template, or one of an unknown type, without effects (its name would show \"?\") or with an unknown effect".into());
+            return Err(
+                "items.json: no template, or one of an unknown type, without effects (its name would show \"?\") or with an unknown effect"
+                    .into(),
+            );
         }
         if let Some(c) = self.classes.keys().find(|&&c| !items.items.iter().any(|t| (0..6).any(|s| items.can_equip(c, t.kind, s)))) {
             return Err(format!("items.json: class {c} can equip no template (the fight-end drop picks among those)"));

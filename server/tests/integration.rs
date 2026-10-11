@@ -649,8 +649,14 @@ async fn random_games_match_solo_players_and_parties() {
     let store = std::env::temp_dir().join(format!("dofus-it-random-{}.json", std::process::id()));
     let addr = start_server(&store, net::Overrides { turn_ms: Some(60_000), placement_ms: Some(60_000) }).await;
     let mut cl = Vec::new();
-    for (i, (acc, pa, name)) in [("rnda", "PARanda|1|0|-1|-1|-1\n", "Randa"), ("rndb", "PARandb|2|1|-1|-1|-1\n", "Randb"),
-        ("rndc", "PARandc|3|0|-1|-1|-1\n", "Randc"), ("rndd", "PARandd|4|1|-1|-1|-1\n", "Randd")].into_iter().enumerate()
+    for (i, (acc, pa, name)) in [
+        ("rnda", "PARanda|1|0|-1|-1|-1\n", "Randa"),
+        ("rndb", "PARandb|2|1|-1|-1|-1\n", "Randb"),
+        ("rndc", "PARandc|3|0|-1|-1|-1\n", "Randc"),
+        ("rndd", "PARandd|4|1|-1|-1|-1\n", "Randd"),
+    ]
+    .into_iter()
+    .enumerate()
     {
         let mut c = Client::connect(&addr).await;
         assert_eq!(c.register(acc, &format!("pw{i}")).await, "AlKfr");
@@ -659,7 +665,8 @@ async fn random_games_match_solo_players_and_parties() {
     }
     let [mut a, mut b, mut c, mut d] = <[Client; 4]>::try_from(cl).ok().unwrap();
     let (ida, idb, idc, idd) = (a.id, b.id, c.id, d.id);
-    let team_of = |gm: &str, id: u32| gm.split("|+").find(|e| e.starts_with(&format!("{id};"))).map(|e| e.split(';').nth(11).unwrap().to_string());
+    let team_of =
+        |gm: &str, id: u32| gm.split("|+").find(|e| e.starts_with(&format!("{id};"))).map(|e| e.split(';').nth(11).unwrap().to_string());
 
     // ── "Jouer seul": A searches alone, B too → matched 1v1 ──
     a.send("GC3\n").await;
@@ -973,7 +980,7 @@ async fn register_then_login() {
     assert_eq!(Client::connect(&addr).await.login("nobody", "matrix").await, "AlEf"); // unknown account
     assert_eq!(Client::connect(&addr).await.register("neo", "other").await, "AlEe"); // already registered
     assert_eq!(Client::connect(&addr).await.login("nobody", "matrix").await, "AlEf"); // the refused login created nothing
-    // a register frame cut at 200 chars (no trailing `\n`) is refused: the 1-char-shorter login frame could never match it
+                                                                                      // a register frame cut at 200 chars (no trailing `\n`) is refused: the 1-char-shorter login frame could never match it
     let mut cut = Client::connect(&addr).await;
     cut.send("5\n").await;
     cut.send(&format!("{}\n+{}", "a".repeat(32), "a".repeat(166))).await;
@@ -1177,9 +1184,13 @@ async fn matchmaking_prefers_the_nearest_level() {
     std::fs::write(&store, serde_json::to_string(&saved).unwrap()).unwrap();
     let addr = reopen_server(&store).await;
     let mut cl = Vec::new();
-    for (acc, pa, name) in [("lvla", "PALvla|1|0|-1|-1|-1\n", "Lvla"), ("lvlb", "", "Lvlb"), ("lvlc", "PALvlc|3|0|-1|-1|-1\n", "Lvlc"),
-        ("lvls", "PALvls|4|1|-1|-1|-1\n", "Lvls"), ("lvlt", "PALvlt|5|0|-1|-1|-1\n", "Lvlt")]
-    {
+    for (acc, pa, name) in [
+        ("lvla", "PALvla|1|0|-1|-1|-1\n", "Lvla"),
+        ("lvlb", "", "Lvlb"),
+        ("lvlc", "PALvlc|3|0|-1|-1|-1\n", "Lvlc"),
+        ("lvls", "PALvls|4|1|-1|-1|-1\n", "Lvls"),
+        ("lvlt", "PALvlt|5|0|-1|-1|-1\n", "Lvlt"),
+    ] {
         let mut c = Client::connect(&addr).await;
         if pa.is_empty() {
             assert_eq!(c.login(acc, "pw").await, "AlKfr");
