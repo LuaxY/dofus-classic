@@ -8,8 +8,8 @@ to wait and to assert. Each client is its own bun process (the runtime has proce
 ## Run
 
 ```sh
-bun scripts/playtest.ts            # all five scenarios (≈ 17 min)
-bun scripts/playtest.ts fresh      # or any of: fresh reconnect disruption coverage random
+bun scripts/playtest.ts            # all six scenarios (≈ 17 min)
+bun scripts/playtest.ts fresh      # or any of: fresh reconnect disruption coverage random social
 ```
 
 Prerequisites: the converted assets (`web/public/assets/swf/`, `media/`), `web/public/lang/fr.json`, cargo. The script
@@ -28,7 +28,7 @@ Output, per run: `web/public/assets/port-preview/playtest/<run>/`
 | File | Role |
 |---|---|
 | `web/src/dev/headless-client.ts` | `Headless.boot()` = `main.ts`'s `boot()` with the fs loader and canvas; real-time clock (`advance(elapsed)` every 16 ms, like `requestAnimationFrame`) or the replay test's fast clock; `click` (aims at the centre, else at the first point of a grid over the bounds that the runtime's mouse target confirms), `type`, `key`, `clickCell`/`hoverCell` (a point of the cell's diamond that reaches the cell: the cell clip or a sprite forwarding to its own cell), `shot`, `dump` (display tree). Records the wire under the client (sent/received frames, never altered), runtime `console.error`s, sequencer timeouts (with the action that timed out), and frames the client's own parser drops. `replay.test.ts` uses the same helpers. |
-| `web/src/dev/bot.ts` | One client: JSON steps on stdin, one JSON result per step on stdout. Steps: `login` (also `expect: "refused"`), `characters`, `createCharacter` (guild, sex, three colours picked on the gradient, name), `selectCharacter`, `channel` (combo pick → `CJ<name>`), `chat` (Enter or Send), `waitChat`, `freeGames`, `createGame` (name, map scrolled to in the combo), `joinGame` (refresh, pick in the combo), `team` (radio button), `waitPlayers`, `start` (creator's Play / wait for placement), `place`, `fight` (policy below), `leaveResult`, `logout` (menu → Déconnexion → Oui, then closes the "connexion interrompue" box), `village` ("Retour au village" → back to the lobby), `addFriend` (Amis tab), random games: `playAlone` ("Jouer" → "Jouer seul"; already matched if someone was waiting), `makeTeam` ("Jouer" → "Constituer une équipe"), `invite` (pick a friend or "Aléatoire" in the list → Inviter), `invitation` (the invitee's box: Oui / Non / wait until shown / until closed), `waitCard`, `cancelCard` (a card's Annuler), `search` (Rechercher), `gift` (random result's "Ta récompense" → village → lobby), plus `dump`, `shot`, `frames`, `click`, `wait` for ad-hoc work. |
+| `web/src/dev/bot.ts` | One client: JSON steps on stdin, one JSON result per step on stdout. Steps: `login` (OK; also `expect: "refused"`), `register` (the login screen's authored "S'inscrire" button: the register frame `<account>\n+<crypt>`, `docs/protocol/account.md`; `expect: "refused"` for an existing account, `AlEe`), `characters`, `createCharacter` (guild, sex, three colours picked on the gradient, name), `selectCharacter`, `channel` (combo pick → `CJ<name>`), `chat` (Enter or Send), `waitChat`, `freeGames`, `createGame` (name, map scrolled to in the combo), `joinGame` (refresh, pick in the combo), `team` (radio button), `waitPlayers`, `start` (creator's Play / wait for placement), `place`, `fight` (policy below), `leaveResult`, `logout` (menu → Déconnexion → Oui, then closes the "connexion interrompue" box), `village` ("Retour au village" → back to the lobby), `addFriend` (Amis tab), random games: `playAlone` ("Jouer" → "Jouer seul"; already matched if someone was waiting), `makeTeam` ("Jouer" → "Constituer une équipe"), `invite` (pick a friend or "Aléatoire" in the list → Inviter), `invitation` (the invitee's box: Oui / Non / wait until shown / until closed), `waitCard`, `cancelCard` (a card's Annuler), `search` (Rechercher), `gift` (random result's "Ta récompense" → village → lobby), social village map: `joinMap` (pick the card → "Rejoindre la carte": `PS` + `GW` → the map with my sprite drawn, never `GAx;3`), `walk` (click a cell, by default a free one 4-8 steps away by the client path-finder nearest the middle of the map → the server's `GA<n>;1;<me>`, my `GKK<n>`, my sprite standing on it), `travel` (`walk` onto a given map-change plate → my `GKK<n>`, then the expected map drawn with my sprite on my cell of its `GM`; fails if a sprite of the old map is left), `sprite` (wait until another character's sprite is drawn — its SWF loaded, not just its controller — and stands on a given cell, or until it is gone), `changeCharacter` (menu → "Changer de perso" → Oui → reconnect → character list), `waitChat` with `bubble` (the speech bubble over the speaker's sprite), plus `dump`, `shot`, `frames`, `click`, `wait` for ad-hoc work. |
 | `scripts/playtest.ts` | Orchestrator, never loads canvas (a bun process that has loaded `@napi-rs/canvas` cannot spawn: `posix_spawn EBADF`). Exports `Bot`, `bots`, `enter`, `duel`, `startServer`, `stopServer` behind an `import.meta.main` guard, so an ad-hoc driver is a few lines: `import { bots, enter, duel, startServer } from "./playtest.ts"` (it must build the server itself first). |
 
 **Fight policy** (`fight` step): the bot plays every one of its turns until the result panel shows (or it leaves).
@@ -51,8 +51,9 @@ without any possible action (`stalled`, with a diagnosis of positions, reach and
 
 ## Scenarios
 
-1. **fresh** — accounts `alice`/`bob` created on first login; characters created through the accordion (Iop female,
-   Osamodas male, different colours); select → village → multiplayer screen (bare `CJ`); both pick channel `Dofus`
+1. **fresh** — accounts `alice`/`bob` registered through "S'inscrire" (every scenario registers an account the first
+   time it uses it in the run, then logs in with OK; the server no longer creates accounts on login); characters created
+   through the accordion (Iop female, Osamodas male, different colours); select → village → multiplayer screen (bare `CJ`); both pick channel `Dofus`
    in the combo (`CJDofus`); chat both ways (Enter, then the Send button), each line checked in the other's chat log;
    A creates "Duel" on map 1426, switches team 1 → 0 (`Gt` is only sent while the game is not full,
    `AKSClient/Dofus.Client.Game.as:126-132`), B joins (lands on team 1); Play → `GPS` → `GD`/`GR` → placement, both
@@ -75,6 +76,13 @@ without any possible action (`stalled`, with a diagnosis of positions, reach and
    invites again and withdraws it (D's box closes); C invites a third time, D says Oui: both see both cards; C adds an
    "Aléatoire" slot ("?" card on both sides) and removes it; C "Rechercher" (both under the search mask); A and B
    "Jouer seul" and become the other team: 2v2, results with all four names, everybody back to the lobby.
+6. **social** — "Rejoindre la carte" (authored `GW`, `docs/protocol/game.md`): Sram A joins the village map, then
+   Ecaflip B, after A's map is drawn, so A loads B's sprite on demand (the late `GM|+`); each sees the other's sprite
+   drawn on its spawn cell; A walks, B sees A's sprite stop on the new cell, and the other way round; chat both ways
+   (banner console + Enter), each line in the other's log and in a speech bubble; A walks onto the village's first
+   linked map-change plate (`travel`: its `GKK`, then the next map drawn with only its own sprite, on the arrival
+   plate) and B sees A's sprite go; B follows (lands next to A, whose plate is taken) and each sees the other there;
+   B leaves through the menu's "Changer de perso" (back on its character list) and A sees B's sprite go.
 
 | Pairing (A vs B) | Map | Spare |
 |---|---|---|
@@ -86,6 +94,7 @@ without any possible action (`stalled`, with a diagnosis of positions, reach and
 | Iop 8 vs Osamodas 2 | 1665 | 42 |
 | disruption fights | 501, 505, 509 | |
 | random games | picked by the server | |
+| social village map | 567 (`rules.village_map`), then 563 through plate 115 | |
 
 ## Bugs found and fixed
 
@@ -116,14 +125,19 @@ were fixed on the server so the AS code stays as it is.
 
 ## Last run
 
-`bun scripts/playtest.ts` → `web/public/assets/port-preview/playtest/2026-10-10T19-03-31/` (exit 0, ≈ 16 min):
-fresh PASS (199 s), reconnect PASS (20 s), disruption PASS (47 s), coverage PASS (413 s), random PASS (280 s). Every
+`bun scripts/playtest.ts` → `web/public/assets/port-preview/playtest/2026-10-10T23-37-26/` (exit 0, ≈ 16 min):
+fresh PASS (198 s), reconnect PASS (20 s), disruption PASS (47 s), coverage PASS (413 s), random PASS (280 s), social
+PASS (20 s). After the last social-only server changes (no-op walk refused, `GKE` onto an occupied cell ignored),
+`bun scripts/playtest.ts social` → `…/playtest/2026-10-10T23-55-51/`: PASS (20 s); Leonard joined after Kimette's map
+was drawn, and her `sprite` step found his gfx loaded and drawn on his cell (0.4 s), so a late `GM` loads its gfx on
+demand. With map travel (village 567, world maps): `bun scripts/playtest.ts social` → `…/playtest/2026-10-11T00-53-32/`:
+PASS (31 s), Kimette 567 → 563 (plate 115 → cell 102, `A/012-travel-563.png`), Leonard after her onto cell 88
+(`B/013-travel-563.png`, `B/014-sees-Kimette.png`). Every
 class cast all its level-1 spells (1: 1 2 4 · 2: 21 22 23 24 32 · 3: 41 42 43 · 4: 61 63 67 · 5: 81 82 83 84 ·
 6: 101 102 103 · 7: 121 122 123 124 126 · 8: 141 142 143 · 9: 161 162 163 166 · 10: 181 182 183) and did close
 combats; maps 1426, 53, 501, 505, 509, 101, 161, 504, 1594, 1665, and the random games' 1610 (1v1) and 671 (2v2). The
 leaver was in the losers in all three disruption cases. No client error, no in-game sequencer timeout, no dropped
-frame. After the last code changes (`Help.showLayer`'s case-insensitive lookup, withdrawing a disconnected invitee's
-invitation), `bun scripts/playtest.ts disruption random` → `…/playtest/2026-10-10T19-25-21/`: both PASS (47 s, 335 s).
+frame.
 
 ## Observations (not fixed)
 

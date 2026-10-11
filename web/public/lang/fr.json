@@ -1,6 +1,7 @@
 {
  "ACCESS_DENIED": "Connexion refusée. \nNom de compte ou mot de passe incorrect.",
  "ACCOUNT": "Compte",
+ "ACCOUNT_EXISTS": "Ce compte existe déjà.",
  "ACTIONPOINTS": "Points d'action",
  "ACTION_POINTS": "Points d'actions",
  "ADD": "Ajouter",
@@ -186,6 +187,7 @@
  "I_AM_IN_SINGLE_GAME": "Je suis <b>%1</b> (%2) dans le village.",
  "I_CANT_GO": "Je ne peux \npas y aller !",
  "JOIN_GAME": "Rejoindre une partie",
+ "JOIN_MAP": "Rejoindre la carte",
  "JOIN_SMALL": "Rejoindre",
  "KARMA": "Karma",
  "LEAVE": "Quitter",
@@ -249,6 +251,7 @@
  "RANGEFULL": "Portée",
  "REDUCE_DAMAGES": "<b>%1</b> réduit les dommages de <b>%2</b>.",
  "REFUSE_INVITATION": "%1 refuse ton invitation.",
+ "REGISTER": "S'inscrire",
  "REMOVE_FRIEND_OK": "Tu viens de perdre un ami.",
  "RESISTANCES": "Résistances",
  "RETURN_DAMAGES": "<b>%1</b> renvoie <b>%2</b> de dommages.",
@@ -1150,6 +1153,18 @@
    "n": "Port de Madrestam",
    "d": ""
   },
+  "276": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "279": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "286": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
   "489": {
    "n": "Amakna",
    "d": ""
@@ -1174,11 +1189,191 @@
    "n": "Le village",
    "d": ""
   },
+  "525": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "526": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "530": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "536": {
+   "n": "Le champ des Ingals",
+   "d": ""
+  },
+  "544": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "545": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "546": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "549": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "550": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "551": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "554": {
+   "n": "Le champ des Ingals",
+   "d": ""
+  },
+  "561": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "563": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "564": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "566": {
+   "n": "Amakna",
+   "d": ""
+  },
   "567": {
    "n": "Amakna",
    "d": ""
   },
+  "568": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "569": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "570": {
+   "n": "Amakna",
+   "d": ""
+  },
   "578": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "579": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "580": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "581": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "582": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "583": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "584": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "586": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "587": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "588": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "589": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "590": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "591": {
+   "n": "Amakna",
+   "d": ""
+  },
+  "592": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "593": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "594": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "595": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "596": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "597": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "598": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "599": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "600": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "603": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "607": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "608": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "609": {
+   "n": "La forêt d'Amakna",
+   "d": ""
+  },
+  "611": {
+   "n": "Le coin des Bouftous",
+   "d": ""
+  },
+  "612": {
    "n": "La forêt d'Amakna",
    "d": ""
   },
@@ -1208,6 +1403,10 @@
   },
   "946": {
    "n": "Le coin des Boos",
+   "d": ""
+  },
+  "1012": {
+   "n": "Amakna",
    "d": ""
   },
   "1117": {

@@ -1,11 +1,13 @@
 //! The whole server state as one synchronous event handler: frames in, frames out (through each session's channel),
 //! timers as events. Runs on a single task (net.rs), so no locks.
 // ponytail: one task owns everything; shard per game if a single core ever becomes the limit.
+use crate::codec::{cell_code, compress_path, extract_path};
 use crate::crypt;
 use crate::data::GameData;
 use crate::fight::{color, Fighter, Game, Phase, Rng};
+use crate::pathfinding::{distance, path_find};
 use crate::store::{Account, Character, KnownSpell, Store};
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeMap, HashMap, HashSet};
 use tokio::sync::mpsc::UnboundedSender;
 
 pub type Sid = u64;
@@ -41,6 +43,11 @@ struct Session {
     character: Option<u32>,
     place: Place,
     last_channel: Option<String>,
+    /// Authored `GW` after `PS` ("Rejoindre la carte"): this session stays on the village map instead of `GAx;3`.
+    social: bool,
+    /// On a village (world) map: (map, cell, dir), and the cells of its last walk (a `GKE` must stop on one of them).
+    spot: Option<(u32, i64, i32)>,
+    walk: Vec<i64>,
 }
 
 pub struct World {
@@ -53,6 +60,8 @@ pub struct World {
     timers: Option<UnboundedSender<Event>>,
     turn_ms: u64,
     placement_ms: u64,
+    /// Action ids of village moves (`GA<n>;1;…`), like a game's `next_action`.
+    village_action: u32,
 }
 
 /// Names (characters, games, channels): no protocol separators, no markup, no control chars.
@@ -82,6 +91,7 @@ impl World {
             timers: None,
             turn_ms,
             placement_ms,
+            village_action: 0,
         }
     }
 
@@ -99,7 +109,18 @@ impl World {
                 let _ = tx.send(format!("H{key}"));
                 self.sessions.insert(
                     sid,
-                    Session { tx, key, stage: Stage::Version, account: None, character: None, place: Place::None, last_channel: None },
+                    Session {
+                        tx,
+                        key,
+                        stage: Stage::Version,
+                        account: None,
+                        character: None,
+                        place: Place::None,
+                        last_channel: None,
+                        social: false,
+                        spot: None,
+                        walk: Vec::new(),
+                    },
                 );
             }
             // One WebSocket text frame = one message; split on `\0` anyway (XMLSocket framing), strip one `\n`.
@@ -165,6 +186,16 @@ impl World {
         self.sessions.iter().filter(|(_, s)| s.place == Place::Channel(name.into())).map(|(&k, _)| k).collect()
     }
 
+    /// Sessions standing on village map `map` (social sessions after their `GD`).
+    fn village_sids(&self, map: u32) -> Vec<Sid> {
+        self.sessions.iter().filter(|(_, s)| s.place == Place::Village && s.spot.is_some_and(|(m, ..)| m == map)).map(|(&k, _)| k).collect()
+    }
+
+    /// The cells they stand on.
+    fn village_cells(&self, map: u32) -> HashSet<i64> {
+        self.village_sids(map).iter().filter_map(|o| self.sessions[o].spot).map(|(_, c, _)| c).collect()
+    }
+
     // ───────────── dispatch ─────────────
 
     fn dispatch(&mut self, sid: Sid, msg: &str) {
@@ -181,17 +212,24 @@ impl World {
         }
     }
 
+    /// `<login>\n<crypt>` logs in. The authored register frame `<login>\n+<crypt>` (docs/protocol/account.md) creates the
+    /// account first (`AlEe` if it exists): `+` is outside the crypt alphabet (crypt::HASH), no login frame carries it.
     fn login(&mut self, sid: Sid, msg: &str) {
         let (login, pass) = msg.split_once('\n').unwrap_or((msg, ""));
+        let (register, pass) = pass.strip_prefix('+').map_or((false, pass), |p| (true, p));
         let key = self.sessions[&sid].key.clone();
-        let valid =
-            (1..=32).contains(&login.len()) && login.chars().all(|c| c.is_ascii_alphanumeric() || "-_.".contains(c)) && !pass.is_empty();
+        // A register frame cut at 200 chars (Client.as:78-81) would store a crypt no later, 1-char-shorter login matches.
+        let valid = (1..=32).contains(&login.len())
+            && login.chars().all(|c| c.is_ascii_alphanumeric() || "-_.".contains(c))
+            && !pass.is_empty()
+            && !(register && msg.len() >= 200);
         if !valid {
             return self.send(sid, "AlEx");
         }
         let ok = match self.store.accounts.get_mut(login) {
+            Some(_) if register => return self.send(sid, "AlEe"),
             Some(acc) => crypt::verify(&mut acc.password, pass, &key),
-            // Unknown account: created on first login with whatever password was typed (see docs/server.md).
+            None if !register => false, // unknown account: ACCESS_DENIED, like a wrong password
             None => match crypt::candidates(pass, &key) {
                 Some(password) => {
                     self.store.accounts.insert(login.to_string(), Account { password, friends: Vec::new() });
@@ -351,7 +389,8 @@ impl World {
             return self.send(sid, "ASE");
         }
         self.leave_place(sid, true);
-        self.sessions.get_mut(&sid).unwrap().character = Some(c.id);
+        let s = self.sessions.get_mut(&sid).unwrap();
+        (s.character, s.social) = (Some(c.id), false);
         let class = &self.data.classes[&c.class];
         let (low, high) = self.xp_bounds(c.level);
         let spells: Vec<String> = c.spells.iter().map(|s| self.data.spell_entry(s.id, s.level, s.position)).collect();
@@ -474,6 +513,14 @@ impl World {
                 }
             }
             Place::Game(_) => self.leave_game(sid, silent),
+            Place::Village if self.sessions[&sid].spot.is_some() => {
+                let s = self.sessions.get_mut(&sid).unwrap();
+                let (map, ..) = s.spot.take().unwrap();
+                let me = s.character.unwrap();
+                for other in self.village_sids(map) {
+                    self.send(other, format!("GM|-{me}"));
+                }
+            }
             _ => {}
         }
         self.set_place(sid, Place::None);
@@ -514,6 +561,7 @@ impl World {
     fn audience(&self, sid: Sid, team_only: bool) -> Vec<Sid> {
         match self.place(sid) {
             Place::Channel(n) if !team_only => self.channel_sids(&n),
+            Place::Village if !team_only && self.sessions[&sid].spot.is_some() => self.village_sids(self.sessions[&sid].spot.unwrap().0),
             Place::Game(g) => {
                 let me = self.sessions[&sid].character;
                 let game = &self.games[&g];
@@ -736,6 +784,10 @@ impl World {
             // ("Retour au village", the random result's gift button) makes `GV` → `onLeave` send a `CJ` that the
             // server reads between `GC1` and `GD`.
             ("GD", None) => self.village_map(sid, me),
+            ("GW", None) => self.sessions.get_mut(&sid).unwrap().social = true, // authored, sent without a spinner
+            ("GA", None) if self.sessions[&sid].spot.is_some() => self.village_move(sid, me, rest),
+            ("GKE", None) if self.sessions[&sid].spot.is_some() => self.village_stop(sid, rest),
+            ("GKK", None) if self.sessions[&sid].spot.is_some() => self.village_walked(sid, me),
             ("GL", _) => {
                 let open: String = self
                     .games
@@ -775,31 +827,119 @@ impl World {
         }
     }
 
-    /// Village (state 1): `GDM` role-play, the player on its cell, then `GA x;3` straight to the multiplayer
-    /// screen — beta 5 "ne contient que les combats".
-    fn village_map(&mut self, sid: Sid, me: u32) {
-        let entry = self.data.maps.iter().find(|m| m.id == self.data.rules.village_map).unwrap();
-        self.send(sid, format!("GDM|{}|{}|{}|1|{}|{}", entry.id, entry.width, entry.height, entry.background, entry.map_data));
-        let c = &self.store.characters[&me];
+    /// Solo `GM` add entry: `+id;name;level;guild;sex;gfx;c1;c2;c3;weapon;cell;dir`.
+    fn solo_entry(c: &Character, (cell, dir): (i64, i32)) -> String {
         let col = c.colors.map(color);
-        self.send(
-            sid,
-            format!(
-                "GM|+{};{};{};{};{};{};{};{};{};;{};1",
-                c.id,
-                c.name,
-                c.level,
-                c.class,
-                c.sex,
-                c.gfx(),
-                col[0],
-                col[1],
-                col[2],
-                entry.places[0][0]
-            ),
-        );
-        self.send(sid, format!("GAx;3;{me}"));
-        self.leave_place(sid, true);
+        format!("+{};{};{};{};{};{};{};{};{};;{cell};{dir}", c.id, c.name, c.level, c.class, c.sex, c.gfx(), col[0], col[1], col[2])
+    }
+
+    /// `GDM` of world map `map`, role-play.
+    fn map_frame(&self, map: u32) -> String {
+        let m = &self.data.world[&map].map;
+        format!("GDM|{}|{}|{}|1|{}|{}", m.id, m.width, m.height, m.background, m.data)
+    }
+
+    /// The free walkable cell of world map `map` nearest `target` (the middle of the map is in view, unlike the fight
+    /// placement cells at its edges); never an occupied one: both path-finders treat occupied cells as blocked.
+    fn free_cell_near(&self, map: u32, target: i64) -> i64 {
+        let (taken, m) = (self.village_cells(map), &self.data.world[&map].map);
+        (0..m.cells.len() as i64)
+            .filter(|c| m.walkable(*c) && !taken.contains(c))
+            .min_by_key(|&c| distance(c, target, m.width as i64))
+            .unwrap_or(target)
+    }
+
+    /// Village (state 1): `GDM` role-play, the player on its cell, then `GA x;3` straight to the multiplayer
+    /// screen — beta 5 "ne contient que les combats". A social session (`GW`) stays, on the village map (or the world
+    /// map it already stands on): `show_map`.
+    fn village_map(&mut self, sid: Sid, me: u32) {
+        let (social, spot, village) = (self.sessions[&sid].social, self.sessions[&sid].spot, self.data.rules.village_map);
+        if spot.is_none() {
+            self.leave_place(sid, true);
+        }
+        let middle = self.data.world[&village].map.cells.len() as i64 / 2;
+        if !social {
+            self.send(sid, self.map_frame(village));
+            self.send(sid, format!("GM|{}", Self::solo_entry(&self.store.characters[&me], (self.free_cell_near(village, middle), 1))));
+            return self.send(sid, format!("GAx;3;{me}"));
+        }
+        if spot.is_none() {
+            let cell = self.free_cell_near(village, middle);
+            let s = self.sessions.get_mut(&sid).unwrap();
+            (s.place, s.spot, s.walk) = (Place::Village, Some((village, cell, 1)), Vec::new());
+        }
+        self.show_map(sid, spot.is_none());
+    }
+
+    /// The session's world map, then one `GM` with every occupant of it (itself last) to it; `arrived`: its own `GM|+`
+    /// to the others.
+    fn show_map(&self, sid: Sid, arrived: bool) {
+        let (map, ..) = self.sessions[&sid].spot.unwrap();
+        self.send(sid, self.map_frame(map));
+        let others: Vec<Sid> = self.village_sids(map).into_iter().filter(|&o| o != sid).collect();
+        let entry = |o: Sid| {
+            let (_, cell, dir) = self.sessions[&o].spot.unwrap();
+            Self::solo_entry(self.character(o).unwrap(), (cell, dir))
+        };
+        let entries: Vec<String> = others.iter().chain([&sid]).map(|&o| entry(o)).collect();
+        self.send(sid, format!("GM|{}", entries.join("|")));
+        if arrived {
+            others.iter().for_each(|&o| self.send(o, format!("GM|{}", entries.last().unwrap())));
+        }
+    }
+
+    /// `GKK<n>`: its walk is over. Standing on a plate of its world map (`links`, maps.json `world`) → the linked map,
+    /// arriving on the plate there that leads back, or on the free walkable cell nearest it. The walker gets, while the
+    /// old map is still drawn, one `GM|-<id>` per old occupant (one removal per `GM`, Dofus.Client.Game.as:249) and its
+    /// own `GM|+` on the arrival cell (the new map's `onMapLoad` rebuilds its sprite from that cell,
+    /// Events.Battlefield.Map.as:57-61), then the new map as after `GD`. Old occupants get `GM|-<id>`.
+    fn village_walked(&mut self, sid: Sid, me: u32) {
+        let (map, cell, dir) = self.sessions[&sid].spot.unwrap();
+        let Some(&(to, plate)) = self.data.world[&map].links.get(&cell) else { return };
+        for o in self.village_sids(map).into_iter().filter(|&o| o != sid) {
+            self.send(o, format!("GM|-{me}"));
+            self.send(sid, format!("GM|-{}", self.sessions[&o].character.unwrap()));
+        }
+        let arrival = self.free_cell_near(to, plate);
+        let s = self.sessions.get_mut(&sid).unwrap();
+        (s.spot, s.walk) = (Some((to, arrival, dir)), Vec::new());
+        self.send(sid, format!("GM|{}", Self::solo_entry(self.character(sid).unwrap(), (arrival, dir))));
+        self.show_map(sid, true);
+    }
+
+    /// Village `GA001<path>`: the server's own path (pathfinding.rs, out-of-fight rules: length 500, every occupant
+    /// blocks, like the client's `pathFind`, whose role-play exemption reads the never-set `BATTLEFIELD.Map.bRolePlay`)
+    /// to the requested end cell, broadcast as `GA<n>;1;<id>;<startCode><path>` to every occupant, the mover included
+    /// (it answers `GKK<n>`). No `GAS`/`GAF` around it: `GAS` sets `m_bNextAction` and the ack would then leave the
+    /// action manager transmitting. A refused move gets `GAF<id>` alone (closes the spinner, resets the manager).
+    fn village_move(&mut self, sid: Sid, me: u32, rest: &str) {
+        let (map_id, start, _) = self.sessions[&sid].spot.unwrap();
+        let map = &self.data.world[&map_id].map;
+        let occupied = self.village_cells(map_id);
+        let dest = rest.strip_prefix("001").and_then(extract_path).and_then(|p| p.last().copied());
+        let found = dest.and_then(|d| path_find(map, &occupied, &HashSet::new(), false, 500, start, d as i64));
+        let Some((path, full)) = found.filter(|(_, full)| !full.is_empty()) else {
+            return self.send(sid, format!("GAF{me}"));
+        };
+        let (end, dir) = *full.last().unwrap();
+        let s = self.sessions.get_mut(&sid).unwrap();
+        (s.spot, s.walk) = (Some((map_id, end, dir)), [start].into_iter().chain(full.iter().map(|&(c, _)| c)).collect());
+        self.village_action += 1;
+        let path: Vec<(i32, i32)> = path.iter().map(|&(c, d)| (c as i32, d)).collect();
+        let ga = format!("GA{};1;{me};{}{}", self.village_action, cell_code(start as i32), compress_path(&path));
+        self.village_sids(map_id).into_iter().for_each(|o| self.send(o, ga.clone()));
+    }
+
+    /// `GKE<n>|<cell>`: a click during its own walk stopped the sprite on `cell` (GameActionsManager.as:29-33,59-69);
+    /// the new `GA001` that follows starts there. Only a free cell of its last walk (start included) is taken.
+    fn village_stop(&mut self, sid: Sid, rest: &str) {
+        let (map, ..) = self.sessions[&sid].spot.unwrap();
+        let taken = self.village_cells(map);
+        let s = self.sessions.get_mut(&sid).unwrap();
+        let cell = rest.split_once('|').and_then(|(_, c)| c.parse::<i64>().ok());
+        if let (Some(cell), Some((_, _, dir))) = (cell.filter(|c| s.walk.contains(c) && !taken.contains(c)), s.spot) {
+            s.spot = Some((map, cell, dir));
+        }
     }
 
     /// `GC2<name>|<map>|<options>|<password>` → `GCK|2|name|map|options` then the creator's `GM`.

@@ -1,7 +1,7 @@
 # Account, connection & characters
 
-Covers the handshake (`H`), version + credentials, login answer (`Al`), server notices (`M`), who-is (`BW`/`AW`),
-character list / select / create / delete (`P*`/`A*`), stat boosts (`PB`/`AB`) and level-up (`AN`).
+Covers the handshake (`H`), version + credentials, the port's register frame (authored), login answer (`Al`), server
+notices (`M`), who-is (`BW`/`AW`), character list / select / create / delete (`P*`/`A*`), stat boosts (`PB`/`AB`) and level-up (`AN`).
 
 Conventions used in every protocol file:
 
@@ -70,6 +70,33 @@ host `server01.dofus.com`, `AKSClient/Dofus.Kernel.Init.as:26`).
 
 ---
 
+## Register (C→S) — **authored** by this port, not in the beta client
+
+```
+5\n\0                                    (version frame, unchanged)
+<login>\n+<cryptedPassword>\n\0          (instead of the credentials frame)
+```
+
+The beta has no account creation (accounts came from the web site; the login UI is lost). The port's login screen
+(`web/src/game/ui/screens/login.ts`) has a second button, "S'inscrire" (authored lang key `REGISTER`): same fields, same
+`onLogin`/`AKS.connect`, but it sets `AKS.register`, so the `logon` that follows `H<key>` sends this frame
+(`web/src/game/kernel/client.ts`, `login(…, register)` in `web/src/core/protocol.ts`). Same connection, after `H`, so the
+crypt uses the session key exactly like a login.
+
+- **Discriminator**: a `+` right after the first `\n`. `+` is not in the crypt alphabet (`HASH`,
+  `AKSClient/__Packages/ank/Crypt.as:3`), so no credentials frame (`AKSClient/Dofus.Client.as:73`) can carry it, whatever
+  the user typed as login; it precedes the crypt, so the 200-char cap cannot cut it off. A server that does not know the
+  frame refuses it as a bad crypt (`AlEx`).
+- **Answer**: as a successful login (`AlK<language>`, the account is created and authenticated); `AlEe` if the account
+  exists (whatever the password); `AlEx` for an invalid login or empty password, and for a register frame cut at 200 chars
+  (no trailing `\n`): the later login frame is one char shorter, so its crypt would never match the stored one.
+- Login never creates an account: an unknown account answers `AlEx` (ACCESS_DENIED), like a wrong password.
+
+Example (password `pass`, crypt of [encodings.md](encodings.md#password-crypt)): `bob\n+RFdAvFlc\n\0` → `AlKfr\0`; the
+same register on a new connection → `AlEe\0`.
+
+---
+
 ## Al — login result (S→C)
 
 ```
@@ -82,7 +109,7 @@ Handler: `AKSClient/Dofus.Client.DataProcessor.as:73-96` → `AKS.onLogin` (`AKS
 | Field | Notes |
 |---|---|
 | `language` | everything after `AlK` (`substr(3)`, `AKSClient/Dofus.Client.DataProcessor.as:77`). Stored in `DATACENTER.Player.Language` (`AKSClient/Events.AKS.as:48`); **read but unused** (no other reference). May be empty. |
-| `code` | 4th char (`charCodeAt(3)`, `AKSClient/Dofus.Client.DataProcessor.as:81`): `a` (97) → `ALREADY_LOGGED`; `v` (118) → `BAD_VERSION` + `AKS.onBadVersion()`; anything else (or nothing) → `ACCESS_DENIED` (`AKSClient/Dofus.Client.DataProcessor.as:84-93`). |
+| `code` | 4th char (`charCodeAt(3)`, `AKSClient/Dofus.Client.DataProcessor.as:81`): `a` (97) → `ALREADY_LOGGED`; `v` (118) → `BAD_VERSION` + `AKS.onBadVersion()`; anything else (or nothing) → `ACCESS_DENIED` (`AKSClient/Dofus.Client.DataProcessor.as:84-93`). **Authored:** `e` (101) → `ACCOUNT_EXISTS` in the port (`web/src/game/kernel/client.ts`), answer to the register frame only; the stock client shows it as `ACCESS_DENIED`. |
 
 Success behaviour: `m_bAuthentified = true`, `INTERFACE.clear()`, then either the start menu (`drawMenuInterface`,
 `modules_Interfaces/Dofus.Interface.as:82-94`) or, if `AKS.m_bSkipMenu` (set by "quit to character list",
@@ -93,7 +120,7 @@ Failure behaviour: redraws the login UI if absent, plays an error sound, shows a
 `onBadVersion` POSTs the SWF path to `http://jouer.dofus.com/files/login/delpath.php` (`AKSClient/Events.AKS.as:78-92`) —
 HTTP, not socket. The socket stays open; the client does not retry.
 
-Examples: `AlKfr\0`, `AlEa\0`, `AlEv\0`, `AlEx\0`.
+Examples: `AlKfr\0`, `AlEa\0`, `AlEv\0`, `AlEx\0`, `AlEe\0` (authored).
 
 ---
 

@@ -20,11 +20,15 @@ cd server && cargo run --release       # game server on ws://127.0.0.1:5555
 bun run dev                            # client on http://localhost:5173
 ```
 
-Open two tabs at http://localhost:5173, log in with any account name and password (accounts are created on first
-login), create a character and join the same channel. Then either:
+Open two tabs at http://localhost:5173, type any account name and password and click **S'inscrire** the first time
+(**OK** afterwards; no account exists until registered), create a character and join the same channel. Then either:
 
 - **Entraînement** (free games): create a game in one tab, join it from the other;
 - **Jouer → Jouer seul** in both tabs: random matchmaking pairs you up (parties of friends via *Constituer une équipe*).
+
+Or, without fighting: **Rejoindre la carte** on the character screen puts you on the village map with everyone else who
+did, to walk around and chat (an addition of this port; leave with menu → *Changer de perso*). Walk onto a round plate
+at a map edge to go to the next map: 51 linked 2004 maps of Amakna (`docs/server.md` "World maps").
 
 - `/?replay=fight` plays a scripted session with no server (login `bo` / `pass`).
 - `/?server=ws://host:port` points the client at another server.

@@ -21,6 +21,7 @@ test("parser: one sample per DataProcessor branch", () => {
     ["AlEa", { type: "loginError", reason: "alreadyLogged" }],
     ["AlEv", { type: "loginError", reason: "badVersion" }],
     ["AlEx", { type: "loginError", reason: "accessDenied" }],
+    ["AlEe", { type: "loginError", reason: "accountExists" }],
     ["AW|nobody", { type: "whoIs", playerName: "nobody", characterName: "!", state: null }],
     ["AW|acc|Bob|C|chan|", { type: "whoIs", playerName: "acc", characterName: "Bob", state: "C", param: "chan" }],
     ["AW|a|b", null],
@@ -131,6 +132,7 @@ test("OA: after an O segment the outer index continues from the inner one (AS `v
 test("builders: exact wire strings", () => {
   expect(P.version()).toBe("5\n");
   expect(P.login("acc", "ab", "A".repeat(32))).toBe("acc\nlglg\n");
+  expect(P.login("acc", "ab", "A".repeat(32), true)).toBe("acc\n+lglg\n"); // authored register frame
   expect(P.addCharacter("Bob", 1, "ff", "-1", "0", 1)).toBe("PABob|1|1|ff|-1|0\n");
   expect(P.deleteCharacter("")).toBeNull();
   expect(P.addFriend("*")).toBeNull();
@@ -141,6 +143,7 @@ test("builders: exact wire strings", () => {
   expect(P.chatMessage("<b>x|y", "*")).toBe("BM*|&lt;b&gt;x y\n");
   expect(P.createFreeGame("g", 507, "BB", "pw")).toBe("GC2g|507|BB|pw\n");
   expect(P.createSoloGame()).toBe("GC1\n");
+  expect(P.joinMap()).toBe("GW\n");
   expect(P.createRandomGame()).toBe("GC3\n");
   expect(P.joinGame(2, "g", "")).toBe("GJ2g|\n");
   expect(P.sendActions(1, ["qyaD"])).toBe("GA001qyaD\n");

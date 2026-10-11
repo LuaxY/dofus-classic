@@ -16,7 +16,8 @@ export type Step =
   | { do: "wait"; ms: number }
   | { do: "frames"; last?: number }
   | { do: "click"; path: string }
-  | { do: "login"; account: string; password: string; expect?: "ok" | "refused" }
+  /** Login screen: type account + password, OK (login) or "S'inscrire" (register, authored), then the start menu or the error box. */
+  | { do: "login" | "register"; account: string; password: string; expect?: "ok" | "refused" }
   | { do: "characters" }
   /** From the character list: Create → guild → sex → 3 colours (picked at fractions of the gradient) → name → Create. */
   | { do: "createCharacter"; name: string; guild: number; sex: 0 | 1; colors: [number, number][] }
@@ -24,8 +25,8 @@ export type Step =
   | { do: "selectCharacter"; name: string }
   /** Type a line in the lobby/fight console and send it with Enter or the Send button. */
   | { do: "chat"; text: string; via: "enter" | "button" }
-  /** Wait until the chat log shows `text`. */
-  | { do: "waitChat"; text: string; ms?: number }
+  /** Wait until the chat log shows `text` (and with `bubble`, a speech bubble over a sprite of the map). */
+  | { do: "waitChat"; text: string; ms?: number; bubble?: boolean }
   /** Lobby: open the free-games tab. */
   | { do: "freeGames" }
   /** Free-games tab: name, map (scrolling the map combo to it), "1 vs 1", optional password → Create → joined tab. */
@@ -67,7 +68,20 @@ export type Step =
   /** Team tab, creator: "Rechercher" on my card (Gs) → search mask. */
   | { do: "search" }
   /** Random result panel: the gift button (GQ + GC1 → village) → back to the multiplayer screen. */
-  | { do: "gift" };
+  | { do: "gift" }
+  /** From the character list: pick the card, "Rejoindre la carte" (PS + GW) → the village map with the other players. */
+  | { do: "joinMap"; name: string }
+  /** Village map: click `cell` (default: a free cell 4-8 steps away by the client path-finder, nearest the middle of the
+   *  map); wait for the server's
+   *  GA, my GKK and my sprite standing on it. */
+  | { do: "walk"; cell?: number }
+  /** Village map: walk onto the map-change plate `cell` like `walk`; after my GKK wait for map `map` drawn with my sprite
+   *  on my cell of its `GM`, and fail if a sprite or a character of the old map is left. */
+  | { do: "travel"; cell: number; map: number }
+  /** Village map: wait until the sprite of `name` is drawn (its SWF loaded) and standing on `cell` (any), or is gone. */
+  | { do: "sprite"; name: string; cell?: number; gone?: boolean }
+  /** Banner menu → "Changer de perso" → Oui → reconnect → the character list. */
+  | { do: "changeCharacter" };
 
 export type Policy = {
   /** Spell ids to cast at least once, in this order (each when it is castable). */
@@ -139,6 +153,15 @@ async function pickList(label: string, cb: Combo, ok: (d: Item) => boolean) {
   throw new Error(`${label}: no matching item in the combo`);
 }
 const gone = (o: DisplayObject | undefined) => !o || o.$.removed;
+/** The character list's card of `name`. */
+function cardOf(name: string) {
+  const list = G.INTERFACE.UIInterfaceCharacters!;
+  for (let i = 0; i < 10; i++) {
+    const c = list[`choice${i}`] as MovieClip | undefined;
+    if ((c?._data as { name?: string } | undefined)?.name == name) return c;
+  }
+  throw new Error(`no character card "${name}"`);
+}
 /** The chat window of the current screen (lobby, or the fight banner). */
 const chatOut = () => G.AKS.Chat.output as (MovieClip & { txtConsole?: DisplayObject; txtChat?: { text: string } }) | undefined;
 
@@ -166,6 +189,17 @@ async function backFromVillage(r0: number) {
 
 // ---- fight ----------------------------------------------------------------------------------------------------------
 type Char = NonNullable<ReturnType<typeof G.DATACENTER.Characters.getItemAt>>;
+/** The visible sprite of a character (Container.Object2.clips.sprite<id>), if it has one. */
+const spriteOf = (c: Char | null | undefined) => {
+  const s = (c?.clip as { sprite?: MovieClip } | null | undefined)?.sprite;
+  return s && !s.$.removed ? s : undefined;
+};
+/** Its character SWF arrived (a loadMovie still pending reports 4 bytes) and draws something. */
+const drawn = (c: Char | null | undefined) => {
+  const k = spriteOf(c)?.clip as MovieClip | undefined, b = k?.getBounds(h.p.root);
+  return !!k && k.getBytesTotal() > 4 && !!b && b.xMax > b.xMin;
+};
+const characterNamed = (name: string) => DC().Characters.items.find((c) => c?.name == name);
 const me = () => DC().Player.data as Char;
 const myID = () => String(DC().Player.ID);
 const myTurn = () => String(DC().Game.currentPlayerID) == myID();
@@ -578,10 +612,7 @@ async function step(s: Step): Promise<Record<string, unknown>> {
     }
     case "selectCharacter": {
       const list = G.INTERFACE.UIInterfaceCharacters!;
-      let card: MovieClip | undefined;
-      for (let i = 0; i < 10; i++) if ((list[`choice${i}`] as MovieClip | undefined)?._data && ((list[`choice${i}`] as MovieClip)._data as { name?: string }).name == s.name) card = list[`choice${i}`] as MovieClip;
-      if (!card) throw new Error(`no character card "${s.name}"`);
-      h.click("select character", card);
+      h.click("select character", cardOf(s.name));
       await h.run(300);
       h.click("play character", list.btnPlay);
       await h.need("multiplayer screen", () => G.INTERFACE.UIInterfaceMultiPlayer && DC().Channel.m_name, 20000);
@@ -600,6 +631,8 @@ async function step(s: Step): Promise<Record<string, unknown>> {
     }
     case "waitChat":
       await h.need(`chat line "${s.text}"`, () => chatOut()?.txtChat?.text.includes(s.text), s.ms ?? 10000);
+      if (s.bubble) // Character.say: one DialogBubbleSymbol per speaker in Container.Text (Events.AKS.Chat.as:46-58)
+        await h.need(`speech bubble "${s.text}"`, () => (G.BATTLEFIELD.Container.Text as MovieClip).$.children.some((b) => !b.$.removed && b._visible && String((b as MovieClip).txt).includes(s.text)), 3000);
       await h.run(200);
       h.shot("chat");
       return {};
@@ -821,24 +854,108 @@ async function step(s: Step): Promise<Record<string, unknown>> {
       h.shot("back-from-gift");
       return { channel: DC().Channel.m_name };
     }
+    case "joinMap": {
+      const list = G.INTERFACE.UIInterfaceCharacters!, r0 = h.received.length;
+      h.click("select character", cardOf(s.name));
+      await h.run(300);
+      h.click("join the map", list.btnJoinMap as DisplayObject | undefined);
+      await h.need("village map with me on it", () => h.received.slice(r0).some((f) => f.startsWith("GM|")) && G.BATTLEFIELD.Container._visible && me()?.cell != undefined && drawn(me()), 20000);
+      if (h.received.slice(r0).some((f) => f.startsWith("GAx;3;"))) throw new Error("sent to the multiplayer screen");
+      await h.run(800);
+      h.shot("village-map");
+      const gm = h.received.slice(r0).find((f) => f.startsWith("GM|"))!;
+      return { id: DC().Player.ID, cell: Number(me().cell), gm, sent: h.sent.filter((f) => /^(PS|GW)/.test(f)).slice(-2).map((f) => f.trim()) };
+    }
+    case "walk":
+    case "travel": {
+      const from = Number(me().cell);
+      await h.run(600); // CLICK_MINIMUM_TIMER between two cell clicks
+      const middle = DC().Map.data.length / 2; // toward the middle of the map: in view for the screenshots
+      const candidates = s.cell != undefined ? [s.cell] : reachable(8, 500).filter((r) => r.cost >= 4).map((r) => r.cell).sort((x, y) => Math.abs(x - middle) - Math.abs(y - middle));
+      // a cell whose diamond the mouse can reach (an object or a sprite in front may cover it)
+      const target = candidates.find((c) => {
+        try {
+          return h.cell(c) && (h.hoverCell(c), h.cellUnderMouse() == c);
+        } catch {
+          return false;
+        }
+      });
+      if (target == undefined) throw new Error(`no reachable cell to click from ${from}`);
+      const s0 = h.sent.length, r0 = h.received.length;
+      h.p.mouseDown();
+      h.p.mouseUp();
+      await h.need("GA001 sent", () => h.sent.slice(s0).some((f) => f.startsWith("GA001")), 2000);
+      const mine = new RegExp(`^GA\\d+;1;${myID()};`);
+      await h.need("the server's move", () => h.received.slice(r0).some((f) => mine.test(f)), 5000);
+      const ga = h.received.slice(r0).find((f) => mine.test(f))!, ack = "GKK" + ga.slice(2, ga.indexOf(";")) + "\n";
+      if (s.do == "travel") {
+        // the GM after the new map's GDM lists its occupants; my sprite must stand on my cell of it
+        const gm = () => h.received.slice(h.received.findIndex((f, i) => i >= r0 && f.startsWith(`GDM|${s.map}|`)) + 1).find((f) => f.startsWith("GM|+"));
+        const ids = () => gm()!.split("|+").slice(1).map((e) => e.split(";"));
+        const placed = () => {
+          const mine = ids().find((e) => e[0] == myID()), at = DC().Map.data[Number(me().cell)], sp = spriteOf(me());
+          return !!mine && Number(mine[10]) == Number(me().cell) && drawn(me()) && !!at && !!sp && Math.abs(sp._x - Number(at.x)) < 1;
+        };
+        await h.need(`${ack.trim()} then map ${s.map} with me on it`, () => h.sent.slice(s0).includes(ack) && h.received.slice(r0).some((f) => f.startsWith(`GDM|${s.map}|`)) && !!gm() && Number(DC().Map.id) == s.map && G.BATTLEFIELD.Container._visible && placed(), 20000);
+        await h.run(800);
+        const ok = new Set(ids().map((e) => e[0]!));
+        // (removed characters stay in DATACENTER.Characters, an AS quirk: core/datacenter/dataProvider.ts)
+        const sprites = (G.BATTLEFIELD.Container.Object2.clips as MovieClip).$.children.filter((c) => c._name.startsWith("sprite") && !c.$.removed).map((c) => c._name.slice(6));
+        if (sprites.some((id) => !ok.has(id))) throw new Error(`sprites left from the old map: ${sprites}; new map ${[...ok]}`);
+        h.shot(`travel-${s.map}`);
+        return { from, plate: target, map: s.map, cell: Number(me().cell), gm: gm(), sprites };
+      }
+      await h.need(`${ack.trim()} and the walk over`, () => h.sent.slice(s0).includes(ack) && !me().SEQUENCER_actions.isPlaying() && Number(me().cell) == target, 20000);
+      await h.run(300);
+      h.shot(`walk-${target}`);
+      return { from, cell: target, ga };
+    }
+    case "sprite": {
+      const ok = () => {
+        const c = characterNamed(s.name), sp = spriteOf(c);
+        if (s.gone) return !sp;
+        const at = DC().Map.data[Number(c?.cell)];
+        return drawn(c) && (s.cell == undefined || Number(c?.cell) == s.cell) && !c?.SEQUENCER_anim.isPlaying() && !!at && Math.abs(sp!._x - Number(at.x)) < 1;
+      };
+      await h.need(s.gone ? `${s.name} gone` : `sprite of ${s.name}${s.cell != undefined ? ` on cell ${s.cell}` : ""}`, ok, 20000);
+      await h.run(300);
+      h.shot(s.gone ? `${s.name}-gone` : `sees-${s.name}`);
+      const c = characterNamed(s.name), sp = spriteOf(c);
+      return { cell: sp ? Number(c?.cell) : undefined, tree: h.dump(sp, 2) };
+    }
+    case "changeCharacter": {
+      h.click("menu", menuButton());
+      await h.need("menu box", () => findClip(G.INTERFACE.BoxLayer_mc, "quit_btn"), 3000);
+      await h.run(300);
+      h.shot("menu-box");
+      h.click("change character", findClip(G.INTERFACE.BoxLayer_mc, "quit_btn"));
+      await h.run(300);
+      h.click("yes", findClip(G.INTERFACE.BoxLayer_mc, "yes_btn"));
+      await h.need("character list again", () => G.INTERFACE.UIInterfaceCharacters?.choice0 && !gone(G.INTERFACE.UIInterfaceCharacters), 20000);
+      await h.run(500);
+      h.shot("characters-again");
+      return { login: h.received.filter((f) => f.startsWith("Al")).slice(-2) };
+    }
     case "frames":
       return { sent: h.sent.slice(-(s.last ?? 20)), received: h.received.slice(-(s.last ?? 20)) };
     case "wait":
       await h.run(s.ms);
       return {};
-    case "login": {
+    case "login":
+    case "register": {
       await h.need("login screen", () => G.INTERFACE?.CommonLayer_mc?.loginInterface, 60000);
       await h.run(300);
       await closeMessages();
       const login = G.INTERFACE.CommonLayer_mc.loginInterface as Record<string, unknown>;
       h.type("account", login.txtName, s.account);
       h.type("password", login.txtPass, s.password);
-      h.click("login OK", login.btn_ok as DisplayObject);
+      const register = s.do == "register";
+      h.click(register ? "register" : "login OK", (register ? login.btn_register : login.btn_ok) as DisplayObject);
       if (s.expect == "refused") {
-        await h.need("login refused", () => h.received.some((f) => f.startsWith("AlE")));
+        await h.need(`${s.do} refused`, () => h.received.some((f) => f.startsWith("AlE")));
         await h.need("error box", () => messageBox(), 5000);
         await h.run(500);
-        h.shot("login-refused");
+        h.shot(`${s.do}-refused`);
         const text = String((findClip(messageBox(), "", (o) => o instanceof TextField && o.text.length > 3) as TextField | undefined)?.text);
         await closeMessages();
         return { authentified: G.AKS.m_bAuthentified ?? false, answer: h.received.filter((f) => f.startsWith("AlE")).at(-1), message: text };

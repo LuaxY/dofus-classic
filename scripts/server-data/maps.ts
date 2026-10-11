@@ -3,6 +3,8 @@
 // clips/objects.swf, plus the best partially covered ones (>= MIN_PARTIAL coverage and a walkable area of at
 // least MIN_AREA cells), then runs the client's own Map.build headless on each to (1) remove white tiles and (2) pick
 // 4 visible placement cells per team inside the largest connected walkable area.
+// Also writes the `world` maps (role-play maps linked by their map-change plates, "World maps" below) and adds their
+// names to web/public/lang/fr.json + fr.provenance.json.
 //
 //   bun scripts/server-data/maps.ts
 //
@@ -28,7 +30,7 @@ import { createCanvas, loadImage, Path2D } from "@napi-rs/canvas";
 import { uncompressMap, zkArray, decode64, type MapData } from "../../web/src/core/compressor.ts";
 import { DataCenter } from "../../web/src/core/datacenter/index.ts";
 import { layoutMap } from "../../web/src/core/map.ts";
-import { PathFinding } from "../../web/src/core/pathfinding.ts";
+import { goalDistEstimate, PathFinding } from "../../web/src/core/pathfinding.ts";
 import { drawNode } from "../../web/src/runtime/object.ts";
 import { _global, MovieClip, Player } from "../../web/src/runtime/player.ts";
 import { NO_CX } from "../../web/src/swf/render.ts";
@@ -239,6 +241,7 @@ interface OutMap {
 }
 
 const maps: OutMap[] = [];
+const all: { id: number; dir: string; mapData: string; m: MapData; cov: number }[] = []; // every decodable map (world maps)
 for (const dir of readdirSync(CACHE).sort()) {
   const as = readFileSync(join(CACHE, dir, "scripts/frame_1/DoAction.as"), "utf8");
   const v = (k: string) => as.match(new RegExp(`^${k} = (.*);$`, "m"))?.[1];
@@ -249,6 +252,7 @@ for (const dir of readdirSync(CACHE).sort()) {
   const cells = m.data.length;
   if (cells != height! * width! + (height! - 1) * (width! - 1) || cells > 1024) continue; // path codes are 10-bit
   const cov = coverage(m);
+  all.push({ id: id!, dir, mapData: original, m, cov });
   if (cov < MIN_PARTIAL) continue;
   layoutMap(m);
   const area = largestArea(m).filter((c) => m.data[c]!.lineOfSight); // fight grid is drawn on line-of-sight cells
@@ -282,6 +286,92 @@ for (const dir of readdirSync(CACHE).sort()) {
 }
 maps.sort((a, b) => b.coverage - a.coverage || a.id - b.id);
 
+// ---- World maps (docs/server.md stage 3b) -------------------------------------------------------------------------
+// Plate = object 1030 (the round "sun" tile at the map edges, clips/objects.swf) on either object layer of a walkable
+// cell. Links: the unconditional teleport cells (action 0, event 1) of a Dofus Retro 1.39.8 emulator dump,
+// vendor/starloco/scripted_cells.sql (provenance retro_emulator). Plate p of map A → (B, c) is kept when B is a map of
+// the same size with WORLD_MIN coverage and a plate of B within 2 cells of c teleports back to A; the arrival cell is
+// that plate (the nearest to c), and the link must exist both ways. The world is the largest set of maps connected by
+// such links (a fallback on map positions + plates added no map to it: docs/server.md "World maps").
+const WORLD_MIN = 0.8, PLATE = 1030;
+const teleports = new Map<string, [number, number]>();
+for (const t of readFileSync(join(ROOT, "vendor/starloco/scripted_cells.sql"), "utf8").matchAll(/^INSERT INTO `scripted_cells` VALUES \((\d+), (\d+), 0, 1, '(\d+),(\d+)', '-1'\);$/gm))
+  teleports.set(`${t[1]}:${t[2]}`, [Number(t[3]), Number(t[4])]);
+const candidates = new Map(all.filter((a) => a.cov >= WORLD_MIN).map((a) => [a.id, a]));
+const platesOf = (m: MapData) =>
+  m.data.flatMap((c, n) => (c.active && (c.movement ?? 0) > 1 && (c.layerObject1Num == PLATE || c.layerObject2Num == PLATE) ? [n] : []));
+const oneWay = new Map<number, Map<number, [number, number]>>();
+for (const a of candidates.values()) {
+  for (const p of platesOf(a.m)) {
+    const [to, c] = teleports.get(`${a.id}:${p}`) ?? [];
+    const b = candidates.get(to!);
+    if (!b || b.m.data.length != a.m.data.length) continue; // same size: docs/protocol/game.md GW, travel
+    const d = (q: number) => goalDistEstimate(q, c!, b.m.width);
+    const back = platesOf(b.m).filter((q) => teleports.get(`${b.id}:${q}`)?.[0] == a.id && d(q) <= 2).sort((x, y) => d(x) - d(y) || x - y);
+    if (back.length) oneWay.set(a.id, (oneWay.get(a.id) ?? new Map()).set(p, [b.id, back[0]!]));
+  }
+}
+const links = new Map([...oneWay].map(([id, l]) => [id, new Map([...l].filter(([, [to, q]]) => oneWay.get(to)?.get(q)?.[0] == id))]));
+const seen = new Set<number>();
+let world: number[] = [];
+for (const s of links.keys()) {
+  if (seen.has(s)) continue;
+  const comp = [s];
+  seen.add(s);
+  for (let i = 0; i < comp.length; i++) for (const [to] of links.get(comp[i]!)!.values()) if (!seen.has(to)) seen.add(to), comp.push(to);
+  if (comp.length > world.length) world = comp;
+}
+world.sort((a, b) => a - b);
+const worldMaps = world.map((id) => {
+  const { dir, mapData, m, cov } = candidates.get(id)!;
+  return {
+    id, width: m.width, height: m.height, backgroundNum: Number(m.backgroundNum), mapData,
+    coverage: Math.round(cov * 1000) / 1000,
+    links: Object.fromEntries(links.get(id)!),
+    source: `vendor/dofedex/maps-2004/${dir}`,
+    provenance: cov == 1 ? "post_beta_2004_full_beta_graphics" : "post_beta_2004_partial_beta_graphics",
+  };
+});
+
+// Names (lang table M, read by getMapText) from maps_fr_35 like the fight maps (docs/content-reconstruction.md §3 M):
+// MA.m[id] = {x, y, sa} has no name, so the sub-area name MA.sa[sa].n, or the area name MA.a[a].n when the sub-area
+// name is "//<area>". Only ids without a name are added.
+const LANG = join(process.env.TMPDIR ?? tmpdir(), "dofus-maps-fr-35-as");
+if (!existsSync(LANG)) {
+  const p = Bun.spawnSync([join(ROOT, "tools/ffdec.sh"), "-format", "script:as", "-export", "script", LANG, join(ROOT, "vendor/dofedex/lang-fr/maps_fr_35.swf")]);
+  if (p.exitCode != 0) throw new Error("ffdec failed: " + p.stderr.toString());
+}
+const langAs = readFileSync(join(LANG, "scripts/frame_1/DoAction.as"), "utf8");
+const entry = (table: string, k: number) => langAs.match(new RegExp(`^MA\\.${table}\\[${k}\\] = (\\{.*\\});$`, "m"))![1]!;
+const field = (e: string, f: string) => e.match(new RegExp(`[{,]${f}:("(?:[^"\\\\]|\\\\.)*"|-?\\d+)`))![1]!;
+const text = (e: string) => field(e, "n").slice(1, -1).replace(/\\(.)/g, "$1");
+const FR = join(ROOT, "web/public/lang/fr.json"), FR_PROV = join(ROOT, "web/public/lang/fr.provenance.json");
+const fr = JSON.parse(readFileSync(FR, "utf8")), frProv = JSON.parse(readFileSync(FR_PROV, "utf8"));
+const named = world.filter((id) => !fr.M[id]);
+for (const id of named) {
+  const m = entry("m", id), sa = Number(field(m, "sa")), s = entry("sa", sa), a = Number(field(s, "a")), area = text(entry("a", a));
+  const viaArea = text(s).startsWith("//");
+  fr.M[id] = { n: viaArea ? area : text(s), d: "" };
+  frProv.tables.M[id] = {
+    confidence: "low",
+    fields: {
+      n: {
+        source: "retro_fr",
+        evidence: `vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[${id}] = ${m} (MA.m entries have no name field) → MA.sa[${sa}].n '${text(s)}' ` +
+          (viaArea ? `(sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[${a}].n '${area}' (area name used)` : `(sub-area name used; area MA.a[${a}].n '${area}')`),
+        note: "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps",
+      },
+      d: { source: "authored", evidence: "none", note: "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)" },
+    },
+  };
+  frProv._counts["tables.retro_fr"]++;
+  frProv._counts["tables.authored"]++;
+}
+if (named.length) {
+  writeFileSync(FR, JSON.stringify(fr, null, 1) + "\n");
+  writeFileSync(FR_PROV, JSON.stringify(frProv, null, 1) + "\n");
+}
+
 writeFileSync(
   OUT,
   JSON.stringify(
@@ -289,10 +379,14 @@ writeFileSync(
       provenance:
         "Generated by scripts/server-data/maps.ts from vendor/dofedex/maps-2004 (map SWFs dated July 2004 or later, i.e. post-beta 1.0-era maps, NOT beta 5b arena maps). mapData is copied verbatim, except the line-of-sight bit cleared on the cells listed in losCleared (authored: unwalkable cells the map leaves bare, which this client draws as white diamonds; clearing changes no line of sight between cells a character can stand on). coverage = share of ground/object references drawn by beta 5b clips. places = placement cells per team (authored by the script: first/last cells of the largest walkable line-of-sight area where objects drawn in front do not hide a standing character).",
       maps,
+      worldProvenance:
+        `world = role-play maps of the social village (docs/server.md stage 3b), same sources; mapData verbatim. links = plate cell → [map, arrival cell]: retro_emulator, the unconditional teleport cells of vendor/starloco/scripted_cells.sql (Dofus Retro 1.39.8 emulator data) kept only where they join two map-change plates (object ${PLATE}) of these 2004 maps, both ways; the arrival cell is the plate of the destination map that teleports back. The world is the largest set of maps with coverage >= ${WORLD_MIN} connected by such links.`,
+      world: worldMaps,
     },
     null,
     1,
   ) + "\n",
 );
 console.log(`${maps.length} maps (${maps.filter((m) => m.coverage == 1).length} fully covered) → ${OUT}`);
+console.log(`world: ${world.length} maps, ${worldMaps.reduce((n, w) => n + Object.keys(w.links).length, 0)} links (${world.join(", ")}); ${named.length} names added to fr.json`);
 process.exit(0);

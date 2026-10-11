@@ -82,6 +82,9 @@ were inspected only with `tools/ffdec.sh`.
 - Searches tried: CDX `jouer.dofus.com/files/*`, `dofus.com` domain (2003–2005), `booge.net/dofus/*`,
   `xenografter.chez-alice.fr/*`, `magoliroub2.online.fr/logitheque/Dofus/*`; GitHub "dofus maps swf"; the unpacked
   file lists of all 11 builds.
+- Links between the 2004 substitute maps (2026-10-11): map positions and teleport cells from the StarLoco emulator
+  database (Dofus Retro 1.39.8, github.com/StarLoco/StarLoco), extracts in `vendor/starloco/` (see its README); used
+  for the world maps of `docs/server.md`. Not beta data either.
 
 ### 2.3 Missing client files: **partially found**
 

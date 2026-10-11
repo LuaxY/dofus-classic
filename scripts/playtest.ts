@@ -1,7 +1,7 @@
 // Playtest: the real Rust server and two (or more) headless clients (web/src/dev/bot.ts), each its own bun process,
-// played only through UI input. Scenarios: fresh, reconnect, disruption, coverage, random (docs/playtest.md).
+// played only through UI input. Scenarios: fresh, reconnect, disruption, coverage, random, social (docs/playtest.md).
 //
-//   bun scripts/playtest.ts [all | fresh | reconnect | disruption | coverage | random ...]
+//   bun scripts/playtest.ts [all | fresh | reconnect | disruption | coverage | random | social ...]
 //
 // This process never loads @napi-rs/canvas (a bun process that has loaded it cannot spawn: posix_spawn EBADF).
 // PNG timelines: web/public/assets/port-preview/playtest/<run>/<scenario>/<client>/; logs next to them.
@@ -104,8 +104,15 @@ async function bots(scenario: string, ...names: string[]) {
 type Who = { bot: Bot; account: string; password: string; character: string; guild: number; sex: 0 | 1 };
 const COLORS: [number, number][][] = [[[0.1, 0.2], [0.5, 0.5], [0.8, 0.3]], [[0.3, 0.1], [0.6, 0.2], [0.9, 0.6]]];
 let created = 0;
+const registered = new Set<string>();
+/** Login screen: "S'inscrire" the first time an account is used in this run (fresh store), OK afterwards. */
+async function logIn(w: Who) {
+  const step = registered.has(w.account) ? "login" : "register";
+  registered.add(w.account);
+  await w.bot.do({ do: step, account: w.account, password: w.password });
+}
 async function enter(w: Who, create: boolean) {
-  await w.bot.do({ do: "login", account: w.account, password: w.password });
+  await logIn(w);
   await w.bot.do({ do: "characters" });
   if (create) await w.bot.do({ do: "createCharacter", name: w.character, guild: w.guild, sex: w.sex, colors: COLORS[created++ % 2]! });
   await w.bot.do({ do: "selectCharacter", name: w.character });
@@ -302,6 +309,45 @@ const scenarios: Record<string, () => Promise<void>> = {
     if (names(r[0]!, "winners").length + names(r[0]!, "losers").length != 4) throw new Error(`2v2 lists ${JSON.stringify(r[0]!.results)}`);
     await Promise.all(all.map((x) => x.do({ do: "leaveResult" })));
     await Promise.all(all.map((x) => x.quit()));
+  },
+
+  /** 6. "Rejoindre la carte": two players on the village map, no fight. B arrives after A's map is drawn (A loads B's
+   *  sprite on demand); each sees the other, each walks and the other sees the sprite stop on the new cell; chat both
+   *  ways with the speech bubble; B leaves through the menu's "Changer de perso" and A sees B's sprite go. */
+  async social() {
+    const [A, B] = await bots("social", "A", "B");
+    const a: Who = { bot: A!, account: "kim", password: "kim-pass", character: "Kimette", guild: 4, sex: 1 };
+    const b: Who = { bot: B!, account: "leo", password: "leo-pass", character: "Leonard", guild: 6, sex: 0 };
+    await Promise.all([a, b].map(async (w) => {
+      await logIn(w);
+      await w.bot.do({ do: "characters" });
+      await w.bot.do({ do: "createCharacter", name: w.character, guild: w.guild, sex: w.sex, colors: COLORS[created++ % 2]! });
+    }));
+    const ja = await A!.do({ do: "joinMap", name: a.character });
+    const jb = await B!.do({ do: "joinMap", name: b.character });
+    await A!.do({ do: "sprite", name: b.character, cell: jb.cell as number }); // the late arrival
+    await B!.do({ do: "sprite", name: a.character, cell: ja.cell as number });
+    const wa = await A!.do({ do: "walk" });
+    await B!.do({ do: "sprite", name: a.character, cell: wa.cell as number });
+    const wb = await B!.do({ do: "walk" });
+    await A!.do({ do: "sprite", name: b.character, cell: wb.cell as number });
+    await A!.do({ do: "chat", text: "Salut Leonard, belle journée !", via: "enter" });
+    await B!.do({ do: "waitChat", text: "Salut Leonard, belle journée !", bubble: true });
+    await B!.do({ do: "chat", text: "Coucou Kimette", via: "enter" });
+    await A!.do({ do: "waitChat", text: "Coucou Kimette", bubble: true });
+    // World maps: A walks onto a map-change plate of the village (the first linked plate, as the Rust test), B sees A
+    // go; B follows and they meet on the next map (docs/server.md stage 3b).
+    const village = (await Bun.file(join(ROOT, "server/data/rules.json")).json() as { village_map: number }).village_map;
+    const world = (await Bun.file(join(ROOT, "server/data/maps.json")).json() as { world: { id: number; links: Record<string, [number, number]> }[] }).world;
+    const [plate, [to]] = Object.entries(world.find((m) => m.id == village)!.links).sort((x, y) => Number(x[0]) - Number(y[0]))[0]!;
+    const ta = await A!.do({ do: "travel", cell: Number(plate), map: to });
+    await B!.do({ do: "sprite", name: a.character, gone: true });
+    const tb = await B!.do({ do: "travel", cell: Number(plate), map: to });
+    await A!.do({ do: "sprite", name: b.character, cell: tb.cell as number });
+    await B!.do({ do: "sprite", name: a.character, cell: ta.cell as number });
+    await B!.do({ do: "changeCharacter" });
+    await A!.do({ do: "sprite", name: b.character, gone: true });
+    await Promise.all([A!.quit(), B!.quit()]);
   },
 };
 

@@ -1,6 +1,7 @@
 // Start menu and character list of modules/Interfaces.swf (docs/logic/ui.md §2.2-2.3).
 import { SITE_PATH } from "../../../core/constants.ts";
 import { getText } from "../../../core/lang.ts";
+import { joinMap } from "../../../core/protocol.ts";
 import { str } from "../../../core/swf6.ts";
 import { type DisplayObject, MovieClip, registerClass } from "../../../runtime/player.ts";
 import { G } from "../../globals.ts";
@@ -83,7 +84,26 @@ export class Class_Characters extends MovieClip {
       this.btnDelete?.setLabel(getText("DELETE"));
       this.btnPlay?.setLabel(getText("PLAY"));
       this.title_txt?.setText(getText("CHOOSE_TITLE"));
+      this.attachJoinMap();
       delete this.onEnterFrame;
+    };
+  }
+  /** Authored for this port (not beta 5b): "Rejoindre la carte", the Play button's PushButton left of it, wider for its
+   *  longer label. Same check and `PS<id>` as Play (`644@1:83:release`), then the authored `GW`: the server keeps the
+   *  player on the village map with the other players instead of sending it to the multiplayer screen. */
+  attachJoinMap() {
+    const play = this.btnPlay;
+    const b = this.attachMovie("Ank::Dofus::PushButton", "btnJoinMap", 90, { label: getText("JOIN_MAP"), clickHandler: "", labelClipSymbol: "FLabelSymbol" }) as PushButton | undefined;
+    if (!b || !play) return;
+    b.setSize(play.width * 1.5, play.height);
+    b._xscale = b._yscale = 80;
+    b._x = play._x - b._width - 10;
+    b._y = play._y;
+    b.onRelease = () => {
+      if (this.selectedcharacterID == undefined) return void G.INTERFACE.msgBox(getText("SELECT_CHARACTER", []));
+      if (G.AKS.Account.isSet) return; // setCharacter sends PS once until ASK
+      G.AKS.Account.setCharacter(this.selectedcharacterID as string);
+      G.AKS.send(joinMap(), false);
     };
   }
   onSelectCharacter(index: number, characData: CharacterEntry) {

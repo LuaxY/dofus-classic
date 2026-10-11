@@ -11,9 +11,11 @@
 // Layout and `setTextError` follow the June-2004 `AnimUILoginSymbol` of vendor/wayback-dofus-2004/DofusLogin.swf
 // (post-5b, provenance `retro`): account and password tabs over two input fields, an OK button, an error line.
 // Graphics: drawing API + the Interfaces.swf PushButton and embedded fonts. Labels use the 5b keys ACCOUNT and PASSWORD;
-// the button label "OK" is authored (no 5b key).
+// the button label "OK" is authored (no 5b key). The "S'inscrire" button (authored key REGISTER) is a port addition: same
+// fields and `onLogin`, but the next `AKS.logon` sends the register frame (docs/protocol/account.md).
 import { getText } from "../../../core/lang.ts";
 import { MovieClip, Selection, TextField, TextFormat } from "../../../runtime/player.ts";
+import { G } from "../../globals.ts";
 import { loginSubstitute } from "../interface.ts";
 import type { PushButton } from "./as.ts";
 
@@ -23,6 +25,7 @@ export type LoginInterface = MovieClip & {
   txtPass: TextField;
   txtError: TextField;
   btn_ok?: PushButton;
+  btn_register?: PushButton;
   /** June-2004 API (`this._parent.setTextError`): show `txt`, or hide the line when undefined. Nothing in 5b calls it. */
   setTextError(txt?: string): void;
 };
@@ -80,12 +83,16 @@ export function drawLoginSubstitute(container: MovieClip & { onLogin: (login: st
       c.txtError._visible = true;
     } else c.txtError._visible = false;
   };
-  const ok = c.attachMovie("Ank::Dofus::PushButton", "btn_ok", 40, { label: "OK", clickHandler: "", labelClipSymbol: "FLabelSymbol" }) as PushButton | undefined;
-  if (ok) {
-    ok._x = X + W / 2 - ok._width / 2;
-    ok._y = Y + 130;
-    ok.onRelease = () => c.onLogin(c.txtName.text, c.txtPass.text);
-  }
+  ([["btn_ok", "OK", false], ["btn_register", getText("REGISTER") ?? "", true]] as const).forEach(([name, label, register], i) => {
+    const b = c.attachMovie("Ank::Dofus::PushButton", name, 40 + i, { label, clickHandler: "", labelClipSymbol: "FLabelSymbol" }) as PushButton | undefined;
+    if (!b) return;
+    b._x = register ? X + W / 2 + 5 : X + W / 2 - 5 - b._width;
+    b._y = Y + 130;
+    b.onRelease = () => {
+      G.AKS.register = register;
+      c.onLogin(c.txtName.text, c.txtPass.text);
+    };
+  });
   Selection.setFocus(c.txtName);
 }
 loginSubstitute.draw = drawLoginSubstitute;

@@ -116,7 +116,7 @@ Structural note: the `c` rubrique falls through into the `F` rubrique's sub-swit
 
 | Frame | OK form | Error form | Error sub-code (4th char unless noted) |
 |---|---|---|---|
-| `Al` | `AlK<lang>` | `AlE<c>` | `a` already logged · `v` bad version · other access denied |
+| `Al` | `AlK<lang>` | `AlE<c>` | `a` already logged · `v` bad version · other access denied (port, authored: `e` account exists, answer to the register frame, [account.md](account.md)) |
 | `AL` | `ALK\|…` | ignored | — |
 | `AS` | `ASK\|…` | `ASE…` | none (silent, see account.md) |
 | `AA` | `AAK` | `AAE…` | none ("Ce nom existe déjà") |
@@ -319,7 +319,8 @@ not in code**.
 | `GKK` | action acknowledged | [game-actions.md](game-actions.md#gkk--gke--acknowledge--cancel-an-action-cs) |
 | `GKE` | move cancelled at cell | [game-actions.md](game-actions.md#gkk--gke--acknowledge--cancel-an-action-cs) |
 
-Plus the console `/c <raw>` escape hatch ([console.md](console.md)).
+Plus the console `/c <raw>` escape hatch ([console.md](console.md)), and `GW` (stay on the village map), **authored** by
+this port and not in the beta client ([game.md](game.md#gw--stay-on-the-village-map-cs-authored-not-in-the-beta-client)).
 
 ### Server → client (61, of which 5 dead `R` frames and 3 no-ops)
 

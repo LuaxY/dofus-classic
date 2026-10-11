@@ -11,11 +11,11 @@
  "_counts": {
   "keys.beta": 59,
   "keys.beta_screenshot": 27,
-  "keys.authored": 94,
+  "keys.authored": 97,
   "keys.retro_fr": 125,
-  "tables.authored": 391,
+  "tables.authored": 440,
   "tables.beta_forum": 2,
-  "tables.retro_fr": 77,
+  "tables.retro_fr": 126,
   "tables.beta": 100,
   "tables.beta_sibling": 2,
   "tables.beta_screenshot": 6
@@ -28,6 +28,10 @@
   "ACCOUNT": {
    "source": "beta",
    "evidence": "dofus-5b/modules/Interfaces.swf DefineEditText #312, #324 (tabFriends.txtAccount/txtAccount2), text baked in the field the getText site sets"
+  },
+  "ACCOUNT_EXISTS": {
+   "source": "authored",
+   "evidence": "no source: answer AlEe to the port's register frame (web/src/game/kernel/client.ts, docs/protocol/account.md)"
   },
   "ACTIONPOINTS": {
    "source": "beta",
@@ -870,6 +874,10 @@
    "source": "beta",
    "evidence": "dofus-5b/modules/Interfaces.swf DefineEditText #333 (TabJoinGame.txtTitleJoin ← Tabs PlaceObject2_345_184 load:3), text baked in the field the getText site sets"
   },
+  "JOIN_MAP": {
+   "source": "authored",
+   "evidence": "no source: label of the port's character-screen button that joins the village map (web/src/game/ui/screens/characters.ts, docs/protocol/game.md GW)"
+  },
   "JOIN_SMALL": {
    "source": "beta",
    "evidence": "dofus-5b/modules/Interfaces.swf PushButton on(initialize) label = \"Rejoindre\" (decompiled/clean/modules_Interfaces/DefineSprite_345/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_92)"
@@ -1126,6 +1134,10 @@
   "REFUSE_INVITATION": {
    "source": "retro_fr",
    "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf: REFUSE_INVITATION (post-beta, 2004+)"
+  },
+  "REGISTER": {
+   "source": "authored",
+   "evidence": "no source: label of the port's login-screen button that registers the account (web/src/game/ui/screens/login.ts, docs/protocol/account.md)"
   },
   "REMOVE_FRIEND_OK": {
    "source": "retro_fr",
@@ -4666,6 +4678,51 @@
      }
     }
    },
+   "276": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[276] = {x:8,y:12,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "279": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[279] = {x:7,y:12,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "286": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[286] = {x:6,y:14,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
    "489": {
     "confidence": "low",
     "fields": {
@@ -4756,6 +4813,231 @@
      }
     }
    },
+   "525": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[525] = {x:4,y:6,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "526": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[526] = {x:3,y:6,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "530": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[530] = {x:3,y:7,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "536": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[536] = {x:6,y:8,sa:3} (MA.m entries have no name field) → MA.sa[3].n 'Le champ des Ingals' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "544": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[544] = {x:2,y:7,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "545": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[545] = {x:1,y:6,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "546": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[546] = {x:1,y:7,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "549": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[549] = {x:0,y:8,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "550": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[550] = {x:1,y:8,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "551": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[551] = {x:2,y:8,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "554": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[554] = {x:7,y:9,sa:3} (MA.m entries have no name field) → MA.sa[3].n 'Le champ des Ingals' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "561": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[561] = {x:10,y:9,sa:0} (MA.m entries have no name field) → MA.sa[0].n '//Amakna' (sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[0].n 'Amakna' (area name used)",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "563": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[563] = {x:9,y:10,sa:0} (MA.m entries have no name field) → MA.sa[0].n '//Amakna' (sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[0].n 'Amakna' (area name used)",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "564": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[564] = {x:10,y:10,sa:0} (MA.m entries have no name field) → MA.sa[0].n '//Amakna' (sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[0].n 'Amakna' (area name used)",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "566": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[566] = {x:9,y:11,sa:0} (MA.m entries have no name field) → MA.sa[0].n '//Amakna' (sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[0].n 'Amakna' (area name used)",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
    "567": {
     "confidence": "low",
     "fields": {
@@ -4771,6 +5053,51 @@
      }
     }
    },
+   "568": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[568] = {x:8,y:11,sa:0} (MA.m entries have no name field) → MA.sa[0].n '//Amakna' (sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[0].n 'Amakna' (area name used)",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "569": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[569] = {x:7,y:10,sa:0} (MA.m entries have no name field) → MA.sa[0].n '//Amakna' (sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[0].n 'Amakna' (area name used)",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "570": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[570] = {x:7,y:11,sa:0} (MA.m entries have no name field) → MA.sa[0].n '//Amakna' (sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[0].n 'Amakna' (area name used)",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
    "578": {
     "confidence": "low",
     "fields": {
@@ -4778,6 +5105,411 @@
       "source": "retro_fr",
       "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[578] = {x:4,y:12,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
       "note": "post-beta 2004 map served by server/data/maps.json; beta 5b arena ids and names are UNKNOWN"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "579": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[579] = {x:4,y:13,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "580": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[580] = {x:3,y:13,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "581": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[581] = {x:4,y:14,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "582": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[582] = {x:3,y:14,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "583": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[583] = {x:2,y:12,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "584": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[584] = {x:2,y:13,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "586": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[586] = {x:5,y:13,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "587": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[587] = {x:6,y:13,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "588": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[588] = {x:5,y:12,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "589": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[589] = {x:6,y:12,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "590": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[590] = {x:5,y:9,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "591": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[591] = {x:6,y:9,sa:0} (MA.m entries have no name field) → MA.sa[0].n '//Amakna' (sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[0].n 'Amakna' (area name used)",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "592": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[592] = {x:6,y:10,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "593": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[593] = {x:5,y:10,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "594": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[594] = {x:6,y:11,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "595": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[595] = {x:5,y:11,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "596": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[596] = {x:4,y:9,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "597": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[597] = {x:3,y:9,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "598": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[598] = {x:4,y:10,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "599": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[599] = {x:3,y:10,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "600": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[600] = {x:4,y:11,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "603": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[603] = {x:2,y:9,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "607": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[607] = {x:1,y:10,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "608": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[608] = {x:1,y:11,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "609": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[609] = {x:1,y:12,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "611": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[611] = {x:0,y:10,sa:5} (MA.m entries have no name field) → MA.sa[5].n 'Le coin des Bouftous' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "612": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[612] = {x:0,y:11,sa:4} (MA.m entries have no name field) → MA.sa[4].n 'La forêt d'Amakna' (sub-area name used; area MA.a[0].n 'Amakna')",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
      },
      "d": {
       "source": "authored",
@@ -4883,6 +5615,21 @@
       "source": "retro_fr",
       "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[946] = {x:12,y:6,sa:179} (MA.m entries have no name field) → MA.sa[179].n 'Le coin des Boos' (sub-area name used; area MA.a[0].n 'Amakna')",
       "note": "post-beta 2004 map served by server/data/maps.json; beta 5b arena ids and names are UNKNOWN"
+     },
+     "d": {
+      "source": "authored",
+      "evidence": "none",
+      "note": "never read (the AS reads only .n: AKSClient/Events.AKS.Game.as:17, 36, 84)"
+     }
+    }
+   },
+   "1012": {
+    "confidence": "low",
+    "fields": {
+     "n": {
+      "source": "retro_fr",
+      "evidence": "vendor/dofedex/lang-fr/maps_fr_35.swf MA.m[1012] = {x:11,y:9,sa:0} (MA.m entries have no name field) → MA.sa[0].n '//Amakna' (sub-area name with a '//' prefix, as 49 of 320 sub-area names have) → MA.a[0].n 'Amakna' (area name used)",
+      "note": "post-beta 2004 world map served by server/data/maps.json (world); beta 5b had no world maps"
      },
      "d": {
       "source": "authored",

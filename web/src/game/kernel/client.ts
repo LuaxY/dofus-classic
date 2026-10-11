@@ -74,6 +74,8 @@ export class Client {
   m_bSkipMenu = false;
   m_login: string | undefined;
   isSet = false;
+  /** Port (authored): set by the login screen's "S'inscrire" button; the next `logon` sends the register frame. */
+  register = false;
   /** Port: WebSocket URL used by `connect` instead of XMLSocket(host, port) — from `?server=` (main.ts). */
   serverURL: string | undefined;
   /** Port: server frames held back while the map layers load (see `receive`). */
@@ -144,7 +146,8 @@ export class Client {
     G.DATACENTER.Player.password = password;
     this.m_login = login;
     this.send(P.version());
-    this.send(P.login(str(login), str(password), str(this.m_UID)));
+    this.send(P.login(str(login), str(password), str(this.m_UID), this.register));
+    this.register = false;
   }
 
   /** Client.as:75-89 — truncated to MAX_DATA_LENGTH; opens the waiting box unless `waiting === false`. */
@@ -197,7 +200,8 @@ export class Client {
         else if (ev.reason == "badVersion") {
           msg = getText("BAD_VERSION", [VERSION]);
           this.onBadVersion?.();
-        } else msg = getText("ACCESS_DENIED");
+        } else if (ev.reason == "accountExists") msg = getText("ACCOUNT_EXISTS"); // port (authored): register refused
+        else msg = getText("ACCESS_DENIED");
         return this.onLogin?.(false, msg, true);
       }
       case "whoIs": return this.Account.onWhoIs?.(ev.playerName, ev.characterName, ev.state, ev.param); // :97-125

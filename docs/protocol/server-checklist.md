@@ -29,6 +29,10 @@ not spelled out by it.
 2. ☐ Receive `5\n` (version). Wrong version → `AlEv` (stop).
 3. ☐ Receive `<login>\n<crypt>\n`; recompute `cryptPassword(storedPassword, key)` ([encodings.md](encodings.md#password-crypt))
    and compare. Fail → `AlEx` (or `AlEa` if already connected). Success → `AlK` (language suffix optional, unused).
+3b. (opt, **authored** by this port, not in the beta client) Register: `<login>\n+<crypt>\n` in place of step 3's frame
+   (`+` is outside the crypt alphabet) → store the account and answer as a successful login (`AlK`), or `AlEe` if it
+   exists ([account.md](account.md#register-cs--authored-by-this-port-not-in-the-beta-client)). This server's step 3
+   then never creates accounts: unknown account → `AlEx`.
 
 ## 2. Character choice
 
@@ -48,6 +52,11 @@ not spelled out by it.
    cell (`ASK` carries none).
 10. (opt) Village movement: client `GA001<codes>` → server `GA<n>;1;12;<startCode><codes>`; the client answers `GKK<n>`
     after walking ([game-actions.md](game-actions.md)).
+10b. (opt, **authored** by this port, not in the beta client) Social village: `GW` right after `PS12` (no spinner, no
+    reply) flags the session. Its `GD` gets `GDM`, then one `GM|+<every occupant>|…` (itself included, solo layout), and
+    the others get its `GM|+`; no step 11. Moves as in step 10, broadcast to every occupant (no `GAS`/`GAF`; refused →
+    `GAF12` to the mover alone), `GKE<n>|<cell>` moves its stored cell, `BM*` → `cMK*|12|Bobby|…` to every occupant,
+    `GM|-12` to them when it leaves ([game.md](game.md#gw--stay-on-the-village-map-cs-authored-not-in-the-beta-client)).
 
 ## 4. Into the multiplayer screen
 

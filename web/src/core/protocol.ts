@@ -87,7 +87,7 @@ export type ServerEvent =
   | { type: "spellsMovement"; entries: { add: boolean; spell: Spell | null }[] }
   | { type: "spellUpgrade"; spell: Spell }
   | { type: "loginOk"; language: string }
-  | { type: "loginError"; reason: "alreadyLogged" | "badVersion" | "accessDenied" }
+  | { type: "loginError"; reason: "alreadyLogged" | "badVersion" | "accessDenied" | "accountExists" }
   | { type: "whoIs" | "whoAmI"; playerName: string | undefined; characterName: string | undefined; state: string | null | undefined; param: string | null | undefined }
   | { type: "charactersList"; characters: CharacterListEntry[] }
   | { type: "characterSelected"; id: string; name: string; data: SelectedCharacter }
@@ -286,6 +286,7 @@ function account(data: string, c1: number, ok: boolean, ctx: ParseContext): Serv
       switch (data.charCodeAt(3)) {
         case 97: return { type: "loginError", reason: "alreadyLogged" }; // "a" → ALREADY_LOGGED
         case 118: return { type: "loginError", reason: "badVersion" }; // "v" → BAD_VERSION [VERSION] + onBadVersion
+        case 101: return { type: "loginError", reason: "accountExists" }; // port (authored): "e" → ACCOUNT_EXISTS, answer to the register frame
         default: return { type: "loginError", reason: "accessDenied" }; // ACCESS_DENIED
       }
     case 87: { // AW — :97-125
@@ -536,7 +537,9 @@ export const send = (data: string): string => (data.length > MAX_DATA_LENGTH ? d
 // Client.as:57-74 — logon(): two sends, version then login + crypted password. AS quirk: it does not return when
 // already authenticated or before the key arrived (it only reports onLogin(false)); it sends anyway.
 export const version = (): string => send(VERSION + "\n");
-export const login = (account: string, password: string, key: string): string => send(account + "\n" + cryptPassword(password, key) + "\n");
+/** Port (authored): `register` puts `+` before the crypt (outside its alphabet), the register frame of docs/protocol/account.md. */
+export const login = (account: string, password: string, key: string, register = false): string =>
+  send(account + "\n" + (register ? "+" : "") + cryptPassword(password, key) + "\n");
 
 // Dofus.Client.Account.as
 export const whoAmI = (): string => send("BW\n");
@@ -581,6 +584,9 @@ export const getGameList = (gameType: string | number): string => send("GL" + ga
 export const createFreeGame = (gameName: string, gameMap: string | number, gameOptions: string, gamePassword: string): string =>
   send("GC" + 2 + gameName + "|" + gameMap + "|" + gameOptions + "|" + gamePassword + "\n");
 export const createSoloGame = (): string => send("GC1\n");
+/** Authored for this port (not in the beta client): after `PS`, stay on the village map ("Rejoindre la carte",
+ *  docs/protocol/game.md `GW`). No wait. */
+export const joinMap = (): string => send("GW\n");
 /** State guard: only when !DATACENTER.Game.isRandom. */
 export const createRandomGame = (): string => send("GC3\n");
 export const invite = (characID: string | number): string => send("Gi" + characID + "\n"); // no wait

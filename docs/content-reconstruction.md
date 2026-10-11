@@ -27,6 +27,7 @@ Every value is tagged with the first tier that supplies it.
 | `beta_forum` | **Added tier** (not in the brief): named in a beta-era official forum post | `vendor/wayback-dofus-2004/pages/ankama-studio_forumdofus_tid1448_20040711.html` (8 Jan 2004) |
 | `beta_sibling` | Later beta material | `vendor/dofushistory/changelogsbeta.md` (v9b), `vendor/archive-dofus-1/` |
 | `retro_fr` | dofedex 2004+ lang SWFs, post-beta | `vendor/dofedex/lang-fr/` (`lang_fr_7`, `spells_fr_100`, `classes_fr_31`, `items_fr_13`, `maps_fr_35`) |
+| `retro_emulator` | **Added tier** (server data only, no lang value uses it): a Dofus Retro emulator's database, community-sniffed, much later than beta 5b (1.39.8) | `vendor/starloco/` (map teleport cells and positions; used for the links of the world maps, `server/data/maps.json`, `docs/server.md` "World maps") |
 | `authored` | Written for this port | — |
 
 ### 1.2 Rules
@@ -61,14 +62,14 @@ Every value is tagged with the first tier that supplies it.
 
 Keys are counted per key; tables per field (one field of one entry = 1).
 
-| Source | Inventory keys (289) | Dynamic keys (11) | Table fields (578) |
+| Source | Inventory keys (289) | Dynamic keys (11) | Table fields (676) |
 |---|---|---|---|
 | `beta` | 59 | 0 | 100 (S 63, G 37) |
 | `beta_screenshot` | 27 | 0 | 6 (I.e 6) |
 | `beta_forum` | 0 | 0 | 2 (S 2) |
 | `beta_sibling` | 0 | 0 | 2 (G 2) |
-| `retro_fr` | 119 | 6 | 77 (M 53, I.t 22, S 2) |
-| `authored` | 84 (15 adapted from retro_fr, 69 written) | 5 | 391 (S 280, M 61, I.t 22, G 11, CC 10, I.st 7) |
+| `retro_fr` | 119 | 6 | 126 (M 102, I.t 22, S 2) |
+| `authored` | 84 (15 adapted from retro_fr, 69 written) | 5 | 440 (S 280, M 110, I.t 22, G 11, CC 10, I.st 7) |
 
 Most authored table fields are the 140 placeholder spells (`n` = `"Sort <id>"`, `d` = `""`).
 
@@ -139,7 +140,8 @@ distinctive icon.
 
 ### `M` (maps)
 
-57 entries: the 53 maps of `server/data/maps.json` (`retro_fr`, confidence low) and 4 authored placeholders.
+106 entries: the 53 maps of `server/data/maps.json` (`retro_fr`, confidence low), 49 world maps (`retro_fr`, below)
+and 4 authored placeholders.
 
 **Server maps (53, `retro_fr`).** Names come from `vendor/dofedex/lang-fr/maps_fr_35.swf` (decompiled with
 `tools/ffdec.sh -format script:as`). All 53 ids are in `MA.m`, but `MA.m[id]` is only `{x, y, sa}` (104 of the
@@ -164,6 +166,11 @@ and the field used. These are post-beta 2004 maps. Beta 5b arena ids and names a
 table only resolves to sub-areas. The map combo (`AKSClient/Events.AKS.Game.as:36`) therefore lists e.g. 14 ×
 `Le village`. Coordinates were not added to `n`: that would be authored text, and they don't separate every map
 anyway (501, 504 and 505 are all at 2,-2).
+
+**World maps (49, `retro_fr`, confidence low).** The maps of `server/data/maps.json` `world` that had no entry
+(567 and 578 are also fight maps), added by `scripts/server-data/maps.ts` with the same rule and record format:
+`La forêt d'Amakna` (`MA.sa[4]`) 20, `Le coin des Bouftous` (`MA.sa[5]`) 18, `Amakna` (`MA.a[0]`, sub-area 0) 9,
+`Le champ des Ingals` (`MA.sa[3]`) 2. `getMapText` is only used for `DATACENTER.Map.name` there.
 
 **Placeholders (4, `authored`, confidence unknown).** `Carte 12`, `Carte 13`, `Carte 15`, `Carte 20`. The ids
 are the examples of `docs/protocol/game.md` and `protocol.test.ts`, and none of them is in `MA.m`.

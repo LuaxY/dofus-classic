@@ -10,7 +10,7 @@
   "xp_loss_per_opponent_level": "authored",
   "gold_win_per_opponent_level": "authored",
   "spell_boost_bonus": "beta: SPELL_BOOST_BONUS = [0,5,8,13,20] (AKSClient/Dofus.Kernel.Init.as:58)",
-  "village_map": "authored: a fully beta-covered post-beta 2004 map (maps.json) used as the solo village the client loads before the multiplayer screen",
+  "village_map": "authored: a fully beta-covered post-beta 2004 map of maps.json world (the social village's entry map, linked by its plates to the other world maps), also the solo village the client loads before the multiplayer screen",
   "default_channel": "beta: first preset label of the channel combo (modules_Interfaces/DefineSprite_430_Interface.MultiPlayer)",
   "max_characters": "beta: 10 character slots (modules_Interfaces/Interface.Characters.as:40-73)"
  },
@@ -24,7 +24,7 @@
  "xp_loss_per_opponent_level": 10,
  "gold_win_per_opponent_level": 10,
  "spell_boost_bonus": [0, 5, 8, 13, 20],
- "village_map": 914,
+ "village_map": 567,
  "default_channel": "France",
  "max_characters": 10
 }

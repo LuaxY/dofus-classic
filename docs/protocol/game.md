@@ -401,3 +401,96 @@ GE<senderId>|<result>|<result>|…\0
 Panels: `GameResultRandom` if `isRandom`, else `GameResultFree`
 (`modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:7-60`, `modules_Interfaces/Interface.Banner.Panel.GameResultFree.as`). Sets
 `m_bRunning = false`. Example: `GE12|2;12;3;0;100;180;300;80;25|1;7;5;1;400;420;600;10;0\0`.
+
+---
+
+## GW — stay on the village map (C→S, **authored**, not in the beta client)
+
+```
+GW\n\0
+```
+Written for this port so players can meet without fighting: the character screen's "Rejoindre la carte" button
+(`web/src/game/ui/screens/characters.ts`, label `JOIN_MAP`, provenance `authored`) sends the Play button's `PS<id>`
+(`modules_Interfaces/DefineSprite_644_Interface.Characters/frame_1/PlaceObject2_27_Ank.Dofus.PushButton_83`), then `GW`,
+without the waiting box (`send(…, false)`, `AKSClient/Dofus.Client.as:75-89`), so the server sends no reply. The client
+then sends `GC1` by itself after `ASK` (`AKSClient/Events.AKS.Account.as:12`), which is why the flag travels in its own
+frame. `GW` is unused in both directions by the beta client (no `send("GW` in `decompiled/clean/`, no `GW` rubrique in
+`AKSClient/Dofus.Client.DataProcessor.as`). Before `PS` the server drops it (no character); `PS` clears the flag, and
+only `PS`: a flagged player back from a game ("Retour au village") rejoins the village map.
+
+What the server (`server/src/world.rs`) does for a flagged session, with only frames the 5b client already handles in
+the village (`Game.state == 1`):
+
+| Client | Server |
+|---|---|
+| `GD` (after `GCK\|1`) | `GDM\|…\|1\|…`, then **one** `GM\|+a\|+b…` with every occupant, itself included, solo layout `…;cell;dir`; `GM\|+me` to the other occupants; **no** `GAx;3`. Spawn: the free walkable cell nearest the middle of the map |
+| `GA001<path>` | the server's own path to the path's last cell (out-of-fight rules: length ≤ 500, every occupant blocks); `GA<n>;1;<id>;<startCode><path>` to every occupant, the mover included, which answers `GKK<n>`. No `GAS`/`GAF` around it. Refused (no path, occupied end cell): `GAF<id>` to the mover alone |
+| `GKE<n>\|<cell>` | the mover stopped on `cell` (a cell of its last walk): stored as its position, the `GA001` that follows starts there |
+| `GKK<n>` standing on a map-change plate | travel to the linked map (below) |
+| `BM*\|<text>` | `cMK*\|<id>\|<name>\|<text>` to every occupant (the sender id puts the bubble over its sprite) |
+| disconnect, or any place change | `GM\|-<id>` to the remaining occupants |
+
+"Occupant" = a flagged session on the same map. The village is several role-play maps (`server/data/maps.json`
+`world`, `docs/server.md` "World maps"), entered on `village_map`. Their map-change plates (object 1030, the round
+tiles at the map edges) link them: a walk that ends on one (the walker's `GKK`, not the `GA001`, so its own sprite has
+finished walking) moves the walker to the linked map, onto the plate there that leads back, or the free walkable cell
+nearest it. Frames, in this order:
+
+| To | Frames |
+|---|---|
+| the walker | one `GM\|-<id>` per occupant of the old map (one removal per frame: the id is always read from part 1, `AKSClient/Dofus.Client.Game.as:249`); `GM\|+me` on the arrival cell; `GDM\|<new map>\|…\|1\|…`; one `GM\|+a\|+b…` with every occupant of the new map, itself included (as after `GD`) |
+| the old map's occupants | `GM\|-<walker>` |
+| the new map's occupants | `GM\|+<walker>` |
+
+Why a `GDM` pushed without a `GD` works, and the order (client facts):
+- `GDM` is dispatched on its three characters alone (`AKSClient/Dofus.Client.DataProcessor.as:310-315`), whatever
+  the state. `onMapData` → `uncompressMap` replaces `DATACENTER.Map` → `drawCurrentMap` (`AKSClient/Events.AKS.Game.as:14-20`,
+  `AKSClient/Dofus.Kernel.as:56-62`) → `BATTLEFIELD.clear()`: every character sprite removed
+  (`AKSClient/Dofus.BattleField.as:21-27`, `Dofus.BattleField.Characters.as:35-42`, `Dofus.BattleField.Characters.Character.as:35-42`),
+  objects and the Ground/Object1/Object2 layers emptied (`Dofus.BattleField.Container.as:7-46,111-114`), interaction
+  cells reset; then `Map.build` → `onMapLoad`, whose solo branch (`isMultiplayer` is `state > 1`,
+  `AKSClient/Dofus.DataCenter.Game.as:38-41`) re-enables movement and rebuilds only the player's own sprite
+  (`AKSClient/Events.Battlefield.Map.as:53-63`). So nothing of the old map stays drawn. Re-running the entry handshake
+  (`GCK|1` → `GD`) would end in the same `GDM` + `GM`, after `INTERFACE.clear()` and a new banner (chat log lost) and a
+  new `DATACENTER.Game` (`AKSClient/Dofus.Client.Game.as:133-145`, `AKSClient/Events.AKS.Game.as:1-13`).
+- `BATTLEFIELD.clear()` does not touch `DATACENTER.Characters`, hence the `GM -` of the old occupants, **before** the
+  `GDM`: their `clip.clear()` deletes `playerOnID` at their cell of the map still loaded; after the `GDM` it would delete
+  it at the same cell number of the new map, under someone else (`Character.as:35-39`). (Removed characters still
+  stay in the provider with no sprite, a quirk of `setItemAt(id, undefined)`, `AKSClient/Dofus.Client.Game.as:262`.)
+- `onMapLoad` builds the own sprite on `DATACENTER.Characters[Player.ID].cell`, and its `setPosition` runs one frame
+  later (`onInitFrame`, `Character.as:21-26`). Still the old plate's cell, that would stamp `playerOnID` on the new
+  map (`setNewCell`, `Character.as:297-302`) whenever the new `GM` arrives after that frame, and the `GM` rebuild only
+  frees the cell its entry gives: a phantom occupant on the new map's plate on the same side. The walker's own
+  `GM|+me` before the `GDM` sets `cell` first (`createCharacter` reuses the object, `AKSClient/Dofus.CharactersManager.as:18-30,133`;
+  it draws on the old map for at most a frame). That cell exists on the old map because linked maps have the same size
+  (checked when the server loads its data).
+
+Why these frames work in state 1 (client facts):
+- `GM +` entries of **other** characters are drawn in solo: `innerOnMovement` reads `cell`/`dir` for every entry when
+  `!isMultiplayer` (`AKSClient/Dofus.Client.Game.as:231-235`) and `onMovement` builds and places the sprite of whatever
+  id it is (`AKSClient/Events.AKS.Game.as:219-223`); `GM -` clears it (`:224-227`). A `GM +` arriving after the map is
+  drawn loads the sprite SWF then (`Character.init` → `loadMovie`, `AKSClient/Dofus.BattleField.Characters.Character.as:7-34`).
+- `GA` type 1 animates any actor id, with no state or turn check (`AKSClient/Events.AKS.Game.as:495-516`,
+  `moveCharacterThroughPath(path, isMultiplayer)`, `AKSClient/Dofus.BattleField.Characters.Character.as:397-444`, which
+  first puts the sprite on `path[0]`). `GKK<n>` is sent for a numeric id when the actor is the local player
+  (`AKSClient/Events.AKS.Game.as:826-833`, `AKSClient/Dofus.Client.Game.as:110-114`), whatever the state.
+- `GAS<id>` would set `m_bNextAction` (`AKSClient/Events.AKS.Game.as:455-473`), and the ack's `end(true)` would then
+  leave the action manager transmitting for good (`AKSClient/Dofus.GameActionsManager.as:70-82`). `GAF<id>` alone runs
+  `onActionsFinish` → `end(true)` with `m_bNextAction` false → ready again; its fight-only branch is skipped
+  (`AKSClient/Events.AKS.Game.as:474-494`).
+- A village click (`AKSClient/Events.Battlefield.Interaction.as:8-26`) is not capped: `onCreateSolo` sets
+  `PathFinding.setInitState(false)` (`AKSClient/Events.AKS.Game.as:6`), so `calculatePath` runs `STATE_MOVE_SINGLE`
+  with `maxLength = 500` outside fights (`AKSClient/Dofus.PathFinding.as:22-46,115`). It refuses an occupied or
+  movement-0 end cell (`:27-35`); occupied cells also block on the way, because the role-play exemption reads
+  `BATTLEFIELD.Map.bRolePlay`, which nothing sets (`:204`; `bRolePlay` lives on `DATACENTER.Map`). Clicks closer than
+  `CLICK_MINIMUM_TIMER` are dropped (`AKSClient/Events.Battlefield.Interaction.as:12-16`).
+- A click while the own sprite walks sends `GKE<n>|<cell>` and then the new `GA001`
+  (`AKSClient/Dofus.GameActionsManager.as:29-33,59-69`).
+- `cM` puts the bubble over `DATACENTER.Characters[fromId].clip` on `bRolePlay` maps (`AKSClient/Events.AKS.Chat.as:46-58`);
+  Enter in the banner's `txtConsole` (`AKSClient/Dofus.KeyListener.as:99-105`) sends plain text as `BM*`
+  (`AKSClient/Dofus.Client.Console.as:109-112`).
+
+Examples: `GW\n\0`; then `GM|+12;Bobby;3;8;0;80;FF0000;-1;00FF00;;239;1|+7;Ali;5;3;1;31;-1;-1;-1;;224;1\0`,
+`GA1;1;12;dVZtdX\0`, `cMK*|7|Ali|Salut\0`, `GM|-7\0`. Travel of 12 from map 567 (plate 115) with 7 there, to map 563:
+`GKK3\n\0` → to 12 `GM|-7\0`, `GM|+12;Bobby;3;8;0;80;FF0000;-1;00FF00;;102;3\0`, `GDM|563|15|17|1|71|…\0`,
+`GM|+12;Bobby;3;8;0;80;FF0000;-1;00FF00;;102;3\0`; to 7 `GM|-12\0`.

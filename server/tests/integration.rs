@@ -2,7 +2,7 @@
 //! builds (web/src/core/protocol.ts), through login → character → channel → chat → free game → placement → fight
 //! (moves computed with the client's pathfinding, spells, close combat) → death → results → back to the channel.
 //! Every server frame is checked against the documented format (`check_frame`).
-use dofus_server::codec::{compress_path, decode64};
+use dofus_server::codec::{cell_code, compress_path, decode64};
 use dofus_server::crypt::crypt_password;
 use dofus_server::data::GameData;
 use dofus_server::map::{tacle_zones, Map};
@@ -201,9 +201,16 @@ impl Client {
         }
     }
     async fn login(&mut self, account: &str, password: &str) -> String {
+        self.credentials(account, "", password).await
+    }
+    /// The authored register frame: `+` before the crypt (docs/protocol/account.md).
+    async fn register(&mut self, account: &str, password: &str) -> String {
+        self.credentials(account, "+", password).await
+    }
+    async fn credentials(&mut self, account: &str, marker: &str, password: &str) -> String {
         self.send("5\n").await;
         let crypt = crypt_password(password, &self.key);
-        self.send(&format!("{account}\n{crypt}\n")).await;
+        self.send(&format!("{account}\n{marker}{crypt}\n")).await;
         self.recv().await
     }
 }
@@ -351,11 +358,11 @@ async fn two_clients_play_a_full_duel() {
     let addr = start_server(&store, net::Overrides { turn_ms: Some(60_000), placement_ms: Some(60_000) }).await;
     let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
 
-    // ── login (accounts auto-created), version check, double login, wrong password ──
+    // ── register, version check, double login, wrong password ──
     let mut a = Client::connect(&addr).await;
-    assert_eq!(a.login("bo", "pass").await, "AlKfr");
+    assert_eq!(a.register("bo", "pass").await, "AlKfr");
     let mut b = Client::connect(&addr).await;
-    assert_eq!(b.login("ali", "dofus2004").await, "AlKfr");
+    assert_eq!(b.register("ali", "dofus2004").await, "AlKfr");
     let mut c = Client::connect(&addr).await;
     assert_eq!(c.login("bo", "pass").await, "AlEa");
     let mut v = Client::connect(&addr).await;
@@ -567,8 +574,8 @@ async fn timers_end_placement_and_turns_and_a_leaver_loses() {
     let addr = start_server(&store, net::Overrides { turn_ms: Some(300), placement_ms: Some(300) }).await;
     let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
     let (mut a, mut b) = (Client::connect(&addr).await, Client::connect(&addr).await);
-    assert_eq!(a.login("feca", "shield").await, "AlKfr");
-    assert_eq!(b.login("sram", "shadow").await, "AlKfr");
+    assert_eq!(a.register("feca", "shield").await, "AlKfr");
+    assert_eq!(b.register("sram", "shadow").await, "AlKfr");
     enter(&mut a, "PAFeca|1|0|-1|-1|-1\n", "Feca").await;
     enter(&mut b, "PASram|4|1|-1|-1|-1\n", "Sram").await;
     let map = data.maps[1].id;
@@ -630,7 +637,7 @@ async fn random_games_match_solo_players_and_parties() {
         ("rndc", "PARandc|3|0|-1|-1|-1\n", "Randc"), ("rndd", "PARandd|4|1|-1|-1|-1\n", "Randd")].into_iter().enumerate()
     {
         let mut c = Client::connect(&addr).await;
-        assert_eq!(c.login(acc, &format!("pw{i}")).await, "AlKfr");
+        assert_eq!(c.register(acc, &format!("pw{i}")).await, "AlKfr");
         enter(&mut c, pa, name).await;
         cl.push(c);
     }
@@ -688,7 +695,7 @@ async fn random_games_match_solo_players_and_parties() {
     assert_eq!(c.expect("Gi").await, format!("GiE{idc}|Randc"));
     // an invitee who disconnects: the inviter's waiting card goes (IMPOSSIBLE_INVITATION)
     let mut e = Client::connect(&addr).await;
-    assert_eq!(e.login("rnde", "pw4").await, "AlKfr");
+    assert_eq!(e.register("rnde", "pw4").await, "AlKfr");
     enter(&mut e, "PARande|5|0|-1|-1|-1\n", "Rande").await;
     let ide = e.id;
     c.send(&format!("Gi{ide}\n")).await;
@@ -758,6 +765,197 @@ fn gm_ids(log: &[String]) -> Vec<String> {
     ids.into_iter().map(|(_, id)| id).collect()
 }
 
+/// Character creation + selection with the authored `GW` ("Rejoindre la carte"): the village map, then the `GM` of
+/// every occupant (no `GAx;3`). Returns that `GM`.
+async fn enter_social(c: &mut Client, pa: &str, name: &str) -> String {
+    c.send("PL\n").await;
+    c.expect("ALK").await;
+    c.send(pa).await;
+    c.expect("AAK").await;
+    let al = c.expect("ALK|").await;
+    c.id = al.split('|').find(|e| e.split(';').nth(1) == Some(name)).unwrap().split(';').next().unwrap().parse().unwrap();
+    c.send(&format!("PS{}\n", c.id)).await;
+    c.send("GW\n").await;
+    c.expect("ASK|").await;
+    c.send("GC1\n").await;
+    c.expect("GCK|1").await;
+    c.send("GD\n").await;
+    assert_eq!(c.expect("GDM|").await.split('|').nth(4), Some("1"));
+    c.expect("GM|+").await
+}
+
+/// The village as a social map: two `GW` sessions see each other, walk (other occupants block), chat with bubbles
+/// (`cM` with the sender id) and see each other leave; a normal session still bounces to the multiplayer screen.
+#[tokio::test]
+async fn social_village_map() {
+    let store = std::env::temp_dir().join(format!("dofus-it-social-{}.json", std::process::id()));
+    let addr = start_server(&store, net::Overrides { turn_ms: None, placement_ms: None }).await;
+    let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+    let village = data.maps.iter().find(|m| m.id == data.rules.village_map).unwrap();
+    let map = &data.map_index[&village.id];
+    let (mut a, mut b, mut c) = (Client::connect(&addr).await, Client::connect(&addr).await, Client::connect(&addr).await);
+    for (cl, acc) in [(&mut a, "soca"), (&mut b, "socb"), (&mut c, "socc")] {
+        assert_eq!(cl.register(acc, "pw").await, "AlKfr");
+    }
+    // A alone; B on another walkable cell, with A in its GM (solo layout …;cell;dir); A gets B's entry.
+    let cell = |gm: &str| gm.rsplit('|').next().unwrap().split(';').nth(10).unwrap().parse::<i64>().unwrap();
+    let gm = enter_social(&mut a, "PASoca|1|0|-1|-1|-1\n", "Soca").await;
+    let p0 = cell(&gm);
+    assert_eq!(gm, format!("GM|+{};Soca;1;1;0;10;-1;-1;-1;;{p0};1", a.id));
+    let gm = enter_social(&mut b, "PASocb|2|1|-1|-1|-1\n", "Socb").await;
+    let p1 = cell(&gm);
+    assert!(p1 != p0 && map.walkable(p0) && map.walkable(p1), "spawn cells {p0}, {p1}");
+    let entry_b = format!("+{};Socb;1;2;1;21;-1;-1;-1;;{p1};1", b.id);
+    assert_eq!(gm, format!("GM|+{};Soca;1;1;0;10;-1;-1;-1;;{p0};1|{entry_b}", a.id));
+    assert_eq!(a.expect("GM|").await, format!("GM|{entry_b}"));
+    // A normal "Jouer" session goes through the village to the multiplayer screen; the occupants see nothing.
+    enter(&mut c, "PASocc|3|0|-1|-1|-1\n", "Socc").await;
+    // A walks: the server's path to the requested end cell, broadcast to both (A acknowledges with GKK).
+    let none = HashSet::new();
+    let walk = |from: i64, to: i64, occ: &HashSet<i64>| {
+        let (path, _) = path_find(map, occ, &none, false, 500, from, to).unwrap();
+        compress_path(&path.iter().map(|&(c, d)| (c as i32, d)).collect::<Vec<_>>())
+    };
+    let occ = HashSet::from([p0, p1]);
+    let far = village.places[1][0];
+    a.send(&format!("GA001{}\n", walk(p0, far, &occ))).await;
+    let ga = format!("GA1;1;{};{}{}", a.id, cell_code(p0 as i32), walk(p0, far, &occ));
+    assert_eq!(a.expect("GA").await, ga);
+    assert_eq!(b.expect("GA").await, ga);
+    a.send("GKK1\n").await;
+    // The stored cell moved: the next walk starts on `far`. A move onto B's cell is refused (GAF to A only).
+    let occ = HashSet::from([far, p1]);
+    a.send(&format!("GA001{}\n", compress_path(&[(p1 as i32, 1)]))).await;
+    assert_eq!(a.expect("GAF").await, format!("GAF{}", a.id));
+    a.send(&format!("GA001{}\n", compress_path(&[(far as i32, 1)]))).await; // onto its own cell (only via `/c`)
+    assert_eq!(a.expect("GAF").await, format!("GAF{}", a.id));
+    a.send(&format!("GA001{}\n", walk(far, p0, &occ))).await;
+    let ga = format!("GA2;1;{};{}{}", a.id, cell_code(far as i32), walk(far, p0, &occ));
+    assert_eq!(a.expect("GA").await, ga);
+    assert_eq!(b.expect("GA").await, ga);
+    // A clicks again while walking: `GKE2|<cell reached>` (a cell of that walk only), then the new walk starts there.
+    let mid = path_find(map, &occ, &none, false, 500, far, p0).unwrap().1[3].0;
+    a.send(&format!("GKE2|{p1}\n")).await; // not on the walk: ignored
+    a.send(&format!("GKE2|{mid}\n")).await;
+    let occ = HashSet::from([mid, p1]);
+    a.send(&format!("GA001{}\n", walk(mid, p0, &occ))).await;
+    let ga = format!("GA3;1;{};{}{}", a.id, cell_code(mid as i32), walk(mid, p0, &occ));
+    assert_eq!(a.expect("GA").await, ga);
+    assert_eq!(b.expect("GA").await, ga);
+    // Chat: `BM*` goes to every occupant with the sender's id (the bubble over its sprite); not to the lobby.
+    b.send("BM*|Salut Soca\n").await;
+    let line = format!("cMK*|{}|Socb|Salut Soca", b.id);
+    for cl in [&mut a, &mut b] {
+        assert_eq!(cl.expect("cMK").await, line);
+    }
+    c.send("BM*|lobby\n").await;
+    assert_eq!(c.expect("cMK").await, format!("cMK*|{}|Socc|lobby", c.id));
+    // B drops: A sees it go.
+    b.ws.close(None).await.unwrap();
+    assert_eq!(a.expect("GM|-").await, format!("GM|-{}", b.id));
+    a.send("IC\n").await;
+    assert_eq!(a.expect("IC").await, "IC2");
+    let _ = std::fs::remove_file(&store);
+}
+
+/// World maps: a walk that ends on a map-change plate (on `GKK`) moves the walker to the linked map. The old map's
+/// occupants see it go, the walker forgets them, gets its own entry on the arrival cell, the new map and its
+/// occupants; the new map's occupants see it come. Walking back onto the plate it arrived on returns.
+#[tokio::test]
+async fn village_plates_change_maps() {
+    let store = std::env::temp_dir().join(format!("dofus-it-travel-{}.json", std::process::id()));
+    let addr = start_server(&store, net::Overrides { turn_ms: None, placement_ms: None }).await;
+    let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+    let home = data.rules.village_map;
+    let (&plate, &(to, arrival)) = data.world[&home].links.iter().min().unwrap();
+    let (m0, m1) = (&data.world[&home].map, &data.world[&to].map);
+    let (mut a, mut b) = (Client::connect(&addr).await, Client::connect(&addr).await);
+    for (cl, acc) in [(&mut a, "trava"), (&mut b, "travb")] {
+        assert_eq!(cl.register(acc, "pw").await, "AlKfr");
+    }
+    let last_cell = |gm: &str| gm.rsplit('|').next().unwrap().split(';').nth(10).unwrap().parse::<i64>().unwrap();
+    let p0 = last_cell(&enter_social(&mut a, "PATrava|1|0|-1|-1|-1\n", "Trava").await);
+    let p1 = last_cell(&enter_social(&mut b, "PATravb|2|1|-1|-1|-1\n", "Travb").await);
+    a.expect("GM|+").await;
+    let none = HashSet::new();
+    let path = |map: &Map, from: i64, to: i64, occ: &[i64]| {
+        let (p, _) = path_find(map, &occ.iter().copied().collect(), &none, false, 500, from, to).unwrap();
+        compress_path(&p.iter().map(|&(c, d)| (c as i32, d)).collect::<Vec<_>>())
+    };
+    // Walk `cl` from `from` to `to`; every listed client sees the GA; the walker acknowledges it.
+    async fn walk(cl: &mut Client, others: &mut [&mut Client], p: String) {
+        cl.send(&format!("GA001{p}\n")).await;
+        let ga = cl.expect("GA").await;
+        for o in others.iter_mut() {
+            assert_eq!(o.expect("GA").await, ga);
+        }
+        cl.send(&format!("GKK{}\n", &ga[2..ga.find(';').unwrap()])).await;
+    }
+    let entry = |gm: &str, id: u32, cell: i64| {
+        gm.split("|+").any(|e| e.starts_with(&format!("{id};")) && e.split(';').nth(10) == Some(&cell.to_string()))
+    };
+    // A onto the plate: B sees A go; A forgets B, gets its entry on the arrival plate, the new map and its occupants (A).
+    walk(&mut a, &mut [&mut b], path(m0, p0, plate, &[p0, p1])).await;
+    assert_eq!(b.expect("GM|-").await, format!("GM|-{}", a.id));
+    assert_eq!(a.expect("GM|-").await, format!("GM|-{}", b.id));
+    assert!(entry(&a.expect("GM|+").await, a.id, arrival));
+    assert_eq!(a.expect("GDM|").await, format!("GDM|{to}|{}|{}|1|{}|{}", m1.width, m1.height, m1.background, m1.data));
+    let gm = a.expect("GM|+").await;
+    assert!(gm.matches("|+").count() == 1 && entry(&gm, a.id, arrival), "{gm}");
+    // B follows onto the same plate: A stands on the arrival plate, so B lands on the free walkable cell nearest it.
+    walk(&mut b, &mut [], path(m0, p1, plate, &[p1])).await;
+    let b_at = last_cell(&b.expect("GM|+").await);
+    assert!(b_at != arrival && m1.walkable(b_at) && distance(b_at, arrival, m1.width as i64) <= 2, "{b_at}");
+    assert_eq!(b.expect("GDM|").await.split('|').nth(1), Some(to.to_string().as_str()));
+    let gm = b.expect("GM|+").await;
+    assert!(entry(&gm, a.id, arrival) && entry(&gm, b.id, b_at), "{gm}");
+    assert!(entry(&a.expect("GM|+").await, b.id, b_at), "A sees B arrive");
+    // A steps off the plate (a plain walk), then back onto it: back home, on the plate that leads here.
+    let off = (0..m1.cells.len() as i64)
+        .find(|&c| m1.walkable(c) && c != b_at && !data.world[&to].links.contains_key(&c) && distance(c, arrival, m1.width as i64) == 1)
+        .unwrap();
+    walk(&mut a, &mut [&mut b], path(m1, arrival, off, &[arrival, b_at])).await;
+    walk(&mut a, &mut [&mut b], path(m1, off, arrival, &[off, b_at])).await;
+    assert_eq!(b.expect("GM|-").await, format!("GM|-{}", a.id));
+    assert_eq!(a.expect("GM|-").await, format!("GM|-{}", b.id));
+    let (back, home_plate) = data.world[&to].links[&arrival];
+    assert_eq!((back, data.world[&home].links[&home_plate].0), (home, to), "the plate it arrived on leads back");
+    assert!(entry(&a.expect("GM|+").await, a.id, home_plate));
+    assert_eq!(a.expect("GDM|").await.split('|').nth(1), Some(home.to_string().as_str()));
+    assert!(entry(&a.expect("GM|+").await, a.id, home_plate));
+    // Chat stays per map: B alone hears itself.
+    b.send("BM*|seul\n").await;
+    assert_eq!(b.expect("cMK").await, format!("cMK*|{}|Travb|seul", b.id));
+    a.send("IC\n").await;
+    assert_eq!(a.expect("IC").await, "IC2", "nothing else reached A");
+    let _ = std::fs::remove_file(&store);
+}
+
+/// Accounts: the authored register frame (`<login>\n+<crypt>`) creates the account and logs in; a login never creates one.
+#[tokio::test]
+async fn register_then_login() {
+    let store = std::env::temp_dir().join(format!("dofus-it-register-{}.json", std::process::id()));
+    let addr = start_server(&store, net::Overrides { turn_ms: None, placement_ms: None }).await;
+    let mut first = Client::connect(&addr).await;
+    assert_eq!(first.register("neo", "matrix").await, "AlKfr");
+    first.ws.close(None).await.unwrap();
+    tokio::time::sleep(Duration::from_millis(100)).await;
+    let mut again = Client::connect(&addr).await;
+    assert_eq!(again.login("neo", "matrix").await, "AlKfr");
+    assert_eq!(Client::connect(&addr).await.login("neo", "matrox").await, "AlEx"); // wrong password
+    assert_eq!(Client::connect(&addr).await.login("nobody", "matrix").await, "AlEx"); // unknown account
+    assert_eq!(Client::connect(&addr).await.register("neo", "other").await, "AlEe"); // already registered
+    assert_eq!(Client::connect(&addr).await.login("nobody", "matrix").await, "AlEx"); // the refused login created nothing
+    // a register frame cut at 200 chars (no trailing `\n`) is refused: the 1-char-shorter login frame could never match it
+    let mut cut = Client::connect(&addr).await;
+    cut.send("5\n").await;
+    cut.send(&format!("{}\n+{}", "a".repeat(32), "a".repeat(166))).await;
+    cut.expect("AlEx").await;
+    let saved: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&store).unwrap()).unwrap();
+    assert_eq!(saved["accounts"].as_object().unwrap().keys().collect::<Vec<_>>(), ["neo"]);
+    let _ = std::fs::remove_file(&store);
+}
+
 #[tokio::test]
 async fn garbage_frames_do_not_kill_the_world() {
     let store = std::env::temp_dir().join(format!("dofus-it-garbage-{}.json", std::process::id()));
@@ -767,7 +965,7 @@ async fn garbage_frames_do_not_kill_the_world() {
     c.send("é\nRFdAvFlc\n").await; // non-ASCII login
     c.expect("AlEx").await;
     let crypt = crypt_password("pass", &c.key);
-    c.send(&format!("garbage\n{crypt}\n")).await; // retry on the same connection (version already given)
+    c.send(&format!("garbage\n+{crypt}\n")).await; // register, retrying on the same connection (version already given)
     c.expect("AlKfr").await;
     // Anything can be sent with the `/c` console command (up to 200 chars), before and after selecting a character.
     let junk = [
@@ -787,6 +985,8 @@ async fn garbage_frames_do_not_kill_the_world() {
         "SBé",
         "SIé",
         "PBé",
+        "GW",
+        "GKEé|é",
     ];
     for j in junk {
         c.send(&format!("{j}\n")).await;

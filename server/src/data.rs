@@ -19,8 +19,27 @@ pub struct MapEntry {
 }
 
 #[derive(Deserialize)]
+struct WorldEntry {
+    id: u32,
+    width: i32,
+    height: i32,
+    #[serde(rename = "backgroundNum")]
+    background: u32,
+    #[serde(rename = "mapData")]
+    map_data: String,
+    links: HashMap<i64, (u32, i64)>,
+}
+
+/// A role-play map of the social village (stage 3b, `maps.json` `world`): its map-change plates → (map, arrival cell).
+pub struct WorldMap {
+    pub map: Map,
+    pub links: HashMap<i64, (u32, i64)>,
+}
+
+#[derive(Deserialize)]
 struct MapsFile {
     maps: Vec<MapEntry>,
+    world: Vec<WorldEntry>,
 }
 
 /// `[count, faces, bonus]`: `count`d`faces` + `bonus`.
@@ -142,6 +161,8 @@ pub struct Rules {
 pub struct GameData {
     pub maps: Vec<MapEntry>,
     pub map_index: HashMap<u32, Map>,
+    /// Not fight maps: never in `maps`/`map_index` (no placement cells).
+    pub world: HashMap<u32, WorldMap>,
     pub classes: HashMap<u8, ClassDef>,
     pub spells: HashMap<u32, SpellDef>,
     pub rules: Rules,
@@ -165,18 +186,31 @@ struct SpellsFile {
 
 impl GameData {
     pub fn load(dir: &Path) -> Result<GameData, String> {
-        let maps = read::<MapsFile>(dir, "maps.json")?.maps;
+        let MapsFile { maps, world } = read(dir, "maps.json")?;
         let map_index = maps.iter().map(|m| (m.id, Map::new(m.id, m.width, m.height, m.background, m.map_data.clone()))).collect();
+        let world = world
+            .into_iter()
+            .map(|w| (w.id, WorldMap { map: Map::new(w.id, w.width, w.height, w.background, w.map_data), links: w.links }))
+            .collect();
         let classes = read::<ClassesFile>(dir, "classes.json")?.classes.into_iter().map(|c| (c.id, c)).collect();
         let spells = read::<SpellsFile>(dir, "spells.json")?.spells.into_iter().map(|s| (s.id, s)).collect();
-        let data = GameData { maps, map_index, classes, spells, rules: read(dir, "rules.json")? };
+        let data = GameData { maps, map_index, world, classes, spells, rules: read(dir, "rules.json")? };
         data.validate()?;
         Ok(data)
     }
 
     fn validate(&self) -> Result<(), String> {
-        if !self.map_index.contains_key(&self.rules.village_map) {
-            return Err(format!("rules.village_map {} not in maps.json", self.rules.village_map));
+        if !self.world.contains_key(&self.rules.village_map) {
+            return Err(format!("rules.village_map {} not in maps.json world", self.rules.village_map));
+        }
+        // The arrival cell must exist on the map left too: the walker gets its new `GM` entry before the new map.
+        for w in self.world.values() {
+            for (&plate, &(to, cell)) in &w.links {
+                let dest = self.world.get(&to).ok_or(format!("world map {} links to unknown map {to}", w.map.id))?;
+                if !w.map.walkable(plate) || !dest.map.walkable(cell) || dest.map.cells.len() != w.map.cells.len() {
+                    return Err(format!("world map {} plate {plate}: unwalkable, or {to} of another size", w.map.id));
+                }
+            }
         }
         for c in self.classes.values() {
             for id in &c.spells {

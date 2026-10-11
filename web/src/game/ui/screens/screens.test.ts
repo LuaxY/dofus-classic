@@ -141,6 +141,10 @@ test("login substitute: kernel contract (txtName/txtPass siblings, onLogin → D
   (li.btn_ok!.onRelease as () => void)();
   expect([dc.Player.login, dc.Player.password]).toEqual(["bob", "secret"]);
   expect(called("AKS.connect").length).toBe(1);
+  expect(G.AKS.register).toBe(false);
+  (li.btn_register!.onRelease as () => void)(); // authored "S'inscrire": same fields, the next logon registers
+  expect([dc.Player.login, dc.Player.password, G.AKS.register]).toEqual(["bob", "secret", true]);
+  expect(called("AKS.connect").length).toBe(2);
   li.setTextError("x");
   expect(li.txtError._visible).toBe(true);
   li.setTextError();
