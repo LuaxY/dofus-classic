@@ -9,6 +9,7 @@ use crate::pathfinding::{distance, path_find};
 use crate::data::CloseCombat;
 use crate::store::{Account, Character, Item, KnownSpell, Store};
 use std::collections::{BTreeMap, HashMap, HashSet};
+use std::time::{Duration, Instant};
 use tokio::sync::mpsc::UnboundedSender;
 
 pub type Sid = u64;
@@ -18,6 +19,7 @@ pub enum Event {
     Frame(Sid, String),
     Close(Sid),
     Timer { game: u32, serial: u64 },
+    Tick, // once a minute: idle sessions are disconnected
 }
 
 #[derive(PartialEq)]
@@ -49,6 +51,9 @@ struct Session {
     /// On a village (world) map: (map, cell, dir), and the cells of its last walk (a `GKE` must stop on one of them).
     spot: Option<(u32, i64, i32)>,
     walk: Vec<i64>,
+    last_frame: Instant,
+    /// When its recent `BM` arrived (spam check).
+    chat_times: Vec<Instant>,
 }
 
 pub struct World {
@@ -98,6 +103,12 @@ impl World {
 
     /// Where timer events are posted (the world's own event queue). Without it timers never fire (unit tests).
     pub fn set_timers(&mut self, tx: UnboundedSender<Event>, turn_ms: Option<u64>, placement_ms: Option<u64>) {
+        let tick = tx.clone();
+        tokio::spawn(async move {
+            while tick.send(Event::Tick).is_ok() {
+                tokio::time::sleep(Duration::from_secs(60)).await;
+            }
+        });
         self.timers = Some(tx);
         self.turn_ms = turn_ms.unwrap_or(self.turn_ms);
         self.placement_ms = placement_ms.unwrap_or(self.placement_ms);
@@ -121,11 +132,16 @@ impl World {
                         social: false,
                         spot: None,
                         walk: Vec::new(),
+                        last_frame: Instant::now(),
+                        chat_times: Vec::new(),
                     },
                 );
             }
             // One WebSocket text frame = one message; split on `\0` anyway (XMLSocket framing), strip one `\n`.
             Event::Frame(sid, raw) => {
+                if let Some(s) = self.sessions.get_mut(&sid) {
+                    s.last_frame = Instant::now();
+                }
                 for piece in raw.split('\0').filter(|p| !p.is_empty()) {
                     let msg = piece.strip_suffix('\n').unwrap_or(piece).to_string();
                     if !msg.is_empty() && self.sessions.contains_key(&sid) {
@@ -135,6 +151,14 @@ impl World {
             }
             Event::Close(sid) => self.close(sid),
             Event::Timer { game, serial } => self.timer(game, serial),
+            Event::Tick => {
+                let idle = Duration::from_millis(self.data.rules.idle_ms);
+                let gone: Vec<Sid> = self.sessions.iter().filter(|(_, s)| s.last_frame.elapsed() >= idle).map(|(&k, _)| k).collect();
+                for sid in gone {
+                    self.send(sid, "M01"); // stored by the client, shown with DISCONNECT when the socket closes
+                    self.close(sid); // drops the session's sender: net.rs flushes `M01`, then closes the socket
+                }
+            }
         }
     }
 
@@ -247,7 +271,7 @@ impl World {
             && !pass.is_empty()
             && !(register && msg.len() >= 200);
         if !valid {
-            return self.send(sid, "AlEx");
+            return self.send(sid, "AlEf");
         }
         let ok = match self.store.accounts.get_mut(login) {
             Some(_) if register => return self.send(sid, "AlEe"),
@@ -262,7 +286,7 @@ impl World {
             },
         };
         if !ok {
-            return self.send(sid, "AlEx");
+            return self.send(sid, "AlEf");
         }
         if self.sessions.values().any(|s| s.stage == Stage::Authed && s.account.as_deref() == Some(login)) {
             return self.send(sid, "AlEa");
@@ -535,7 +559,8 @@ impl World {
 
     /// `OM<id>|<pos>` (no answer, InventoryViewer.onEquipItem): `pos` 0..5 equips the item if the slot takes it
     /// (`Items::can_equip`); the item the slot held goes back to the bag (the client's `onReplaceItem` sends nothing).
-    /// `-1` = back to the bag (dragged off its slot, `onTestMouse`, InventoryViewer.as:200-223).
+    /// `-1` = back to the bag (dragged off its slot, `onTestMouse`, InventoryViewer.as:200-223). A changed karma (equipped
+    /// karma effects) → `ABK<id>|13;<karma>`.
     fn item_move(&mut self, sid: Sid, rest: &str) {
         if matches!(self.place(sid), Place::Game(_)) {
             return;
@@ -549,6 +574,7 @@ impl World {
             0..=5 if self.data.items.can_equip(c.class, item.kind, pos as usize) => Some(pos as u8),
             _ => return,
         };
+        let karma = c.stat(13);
         for i in &mut c.items {
             if i.id == id {
                 i.position = pos;
@@ -556,7 +582,9 @@ impl World {
                 i.position = None;
             }
         }
+        let ab = (c.stat(13) != karma).then(|| format!("ABK{me}|13;{}", c.stat(13)));
         self.store.save();
+        ab.into_iter().for_each(|ab| self.send(sid, ab));
     }
 
     /// `OD<id>` (after the client's yes/no box, no spinner) → the item is destroyed, `ODK<id>` (decimal).
@@ -567,9 +595,12 @@ impl World {
         let me = self.sessions[&sid].character.unwrap();
         let c = self.store.characters.get_mut(&me).unwrap();
         let Some(k) = rest.parse::<u32>().ok().and_then(|id| c.items.iter().position(|i| i.id == id)) else { return };
+        let karma = c.stat(13);
         let id = c.items.remove(k).id;
+        let ab = (c.stat(13) != karma).then(|| format!("ABK{me}|13;{}", c.stat(13)));
         self.store.save();
         self.send(sid, format!("ODK{id}"));
+        ab.into_iter().for_each(|ab| self.send(sid, ab));
     }
 
     /// Fight-end drop (authored rule, docs/server.md "Items"): a random template of items.json that the winner can
@@ -672,9 +703,17 @@ impl World {
         }
     }
 
-    /// `BM<dest>|<text>`: `*` public, `#` team, else a whisper (`cMKF` to the target, `cMKT` echo, `cMEn` offline).
-    /// Relayed text never contains `|` or the `/##` remote-console trigger.
-    fn chat(&self, sid: Sid, rest: &str) {
+    /// `BM<dest>|<text>`: `*` public (`cMK|…`), `#` team (`cMK#|…`), else a whisper (`cMKF` to the target, `cMKT`
+    /// echo, `cMEf` offline). Relayed text never contains `|` or the `/##` remote-console trigger. More than
+    /// `spam_lines` within `spam_ms` → `M10` instead (`SRV_MSG_0`).
+    fn chat(&mut self, sid: Sid, rest: &str) {
+        let (lines, window) = (self.data.rules.spam_lines, Duration::from_millis(self.data.rules.spam_ms));
+        let times = &mut self.sessions.get_mut(&sid).unwrap().chat_times;
+        times.retain(|t| t.elapsed() < window);
+        times.push(Instant::now());
+        if times.len() > lines {
+            return self.send(sid, "M10");
+        }
         let Some((dest, text)) = rest.split_once('|') else { return self.send(sid, "cMES") };
         let mut text = text.replace('|', " ");
         while text.contains("/##") {
@@ -683,8 +722,9 @@ impl World {
         let me = self.character(sid).unwrap();
         match dest {
             "*" | "#" => {
+                let kind = if dest == "#" { "#" } else { "" };
                 for to in self.audience(sid, dest == "#") {
-                    self.send(to, format!("cMK{dest}|{}|{}|{text}", me.id, me.name));
+                    self.send(to, format!("cMK{kind}|{}|{}|{text}", me.id, me.name));
                 }
             }
             name => {
@@ -696,7 +736,7 @@ impl World {
                         self.send(to, format!("cMKF|{}|{}|{text}", me.id, me.name));
                         self.send(sid, format!("cMKT|{}|{}|{text}", target.id, target.name));
                     }
-                    None => self.send(sid, format!("cMEn{name}")),
+                    None => self.send(sid, format!("cMEf{name}")),
                 }
             }
         }
@@ -1400,8 +1440,8 @@ impl World {
         }
     }
 
-    /// `GE<sender>|<winner>;<id>;<level>;<dead>;<lowXp>;<xp>;<highXp>;<winXp>;<gold>|…` to everyone still in the game,
-    /// XP/gold persisted, then `AN` for level-ups and `AB` stat 2 for gold.
+    /// `GE<sender>|<winner 2 / loser 0>;<id>;<level>;<dead>;<lowXp>;<xp>;<highXp>;<winXp>;<gold>|…` to everyone still in
+    /// the game, XP/gold persisted, then `AN` for level-ups (+ `M12` on reaching the max level) and `AB` stat 2 for gold.
     fn end_game(&mut self, gid: u32, winner: Option<u8>) {
         let g = self.games.get_mut(&gid).unwrap();
         g.phase = Phase::Ended;
@@ -1434,7 +1474,7 @@ impl World {
             let (low, high) = (r.xp[c.level as usize - 1], *r.xp.get(c.level as usize).unwrap_or(&r.xp[c.level as usize - 1]));
             results.push(format!(
                 "{};{};{};{};{low};{};{high};{xp};{gold}",
-                if won { 2 } else { 1 },
+                if won { 2 } else { 0 },
                 f.id,
                 c.level,
                 !f.alive as u8,
@@ -1444,6 +1484,9 @@ impl World {
             if let Some(sid) = sid {
                 if c.level > level_before {
                     after.push((sid, format!("AN{}|{low}|{}|{high}|{}", c.level, c.xp, c.bonus)));
+                    if c.level == r.max_level {
+                        after.push((sid, "M12".into())); // SRV_MSG_2, max level reached
+                    }
                 }
                 if gold + f.gold_change != 0 {
                     after.push((sid, format!("ABK{}|2;{}", f.id, c.gold)));
@@ -1457,9 +1500,9 @@ impl World {
             results.push(match self.store.characters.get(&id) {
                 Some(c) => {
                     let (low, high) = self.xp_bounds(c.level);
-                    format!("1;{id};{};1;{low};{};{high};0;0", c.level, c.xp - low)
+                    format!("0;{id};{};1;{low};{};{high};0;0", c.level, c.xp - low)
                 }
-                None => format!("1;{id};{level};1;0;0;0;0;0"),
+                None => format!("0;{id};{level};1;0;0;0;0;0"),
             });
         }
         let winners: Vec<u32> = g.members.iter().filter(|f| winner == Some(f.team)).map(|f| f.id).collect();

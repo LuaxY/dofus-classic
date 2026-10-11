@@ -1249,7 +1249,7 @@
   },
   "SRV_MSG_0": {
    "source": "retro_fr",
-   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta); whether the beta used the same id is UNKNOWN: SRV_MSG_0",
+   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta): SRV_MSG_0; the id (0 = spam) owner: stated by the project owner",
    "note": "retro ids 5–15 and 17 are MMO-only (houses, shops, energy, death…) and were left out"
   },
   "SRV_MSG_001": {
@@ -1259,7 +1259,7 @@
   },
   "SRV_MSG_1": {
    "source": "retro_fr",
-   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta); whether the beta used the same id is UNKNOWN: SRV_MSG_1",
+   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta): SRV_MSG_1; the id (1 = idle) owner: stated by the project owner",
    "note": "retro ids 5–15 and 17 are MMO-only (houses, shops, energy, death…) and were left out"
   },
   "SRV_MSG_16": {
@@ -1269,17 +1269,17 @@
   },
   "SRV_MSG_2": {
    "source": "retro_fr",
-   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta); whether the beta used the same id is UNKNOWN: SRV_MSG_2",
+   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta): SRV_MSG_2; the id (2 = max level) owner: stated by the project owner",
    "note": "retro ids 5–15 and 17 are MMO-only (houses, shops, energy, death…) and were left out"
   },
   "SRV_MSG_3": {
    "source": "retro_fr",
-   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta); whether the beta used the same id is UNKNOWN: SRV_MSG_3",
+   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta): SRV_MSG_3; the id (3 = maintenance) owner: stated by the project owner",
    "note": "retro ids 5–15 and 17 are MMO-only (houses, shops, energy, death…) and were left out"
   },
   "SRV_MSG_4": {
    "source": "retro_fr",
-   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta); whether the beta used the same id is UNKNOWN: SRV_MSG_4",
+   "evidence": "vendor/dofedex/lang-fr/lang_fr_7.swf (post-beta): SRV_MSG_4; the id (4 = maintenance) owner: stated by the project owner",
    "note": "retro ids 5–15 and 17 are MMO-only (houses, shops, energy, death…) and were left out"
   },
   "SRV_MSG_42": {
@@ -7229,32 +7229,32 @@
     }
    },
    "100": {
-    "confidence": "low",
+    "confidence": "high",
     "fields": {
      "n": {
       "source": "beta_screenshot",
       "evidence": "vendor/wayback-dofus-2004/screenshots/booge_wp_05.jpg (inventory, beta 6b): tooltip 'Bâton de boisaille karmique repoussant / dommages : 1D5 / +10 au karma / fait reculer de 1case(s)'",
-      "note": "name part of the effect, read in effect order (type 'Bâton' + one part per effect); combine markup (~f, ~p) authored. Effect id authored: id 100 = the effect of the item example in docs/protocol/items.md ('64#a' = effect 0x64); retro 100 is also weapon damage ('Dommages … (neutre)')"
+      "note": "name part of the effect, read in effect order (type 'Bâton' + one part per effect); combine markup (~f, ~p) authored. Effect id owner: stated by the project owner (100 = neutral damage, parameters #1D#2+#3)"
      },
      "d": {
       "source": "beta_screenshot",
       "evidence": "vendor/wayback-dofus-2004/screenshots/booge_wp_05.jpg (inventory, beta 6b): tooltip 'Bâton de boisaille karmique repoussant / dommages : 1D5 / +10 au karma / fait reculer de 1case(s)'",
-      "note": "numbers replaced by #1..#3; the dice syntax copies the beta CC pattern '#1{~1D}#2{~2~3+}#3' (DefineButton2_970). Effect id authored: id 100 = the effect of the item example in docs/protocol/items.md ('64#a' = effect 0x64); retro 100 is also weapon damage ('Dommages … (neutre)')"
+      "note": "numbers replaced by #1..#3; the dice syntax copies the beta CC pattern '#1{~1D}#2{~2~3+}#3' (DefineButton2_970). Effect id owner: stated by the project owner (100 = neutral damage, parameters #1D#2+#3)"
      }
     }
    },
    "123": {
-    "confidence": "low",
+    "confidence": "high",
     "fields": {
      "n": {
       "source": "beta_screenshot",
       "evidence": "vendor/wayback-dofus-2004/screenshots/booge_wp_05.jpg (inventory, beta 6b): tooltip 'Bâton de boisaille karmique repoussant / dommages : 1D5 / +10 au karma / fait reculer de 1case(s)'",
-      "note": "name part of the effect, read in effect order (type 'Bâton' + one part per effect); combine markup (~f, ~p) authored. Effect id authored: retro 123 = '+#1 à la chance' and retro 'chance' replaced beta 'karma' (cf. MODERATE_KARMA)"
+      "note": "name part of the effect, read in effect order (type 'Bâton' + one part per effect); combine markup (~f, ~p) authored. Effect id owner: stated by the project owner (123 = karma, +#1)"
      },
      "d": {
       "source": "beta_screenshot",
       "evidence": "vendor/wayback-dofus-2004/screenshots/booge_wp_05.jpg (inventory, beta 6b): tooltip 'Bâton de boisaille karmique repoussant / dommages : 1D5 / +10 au karma / fait reculer de 1case(s)'",
-      "note": "numbers replaced by #1..#3; the dice syntax copies the beta CC pattern '#1{~1D}#2{~2~3+}#3' (DefineButton2_970). Effect id authored: retro 123 = '+#1 à la chance' and retro 'chance' replaced beta 'karma' (cf. MODERATE_KARMA)"
+      "note": "numbers replaced by #1..#3; the dice syntax copies the beta CC pattern '#1{~1D}#2{~2~3+}#3' (DefineButton2_970). Effect id owner: stated by the project owner (123 = karma, +#1)"
      }
     }
    }

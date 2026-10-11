@@ -37,7 +37,7 @@ Parts past 3 are dropped, so **the text must not contain `|`** (the client never
 
 | Field | Notes |
 |---|---|
-| `kind` (4th char) | `F` (70) whisper received → prefix `FROM`, whisper colour, stores `/w <fromName> ` in whisper history; `T` (84) whisper echo to sender → prefix `TO`; `#` (35) team → prefix `Equipe `; anything else → normal line `<b>name</b> : text` (`AKSClient/Events.AKS.Chat.as:31-59`). Which char the original server used for normal messages is **UNKNOWN — not in code**; any char other than `F`,`T`,`#` works (e.g. `*`) **[inference]**. |
+| `kind` (4th char) | `F` (70) whisper received → prefix `FROM`, whisper colour, stores `/w <fromName> ` in whisper history; `T` (84) whisper echo to sender → prefix `TO`; `#` (35) team → prefix `Equipe `; anything else → normal line `<b>name</b> : text` (`AKSClient/Events.AKS.Chat.as:31-59`). The original server sent no kind char for normal lines: `cMK|…` (`owner`, stated by the project owner); the 4th char is then the `|` itself. |
 | `fromId` | character id; used for the speech bubble on maps with `bRolePlay` (`AKSClient/Events.AKS.Chat.as:46-49`), passed to `traceToChat` (unused there, `AKSClient/Dofus.Kernel.as:67-77`), and compared with the player id for `/##` |
 | `fromName` | shown in bold |
 | `message` | inserted into HTML as-is |
@@ -51,10 +51,11 @@ Special content handled by the client:
   `length == 4` early return can never be true.
 
 Error form: the 4th char `S` (83) → `SYNTAX_ERROR` with the `/w <name> <msg>` hint; any other char →
-`USER_NOT_CONNECTED` with `%1 = substring(4)` (the target name) (`AKSClient/Dofus.Client.DataProcessor.as:391-399`).
+`USER_NOT_CONNECTED` with `%1 = substring(4)` (the target name) (`AKSClient/Dofus.Client.DataProcessor.as:391-399`). For
+an offline whisper target the original server sent `f`: `cMEf<name>` (`owner`).
 
-Examples: `cMK*|12|Bobby|Salut\0`, `cMKF|7|Ali|coucou\0` (whisper to me), `cMKT|7|Ali|coucou\0` (echo of my whisper
-to Ali — `fromName` shown after `TO`), `cMK#|12|Bobby|go\0`, `cMES\0`, `cMEnZed\0`.
+Examples: `cMK|12|Bobby|Salut\0`, `cMKF|7|Ali|coucou\0` (whisper to me), `cMKT|7|Ali|coucou\0` (echo of my whisper
+to Ali — `fromName` shown after `TO`), `cMK#|12|Bobby|go\0`, `cMES\0`, `cMEfZed\0`.
 
 The rubrique `c` falls through into the friends dispatcher after handling (see [friends.md](friends.md)); this is
 harmless for `cM`/`cS`. Consequently a server must **not** send `cA`, `cD`, `cL`, `cl`, `cI`, `cO`: they would run the friend handlers `FA`, `FD`, `FL`, `Fl`, `FI`, `FO`. Other `c?` codes do nothing.

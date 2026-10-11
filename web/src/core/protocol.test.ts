@@ -20,7 +20,7 @@ test("parser: one sample per DataProcessor branch", () => {
     ["AlKfr", { type: "loginOk", language: "fr" }],
     ["AlEa", { type: "loginError", reason: "alreadyLogged" }],
     ["AlEv", { type: "loginError", reason: "badVersion" }],
-    ["AlEx", { type: "loginError", reason: "accessDenied" }],
+    ["AlEf", { type: "loginError", reason: "accessDenied" }],
     ["AlEe", { type: "loginError", reason: "accountExists" }],
     ["AW|nobody", { type: "whoIs", playerName: "nobody", characterName: "!", state: null }],
     ["AW|acc|Bob|C|chan|", { type: "whoIs", playerName: "acc", characterName: "Bob", state: "C", param: "chan" }],
@@ -42,7 +42,7 @@ test("parser: one sample per DataProcessor branch", () => {
     ["GCEn", { type: "gameCreate", success: false, error: "n" }],
     ["GJK|3|g", { type: "gameJoin", success: true, state: 3, name: "g", params: [] }],
     ["GJEf", { type: "gameJoin", success: false, error: "f" }],
-    ["GE7|2;7;5;0;100;50;300;20;15|1;8;4;1;0;0;100;0;0", { type: "gameEnd", senderId: "7", results: [
+    ["GE7|2;7;5;0;100;50;300;20;15|0;8;4;1;0;0;100;0;0", { type: "gameEnd", senderId: "7", results: [
       { winner: true, id: "7", level: 5, bDead: false, lowXp: 100, xp: 50, fullxp: 150, highXp: 300, winxp: 20, gold: 15 },
       { winner: false, id: "8", bDead: true }] }],
     // "D" = 4, "B" = 2: maxPlayersCount uses charCodeAt(0) twice (AS quirk) → 8; players = charCodeAt(2) - 64

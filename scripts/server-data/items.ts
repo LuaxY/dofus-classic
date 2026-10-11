@@ -6,8 +6,9 @@
 //
 //   bun scripts/server-data/items.ts
 //
-// Effects (numbers authored, see PROVENANCE): weapons (super type 2) get the damage effect 100, whose dice replace the
-// class close-combat dice on the server; every other item gets the karma effect 123 (display only). The push effect 5
+// Effects (ids stated by the project owner, numbers authored, see PROVENANCE): weapons (super type 2) get the neutral
+// damage effect 100 (p1 D p2 + p3), whose dice replace the class close-combat dice on the server; every other item gets
+// the karma effect 123 (+p1 to the karma characteristic while equipped). The push effect 5
 // is not used: no server rule for it. Every template has at least one effect: an empty effects field still yields one
 // effect of type NaN (Item.as:15), whose name part is "?".
 // Check: every template goes through the client's own Item (web/src/core/datacenter/item.ts) with fr.json loaded; the
@@ -56,8 +57,8 @@ const PROVENANCE = {
   items:
     "One template per item icon of beta 5b (dofus-5b/clips/items/<type>/<gfx>.swf, the file Item.iconFile loads: AKSClient/Dofus.DataCenter.Item.as:38-47). " +
     "type: lang I.t ids (web/public/lang/fr.json; names and super types retro_fr items_fr_13, consistent with the 5b slots and the class sprites' weapon imports). " +
-    "effects [id, p1, p2, p3] (0 = absent, sent as '0', Item.as:30-32): ids 100 (damage, 'dommages : #1{~1D}#2{~2~3+}#3') and 123 (karma, '+#1 au karma') are the lang I.e entries " +
-    "(texts beta_screenshot, ids authored, confidence low: docs/content-reconstruction.md §3); every number is authored: weapons 1D(4 + (gfx-1) mod 5) + floor((gfx-1)/5), others +gfx karma.",
+    "effects [id, p1, p2, p3] (0 = absent, sent as '0', Item.as:30-32): ids 100 (neutral damage p1 D p2 + p3, 'dommages : #1{~1D}#2{~2~3+}#3') and 123 (karma +p1, '+#1 au karma') are the lang I.e entries " +
+    "(texts beta_screenshot, docs/content-reconstruction.md §3; ids and parameter layout owner: stated by the project owner, confidence high); every number is authored: weapons 1D(4 + (gfx-1) mod 5) + floor((gfx-1)/5), others +gfx karma.",
   types: "type → super type, lang I.t[type].t (retro_fr); the equipment slots take super types 1, 2, 3, 4, 3, 5 (modules_Interfaces/DefineSprite_598_InventoryViewer, EquipementItemContainer on(initialize))",
   class_weapons: "class → weapon types it can equip, lang G[class].w (beta asset: each class sprite imports exactly one weapon, <w[0]>_1 of weapons.swf); Item.canEquip, AKSClient/Dofus.DataCenter.Item.as:107-130",
   max_items: "authored; the client has the 'inventory full' answer OAEF (AKSClient/Dofus.Client.Items.as:32-41) but no size",

@@ -390,7 +390,7 @@ GE<senderId>|<result>|<result>|…\0
 | Field | Notes |
 |---|---|
 | `senderId` | must be an **existing character id**: the end sequence (timeline off, chrono stop, team watcher/tooltips hidden, end sound, chat "Fin de partie", result panel) is queued on that character's action sequencer; an unknown id means nothing is shown. If it is the local player, `onActionsFinish` runs first. |
-| `winner` | `"2"` → winners list, anything else → losers list |
+| `winner` | `"2"` → winners list, anything else → losers list. The original server sent `0` for losers and leavers (`owner`, stated by the project owner) |
 | `id` | character id; name looked up in `DATACENTER.Characters` |
 | `level` | `Number` |
 | `dead` | `"1"` → DEAD else ALIVE |
@@ -400,7 +400,7 @@ GE<senderId>|<result>|<result>|…\0
 
 Panels: `GameResultRandom` if `isRandom`, else `GameResultFree`
 (`modules_Interfaces/Interface.Banner.Panel.GameResultRandom.as:7-60`, `modules_Interfaces/Interface.Banner.Panel.GameResultFree.as`). Sets
-`m_bRunning = false`. Example: `GE12|2;12;3;0;100;180;300;80;25|1;7;5;1;400;420;600;10;0\0`.
+`m_bRunning = false`. Example: `GE12|2;12;3;0;100;180;300;80;25|0;7;5;1;400;420;600;10;0\0`.
 
 Only the random panel shows `winXp`, `gold` and the XP bar (`GameResultRandom.as:31-32,35-37,51-52,55-57`). The free
 panel writes `txtName`, `txtLevel` and `txtDead` alone (`modules_Interfaces/Interface.Banner.Panel.GameResultFree.as:29-33,44-48`),
@@ -439,7 +439,7 @@ the village (`Game.state == 1`):
 | `GA001<path>` | the server's own path to the path's last cell (out-of-fight rules: length ≤ 500, every occupant blocks); `GA<n>;1;<id>;<startCode><path>` to every occupant, the mover included, which answers `GKK<n>`. No `GAS`/`GAF` around it. Refused (no path, occupied end cell): `GAF<id>` to the mover alone |
 | `GKE<n>\|<cell>` | the mover stopped on `cell` (a cell of its last walk): stored as its position, the `GA001` that follows starts there |
 | `GKK<n>` standing on a map-change plate | travel to the linked map (below) |
-| `BM*\|<text>` | `cMK*\|<id>\|<name>\|<text>` to every occupant (the sender id puts the bubble over its sprite) |
+| `BM*\|<text>` | `cMK\|<id>\|<name>\|<text>` to every occupant (the sender id puts the bubble over its sprite) |
 | `BS<n>` (smiley bar) | `cS<id>\|<n>` to every occupant, the sender included: each has the sender's sprite, over which `onSmiley` draws it (`AKSClient/Events.AKS.Chat.as:1-5`, `AKSClient/Dofus.BattleField.Characters.Character.as:318-324`) |
 | `GX` (authored, below) | `GM\|-<id>` to the remaining occupants, then `GAx;3;<id>` to it |
 | disconnect, or any place change | `GM\|-<id>` to the remaining occupants |
@@ -505,7 +505,7 @@ Why these frames work in state 1 (client facts):
   (`AKSClient/Dofus.Client.Console.as:109-112`).
 
 Examples: `GW\n\0`; then `GM|+12;Bobby;3;8;0;80;FF0000;-1;00FF00;;239;1|+7;Ali;5;3;1;31;-1;-1;-1;;224;1\0`,
-`GA1;1;12;dVZtdX\0`, `cMK*|7|Ali|Salut\0`, `GM|-7\0`. Travel of 12 from map 567 (plate 115) with 7 there, to map 563:
+`GA1;1;12;dVZtdX\0`, `cMK|7|Ali|Salut\0`, `GM|-7\0`. Travel of 12 from map 567 (plate 115) with 7 there, to map 563:
 `GKK3\n\0` → to 12 `GM|-7\0`, `GM|+12;Bobby;3;8;0;80;FF0000;-1;00FF00;;102;3\0`, `GDM|563|15|17|1|71|…\0`,
 `GM|+12;Bobby;3;8;0;80;FF0000;-1;00FF00;;102;3\0`; to 7 `GM|-12\0`.
 

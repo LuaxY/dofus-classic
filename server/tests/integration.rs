@@ -7,12 +7,14 @@ use dofus_server::crypt::crypt_password;
 use dofus_server::data::GameData;
 use dofus_server::map::{tacle_zones, Map};
 use dofus_server::pathfinding::{check_range, check_view, distance, path_find};
-use dofus_server::{net, store::Store, world::World};
+use dofus_server::world::{Event, World};
+use dofus_server::{net, store::Store};
 use futures_util::{SinkExt, StreamExt};
 use std::collections::{HashMap, HashSet};
 use std::path::Path;
 use std::time::Duration;
 use tokio::net::TcpStream;
+use tokio::sync::mpsc::{error::TryRecvError, unbounded_channel};
 use tokio_tungstenite::{tungstenite::Message, MaybeTlsStream, WebSocketStream};
 
 // ───────────── documented formats ─────────────
@@ -102,9 +104,7 @@ fn check_frame(m: &str) {
         _ if m.starts_with("CJK") => m.len() > 3,
         _ if m.starts_with("CLK") => p[0] == "CLK" && p[1..].iter().all(|u| u.split(';').count() == 3),
         _ if m.starts_with("CM|") => p.len() == 2 && (p[1].starts_with('+') && p[1].split(';').count() == 3 || p[1].starts_with('-')),
-        _ if m.starts_with("cMK") => {
-            p.len() == 4 && "*#FT".contains(&p[0][3..]) && p[0].len() == 4 && is_num(p[1]) && !p[3].contains("/##")
-        }
+        _ if m.starts_with("cMK") => p.len() == 4 && ["", "#", "F", "T"].contains(&&p[0][3..]) && is_num(p[1]) && !p[3].contains("/##"),
         _ if m.starts_with("cME") => m.len() >= 4,
         _ if m.starts_with("cS") => p.len() == 2 && nums(&[&p[0][2..], p[1]]),
         _ if m.starts_with("IC") => is_num(&m[2..]),
@@ -118,6 +118,7 @@ fn check_frame(m: &str) {
         _ if m.starts_with("FAE") || m.starts_with("FDE") => m.len() == 4,
         _ if m.starts_with("FI") || m.starts_with("FO") => m[2..].split(';').count() == 2,
         _ if m.starts_with("mL") => m[2..].split('|').all(is_num),
+        _ if m.starts_with('M') => m.len() >= 3 && "01".contains(&m[1..2]) && is_num(&m[2..]), // notice: display, SRV_MSG id
         _ if m.starts_with("GLK") => p[0] == "GLK" && p[1..].iter().all(|g| g.split(';').nth(1).is_some_and(|o| o.len() == 3)),
         _ if m.starts_with("GCK|1") => m == "GCK|1",
         _ if m.starts_with("GCK|2|") || m.starts_with("GJK|2|") => p.len() == 5 && is_num(p[3]) && p[4].len() == 2,
@@ -142,7 +143,7 @@ fn check_frame(m: &str) {
                 && p.len() >= 2
                 && p[1..].iter().all(|r| {
                     let f: Vec<&str> = r.split(';').collect();
-                    f.len() == 9 && nums(&f) && (f[0] == "2" || f[0] == "1") && (f[3] == "0" || f[3] == "1")
+                    f.len() == 9 && nums(&f) && (f[0] == "2" || f[0] == "0") && (f[3] == "0" || f[3] == "1")
                 })
         }
         _ if m.starts_with("GA") => {
@@ -413,13 +414,13 @@ async fn two_clients_play_a_full_duel() {
     assert_eq!(b.expect("CLK").await, "CLK|Bobby;1;80|Ali;1;91");
     a.send("BM*|Salut &lt;3 /##/c GQ\n").await;
     for cl in [&mut a, &mut b] {
-        assert_eq!(cl.expect("cMK*").await, format!("cMK*|{ida}|Bobby|Salut &lt;3 /c GQ"));
+        assert_eq!(cl.expect("cMK|").await, format!("cMK|{ida}|Bobby|Salut &lt;3 /c GQ"));
     }
     b.send("BMbobby|coucou\n").await;
     assert_eq!(a.expect("cMKF").await, format!("cMKF|{idb}|Ali|coucou"));
     assert_eq!(b.expect("cMKT").await, format!("cMKT|{ida}|Bobby|coucou"));
     b.send("BMZed|hello\n").await;
-    assert_eq!(b.expect("cME").await, "cMEnZed");
+    assert_eq!(b.expect("cME").await, "cMEfZed");
     a.send("FAAli\n").await;
     assert_eq!(a.expect("FAK").await, "FAKali;C;Ali;1;9;1;91");
     a.send("FA*bo\n").await;
@@ -449,7 +450,7 @@ async fn two_clients_play_a_full_duel() {
     b.expect("GtE").await; // team 0 is full
     a.send("BM*|go\n").await;
     for cl in [&mut a, &mut b] {
-        cl.expect("cMK*").await;
+        cl.expect("cMK|").await;
     }
 
     // ── placement ──
@@ -547,7 +548,7 @@ async fn two_clients_play_a_full_duel() {
     let results: Vec<Vec<&str>> = ge.split('|').skip(1).map(|r| r.split(';').collect()).collect();
     assert_eq!(results.len(), 2);
     let winner: u32 = results.iter().find(|r| r[0] == "2").unwrap()[1].parse().unwrap();
-    let loser = results.iter().find(|r| r[0] == "1").unwrap();
+    let loser = results.iter().find(|r| r[0] == "0").unwrap();
     assert_eq!(loser[3], "1", "the loser is dead");
     let (win, lose) = if winner == ida { (&mut a, &mut b) } else { (&mut b, &mut a) };
     assert_eq!(win.expect("ABK").await, format!("ABK{winner}|2;10"), "gold won");
@@ -577,7 +578,7 @@ async fn two_clients_play_a_full_duel() {
     assert_ne!(again.key, a.key);
     assert_eq!(again.login("bo", "pass").await, "AlKfr");
     let mut wrong = Client::connect(&addr).await;
-    assert_eq!(wrong.login("ali", "dofus2005").await, "AlEx");
+    assert_eq!(wrong.login("ali", "dofus2005").await, "AlEf");
     again.send("PL\n").await;
     assert!(again.expect("ALK|").await.contains(";Bobby;"));
     let _ = std::fs::remove_file(&store);
@@ -636,7 +637,7 @@ async fn timers_end_placement_and_turns_and_a_leaver_loses() {
     assert_eq!(a.expect("GTF").await, format!("GTF{idb}"));
     assert_eq!(a.expect("GM|-").await, format!("GM|-{idb}"));
     let ge = a.expect("GE").await;
-    assert_eq!(ge, format!("GE{ida}|2;{ida};1;0;0;40;100;40;10|1;{idb};1;1;0;0;100;0;0"));
+    assert_eq!(ge, format!("GE{ida}|2;{ida};1;0;0;40;100;40;10|0;{idb};1;1;0;0;100;0;0"));
     a.expect("ABK").await;
     let _ = std::fs::remove_file(&store);
 }
@@ -687,7 +688,7 @@ async fn random_games_match_solo_players_and_parties() {
     b.expect("GV").await;
     assert_eq!(a.expect("GM|-").await, format!("GM|-{idb}"));
     let ge = a.expect("GE").await;
-    assert!(ge.starts_with(&format!("GE{ida}|2;{ida};")) && ge.contains(&format!("|1;{idb};1;1;")), "{ge}");
+    assert!(ge.starts_with(&format!("GE{ida}|2;{ida};")) && ge.contains(&format!("|0;{idb};1;1;")), "{ge}");
     a.until("ABK").await;
     a.expect("OAKO").await; // the winner's item
     a.send("GQ\n").await;
@@ -860,12 +861,12 @@ async fn social_village_map() {
     assert_eq!(b.expect("GA").await, ga);
     // Chat: `BM*` goes to every occupant with the sender's id (the bubble over its sprite); not to the lobby.
     b.send("BM*|Salut Soca\n").await;
-    let line = format!("cMK*|{}|Socb|Salut Soca", b.id);
+    let line = format!("cMK|{}|Socb|Salut Soca", b.id);
     for cl in [&mut a, &mut b] {
         assert_eq!(cl.expect("cMK").await, line);
     }
     c.send("BM*|lobby\n").await;
-    assert_eq!(c.expect("cMK").await, format!("cMK*|{}|Socc|lobby", c.id));
+    assert_eq!(c.expect("cMK").await, format!("cMK|{}|Socc|lobby", c.id));
     // "Retour au village" (`GC1` from the lobby): past its first bounce, the normal session lands on the shared map.
     c.send("GC1\n").await;
     c.expect("GCK|1").await;
@@ -951,7 +952,7 @@ async fn village_plates_change_maps() {
     assert!(entry(&a.expect("GM|+").await, a.id, home_plate));
     // Chat stays per map: B alone hears itself.
     b.send("BM*|seul\n").await;
-    assert_eq!(b.expect("cMK").await, format!("cMK*|{}|Travb|seul", b.id));
+    assert_eq!(b.expect("cMK").await, format!("cMK|{}|Travb|seul", b.id));
     a.send("IC\n").await;
     assert_eq!(a.expect("IC").await, "IC2", "nothing else reached A");
     let _ = std::fs::remove_file(&store);
@@ -968,15 +969,15 @@ async fn register_then_login() {
     tokio::time::sleep(Duration::from_millis(100)).await;
     let mut again = Client::connect(&addr).await;
     assert_eq!(again.login("neo", "matrix").await, "AlKfr");
-    assert_eq!(Client::connect(&addr).await.login("neo", "matrox").await, "AlEx"); // wrong password
-    assert_eq!(Client::connect(&addr).await.login("nobody", "matrix").await, "AlEx"); // unknown account
+    assert_eq!(Client::connect(&addr).await.login("neo", "matrox").await, "AlEf"); // wrong password
+    assert_eq!(Client::connect(&addr).await.login("nobody", "matrix").await, "AlEf"); // unknown account
     assert_eq!(Client::connect(&addr).await.register("neo", "other").await, "AlEe"); // already registered
-    assert_eq!(Client::connect(&addr).await.login("nobody", "matrix").await, "AlEx"); // the refused login created nothing
+    assert_eq!(Client::connect(&addr).await.login("nobody", "matrix").await, "AlEf"); // the refused login created nothing
     // a register frame cut at 200 chars (no trailing `\n`) is refused: the 1-char-shorter login frame could never match it
     let mut cut = Client::connect(&addr).await;
     cut.send("5\n").await;
     cut.send(&format!("{}\n+{}", "a".repeat(32), "a".repeat(166))).await;
-    cut.expect("AlEx").await;
+    cut.expect("AlEf").await;
     let saved: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&store).unwrap()).unwrap();
     assert_eq!(saved["accounts"].as_object().unwrap().keys().collect::<Vec<_>>(), ["neo"]);
     let _ = std::fs::remove_file(&store);
@@ -989,7 +990,7 @@ async fn garbage_frames_do_not_kill_the_world() {
     let mut c = Client::connect(&addr).await;
     c.send("5\n").await;
     c.send("é\nRFdAvFlc\n").await; // non-ASCII login
-    c.expect("AlEx").await;
+    c.expect("AlEf").await;
     let crypt = crypt_password("pass", &c.key);
     c.send(&format!("garbage\n+{crypt}\n")).await; // register, retrying on the same connection (version already given)
     c.expect("AlKfr").await;
@@ -1295,6 +1296,11 @@ async fn items_awarded_equipped_persisted_and_dropped() {
     let wrong = (0..6).find(|&s| !data.items.can_equip(8, kind, s)).unwrap();
     a.send(&format!("OM{id}|{wrong}\n")).await;
     a.send(&format!("OM{id}|{slot}\n")).await;
+    // An equipped karma effect (123 = 0x7b) adds its p1 to karma (stat 13).
+    let karma: u32 = f[5].split(',').filter_map(|e| e.strip_prefix("7b#")).map(|p| hex(p.split('#').next().unwrap())).sum();
+    if karma > 0 {
+        assert_eq!(a.expect("ABK").await, format!("ABK{ida}|13;{karma}"));
+    }
     a.send("IC\n").await;
     a.expect("IC").await;
     // Persisted: a new connection sees it equipped in ASK part 30.
@@ -1309,6 +1315,9 @@ async fn items_awarded_equipped_persisted_and_dropped() {
     assert_eq!(select(&mut a, ida).await, [f[0], f[1], f[2], f[3], &format!("{slot:x}"), f[5]].join("~"));
     // Back to the bag, then dropped.
     a.send(&format!("OM{id}|-1\n")).await;
+    if karma > 0 {
+        assert_eq!(a.expect("ABK").await, format!("ABK{ida}|13;0"));
+    }
     assert_eq!(select(&mut a, ida).await, entry);
     a.send(&format!("OD{id}\n")).await;
     assert_eq!(a.expect("ODK").await, format!("ODK{id}"));
@@ -1318,4 +1327,98 @@ async fn items_awarded_equipped_persisted_and_dropped() {
     assert_eq!(saved["characters"][ida.to_string()]["items"], serde_json::json!([]));
     assert_eq!(saved["next_item"], 2);
     let _ = std::fs::remove_file(&store);
+}
+
+/// Rules stated by the project owner, on a stored character (level 29, a karma ring in the bag): an equipped karma
+/// effect adds its `p1` to karma (`ASK` part 24, `ABK…|13;<karma>` after `OM` and `PB`); a 6th chat line within 15 s
+/// gets `M10` and is dropped; reaching the max level at the end of a fight sends `M12` after `AN`.
+#[tokio::test]
+async fn karma_items_spam_and_max_level_notices() {
+    let store = std::env::temp_dir().join(format!("dofus-it-owner-{}.json", std::process::id()));
+    let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+    let first = start_server(&store, net::Overrides { turn_ms: None, placement_ms: None }).await;
+    let mut setup = Client::connect(&first).await;
+    assert_eq!(setup.register("karma", "pw").await, "AlKfr");
+    setup.send("PAKarma|8|0|-1|-1|-1\n").await;
+    setup.expect("AAK").await;
+    setup.expect("ALK").await;
+    let mut saved: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&store).unwrap()).unwrap();
+    for ch in saved["characters"].as_object_mut().unwrap().values_mut() {
+        (ch["level"], ch["xp"], ch["bonus"]) = (29.into(), (data.rules.xp[29] - 10).into(), 1.into());
+        ch["items"] = serde_json::json!([{"id": 1, "type": 9, "gfx": 3, "position": null, "effects": [[123, 3, 0, 0]]}]);
+    }
+    saved["next_item"] = 2.into();
+    std::fs::write(&store, serde_json::to_string(&saved).unwrap()).unwrap();
+    let addr = reopen_server(&store).await;
+    let mut a = Client::connect(&addr).await;
+    assert_eq!(a.login("karma", "pw").await, "AlKfr");
+    a.send("PL\n").await;
+    a.id = a.expect("ALK|").await[4..].split(';').next().unwrap().parse().unwrap();
+    let ida = a.id;
+    async fn karma(a: &mut Client) -> String {
+        a.send(&format!("PS{}\n", a.id)).await;
+        a.expect("ASK|").await.split('|').nth(24).unwrap().to_string()
+    }
+    assert_eq!(karma(&mut a).await, "0", "in the bag");
+    a.send("OM1|2\n").await; // a ring (super type 3) into slot 2
+    assert_eq!(a.expect("ABK").await, format!("ABK{ida}|13;3"));
+    a.send("PB13\n").await;
+    assert_eq!(a.expect("ABK").await, format!("ABK{ida}|13;4|3;0"));
+    assert_eq!(karma(&mut a).await, "4");
+    a.send("OM1|-1\n").await;
+    assert_eq!(a.expect("ABK").await, format!("ABK{ida}|13;1"));
+    a.send("OM1|-1\n").await; // karma unchanged: no ABK
+    a.send("IC\n").await;
+    a.expect("IC").await;
+    for i in 1..=6 {
+        a.send(&format!("BM*|ligne {i}\n")).await;
+    }
+    for i in 1..=5 {
+        assert_eq!(a.expect("cMK|").await, format!("cMK|{ida}|Karma|ligne {i}"));
+    }
+    assert_eq!(a.expect("M").await, "M10", "the 6th line within 15 s: SRV_MSG_0, dropped");
+    // A wins against a leaver: 40 XP takes it to level 30 (the max level) → `AN`, then `M12`.
+    let mut b = Client::connect(&addr).await;
+    assert_eq!(b.register("karmb", "pw").await, "AlKfr");
+    enter(&mut b, "PAKarmb|9|1|-1|-1|-1\n", "Karmb").await;
+    let idb = b.id;
+    a.send(&format!("GC2Peak|{}|AA|\n", data.maps[0].id)).await;
+    a.until("GM|+").await;
+    b.send("GJ2Peak|\n").await;
+    b.until("GM|").await;
+    a.expect("GM|+").await;
+    a.send("GS\n").await;
+    for cl in [&mut a, &mut b] {
+        cl.expect("GPS").await;
+    }
+    b.send("GQ\n").await;
+    b.expect("GV").await;
+    assert_eq!(a.expect("GM|-").await, format!("GM|-{idb}"));
+    assert_eq!(a.expect("GE").await, format!("GE{ida}|2;{ida};30;0;43500;30;43500;40;10|0;{idb};1;1;0;0;100;0;0"));
+    assert_eq!(a.expect("AN").await, "AN30|43500|43530|43500|5");
+    assert_eq!(a.expect("M").await, "M12");
+    assert_eq!(a.expect("ABK").await, format!("ABK{ida}|2;10"));
+    a.expect("OAKO").await;
+    drop(setup);
+    let _ = std::fs::remove_file(&store);
+}
+
+/// A session without any frame for `idle_ms` (rules.json) gets `M01` (stored, shown with DISCONNECT when the socket
+/// closes) on the world's once-a-minute `Tick`, then is dropped (net.rs flushes its frames and closes the socket).
+#[test]
+fn idle_sessions_get_m01_and_are_disconnected() {
+    let mut data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+    data.rules.idle_ms = 200;
+    let mut world = World::new(data, Store::open(None), 1);
+    let ((idle_tx, mut idle), (busy_tx, mut busy)) = (unbounded_channel(), unbounded_channel());
+    world.handle(Event::Open(1, idle_tx));
+    world.handle(Event::Open(2, busy_tx));
+    std::thread::sleep(Duration::from_millis(250));
+    world.handle(Event::Frame(2, "5\n".into()));
+    world.handle(Event::Tick);
+    assert!(idle.try_recv().unwrap().starts_with('H'));
+    assert_eq!(idle.try_recv().unwrap(), "M01");
+    assert_eq!(idle.try_recv(), Err(TryRecvError::Disconnected), "the session is gone");
+    assert!(busy.try_recv().unwrap().starts_with('H'));
+    assert_eq!(busy.try_recv(), Err(TryRecvError::Empty), "a frame just now: still connected");
 }

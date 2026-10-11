@@ -108,7 +108,7 @@ test("Client.dispatch: H/ASK/GCK/GM side effects", () => {
   // The record survives `GM|-id` (setItemAt(id, undefined) keeps the object), so a leaver listed in GE gets its name
   // in the results (the server lists leavers as dead losers, docs/server.md).
   expect(G.DATACENTER.Characters.getItemAt(7)?.name).toBe("Ali");
-  go("GE12|2;12;1;0;0;40;100;40;10|1;7;1;1;0;0;100;0;0");
+  go("GE12|2;12;1;0;0;40;100;40;10|0;7;1;1;0;0;100;0;0");
   const losers = G.DATACENTER.Game.Results.losers as { name?: string; bDead?: boolean }[];
   expect(losers.map((l) => [l.name, l.bDead])).toEqual([["Ali", true]]);
 });

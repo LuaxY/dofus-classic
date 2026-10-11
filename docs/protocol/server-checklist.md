@@ -28,11 +28,11 @@ not spelled out by it.
 1. ☐ On accept send `H<32 chars>` — e.g. `Habcdefghijklmnopqrstuvwxyz012345`. Nothing comes from the client before.
 2. ☐ Receive `5\n` (version). Wrong version → `AlEv` (stop).
 3. ☐ Receive `<login>\n<crypt>\n`; recompute `cryptPassword(storedPassword, key)` ([encodings.md](encodings.md#password-crypt))
-   and compare. Fail → `AlEx` (or `AlEa` if already connected). Success → `AlK` (language suffix optional, unused).
+   and compare. Fail → `AlEf` (`f` = not found / bad credentials, `owner`; or `AlEa` if already connected). Success → `AlK` (language suffix optional, unused).
 3b. (opt, **authored** by this port, not in the beta client) Register: `<login>\n+<crypt>\n` in place of step 3's frame
    (`+` is outside the crypt alphabet) → store the account and answer as a successful login (`AlK`), or `AlEe` if it
    exists ([account.md](account.md#register-cs--authored-by-this-port-not-in-the-beta-client)). This server's step 3
-   then never creates accounts: unknown account → `AlEx`.
+   then never creates accounts: unknown account → `AlEf`.
 
 ## 2. Character choice
 
@@ -55,7 +55,7 @@ not spelled out by it.
 10b. (opt, **authored** by this port, not in the beta client) Social village: `GW` right after `PS12` (no spinner, no
     reply) flags the session. Its `GD` gets `GDM`, then one `GM|+<every occupant>|…` (itself included, solo layout), and
     the others get its `GM|+`; no step 11. Moves as in step 10, broadcast to every occupant (no `GAS`/`GAF`; refused →
-    `GAF12` to the mover alone), `GKE<n>|<cell>` moves its stored cell, `BM*` → `cMK*|12|Bobby|…` to every occupant,
+    `GAF12` to the mover alone), `GKE<n>|<cell>` moves its stored cell, `BM*` → `cMK|12|Bobby|…` to every occupant,
     `GM|-12` to them when it leaves ([game.md](game.md#gw--stay-on-the-village-map-cs-authored-not-in-the-beta-client)).
     `BS3` → `cS12|3` to every occupant.
 10c. (opt, **authored** by this port, not in the beta client) Back to the lobby: `GX` (banner menu "Aller aux combats",
@@ -108,7 +108,7 @@ not spelled out by it.
 
 ## 8. End
 
-26. ☐ Send to all `GE<senderId>|2;12;1;0;0;10;100;10;5|1;7;1;1;0;0;100;0;0`. `senderId` must be an existing character
+26. ☐ Send to all `GE<senderId>|2;12;1;0;0;10;100;10;5|0;7;1;1;0;0;100;0;0`. `senderId` must be an existing character
     (the result panel is queued on its action sequencer) and every listed id must exist.
 27. ☐ Client sends `GQ` from the result panel → send `GV`. The client (game no longer running) then sends `CJ…` again
     → step 12; the "replay" button of the random result panel sends `GQ` + `GC1` → step 7.

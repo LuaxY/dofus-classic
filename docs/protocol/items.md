@@ -39,6 +39,11 @@ list `getGuildText(guild).w` (`AKSClient/Dofus.DataCenter.Item.as:107-130`).
 
 Example: `1a~5~3~FF8800~~64#a#0#0` → id 26, type 5, gfx 3, orange, in bag, effect 0x64 with `#1 = 10`.
 
+Effect ids (`owner`, stated by the project owner): `100` = neutral damage, `p1`D`p2`+`p3`, rolled as `p3` + the sum of
+`p1` rolls of 1..`p2`; `123` = karma, `+p1`: an equipped item's karma effects add to the karma characteristic (`AB`
+stat 13). This server sends it in `ASK` part 24 and re-sends `ABK<id>|13;<karma>` after an `OM`/`OD` that changes it;
+karma does nothing in fights (nothing in the 5b client ties it to combat).
+
 ---
 
 ## OM — move (equip) an item (C→S)

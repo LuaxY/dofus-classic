@@ -1,5 +1,5 @@
 //! Accounts and characters, persisted as one JSON file (server/data/runtime/store.json by default).
-use crate::data::{Dice, ITEM_DAMAGE};
+use crate::data::{Dice, ITEM_DAMAGE, ITEM_KARMA};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::path::PathBuf;
@@ -66,8 +66,11 @@ impl Character {
     pub fn gfx(&self) -> u32 {
         self.class as u32 * 10 + self.sex as u32
     }
+    /// Boosted points; karma (13) adds the `p1` of every equipped item's karma effect (rule stated by the project owner).
     pub fn stat(&self, id: u8) -> i32 {
+        let equipped = self.items.iter().filter(|i| i.position.is_some()).flat_map(|i| &i.effects);
         self.stats.get(&id).copied().unwrap_or(0)
+            + if id == 13 { equipped.filter(|e| e[0] == ITEM_KARMA).map(|e| e[1] as i32).sum() } else { 0 }
     }
     /// Close-combat dice of the weapon in slot 1 (the only slot taking weapons): its damage effect `[count, faces,
     /// bonus]`. Server rule (authored): nothing the client shows depends on it (docs/server.md "Items").
@@ -136,9 +139,9 @@ mod tests {
         let staff = Item { id: 26, kind: 4, gfx: 3, position: None, effects: vec![[100, 1, 6, 2], [123, 10, 0, 0]] };
         assert_eq!(staff.entry(), "1a~4~3~FFFFFF~~64#1#6#2,7b#a#0#0");
         c.items.push(staff);
-        assert!(c.weapon_dice().is_none(), "in the bag");
+        assert!(c.weapon_dice().is_none() && c.stat(13) == 0, "in the bag");
         c.items[0].position = Some(1);
         assert_eq!(c.items[0].entry(), "1a~4~3~FFFFFF~1~64#1#6#2,7b#a#0#0");
-        assert_eq!(c.weapon_dice(), Some([1, 6, 2]));
+        assert_eq!((c.weapon_dice(), c.stat(13)), (Some([1, 6, 2]), 10));
     }
 }

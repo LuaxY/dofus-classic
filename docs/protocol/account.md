@@ -86,11 +86,11 @@ crypt uses the session key exactly like a login.
 - **Discriminator**: a `+` right after the first `\n`. `+` is not in the crypt alphabet (`HASH`,
   `AKSClient/__Packages/ank/Crypt.as:3`), so no credentials frame (`AKSClient/Dofus.Client.as:73`) can carry it, whatever
   the user typed as login; it precedes the crypt, so the 200-char cap cannot cut it off. A server that does not know the
-  frame refuses it as a bad crypt (`AlEx`).
+  frame refuses it as a bad crypt (`AlEf`).
 - **Answer**: as a successful login (`AlK<language>`, the account is created and authenticated); `AlEe` if the account
-  exists (whatever the password); `AlEx` for an invalid login or empty password, and for a register frame cut at 200 chars
+  exists (whatever the password); `AlEf` for an invalid login or empty password, and for a register frame cut at 200 chars
   (no trailing `\n`): the later login frame is one char shorter, so its crypt would never match the stored one.
-- Login never creates an account: an unknown account answers `AlEx` (ACCESS_DENIED), like a wrong password.
+- Login never creates an account: an unknown account answers `AlEf` (ACCESS_DENIED), like a wrong password.
 
 Example (password `pass`, crypt of [encodings.md](encodings.md#password-crypt)): `bob\n+RFdAvFlc\n\0` → `AlKfr\0`; the
 same register on a new connection → `AlEe\0`.
@@ -109,7 +109,7 @@ Handler: `AKSClient/Dofus.Client.DataProcessor.as:73-96` → `AKS.onLogin` (`AKS
 | Field | Notes |
 |---|---|
 | `language` | everything after `AlK` (`substr(3)`, `AKSClient/Dofus.Client.DataProcessor.as:77`). Stored in `DATACENTER.Player.Language` (`AKSClient/Events.AKS.as:48`); **read but unused** (no other reference). May be empty. |
-| `code` | 4th char (`charCodeAt(3)`, `AKSClient/Dofus.Client.DataProcessor.as:81`): `a` (97) → `ALREADY_LOGGED`; `v` (118) → `BAD_VERSION` + `AKS.onBadVersion()`; anything else (or nothing) → `ACCESS_DENIED` (`AKSClient/Dofus.Client.DataProcessor.as:84-93`). **Authored:** `e` (101) → `ACCOUNT_EXISTS` in the port (`web/src/game/kernel/client.ts`), answer to the register frame only; the stock client shows it as `ACCESS_DENIED`. |
+| `code` | 4th char (`charCodeAt(3)`, `AKSClient/Dofus.Client.DataProcessor.as:81`): `a` (97) → `ALREADY_LOGGED`; `v` (118) → `BAD_VERSION` + `AKS.onBadVersion()`; anything else (or nothing) → `ACCESS_DENIED` (`AKSClient/Dofus.Client.DataProcessor.as:84-93`). **Authored:** `e` (101) → `ACCOUNT_EXISTS` in the port (`web/src/game/kernel/client.ts`), answer to the register frame only; the stock client shows it as `ACCESS_DENIED`. `f` (102) = not found / bad credentials, the original server's answer to an unknown account or a wrong password (`owner`, stated by the project owner); this server also sends it for an invalid or cut register frame (`ACCESS_DENIED` either way). |
 
 Success behaviour: `m_bAuthentified = true`, `INTERFACE.clear()`, then either the start menu (`drawMenuInterface`,
 `modules_Interfaces/Dofus.Interface.as:82-94`) or, if `AKS.m_bSkipMenu` (set by "quit to character list",
@@ -120,7 +120,7 @@ Failure behaviour: redraws the login UI if absent, plays an error sound, shows a
 `onBadVersion` POSTs the SWF path to `http://jouer.dofus.com/files/login/delpath.php` (`AKSClient/Events.AKS.as:78-92`) —
 HTTP, not socket. The socket stays open; the client does not retry.
 
-Examples: `AlKfr\0`, `AlEa\0`, `AlEv\0`, `AlEx\0`, `AlEe\0` (authored).
+Examples: `AlKfr\0`, `AlEa\0`, `AlEv\0`, `AlEf\0`, `AlEe\0` (authored).
 
 ---
 
@@ -135,13 +135,17 @@ Handler: `AKSClient/Dofus.Client.DataProcessor.as:34-37` → `AKS.onServerMessag
 | Field | Notes |
 |---|---|
 | `display` | 1 char (`substring(1,2)`). `1` → message box `getText("SRV_MSG_" + messageId)` now and resets the stored id to -1. Any other value → only stored. |
-| `messageId` | rest of the frame (`substr(2)`), stored in `AKS.m_serverMessageID` (`AKSClient/Dofus.Client.DataProcessor.as:35`). Text comes from the lang key `SRV_MSG_<id>` — **UNKNOWN — not in code** (lang file missing). |
+| `messageId` | rest of the frame (`substr(2)`), stored in `AKS.m_serverMessageID` (`AKSClient/Dofus.Client.DataProcessor.as:35`). Text comes from the lang key `SRV_MSG_<id>` — **UNKNOWN — not in code** (lang file missing). Ids (`owner`, stated by the project owner): `0` spam, `1` idle, `2` max level, `3` and `4` maintenance. |
 
 The stored id is shown together with `DISCONNECT` when the socket closes (`AKSClient/Events.AKS.as:23-27`, reads
 `m_ServerMessageID` — same property as `m_serverMessageID` because SWF6 identifiers are case-insensitive
 [SWF6 runtime]). **Kick-with-reason sequence:** send `M0<id>\0`, then close the TCP connection.
 
 Examples: `M1001\0` (show `SRV_MSG_001`), `M042\0` then close.
+
+This server (`owner`): `M10` (spam) to a session that sends more than 5 `BM` within 15 s, the line that crosses the
+limit dropped, no disconnect; `M01` (idle, stored) to a session without any frame for 25 min, then the socket is closed
+(checked once a minute); `M12` (max level) right after the `AN` of a fight that takes a character to the max level (30).
 
 ---
 
@@ -359,7 +363,7 @@ skipped and not checked (send `K`). Values are absolute (assigned, not added).
 | 3 | `bonusPoints` |
 | 4, 5 | ignored |
 | 6 | `rFire` · 7 `rAir` · 8 `rWater` · 9 `rEarth` |
-| 10 | `force` · 11 `vitality` · 12 `charism` · 13 `karma` · 14 `agility` · 15 `intelligence` |
+| 10 | `force` · 11 `vitality` · 12 `charism` · 13 `karma` (this server: boosted points plus the karma effects of equipped items, [items.md](items.md#item-entry-format)) · 14 `agility` · 15 `intelligence` |
 
 The same numbering is the effect/moderator numbering of `AKSClient/Dofus.EffectsManager.as:6-25`.
 Example: `ABK12|10;13|3;4\0` (force 13, 4 bonus points left). No `|` right after the 3rd char: `substr(3)` must start with the character id.

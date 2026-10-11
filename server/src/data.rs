@@ -156,11 +156,17 @@ pub struct Rules {
     pub village_map: u32,
     pub default_channel: String,
     pub max_characters: usize,
+    /// More than `spam_lines` `BM` within `spam_ms` → `M10`, the line dropped.
+    pub spam_lines: usize,
+    pub spam_ms: u64,
+    /// No frame for `idle_ms` → `M01`, then disconnected.
+    pub idle_ms: u64,
 }
 
-/// Item effect ids the server knows (lang `I.e`, docs/content-reconstruction.md §3): damage (`#1D#2+#3`) and karma.
+/// Item effect ids the server knows (lang `I.e`, docs/content-reconstruction.md §3; ids stated by the project owner):
+/// neutral damage (`#1D#2+#3`) and karma (`+#1`).
 pub const ITEM_DAMAGE: u32 = 100;
-const ITEM_KARMA: u32 = 123;
+pub const ITEM_KARMA: u32 = 123;
 /// Super type taken by equipment slots 0..5 (modules_Interfaces/DefineSprite_598_InventoryViewer, the
 /// `EquipementItemContainer` on(initialize) of each slot).
 const SLOT_SUPER_TYPES: [u8; 6] = [1, 2, 3, 4, 3, 5];

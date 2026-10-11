@@ -61,7 +61,7 @@ without any possible action (`stalled`, with a diagnosis of positions, reach and
    click a cell; fight to a death: AP-capped move refused, spell and close combat out of range refused, a turn left to
    the timer, fight chat both ways, every class spell, close combats; results; leave (`GQ`, `GV`, two `CJ`); chat;
    second game created by B on map 53, fought to a death, results, back to the lobby.
-2. **reconnect** — create, log out through the menu, wrong password refused (`AlEx`, error box), right password in the
+2. **reconnect** — create, log out through the menu, wrong password refused (`AlEf`, error box), right password in the
    same client (character listed, selected), log out; server restarted on the same store; a new client: wrong password
    refused, right one, character still there.
 3. **disruption** — (a) B gives up on its 2nd turn (menu → Abandonner): A gets the result panel (won), B is back in

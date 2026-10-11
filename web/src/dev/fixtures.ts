@@ -97,7 +97,7 @@ export const fight: Fixture = [
     name: "end turn",
     client: ["GT\n"],
     // Ali leaves during his own turn (server.md: the current fighter leaving sends GTF, GM|-id, then the next GTS).
-    server: [f("GTF12"), f("GTS7|30000"), f("GTF7", 500), f("GM|-7"), f("GTS12|30000"), f("GE12|2;12;1;0;0;10;100;10;5|1;7;1;1;0;0;100;0;0", 1000)],
+    server: [f("GTF12"), f("GTS7|30000"), f("GTF7", 500), f("GM|-7"), f("GTS12|30000"), f("GE12|2;12;1;0;0;10;100;10;5|0;7;1;1;0;0;100;0;0", 1000)],
   },
   { name: "leave", client: ["GQ\n"], server: [f("GV")] },
   // Two `CJ`: GV → Channels.join() (Events.AKS.Game.as:245) and the channel combo of the multiplayer screen that the

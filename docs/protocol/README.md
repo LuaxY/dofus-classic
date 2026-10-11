@@ -116,7 +116,7 @@ Structural note: the `c` rubrique falls through into the `F` rubrique's sub-swit
 
 | Frame | OK form | Error form | Error sub-code (4th char unless noted) |
 |---|---|---|---|
-| `Al` | `AlK<lang>` | `AlE<c>` | `a` already logged · `v` bad version · other access denied (port, authored: `e` account exists, answer to the register frame, [account.md](account.md)) |
+| `Al` | `AlK<lang>` | `AlE<c>` | `a` already logged · `v` bad version · other access denied (`f` not found / bad credentials, `owner`; port, authored: `e` account exists, answer to the register frame, [account.md](account.md)) |
 | `AL` | `ALK\|…` | ignored | — |
 | `AS` | `ASK\|…` | `ASE…` | none (silent, see account.md) |
 | `AA` | `AAK` | `AAE…` | none ("Ce nom existe déjà") |
@@ -124,7 +124,7 @@ Structural note: the `c` rubrique falls through into the `F` rubrique's sub-swit
 | `GC` | `GCK\|…` | `GCE<c>` | lang key `ERROR_CREATING_<c>` — values UNKNOWN |
 | `GJ` | `GJK\|…` | `GJE<c>` | lang key `ERROR_JOINING_<c>` — values UNKNOWN |
 | `Gt` | `GtK<id>\|<team>` | `GtE…` | none (`CANT_CHANGE_TEAM`) |
-| `cM` | `cMK<kind>\|…` | `cME<c><name>` | `S` syntax error · other → `USER_NOT_CONNECTED [name from index 4]` |
+| `cM` | `cMK<kind>\|…` (normal lines: no kind, `cMK\|…`, `owner`) | `cME<c><name>` | `S` syntax error · other → `USER_NOT_CONNECTED [name from index 4]` (`f` sent, `owner`) |
 | `FA` | `FAK<entry>` | `FAE<c>` | `f` not found · `y` yourself · `a` already friend (whole remainder compared) |
 | `FD` | `FDK` | `FDE<c>` | `f` not found |
 | `SU` | `SUK<spell>` | ignored | — |
@@ -390,8 +390,10 @@ this port and not in the beta client ([game.md](game.md#gw--stay-on-the-village-
 ## Open UNKNOWNs (not in code)
 
 - All lang texts (`SRV_MSG_<id>`, `ERROR_CREATING_<c>`, `ERROR_JOINING_<c>`, chat keys, map/spell/item names): the lang
-  SWF from `langupdater.php` is missing — so the **error code letters for `GCE`/`GJE`** and the `M` message ids are unknown.
+  SWF from `langupdater.php` is missing — so the **error code letters for `GCE`/`GJE`** are unknown (`owner`: `GCE` had no
+  letter and joining errors went through other means; this port's letters stay authored). `M` ids `0` spam, `1` idle,
+  `2` max level, `3`/`4` maintenance: `owner` (stated by the project owner).
 - Meaning of `FI`/`FO` fields `p1;p2`, of the `AW` `param` field, and whether `BW<name>` takes an account or a character name.
-- The 2nd char of the `m` maps-list frame and the 4th char the original server used for normal `cM` lines (client ignores both).
+- The 2nd char of the `m` maps-list frame (client ignores it). Normal `cM` lines had no kind char, `cMK|…` (`owner`).
 - Field layouts of the dead `R` family; meaning of `OF`; fields 9-10 of `GIP`.
 - Server-side rules (damage, AP costs of moves, turn duration, XP, matchmaking) — the client only displays results.
