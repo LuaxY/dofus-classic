@@ -1,5 +1,5 @@
 > [!NOTE]
-> Unofficial fan project, not affiliated with or endorsed by Ankama. See the [disclaimer](#disclaimer).
+> Unofficial fan project, still work in progress, not affiliated with or endorsed by Ankama. See the [disclaimer](#disclaimer).
 
 <p align="center">
   <a href="https://dofus-classic.com"><img src="./web/public/site/logo.png" width="154" height="84" alt="DOFUS" /></a>
@@ -8,7 +8,7 @@
 <h3 align="center">Dofus Classic</h3>
 
 <p align="center">
-    The Dofus beta of 13 January 2004, playable again in your browser.
+    The Dofus beta of early 2004, playable again in your browser.
     <br />
     <a href="https://dofus-classic.com"><strong>Play now »</strong></a>
     <br />
@@ -62,7 +62,6 @@ placeholders (see `web/public/lang/fr.provenance.json`).
 - [Vite](https://vite.dev/) – dev server and build
 - [Bun](https://bun.sh/) – runtime, package manager and tests
 - [Rust](https://www.rust-lang.org/) ([tokio](https://tokio.rs/), [tokio-tungstenite](https://github.com/snapview/tokio-tungstenite)) – the game server
-- [JPEXS Free Flash Decompiler](https://github.com/jindrapetrik/jpexs-decompiler) – decompilation and asset export
 - [@napi-rs/canvas](https://github.com/Brooooooklyn/canvas) – headless rendering for tests and the playtest bots
 - [Caddy](https://caddyserver.com/) and [Railway](https://railway.com/) – hosting
 
