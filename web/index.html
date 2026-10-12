@@ -229,6 +229,13 @@
     </div>
     <audio id="music" src="/site/music.mp3" loop preload="none"></audio>
     <script>
+      // FR/EN without reloading (the game page would drop ?server= and the session; the landing would stop the music).
+      for (const a of document.querySelectorAll('a[href^="?lang="]'))
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.documentElement.lang = a.search.slice(6);
+          localStorage.setItem("site-lang", a.search.slice(6));
+        });
       // Optional music, off by default: starts only from the click (browsers block autoplay anyway).
       const music = document.getElementById("music"), toggle = document.getElementById("music-toggle");
       music.volume = 0.3;

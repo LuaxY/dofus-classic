@@ -41,6 +41,15 @@
       <span lang="fr">Projet de fans non officiel, gratuit et non commercial, ni affilié à Ankama ni approuvé par Ankama. DOFUS © 2003-2026 Ankama.</span>
       <span lang="en">Unofficial, free, non-commercial fan project, not affiliated with or endorsed by Ankama. DOFUS © 2003-2026 Ankama.</span>
     </p>
+    <script>
+      // FR/EN without reloading (the game page would drop ?server= and the session; the landing would stop the music).
+      for (const a of document.querySelectorAll('a[href^="?lang="]'))
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.documentElement.lang = a.search.slice(6);
+          localStorage.setItem("site-lang", a.search.slice(6));
+        });
+    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
