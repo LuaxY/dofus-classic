@@ -12,10 +12,10 @@ import "./sound.ts"; // Dofus::Sound::* linkages
 
 /**
  * Modules of the other trees whose import registers their classes (Object.registerClass): the battlefield entry;
- * ui/scripts.ts and ui/screens/scripts.ts register theirs when loadScriptHook imports them. Imported tolerantly so
- * the kernel boots whatever its siblings have landed; failures are logged.
+ * ui/scripts.ts and ui/screens/scripts.ts register theirs when loadScriptHook imports them. Literal import() so the
+ * production build bundles them; imported tolerantly, failures are logged.
  */
-const SIBLING_MODULES = ["../battlefield/battlefield.ts"];
+const SIBLING_MODULES = { "../battlefield/battlefield.ts": () => import("../battlefield/battlefield.ts") };
 
 export interface BootOptions {
   loader: SwfLoader;
@@ -27,8 +27,8 @@ export interface BootOptions {
 
 export async function boot(o: BootOptions): Promise<Player> {
   const missing: string[] = [];
-  for (const m of SIBLING_MODULES) {
-    await import(/* @vite-ignore */ new URL(m, import.meta.url).href).catch((e: unknown) => missing.push(`${m}: ${(e as Error).message.split("\n")[0]}`));
+  for (const [m, load] of Object.entries(SIBLING_MODULES)) {
+    await load().catch((e: unknown) => missing.push(`${m}: ${(e as Error).message.split("\n")[0]}`));
   }
   if (missing.length) console.info("boot: modules not loaded —\n  " + missing.join("\n  "));
   const scriptHook = await loadScriptHook();

@@ -15,8 +15,12 @@ export const kernelScripts: Record<string, Script> = {
   "AKSClient.swf#80@1:1:initialize": () => {},
 };
 
-/** Sibling tables, by path relative to this file; a missing file is skipped. */
-const OWNER_TABLES = ["../ui/scripts.ts", "../ui/screens/scripts.ts", "../battlefield/scripts.ts"];
+/** Sibling tables, by path relative to this file (literal import() so the production build bundles them); a table that fails to load is skipped. */
+const OWNER_TABLES = {
+  "../ui/scripts.ts": () => import("../ui/scripts.ts"),
+  "../ui/screens/scripts.ts": () => import("../ui/screens/scripts.ts"),
+  "../battlefield/scripts.ts": () => import("../battlefield/scripts.ts"),
+};
 
 /** Every exported `{ key: fn }` table of the owners' scripts.ts, merged with the kernel's; a key defined twice throws. */
 export async function loadScriptHook(): Promise<ScriptHook> {
@@ -28,8 +32,8 @@ export async function loadScriptHook(): Promise<ScriptHook> {
       table[k] = f as Script;
     }
   };
-  for (const path of OWNER_TABLES) {
-    const mod = (await import(/* @vite-ignore */ new URL(path, import.meta.url).href).catch(() => ({}))) as Record<string, unknown>;
+  for (const [path, load] of Object.entries(OWNER_TABLES)) {
+    const mod = (await load().catch(() => ({}))) as Record<string, unknown>;
     for (const v of Object.values(mod)) if (v && typeof v === "object") add(path, v);
   }
   add("kernel/scripts.ts", kernelScripts);
