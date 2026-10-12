@@ -103,7 +103,7 @@ Keep the grid; replace the commercial blocks (subscription, "semaine de test", T
 | 1.0 block | Size | Project content | Title / art |
 |---|---|---|---|
 | Banner | 760×138 | Logo; Tofu bubble "La bêta de DOFUS, en quelques clics de souris"; top-right tab FR · EN · ♪ Musique (§6); tabs **JOUER · Découvrir · News · Aide · Crédits** (JOUER → `/jouer.html`) | The 2004 SWF frame with its labels erased (`banner.png`), HTML text on top |
-| `#flash` (hero) | 518×197 | "DOFUS, la bêta est de retour !", subtitle "Jeu de rôle tactique multijoueurs — version bêta du 13 janvier 2004", intro, "GRATUIT" corner | CSS parchment with a green meadow gradient; class group artwork `clips/guilds/artwork/big/50.swf/1.png` |
+| `#flash` (hero) | 518×197 | "DOFUS, la bêta est de retour !", subtitle "Jeu de rôle tactique multijoueurs — version bêta du 13 janvier 2004", intro, "GRATUIT" corner | CSS parchment with a green meadow gradient; the promo video's thumbnail (`site/promo.jpg`, a play disc), which opens the video (`site/promo.mp4`, 52 s, French) in a modal framed like the game, over the play page's dark blue. Both are made by `scripts/promo/edit.ts` |
 | `#abo` | 242×197 | "Jouer à la bêta": big brown JOUER button → `/jouer.html` | `titre_abo.gif` with its lettering erased |
 | `#bg` | 242 | **Jouer directement**: 94×94 thumbnail of the port + how to start. Below: **Aide** | `titre_jouer.gif`, `titre_sond.gif` (erased); thumbnail cropped from `port-preview/kernel/07-placement.png` |
 | `#bm` | 242 | **News**: dated project journal, by hand. Below: **Tout savoir sur la bêta** | `titre_new.gif`, `titre_savoir.gif` (erased) |
@@ -148,7 +148,7 @@ Paths: `B/` = `vendor/wayback-dofus-site/beta/`, `P/` = `vendor/wayback-dofus-si
 | Banner frame | `P/swf-export/d1_bandeau_20040916_frame3.png` | 760×138 | Reference only (2004 labels baked in); rebuild |
 | Community hero block | `P/swf-export/d1_communaute_home_frame1.png` | 518×197 | Reference only ("GRATUIT, semaine de test" baked in) |
 | Crab "5€ par mois", "Le Comptoir" T-shirts, `vignette_jeu.gif` | `P/img/d1_home_crabe.jpg`, `d1_home_comptoir.gif`, `P/swf-export/d1_comptoir_frame1.png`, `P/img/d1_home_vignette_jeu.gif` | — | **Avoid**: commercial, or shows the 1.x interface instead of 5b |
-| Class group artwork | `M/clips/guilds/artwork/big/50.swf/1.png` | 766×369 | Use (game asset) in the hero |
+| Class group artwork | `M/clips/guilds/artwork/big/50.swf/1.png` | 766×369 | Use (game asset) beside the game (§7) |
 | Amakna sky panorama, menu illustrations, trees, spell icons | `M/modules/Interfaces.swf/8.jpg`, `990–995.png`; `M/clips/objects.swf/1235.png` …; `M/clips/spells/icons/<id>.swf/1.jpg` | various | Use (game assets) as decoration |
 | Port screenshots | `web/public/assets/port-preview/kernel/02-menu.png`, `03-characters.png`, `06-lobby.png`, `08-fight-turn.png` | 742×550 | Use: our own renders |
 | Beta screenshots | `vendor/wayback-dofus-2004/screenshots/booge_wp_04.jpg`, `booge_wp_03.jpg` | ~746×553 | Fan-owned; credit the fan site |

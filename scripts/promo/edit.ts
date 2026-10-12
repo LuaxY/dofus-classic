@@ -114,3 +114,9 @@ run(["ffmpeg", "-v", "error", "-y", "-framerate", String(FPS), "-i", join(plan.f
   "-vf", "scale=in_range=pc:out_range=tv", "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-pix_fmt", "yuv420p", "-profile:v", "high", "-g", String(FPS * 2),
   "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", "-shortest", mp4]);
 console.log(`${mp4}: ${(total / FPS).toFixed(1)} s`);
+
+// the landing page's copy (web/index.html), lighter, and its poster: the village, « Quelle nostalgie, cette bêta ! »
+const SITE = join(import.meta.dir, "../../web/public/site");
+run(["ffmpeg", "-v", "error", "-y", "-i", mp4, "-c:v", "libx264", "-preset", "slow", "-crf", "26", "-pix_fmt", "yuv420p", "-profile:v", "high",
+  "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", join(SITE, "promo.mp4")]);
+run(["ffmpeg", "-v", "error", "-y", "-ss", String(380 / FPS), "-i", mp4, "-frames:v", "1", "-vf", "scale=960:-2", "-q:v", "4", join(SITE, "promo.jpg")]);

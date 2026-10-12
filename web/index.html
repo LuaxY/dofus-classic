@@ -47,7 +47,10 @@
             <span lang="fr">Le client bêta de Dofus, remis en marche dans votre navigateur. Pour la nostalgie des premiers joueurs, et pour les curieux qui n'ont jamais vu le jeu à ses débuts.</span>
             <span lang="en">The Dofus beta client, running again in your browser. For the early players' nostalgia, and for the curious who never saw the game in its early days.</span>
           </p>
-          <img class="art" src="/site/classes.png" alt="" />
+          <button class="trailer" type="button">
+            <img src="/site/promo.jpg" width="224" height="126" alt="" />
+            <span><span lang="fr">Voir la vidéo</span><span lang="en">Watch the video</span> · 0:52</span>
+          </button>
           <div class="free">
             <strong><span lang="fr">GRATUIT</span><span lang="en">FREE</span></strong>
             <span lang="fr">Sans abonnement ni téléchargement !</span><span lang="en">No subscription, no download!</span>
@@ -251,6 +254,10 @@
       </p>
     </div>
     <audio id="music" src="/site/music.mp3" loop preload="none"></audio>
+    <dialog id="trailer" class="frame">
+      <form method="dialog"><button><span lang="fr">Fermer</span><span lang="en">Close</span> ✕</button></form>
+      <video src="/site/promo.mp4" poster="/site/promo.jpg" controls playsinline preload="none"></video>
+    </dialog>
     <script>
       // FR/EN without reloading (the game page would drop ?server= and the session; the landing would stop the music).
       for (const a of document.querySelectorAll('a[href^="?lang="]'))
@@ -267,6 +274,17 @@
         else music.pause();
         toggle.classList.toggle("on", !music.paused);
       });
+      // The promo video in a modal: plays on open (the click allows sound, the music stops), pauses on close (Esc, the
+      // button, a click on the backdrop).
+      const trailer = document.getElementById("trailer"), video = trailer.querySelector("video");
+      document.querySelector(".trailer").addEventListener("click", () => {
+        music.pause();
+        toggle.classList.remove("on");
+        trailer.showModal();
+        video.play();
+      });
+      trailer.addEventListener("click", (e) => e.target == trailer && trailer.close());
+      trailer.addEventListener("close", () => video.pause());
     </script>
   </body>
 </html>

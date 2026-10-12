@@ -87,7 +87,6 @@ if (import.meta.main) {
     [P + "img/d1_home_fd_bt_voter.gif", "button.gif"],
     [P + "img/d1_etoilem.gif", "star.gif"],
     [B + "img/dofus.com_favicon_20030805.ico", "favicon.ico"], // 2003 dofus.com favicon (potion)
-    [M + "bitmaps/clips/guilds/artwork/big/50.swf/1.png", "classes.png"], // beta 5b class group artwork
     [P + "swf-export/logo_dofus_154x84_bandeau.png", "logo.png"], // Dofus logo of the 1.0 banner
     [M + "bitmaps/modules/Interfaces.swf/8.jpg", "sky.jpg"], // Amakna panorama of the client, the game page backdrop
     [M + "music/04.mp3", "music.mp3"], // village theme, beta 3b music pack (26 Oct 2003)

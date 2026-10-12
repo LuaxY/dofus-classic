@@ -170,11 +170,61 @@ html[lang="en"] a[href="?lang=en"] {
   text-align: justify;
 }
 
-.hero .art {
+/* The promo video's thumbnail (opens #trailer): a play disc in the banner's orange, the length at the bottom. */
+.hero .trailer {
   position: absolute;
-  right: 4px;
-  bottom: 4px;
-  height: 140px;
+  right: 10px;
+  bottom: 10px;
+  padding: 0;
+  border: 1px solid #4a3218;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 0 3px #e8dcc0, 0 4px 10px rgba(0, 0, 0, 0.35);
+  font: bold 11px Verdana, Geneva, sans-serif;
+  cursor: pointer;
+}
+
+.hero .trailer img {
+  display: block;
+}
+
+.hero .trailer::before,
+.hero .trailer::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 42%;
+}
+
+.hero .trailer::before {
+  width: 44px;
+  height: 44px;
+  margin: -24px 0 0 -24px;
+  border: 2px solid #fff3d6;
+  border-radius: 50%;
+  background: #fd9a00;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s;
+}
+
+.hero .trailer:hover::before {
+  transform: scale(1.1);
+}
+
+.hero .trailer::after {
+  margin: -9px 0 0 -4px;
+  border: 9px solid transparent;
+  border-right: 0;
+  border-left: 14px solid #fff;
+}
+
+.hero .trailer > span {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 14px 0 5px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  color: #fff;
 }
 
 .hero .free {
@@ -402,6 +452,43 @@ html[lang="en"] a[href="?lang=en"] {
 
 .creator img {
   margin: 0 4px;
+}
+
+/* ---- index.html: the promo video in a modal, framed like the game, over the play page's dark blue ---- */
+
+#trailer {
+  width: min(88vw, 145vh);
+  overflow: visible;
+}
+
+#trailer::backdrop {
+  background: rgba(8, 24, 48, 0.88);
+  backdrop-filter: blur(3px);
+}
+
+#trailer video {
+  display: block;
+  width: 100%;
+  outline: 1px solid #8a6a48;
+  background: #000;
+}
+
+#trailer form {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+}
+
+#trailer form button {
+  margin-bottom: 8px;
+  padding: 4px 12px;
+  border: 1px solid #b4926f;
+  border-radius: 12px;
+  background: #f2edd6;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  font: bold 11px Verdana, Geneva, sans-serif;
+  color: #6b4a2b;
+  cursor: pointer;
 }
 
 /* ---- jouer.html: the game framed over the client's Amakna panorama, never scrolling (the game reads keys on window).
