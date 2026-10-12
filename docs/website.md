@@ -174,7 +174,7 @@ with the extracted Verdana too.
 
 Built: no banner. The page is the client's own Amakna panorama (`Interfaces.swf/8.jpg`, copied as `sky.jpg`), scaled
 to cover, blurred 3 px and darkened towards the bottom. In the middle, one column: a 64 px bar (the 1.0 banner's Dofus
-logo, "Classic" in Della Respira, the date line, and a parchment pill with Accueil · Aide · FR EN), the canvas in a
+logo, "Classic" in Della Respira, the date line, and a parchment pill with Accueil · Aide · FR EN, and a « Signaler un bug » pill opening a new GitHub issue), the canvas in a
 cream frame with a dark edge, a soft halo and a drop shadow, then two lines of footer (creator links, short
 disclaimer). The class artwork (`guilds/artwork/big/50.swf/1.png`, split at its empty columns into `heroes-left.png`
 and `heroes-right.png`) stands on the hills at both sides, sized to the room the frame leaves, hidden under 1200 px.
@@ -236,7 +236,7 @@ French (*vous*) and English. Facts from `README.md`, `docs/BRIEF.md`, `docs/cont
 - **Creator** (under the footer, and in the game page footer): « Un projet de Luax : luax.dev · Suivre @luax0 sur X ·
   GitHub », with the X link `https://x.com/intent/user?screen_name=luax0` (a follow link, keep it as is), and « Dofus
   Classic est open source : le client, le serveur et les outils de conversion sont sur GitHub. » The GitHub URL
-  `https://github.com/LuaxY/dofus-classic` is a placeholder until the repository is published.
+  `https://github.com/LuaxY/dofus-classic` is the project repository (private for now); bugs go to its `/issues/new`.
 
 Disclaimer (footer, every page):
 

@@ -471,7 +471,8 @@ body.play::before {
   color: #fdf3d0;
 }
 
-.playbar nav {
+.playbar nav,
+.playbar .bug {
   padding: 4px 12px;
   border: 1px solid #b4926f;
   border-radius: 12px;
@@ -482,6 +483,7 @@ body.play::before {
 }
 
 .playbar nav a,
+.playbar .bug,
 .playfoot a {
   color: #6b4a2b;
   font-weight: bold;
@@ -489,6 +491,7 @@ body.play::before {
 }
 
 .playbar nav a:hover,
+.playbar .bug:hover,
 .playfoot a:hover {
   text-decoration: underline;
 }
