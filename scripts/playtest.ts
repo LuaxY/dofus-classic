@@ -23,10 +23,10 @@ const store = mkdtempSync(join(tmpdir(), "dofus-playtest-"));
 const port = 21000 + Math.floor(Math.random() * 20000);
 const URL = `ws://127.0.0.1:${port}`;
 let server: ReturnType<typeof Bun.spawn> | undefined;
-async function startServer() {
+async function startServer(env: Record<string, string> = {}) {
   const bin = join(ROOT, "server/target/release/dofus-server");
   server = Bun.spawn([bin, `127.0.0.1:${port}`], {
-    env: { ...process.env, DOFUS_STORE: join(store, "store.json"), DOFUS_TURN_MS: String(TURN_MS), DOFUS_PLACEMENT_MS: String(PLACEMENT_MS), DOFUS_SEED: "7" },
+    env: { ...process.env, DOFUS_STORE: join(store, "store.json"), DOFUS_TURN_MS: String(TURN_MS), DOFUS_PLACEMENT_MS: String(PLACEMENT_MS), DOFUS_SEED: "7", ...env },
     stdout: "pipe",
     stderr: "inherit",
   });
@@ -45,9 +45,9 @@ class Bot {
   private lines: string[] = [];
   private wake: (() => void) | undefined;
   private dead = false;
-  constructor(readonly name: string, readonly dir: string) {
+  constructor(readonly name: string, readonly dir: string, env?: Record<string, string>) {
     mkdirSync(dir, { recursive: true });
-    this.proc = Bun.spawn(["bun", join(ROOT, "web/src/dev/bot.ts"), name, URL, dir], { stdin: "pipe", stdout: "pipe", stderr: "pipe", cwd: ROOT });
+    this.proc = Bun.spawn(["bun", join(ROOT, "web/src/dev/bot.ts"), name, URL, dir], { stdin: "pipe", stdout: "pipe", stderr: "pipe", cwd: ROOT, env: { ...process.env, ...env } });
     void this.pump(this.proc.stdout as ReadableStream<Uint8Array>, (l) => (l.startsWith("{") ? (this.lines.push(l), this.wake?.()) : this.note(l)));
     void this.pump(this.proc.stderr as ReadableStream<Uint8Array>, (l) => this.note(l));
     void this.proc.exited.then(() => ((this.dead = true), this.wake?.()));
@@ -443,7 +443,7 @@ const scenarios: Record<string, () => Promise<void>> = {
 };
 
 // ---- main -----------------------------------------------------------------------------------------------------------
-export { Bot, bots, duel, enter, startServer, stopServer, URL, type Who };
+export { Bot, bots, duel, enter, startServer, stopServer, store, URL, type Who };
 if (import.meta.main) await main();
 async function main() {
 const wanted = process.argv.slice(2).filter((a) => a != "all");

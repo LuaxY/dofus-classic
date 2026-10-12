@@ -8,7 +8,7 @@ import { createCanvas, GlobalFonts, loadImage, Path2D } from "@napi-rs/canvas";
 import type { LangData } from "../core/lang.ts";
 import { parseServerMessage } from "../core/protocol.ts";
 import { drawNode } from "../runtime/object.ts";
-import { Button, DisplayObject, MovieClip, type Player, TextField } from "../runtime/player.ts";
+import { type AudioBackend, Button, DisplayObject, MovieClip, type Player, TextField } from "../runtime/player.ts";
 import { NO_CX, type SwfLoader } from "../swf/render.ts";
 import { G } from "../game/globals.ts";
 import { Cell } from "../game/battlefield/interaction.ts";
@@ -45,7 +45,7 @@ export class Headless {
   private stopClock: (() => void) | undefined;
   private restore: () => void;
 
-  private constructor(readonly p: Player, readonly realTime: boolean, readonly shotDir: string | undefined) {
+  private constructor(readonly p: Player, readonly realTime: boolean, readonly shotDir: string | undefined, clock?: (p: Player) => () => void, private sleep?: (ms: number) => Promise<void>) {
     const warn = console.warn, error = console.error;
     console.error = (...a: unknown[]) => void this.errors.push(a.map((x) => (x instanceof Error ? (x.stack ?? x.message) : String(x))).join(" "));
     console.warn = (...a: unknown[]) => {
@@ -75,7 +75,8 @@ export class Headless {
       notes.push({ note, inGame: !!G.DATACENTER?.Game.isRunning });
       timedOut.call(this, id);
     };
-    if (realTime) {
+    if (realTime && clock) this.stopClock = clock(p);
+    else if (realTime) {
       let last = performance.now(), on = true;
       const loop = () => {
         if (!on) return;
@@ -92,9 +93,11 @@ export class Headless {
   /**
    * Boot like main.ts. `realTime`: the runtime clock follows the wall clock (as requestAnimationFrame would);
    * otherwise `run(ms)` advances it as fast as file loads allow (replay test). `shotDir`: where `shot()` writes PNGs.
-   * `wrap`: wraps the file loader (the replay test holds a file back to see the boot loading bar).
+   * `wrap`: wraps the file loader (the replay test holds a file back to see the boot loading bar). `clock` replaces the
+   * real-time wall clock, `sleep` waits that long in runtime time instead of wall time, and `audio` is the sound backend
+   * (the video recorder, web/src/dev/recorder.ts, whose clock may run slower than the wall clock).
    */
-  static async boot(o: { serverURL: string; realTime?: boolean; shotDir?: string; wrap?: (l: SwfLoader) => SwfLoader }): Promise<Headless> {
+  static async boot(o: { serverURL: string; realTime?: boolean; shotDir?: string; wrap?: (l: SwfLoader) => SwfLoader; clock?: (p: Player) => () => void; sleep?: (ms: number) => Promise<void>; audio?: AudioBackend }): Promise<Headless> {
     if (o.shotDir) mkdirSync(o.shotDir, { recursive: true });
     langSource.load = async () => (existsSync(LANG) ? (JSON.parse(readFileSync(LANG, "utf8")) as LangData) : {});
     const rec = { sent: [] as string[], received: [] as string[], unparsed: [] as string[] };
@@ -120,8 +123,9 @@ export class Headless {
       loader: o.wrap?.(files) ?? files,
       createCanvas: (w, h) => createCanvas(w, h),
       serverURL: o.serverURL,
+      audio: o.audio,
     });
-    const h = new Headless(p, !!o.realTime, o.shotDir);
+    const h = new Headless(p, !!o.realTime, o.shotDir, o.clock, o.sleep);
     Object.assign(h, rec);
     return h;
   }
@@ -133,7 +137,7 @@ export class Headless {
 
   /** Let `ms` of runtime time pass (fast clock: in 40 ms frames, letting file loads resolve between them). */
   async run(ms: number) {
-    if (this.realTime) return void (await new Promise((r) => setTimeout(r, ms)));
+    if (this.realTime) return void (await (this.sleep?.(ms) ?? new Promise((r) => setTimeout(r, ms))));
     for (let t = 0; t < ms; t += 40) {
       await new Promise((r) => setTimeout(r, 0));
       this.p.advance(40);

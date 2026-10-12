@@ -7,6 +7,7 @@ import { Button, type DisplayObject, MovieClip, TextField } from "../runtime/pla
 import { goalDistEstimate, PathFinding } from "../core/pathfinding.ts";
 import { Cell } from "../game/battlefield/interaction.ts";
 import { buttonIn, Headless, inside } from "./headless-client.ts";
+import { recorder } from "./recorder.ts";
 
 const [name = "A", url = "ws://127.0.0.1:5555", shotDir] = process.argv.slice(2);
 
@@ -20,7 +21,7 @@ export type Step =
   | { do: "login" | "register"; account: string; password: string; expect?: "ok" | "refused" }
   | { do: "characters" }
   /** From the character list: Create → guild → sex → 3 colours (picked at fractions of the gradient) → name → Create. */
-  | { do: "createCharacter"; name: string; guild: number; sex: 0 | 1; colors: [number, number][] }
+  | { do: "createCharacter"; name: string; guild: number; sex: 0 | 1; colors: [number, number][]; browse?: number[] }
   /** From the character list: pick the card, Play → village → multiplayer screen with the channel joined. */
   | { do: "selectCharacter"; name: string }
   /** Type a line in the lobby/fight console and send it with Enter or the Send button. */
@@ -93,7 +94,9 @@ export type Step =
   | { do: "toLobby" }
   /** Banner smiley bar (B779) → smiley `index` (BS) → cS → shown over my sprite. With `from`: wait for the smiley over
    *  the sprite of `from` (it goes after SMILEY_DELAY = 3 s, so run it alongside the sender's step). */
-  | { do: "smiley"; index?: number; from?: string };
+  | { do: "smiley"; index?: number; from?: string }
+  /** Camera bot (DOFUS_RECORD=<dir>): start or stop writing video frames. */
+  | { do: "rec"; on: boolean };
 
 export type Policy = {
   /** Spell ids to cast at least once, in this order (each when it is castable). */
@@ -125,7 +128,10 @@ function at(path: string): unknown {
   return o;
 }
 
-const h = await Headless.boot({ serverURL: url, realTime: true, shotDir });
+// The camera of scripts/promo/record.ts: fixed-step clock, frames and sound log in DOFUS_RECORD, no PNG timeline.
+const rec = process.env.DOFUS_RECORD ? recorder(process.env.DOFUS_RECORD) : undefined;
+const h = await Headless.boot({ serverURL: url, realTime: true, shotDir: rec ? undefined : shotDir, clock: rec?.clock, sleep: rec?.sleep, audio: rec?.audio });
+rec?.attach(h);
 const DC = () => G.DATACENTER;
 type Combo = MovieClip & { downArrow: MovieClip; container_mc: MovieClip; getSelectedItem(): Item | undefined };
 type Item = { label?: unknown; data?: unknown } | undefined;
@@ -620,6 +626,11 @@ async function step(s: Step): Promise<Record<string, unknown>> {
       await opened(1);
       await h.run(300);
       const m1 = menu(1);
+      for (const g of s.browse ?? []) { // guilds looked at first (the promo video)
+        h.click(`guild ${g}`, m1[`g${g}_btn`] as DisplayObject, h.centre(m1[`guild${g}_txt`] as DisplayObject));
+        await h.need(`guild ${g} shown`, () => ui.guildID == g);
+        await h.run(1100);
+      }
       h.click(`guild ${s.guild}`, m1[`g${s.guild}_btn`] as DisplayObject, h.centre(m1[`guild${s.guild}_txt`] as DisplayObject));
       await h.need("guild chosen", () => ui.guildID == s.guild);
       await h.run(500);
@@ -1068,6 +1079,9 @@ async function step(s: Step): Promise<Record<string, unknown>> {
     case "wait":
       await h.run(s.ms);
       return {};
+    case "rec":
+      rec?.record(s.on);
+      return {};
     case "login":
     case "register": {
       await h.need("login screen", () => G.INTERFACE?.CommonLayer_mc?.loginInterface, 60000);
@@ -1120,10 +1134,11 @@ for (;;) {
     buf = buf.slice(i + 1);
     if (!line) continue;
     const s = JSON.parse(line) as Step;
+    const t0 = rec?.tick;
     try {
       const r = await step(s);
       const errors = problems();
-      out({ ok: true, step: s.do, ...r, ...(errors.length ? { errors } : {}) });
+      out({ ok: true, step: s.do, ...r, ...(errors.length ? { errors } : {}), ...(rec ? { t0, t1: rec.tick } : {}) });
     } catch (e) {
       h.shot(`FAIL-${s.do}`);
       const errors = problems();
