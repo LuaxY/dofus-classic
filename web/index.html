@@ -2,10 +2,241 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <title>Dofus Beta 5b</title>
+    <meta name="viewport" content="width=780" />
+    <title>Dofus Nostalgie — bêta 5b</title>
+    <meta name="description" content="La bêta 5b de Dofus (13 janvier 2004) rejouable dans le navigateur. Projet de fans non officiel et non commercial." />
+    <link rel="icon" href="/site/favicon.ico" />
+    <link rel="stylesheet" href="/site/site.css" />
+    <script>
+      // FR/EN: ?lang= wins, then the last choice, then the browser's language.
+      (function (l) {
+        document.documentElement.lang = l = l === "fr" ? "fr" : "en";
+        localStorage.setItem("site-lang", l);
+      })(new URLSearchParams(location.search).get("lang") || localStorage.getItem("site-lang") || navigator.language.slice(0, 2));
+    </script>
   </head>
-  <body style="margin:0;background:#203040">
-    <canvas id="stage" width="742" height="550"></canvas>
-    <script type="module" src="/src/main.ts"></script>
+  <body>
+    <div class="general">
+      <header class="banner">
+        <a class="home" href="/" title="Dofus Nostalgie"></a>
+        <div class="toptab">
+          <a href="?lang=fr">FR</a> · <a href="?lang=en">EN</a> ·
+          <button id="music-toggle" type="button">♪ <span lang="fr">Musique</span><span lang="en">Music</span></button>
+        </div>
+        <div class="bubble">
+          <span lang="fr">La bêta 5b de DOFUS, en quelques clics de souris</span>
+          <span lang="en">Play the DOFUS beta 5b again in a few mouse clicks</span>
+        </div>
+        <a class="play" href="/jouer.html"><span lang="fr">JOUER</span><span lang="en">PLAY</span></a>
+        <nav>
+          <a href="#decouvrir"><span lang="fr">Découvrir</span><span lang="en">Discover</span></a>
+          <a href="#news">News</a>
+          <a href="#aide"><span lang="fr">Aide</span><span lang="en">Help</span></a>
+          <a href="#credits"><span lang="fr">Crédits</span><span lang="en">Credits</span></a>
+        </nav>
+      </header>
+
+      <div class="top">
+        <section class="hero">
+          <h1><span lang="fr">DOFUS, la bêta 5b est de retour !</span><span lang="en">DOFUS: the beta 5b is back!</span></h1>
+          <p class="subtitle">
+            <span lang="fr">Jeu de rôle tactique multijoueurs — version bêta du 13 janvier 2004</span>
+            <span lang="en">Multiplayer tactical role-playing game — beta of 13 January 2004</span>
+          </p>
+          <p class="intro">
+            <span lang="fr">Le client bêta de Dofus, remis en marche dans votre navigateur. Pour les testeurs de 2003-2004, et pour ceux qui ne l'ont jamais vu.</span>
+            <span lang="en">The Dofus beta client, running again in your browser. For the testers of 2003-2004, and for everyone who never saw it.</span>
+          </p>
+          <img class="art" src="/site/classes.png" alt="" />
+          <div class="free">
+            <strong><span lang="fr">GRATUIT</span><span lang="en">FREE</span></strong>
+            <span lang="fr">Sans abonnement ni téléchargement !</span><span lang="en">No subscription, no download!</span>
+            <a href="/jouer.html">* <span lang="fr">Jouer</span><span lang="en">Play</span> *</a>
+          </div>
+        </section>
+        <section class="box">
+          <h2 class="tab-abo"><span lang="fr">Jouer à la bêta 5b</span><span lang="en">Play beta 5b</span></h2>
+          <div class="body">
+            <p>
+              <span lang="fr">Le client du 13 janvier 2004, tel qu'il était : salons, Console Multi et combats en arène.</span>
+              <span lang="en">The client of 13 January 2004, as it was: channels, the Console Multi and arena fights.</span>
+            </p>
+            <a class="button" href="/jouer.html"><span lang="fr">JOUER</span><span lang="en">PLAY</span></a>
+            <p class="more"><a href="#aide">* <span lang="fr">Comment jouer ?</span><span lang="en">How to play?</span> *</a></p>
+          </div>
+        </section>
+      </div>
+
+      <div class="cols">
+        <div class="col">
+          <section class="box">
+            <h2 class="tab-jouer"><span lang="fr">Jouer directement</span><span lang="en">Play right now</span></h2>
+            <div class="body">
+              <img class="thumb" src="/site/thumbnail.png" width="94" height="94" alt="" />
+              <p>
+                <span lang="fr">Inscrivez-vous, créez votre personnage et rejoignez un salon : la Console Multi vous attend.</span>
+                <span lang="en">Sign up, create your character and join a channel: the Console Multi is waiting for you.</span>
+              </p>
+              <p class="more"><a href="/jouer.html">* <span lang="fr">Jouer à Dofus</span><span lang="en">Play Dofus</span> *</a></p>
+            </div>
+          </section>
+          <section class="box" id="aide">
+            <h2 class="tab-sond"><span lang="fr">Aide</span><span lang="en">Help</span></h2>
+            <div class="body">
+              <ul>
+                <li>
+                  <span lang="fr">Un navigateur d'ordinateur, une souris et un clavier.</span>
+                  <span lang="en">A desktop browser, a mouse and a keyboard.</span>
+                </li>
+                <li>
+                  <span lang="fr">La première fois, choisissez un nom de compte et un mot de passe, puis « S'inscrire ». Ensuite, « OK ».</span>
+                  <span lang="en">The first time, pick an account name and a password, then click "S'inscrire" (sign up). Afterwards, "OK".</span>
+                </li>
+                <li>
+                  <span lang="fr">« Entraînement » : créez une partie, un ami la rejoint.</span>
+                  <span lang="en">"Entraînement" (training): create a game, a friend joins it.</span>
+                </li>
+                <li>
+                  <span lang="fr">« Jouer », puis « Jouer seul » : un adversaire choisi au hasard.</span>
+                  <span lang="en">"Jouer", then "Jouer seul": an opponent picked at random.</span>
+                </li>
+                <li>
+                  <span lang="fr">« Rejoindre la carte » : le village partagé, pour se promener et discuter (un ajout du projet).</span>
+                  <span lang="en">"Rejoindre la carte": the shared village, to walk around and chat (added by the project).</span>
+                </li>
+                <li>
+                  <span lang="fr">Le jeu est en français, comme en 2004.</span>
+                  <span lang="en">The game is in French, as it was in 2004.</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+
+        <div class="col">
+          <section class="box" id="news">
+            <h2 class="tab-news"><span>News</span></h2>
+            <div class="body">
+              <h3>12/10/2026</h3>
+              <p><span lang="fr">Ouverture du site du projet.</span><span lang="en">The project website opens.</span></p>
+              <h3>12/10/2026</h3>
+              <p>
+                <span lang="fr">Table d'expérience, ordre de jeu à l'initiative, combat au corps à corps, coups et échecs critiques.</span>
+                <span lang="en">XP table, initiative turn order, close combat, critical hits and misses.</span>
+              </p>
+              <h3>12/10/2026</h3>
+              <p>
+                <span lang="fr">La barre de chargement d'origine se remplit pendant le téléchargement du jeu.</span>
+                <span lang="en">The client's own loading bar fills while the game downloads.</span>
+              </p>
+              <h3>11/10/2026</h3>
+              <p>
+                <span lang="fr">Objets : inventaire, équipement, butin de combat. 90 cartes d'Amakna reliées entre elles.</span>
+                <span lang="en">Items: inventory, equipment, fight loot. 90 linked maps of Amakna.</span>
+              </p>
+              <h3>11/10/2026</h3>
+              <p>
+                <span lang="fr">Premiers combats dans le navigateur : le client est porté en TypeScript, le serveur écrit en Rust.</span>
+                <span lang="en">First fights in the browser: the client is ported to TypeScript, the server written in Rust.</span>
+              </p>
+            </div>
+          </section>
+          <section class="box" id="decouvrir">
+            <h2 class="tab-savoir"><span lang="fr">Tout savoir sur la bêta 5b</span><span lang="en">All about beta 5b</span></h2>
+            <div class="body">
+              <p>
+                <span lang="fr">Sortie le 13 janvier 2004, la bêta 5b est la plus ancienne version de Dofus encore récupérable. Ce n'est pas encore le MMO : salons de discussion, Console Multi, combats en arène contre un adversaire au hasard ou entre amis, dix guildes, niveau 30 au maximum. Ni monstres, ni quêtes, ni métiers. Environ 650 testeurs y jouaient.</span>
+                <span lang="en">Released on 13 January 2004, beta 5b is the oldest Dofus version that can still be recovered. It is not the MMO yet: chat channels, the Console Multi, arena fights against a random opponent or between friends, ten guilds, level 30 at most. No monsters, quests or jobs. About 650 testers played it.</span>
+              </p>
+              <p>
+                <span lang="fr">Les fichiers du client sont ceux d'origine. Ce qui s'est perdu depuis (textes, cartes de la bêta, écran de connexion, quelques sons) est remplacé par des éléments de 2004 ou recréé, et signalé comme tel. La musique vient de la bêta 3b.</span>
+                <span lang="en">The client files are the original ones. What has been lost since (texts, the beta maps, the login screen, a few sounds) is replaced with 2004 material or recreated, and labelled as such. The music comes from beta 3b.</span>
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <div class="col">
+          <section class="box dark">
+            <h2 class="tab-proch"><span lang="fr">Prochainement sur Dofus</span><span lang="en">Coming soon</span></h2>
+            <div class="body">
+              <ul>
+                <li>
+                  <span lang="fr">Retrouver les noms des sorts : 140 s'affichent encore « Sort » suivi d'un numéro.</span>
+                  <span lang="en">Recover the spell names: 140 still show as "Sort" and a number.</span>
+                </li>
+                <li>
+                  <span lang="fr">Remplacer les textes recréés par ceux de la bêta, au fil des trouvailles.</span>
+                  <span lang="en">Replace the recreated texts with the beta's own, as they turn up.</span>
+                </li>
+                <li>
+                  <span lang="fr">Retrouver les sons manquants.</span>
+                  <span lang="en">Find the missing sounds.</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="box" id="credits">
+            <h2 class="tab-sond"><span lang="fr">Crédits</span><span lang="en">Credits</span></h2>
+            <div class="body">
+              <ul>
+                <li>
+                  <span lang="fr">Dofus, ses illustrations et sa musique : Ankama Studio.</span>
+                  <span lang="en">Dofus, its artwork and its music: Ankama Studio.</span>
+                </li>
+                <li>
+                  <span lang="fr">Captures de la bêta : les sites de fans booge.net, naholyr et xenografter.</span>
+                  <span lang="en">Beta screenshots: the fan sites booge.net, naholyr and xenografter.</span>
+                </li>
+                <li>
+                  <span lang="fr">Histoire des bêtas : dofushistory (loonaire, CC BY-SA).</span>
+                  <span lang="en">Beta history: dofushistory (loonaire, CC BY-SA).</span>
+                </li>
+                <li>
+                  <span lang="fr">Cartes et textes de 2004 : dofedex.</span>
+                  <span lang="en">2004 maps and texts: dofedex.</span>
+                </li>
+                <li>
+                  <span lang="fr">Anciennes pages de dofus.com : Internet Archive.</span>
+                  <span lang="en">Old dofus.com pages: the Internet Archive.</span>
+                </li>
+                <li>
+                  <span lang="fr">Police des titres : Della Respira (Nathan Willis, SIL OFL).</span>
+                  <span lang="en">Title font: Della Respira (Nathan Willis, SIL OFL).</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div>
+          <a href="#decouvrir"><span lang="fr">Le projet</span><span lang="en">The project</span></a> -
+          <a href="#credits"><span lang="fr">Crédits</span><span lang="en">Credits</span></a> -
+          <a href="https://www.dofus.com"><span lang="fr">Jeu officiel :</span><span lang="en">Official game:</span> www.dofus.com</a>
+        </div>
+        <div>
+          <span lang="fr">Habillage inspiré de dofus.com en septembre 2004 (version 1.0). Le jeu est la bêta 5b du 13 janvier 2004.</span>
+          <span lang="en">Look inspired by dofus.com in September 2004 (version 1.0). The game is the beta 5b of 13 January 2004.</span>
+        </div>
+      </footer>
+      <p class="disclaimer">
+        <span lang="fr">Dofus Nostalgie est un projet de fans non officiel, gratuit et non commercial. Il n'est ni affilié à Ankama, ni approuvé par Ankama. DOFUS et Ankama sont des marques d'Ankama. Les noms, illustrations, logos et captures de l'univers DOFUS présentés ici sont © 2003-2026 Ankama, tous droits réservés, et sont reproduits à titre d'hommage. Nos créations originales sont signalées comme telles. Tout élément sera retiré sur simple demande d'Ankama. Jeu officiel : www.dofus.com</span>
+        <span lang="en">Dofus Nostalgie is an unofficial, free, non-commercial fan project, not affiliated with or endorsed by Ankama. DOFUS and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and screenshots shown here are © 2003-2026 Ankama, all rights reserved, and are used as a tribute. Our own creations are marked as such, and any element will be removed at Ankama's request. Official game: www.dofus.com</span>
+        <br />www.DOFUS.com © 2004 Ankama Studio. Tous droits réservés.
+      </p>
+    </div>
+    <audio id="music" src="/site/music.mp3" loop preload="none"></audio>
+    <script>
+      // Optional music, off by default: starts only from the click (browsers block autoplay anyway).
+      const music = document.getElementById("music"), toggle = document.getElementById("music-toggle");
+      music.volume = 0.3;
+      toggle.addEventListener("click", () => {
+        if (music.paused) music.play();
+        else music.pause();
+        toggle.classList.toggle("on", !music.paused);
+      });
+    </script>
   </body>
 </html>

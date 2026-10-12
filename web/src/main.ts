@@ -1,4 +1,4 @@
-// Browser entry (web/index.html). `?replay=<fixture>` plays a scripted server (web/src/dev/fixtures.ts) through
+// Browser entry (web/jouer.html; web/index.html is the project website). `?replay=<fixture>` plays a scripted server (web/src/dev/fixtures.ts) through
 // a WebSocket stand-in; otherwise `?server=ws://…` (default: the Rust dev server, ws://127.0.0.1:5555).
 import { installReplay } from "./dev/replay.ts";
 import { boot } from "./game/kernel/boot.ts";

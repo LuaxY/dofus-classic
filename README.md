@@ -17,10 +17,10 @@ bun scripts/assets-media/extract.ts    # sounds, fonts, bitmaps → web/public/a
 bun scripts/copy-music.ts              # beta music → web/public/assets/media/music/   (once)
 
 cd server && cargo run --release       # game server on ws://127.0.0.1:5555
-bun run dev                            # client on http://localhost:5173
+bun run dev                            # website on http://localhost:5173, game on /jouer.html
 ```
 
-Open two tabs at http://localhost:5173, type any account name and password and click **S'inscrire** the first time
+Open two tabs at http://localhost:5173/jouer.html, type any account name and password and click **S'inscrire** the first time
 (**OK** afterwards; no account exists until registered), create a character and join the same channel. Then either:
 
 - **Entraînement** (free games): create a game in one tab, join it from the other;
@@ -31,8 +31,8 @@ did, to walk around and chat (an addition of this port; menu → *Aller aux comb
 village* comes back). Walk onto a round plate
 at a map edge to go to the next map: 90 linked 2004 maps of Amakna (`docs/server.md` "World maps").
 
-- `/?replay=fight` plays a scripted session with no server (login `bo` / `pass`).
-- `/?server=ws://host:port` points the client at another server.
+- `/jouer.html?replay=fight` plays a scripted session with no server (login `bo` / `pass`).
+- `/jouer.html?server=ws://host:port` points the client at another server.
 
 ## Checks
 

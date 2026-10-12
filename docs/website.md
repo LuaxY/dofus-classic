@@ -13,8 +13,14 @@ Owner decisions (2026-10-12):
 - **Design base: dofus.com version 1.0** (launched 23–26 Aug 2004, live until May 2005): parchment cards on a dark
   olive page (§2). The beta-era site (blue/orange, live for beta 5b) is kept as background in §10.
 - **Logos:** the gold "Dofus" wordmark is used; the Ankama / Ankama Studio logos are not.
-- **Copy:** French, *vous* (as on dofus.com in 2004).
-- **Music:** optional on the landing page, off by default (§6).
+- **Copy:** French and English (switch in the banner), *vous* in French (as on dofus.com in 2004).
+- **Music:** optional on the landing page, off by default, village theme (§6).
+- **Play page:** the game in a parchment frame under the banner (§7).
+
+**Built** (2026-10-12): `web/index.html` (landing), `web/jouer.html` (game), `web/public/site/` (images, font, music,
+`site.css`), `scripts/site/assets.ts` (rebuilds the images from `vendor/wayback-dofus-site/` and the game assets),
+`web/vite.config.ts`. Checked in the dev server at 1024×768, 1366×768 and 1100×620: both languages, the music toggle,
+the login field overlay on the scaled canvas, no scrolling on the game page. Not checked: a production build (§8).
 
 Summary:
 
@@ -23,7 +29,7 @@ Summary:
 - **Legal:** Ankama's current terms forbid using its art and trademarks without written consent, **and** forbid
   decompiling, emulators and protocol emulation (§4). A disclaimer covers attribution and trademarks only.
 - **Build:** two static HTML pages in the existing Vite `web/` root, plain CSS, no framework (§8). One unrelated
-  blocker for going live: the production build very likely drops the game's dynamically imported scripts (§8.4).
+  blocker for going live: the production build very likely drops the game's dynamically imported scripts (§8.3).
 
 ## 2. The chosen design: dofus.com 1.0 (Aug 2004)
 
@@ -72,10 +78,11 @@ From `post-beta/css/d1_basic.css`, `d1_home.css`, `d1_generic.css` (captured 10�
 ### Fonts and motifs
 
 - Body: `Verdana, Geneva, sans-serif` everywhere (as in 2004).
-- Display: **Kharon 4a** (Bold) set the title "DOFUS, rejoignez la communauté !" in `communaute_home.swf` (font name
-  from the JPEXS export). DaFont lists Kharon 4a (by Orgdot, before 2005) as free (https://www.dafont.com/kharon4a.font);
-  check the licence file in the download before shipping it. The calligraphic lettering of the `titre_*.gif` images is a
-  bitmap, font not identified. The banner's "Wide awake" exists only as a partial glyph subset.
+- Display: the calligraphic lettering of the `titre_*.gif` images and of the community block's title is a bitmap; its
+  font is not identified. `communaute_home.swf` embeds **Kharon 4a** (Orgdot, 2001), but that is a blocky pixel font,
+  so it presumably set the small text, not the titles. The banner's "Wide awake" exists only as a partial glyph subset.
+- Stand-in for the titles: **Della Respira** (Nathan Willis, SIL OFL, Google Fonts) with a 0.4–0.5 px text stroke; the
+  closest of seven free calligraphic faces compared against `titre_proch.gif` at native size.
 - Motifs: parchment cards with rounded corners; title tabs with a folded corner and a monster vignette (a Bouftou-like
   sheep, a red fire creature, a blindfolded black creature); a yellow bird (a Tofu, INFERRED) with a speech bubble in the
   banner; a two-dagger "Loading" preloader; brown pill buttons; star bullets. The banner also showed two random
@@ -90,13 +97,17 @@ Keep the grid; replace the commercial blocks (subscription, "semaine de test", T
 
 | 1.0 block | Size | Project content | Title / art |
 |---|---|---|---|
-| Banner | 760×138 | Logo; Tofu bubble "Retrouvez la bêta 5b de DOFUS en quelques clics de souris"; top-right tab "Musique" toggle (§6); tabs **JOUER · Découvrir · News · Aide · Crédits** (JOUER → `/jouer.html`, active tab = orange accent) | Rebuilt in HTML/CSS. Tofu, frame and tab shapes can be exported from `post-beta/swf/d1_bandeau_20040916.swf` with `tools/ffdec.sh -export image,shape` |
-| `#flash` (hero) | 518×197 | "DOFUS, la bêta 5b est de retour !" (Kharon 4a), subtitle "Jeu de rôle tactique multijoueurs — version bêta du 13 janvier 2004", class group artwork | Game asset `clips/guilds/artwork/big/50.swf/1.png` (766×369, scaled) |
-| `#abo` | 242×197 | "Jouer à la bêta 5b": big brown JOUER button → `/jouer.html`, "Gratuit, sans abonnement, dans votre navigateur" | Redrawn title (Kharon 4a on a CSS tab) |
-| `#bg` | 242 | **Jouer directement**: 94×94 thumbnail of the port + three steps (s'inscrire, créer un personnage, rejoindre un salon). Below: **Aide** (controls, desktop browser, mouse and keyboard) | Original `titre_jouer.gif`; thumbnail from `port-preview/kernel/08-fight-turn.png` |
-| `#bm` | 242 | **News**: dated project journal, by hand. Below: **Tout savoir sur le jeu Dofus**: what beta 5b was, what is original vs reconstituted | Original `titre_new.gif`, `titre_savoir.gif` |
-| `#bd` | 242 | **Prochainement sur Dofus**: the port's roadmap. Below: **Crédits** (in place of "Le Comptoir") | Original `titre_proch.gif`; redrawn "Crédits" title |
-| Footer | 763×51 + block | Links, era note, disclaimer (§9) | `footer_simple.gif` or CSS |
+| Banner | 760×138 | Logo; Tofu bubble "La bêta 5b de DOFUS, en quelques clics de souris"; top-right tab FR · EN · ♪ Musique (§6); tabs **JOUER · Découvrir · News · Aide · Crédits** (JOUER → `/jouer.html`) | The 2004 SWF frame with its labels erased (`banner.png`), HTML text on top |
+| `#flash` (hero) | 518×197 | "DOFUS, la bêta 5b est de retour !", subtitle "Jeu de rôle tactique multijoueurs — version bêta du 13 janvier 2004", intro, "GRATUIT" corner | CSS parchment with a green meadow gradient; class group artwork `clips/guilds/artwork/big/50.swf/1.png` |
+| `#abo` | 242×197 | "Jouer à la bêta 5b": big brown JOUER button → `/jouer.html` | `titre_abo.gif` with its lettering erased |
+| `#bg` | 242 | **Jouer directement**: 94×94 thumbnail of the port + how to start. Below: **Aide** | `titre_jouer.gif`, `titre_sond.gif` (erased); thumbnail cropped from `port-preview/kernel/07-placement.png` |
+| `#bm` | 242 | **News**: dated project journal, by hand. Below: **Tout savoir sur la bêta 5b** | `titre_new.gif`, `titre_savoir.gif` (erased) |
+| `#bd` | 242 | **Prochainement sur Dofus**: known gaps of the port. Below: **Crédits** (in place of "Le Comptoir") | `titre_proch.gif`, `titre_sond.gif` (erased) |
+| Footer | 763×51 + block | Links, era note, disclaimer (§9) | `footer_simple.gif` |
+
+Every title tab keeps its 2004 fold and monster vignette; the French lettering is erased by `scripts/site/assets.ts`
+(each row repainted with the median colour of a clean strip beside the text) and the title is HTML text in Della Respira,
+so both languages share the images.
 
 ## 4. Legal constraints (read before choosing assets)
 
@@ -127,8 +138,7 @@ Paths: `B/` = `vendor/wayback-dofus-site/beta/`, `P/` = `vendor/wayback-dofus-si
 | Gold "Dofus" wordmark (banner bitmap, byte-identical in the Jan 2004 and Sep 2004 banners) | `P/swf-export/logo_dofus_154x84_bandeau.png` | 154×84 | **Use** (decided), at 1× |
 | Same wordmark, transparent, from the 2004 press kit | `B/img/dofus.com_pages-presse-kits-dofusbig_20040304.png` | 1000×521 | **Use** for 2× screens and the hero |
 | Ankama / Ankama Studio logos | `B/img/dofus.com_pages-presse-kits-ankama*`, `B/img/dofus.com_images-accueil_r5_c1_20030806.gif` | — | **Not used** (decided). Name "Ankama Studio" as text in credits |
-| Title tabs "Jouer directement", "News", "Prochainement sur Dofus", "Tout savoir sur le jeu Dofus" | `P/img/d1_home_titre_jouer.gif`, `_new`, `_proch`, `_savoir` | 242×71 / 242×46 | Use as-is (lettering and monster vignette baked in; same footing as the logo) |
-| Other titles ("Crédits", "Jouer à la bêta 5b") | — | 242 | Redraw: CSS tab `#DCD5B6`, folded corner, Kharon 4a `#432407` |
+| Title tabs | `P/img/d1_home_titre_jouer.gif`, `_new`, `_proch`, `_savoir`, `_abo`, `_sond` | 242×71 / 46 / 30 / 26 | Used with the lettering erased (monster vignettes kept); titles overlaid as text |
 | Card backgrounds, footer strip, brown buttons, star bullet | `P/img/d1_home_fond_*`, `footer_simple.gif`, `fd_bt_*.gif`, `d1_etoilem.gif` | small | Use, or redraw in CSS (sharper on 2× screens) |
 | Banner frame | `P/swf-export/d1_bandeau_20040916_frame3.png` | 760×138 | Reference only (2004 labels baked in); rebuild |
 | Community hero block | `P/swf-export/d1_communaute_home_frame1.png` | 518×197 | Reference only ("GRATUIT, semaine de test" baked in) |
@@ -143,28 +153,28 @@ Paths: `B/` = `vendor/wayback-dofus-site/beta/`, `P/` = `vendor/wayback-dofus-si
 committed `web/public/site/` folder.
 
 **Fonts.** Do not link `/assets/media/fonts.css` from the landing page: it declares `@font-face "Verdana"` with outlines
-extracted from the SWFs (Microsoft's font). Use the system stack, plus Kharon 4a (self-hosted `.woff2`) for display
-titles. The game page already loads `fonts.css` (`web/src/main.ts:14`), so text around the canvas on that page renders
+extracted from the SWFs (Microsoft's font). Use the system stack, plus Della Respira (self-hosted, with its OFL file in
+`web/public/site/fonts/`) for titles. The game page already loads `fonts.css` (`web/src/main.ts:14`), so text around the canvas on that page renders
 with the extracted Verdana too.
 
 ## 6. Music (optional, off by default)
 
 - A "♪ Musique" toggle in the banner's top-right tab (where 2004 had "S'inscrire - Votre compte - Forum"). Browsers
   block autoplay anyway, so start playback only from that click.
-- `<audio src="/site/musique.mp3" loop preload="none">`, `volume` ≈ 0.3 (the game's own music runs at 25–32 %).
-- Track: `web/public/assets/media/music/04.mp3` (village theme, 55 s, loops well) rather than `02.mp3` (character
-  select, 17 s, repetitive). Both are from the beta 3b music pack (26 Oct 2003); credit them. ~270 KB at 40 kbps.
+- `<audio src="/site/music.mp3" loop preload="none">`, `volume` 0.3 (the game's own music runs at 25–32 %).
+- Track: `web/public/assets/media/music/04.mp3` (village theme, 55 s, loops well; chosen over `02.mp3`, the 17 s
+  character-select theme). From the beta 3b music pack (26 Oct 2003). 275 KB at 40 kbps.
 - Leaving for `/jouer.html` stops it (page change); the game plays its own music.
 
 ## 7. The play page
 
-Recommended: the same olive page and banner (JOUER tab active) with the game below it in a parchment frame: cream
-`#FDF8E9`, 5 px padding, 1 px `#B4926F` edge, rounded corners; trees or class artwork in the side margins. Historical
+Built: the same olive page and banner with the game below it in a parchment frame (cream `#FDF8E9`, 5 px padding, 1 px
+`#B4926F` edge, rounded corners) and two trees from `clips/objects.swf` in the margins (hidden under 1260 px). Historical
 alternative: the beta launcher frame (`#203040` page, 2 px white frame, `dofus-5b/lancement.html`); jouer.dofus.com's
 entry page kept the `#203040` background until at least Feb 2005 (captures 2004-08-04 → 2005-02-06).
 
-Height budget: banner 138 + 10 + frame 562 ≈ 710 px, more than a 768 px laptop shows. Either CSS-scale the canvas
-(`height: min(550px, 100vh - <banner>)`, `aspect-ratio: 742/550`) or use only the 40 px tab bar on this page.
+Height budget: banner 138 + 10 + frame 562 ≈ 710 px, more than some laptops show, so the canvas is CSS-scaled:
+`height: min(550px, calc(100vh - 196px))`, width from the 742×550 attributes.
 
 Constraints from the runtime (`web/src/runtime/player.ts`):
 
@@ -177,18 +187,16 @@ Constraints from the runtime (`web/src/runtime/player.ts`):
   `width`/`height` attributes (e.g. ×2) gives sharp rendering on high-DPI screens with no code change.
 - Keep the canvas id `stage`; `?replay=fight` and `?server=` read `location.search` and work from any path.
 
-## 8. Build plan
+## 8. Implementation
 
-1. **Pages** (plain HTML + one shared CSS file; no React, no build-time templating). Create `jouer.html` as a copy
-   first and replace `index.html` last, when no other work is editing `web/`:
-   - `web/index.html` → the **landing page** (§2–§3).
-   - `web/jouer.html` → the **game page**: today's `web/index.html` body (canvas + `/src/main.ts`) inside §7.
-   - `web/public/site/` → the assets of §5, Kharon 4a, the music.
-   → verify: `bun run dev`, open `/`, toggle the music, click JOUER, log in, type in the chat, resize the window.
-2. **Multi-page build**: add `web/vite.config.ts` with `build.rollupOptions.input` = `{ index: "index.html", jouer:
-   "jouer.html" }` (dev already serves any `.html` under `web/`; `web/runtime-demo.html` works that way).
-3. **Docs**: README "Play" says to open `http://localhost:5173`; change to `/jouer.html`.
-4. **Before deploying** (separate work, not part of the site):
+1. **Pages**: plain HTML + one shared `web/public/site/site.css`, no framework. Both languages sit side by side as
+   `<span lang="fr">` / `<span lang="en">` pairs; a one-line head script sets `<html lang>` from `?lang=`, then the last
+   choice (`localStorage` `site-lang`), then the browser language, and CSS hides the other language. The banner is
+   duplicated in both pages (no templating). Changing a 2004 image: edit `scripts/site/assets.ts` and run
+   `bun scripts/site/assets.ts` (needs `web/public/assets/` generated).
+2. **Multi-page build**: `web/vite.config.ts` lists `index.html` and `jouer.html` as inputs (dev serves any `.html`
+   under `web/` anyway).
+3. **Before deploying** (separate work, not part of the site):
    - The production build very likely ships without the battlefield/UI scripts: `web/src/game/kernel/boot.ts:31` and
      `kernel/scripts.ts:32` load them only via `import(/* @vite-ignore */ new URL(path, import.meta.url))`, which the
      bundler does not follow, and the `.catch` hides the failure. Not verified (no build was run).
@@ -199,7 +207,7 @@ Constraints from the runtime (`web/src/runtime/player.ts`):
 
 ## 9. Copy
 
-French, *vous*. Facts from `README.md`, `docs/BRIEF.md`, `docs/content-reconstruction.md`:
+French (*vous*) and English. Facts from `README.md`, `docs/BRIEF.md`, `docs/content-reconstruction.md`:
 
 - **Le projet**: the beta 5b client (13 janvier 2004, Flash 6, 742×550) brought back in the browser, for the testers of
   2003–2004 and for players who never saw it. Free, non-commercial, unofficial.
@@ -210,7 +218,7 @@ French, *vous*. Facts from `README.md`, `docs/BRIEF.md`, `docs/content-reconstru
   substituted and labelled. Link to `content-reconstruction.md` (per-item provenance).
 - **Aide**: desktop browser, mouse and keyboard; S'inscrire the first time, then OK; create a character; join a channel.
 - **Crédits**: Ankama Studio (game, art, music); fan screenshots (booge, naholyr, xenografter sites); dofushistory
-  (loonaire, CC BY-SA); dofedex; the Internet Archive; Kharon 4a (Orgdot).
+  (loonaire, CC BY-SA); dofedex; the Internet Archive; Della Respira (Nathan Willis, SIL OFL).
 - **Era note** (footer): « Habillage inspiré du site dofus.com de septembre 2004 (version 1.0). Le jeu est la bêta 5b
   du 13 janvier 2004. »
 
@@ -222,7 +230,7 @@ Disclaimer (footer, every page):
 > originales sont signalées comme telles. Tout élément sera retiré sur simple demande d'Ankama. Jeu officiel :
 > www.dofus.com
 
-English version, if the site ever gets one:
+English version:
 
 > Dofus Nostalgie is an unofficial, free, non-commercial fan project, not affiliated with or endorsed by Ankama. DOFUS
 > and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and screenshots shown here are © 2003-2026
@@ -269,7 +277,4 @@ Full detail: `vendor/wayback-dofus-site/post-beta/README.md`.
 
 ## 11. Open decisions
 
-- Ask Ankama for permission before publishing (§4)?
-- Play page: parchment frame under the banner (recommended) or the original `#203040` launcher frame (§7)?
-- Music track: `04.mp3` (recommended) or `02.mp3` (§6)?
-- French only (assumed) or also English?
+None for the site itself. Deployment waits on §8.3.

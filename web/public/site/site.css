@@ -1,0 +1,433 @@
+/* Project website (index.html, jouer.html): the dofus.com 1.0 look of Sep 2004 (docs/website.md §2).
+   Images are built by scripts/site/assets.ts. No global resets: jouer.html hosts the game, whose text fields are
+   absolutely positioned <input>s appended to <body> (docs/website.md §7). */
+
+@font-face {
+  font-family: "Della Respira"; /* stand-in for the 2004 title lettering, SIL OFL (fonts/DellaRespira-OFL.txt) */
+  src: url(/site/fonts/DellaRespira-Regular.ttf) format("truetype");
+  font-display: swap;
+}
+
+html[lang="fr"] [lang="en"],
+html[lang="en"] [lang="fr"] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: #2a2e09;
+  font: 11px Verdana, Geneva, sans-serif;
+  color: #000;
+}
+
+.general {
+  width: 765px;
+  margin: 0 auto;
+  padding: 5px 0 0 5px;
+}
+
+.general a {
+  color: #a37a54;
+  text-decoration: none;
+}
+
+.general a:hover {
+  text-decoration: underline;
+}
+
+/* ---- banner (760×138, labels erased from the 2004 SWF frame) ---- */
+
+.banner {
+  position: relative;
+  width: 760px;
+  height: 138px;
+  margin-bottom: 10px;
+  background: url(/site/banner.png);
+}
+
+.banner .home {
+  position: absolute;
+  left: 26px;
+  top: 10px;
+  width: 152px;
+  height: 88px;
+}
+
+.banner .toptab {
+  position: absolute;
+  left: 552px;
+  top: 9px;
+  width: 192px;
+  line-height: 16px;
+  text-align: center;
+  color: #6b5b46;
+}
+
+.general .toptab a {
+  color: #6b5b46;
+}
+
+html[lang="fr"] .toptab a[href="?lang=fr"],
+html[lang="en"] .toptab a[href="?lang=en"] {
+  font-weight: bold;
+}
+
+.toptab button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.toptab button:hover {
+  text-decoration: underline;
+}
+
+.toptab button.on {
+  font-weight: bold;
+  color: #d26a00;
+}
+
+.banner .bubble {
+  position: absolute;
+  left: 226px;
+  top: 87px;
+  width: 286px;
+  line-height: 14px;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+  color: #fbf6e6;
+}
+
+.banner .play,
+.banner nav a {
+  position: absolute;
+  top: 115px;
+  line-height: 16px;
+  font-weight: bold;
+  font-size: 12px;
+  transform: translateX(-50%); /* `left` is each label's centre */
+}
+
+.general .banner .play,
+.general .banner nav a {
+  color: #33291d;
+}
+
+.banner .play {
+  left: 89px;
+}
+.banner nav a:nth-child(1) {
+  left: 249px;
+}
+.banner nav a:nth-child(2) {
+  left: 395px;
+}
+.banner nav a:nth-child(3) {
+  left: 541px;
+}
+.banner nav a:nth-child(4) {
+  left: 687px;
+}
+
+/* ---- top row: hero (518×197) + play box (242×197) ---- */
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  height: 197px;
+  margin-bottom: 10px;
+}
+
+.hero {
+  position: relative;
+  width: 516px;
+  height: 195px;
+  overflow: hidden;
+  border: 1px solid #b4926f;
+  border-radius: 8px;
+  background: radial-gradient(ellipse 60% 55% at 76% 100%, #b8bf57, #d9d79b 55%, transparent 80%), #f2edd6;
+}
+
+.hero h1 {
+  margin: 8px 12px 0;
+  font: 26px/30px "Della Respira", serif;
+  -webkit-text-stroke: 0.5px #22384a;
+  color: #22384a;
+}
+
+.hero .subtitle {
+  margin: 0 12px;
+  font-weight: bold;
+  color: #2a4f6e;
+}
+
+.hero .intro {
+  width: 200px;
+  margin: 10px 12px 0;
+  text-align: justify;
+}
+
+.hero .art {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  height: 140px;
+}
+
+.hero .free {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 220px;
+  padding: 5px 12px 6px;
+  border-top: 1px solid #c9bc97;
+  border-right: 1px solid #c9bc97;
+  border-top-right-radius: 8px;
+  background: #ede7cb;
+}
+
+.hero .free strong {
+  display: block;
+  color: #432407;
+}
+
+/* ---- boxes: a 2004 title tab (text overlaid) over a cream card ---- */
+
+.cols {
+  display: flex;
+  gap: 17px;
+  align-items: flex-start;
+}
+
+.col {
+  width: 242px;
+}
+
+.box {
+  width: 242px;
+  margin-bottom: 10px;
+}
+
+.box h2 {
+  position: relative;
+  margin: 0;
+  font: 19px/19px "Della Respira", serif;
+  -webkit-text-stroke: 0.4px #432407;
+  color: #432407;
+}
+
+.box h2 span {
+  position: absolute;
+  left: 41px;
+  width: 112px;
+}
+
+.box .tab-jouer {
+  height: 71px;
+  background-image: url(/site/tab-jouer.png);
+}
+.box .tab-news {
+  height: 71px;
+  background-image: url(/site/tab-news.png);
+}
+.box .tab-proch {
+  height: 71px;
+  background-image: url(/site/tab-proch.png);
+}
+.box .tab-jouer span,
+.box .tab-proch span {
+  top: 15px;
+}
+.box .tab-news span {
+  top: 18px;
+}
+
+.box .tab-savoir {
+  height: 46px;
+  background-image: url(/site/tab-savoir.png);
+}
+.box .tab-savoir span {
+  left: 16px;
+  top: 26px;
+  width: 210px;
+  font-size: 16px;
+}
+
+.box .tab-sond {
+  height: 26px;
+  background-image: url(/site/tab-sond.png);
+}
+.box .tab-sond span {
+  left: 11px;
+  top: 6px;
+  width: 220px;
+  font-size: 16px;
+}
+
+.box .tab-abo {
+  height: 30px;
+  background-image: url(/site/tab-abo.png);
+}
+.box .tab-abo span {
+  left: 46px;
+  top: 7px;
+  width: 190px;
+  -webkit-text-stroke-color: #c85a12;
+  color: #c85a12;
+}
+
+.box .body {
+  padding: 6px 10px 2px;
+  background: url(/site/card.png) repeat-y;
+}
+
+.box::after {
+  content: "";
+  display: block;
+  height: 14px;
+  background: url(/site/card-end.gif) no-repeat;
+}
+
+.box.dark .body {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #b4926f;
+  border-radius: 0 0 8px 8px;
+  background-image: url(/site/card-dark.gif);
+}
+
+.box.dark::after {
+  display: none;
+}
+
+.top .box {
+  margin-bottom: 0;
+}
+
+.top .box .body {
+  box-sizing: border-box;
+  height: 153px; /* 197 - 30 (tab) - 14 (bottom cap) */
+}
+
+.box p {
+  margin: 0 0 8px;
+  text-align: justify;
+}
+
+.box h3 {
+  margin: 8px 0 2px;
+  font-size: 10px;
+}
+
+.box .more {
+  text-align: right;
+}
+
+.box ul {
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.box li {
+  margin-bottom: 4px;
+  padding-left: 13px;
+  background: url(/site/star.gif) no-repeat 0 3px;
+}
+
+.thumb {
+  float: left;
+  margin: 2px 8px 4px 0;
+  border-radius: 8px;
+}
+
+.button {
+  display: block;
+  width: 140px;
+  margin: 8px auto 10px;
+  padding: 6px 0;
+  border-radius: 14px;
+  background: #88501b;
+  box-shadow: inset 0 0 0 1px #6b3d12, 0 0 0 2px #e8dcc0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.general .button {
+  color: #fff;
+}
+
+.general .button:hover {
+  background: #9c5d22;
+  text-decoration: none;
+}
+
+/* ---- footer ---- */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 763px;
+  height: 51px;
+  background: url(/site/footer.gif);
+  color: #555;
+  text-align: center;
+  line-height: 15px;
+}
+
+.disclaimer {
+  margin: 0;
+  padding: 8px 12px 24px;
+  color: #a9a27e;
+  font-size: 10px;
+  text-align: justify;
+}
+
+/* ---- jouer.html: the game in a parchment frame, never scrolling (the game reads keys on window) ---- */
+
+body.play {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.stage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.frame {
+  padding: 5px;
+  border: 1px solid #b4926f;
+  border-radius: 8px;
+  background: #fdf8e9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.frame canvas {
+  display: block;
+  width: auto;
+  height: min(550px, calc(100vh - 196px));
+  background: #000;
+}
+
+.tree {
+  margin-bottom: -4px;
+}
+
+@media (max-width: 1260px) {
+  .tree {
+    display: none;
+  }
+}
+
+.play .disclaimer {
+  padding: 8px 0 0;
+  text-align: center;
+}
