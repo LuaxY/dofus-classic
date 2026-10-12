@@ -1,4 +1,4 @@
-# Dofus Beta 5b — nostalgie
+# Dofus Classic — beta 5b
 
 The Dofus **beta 5b** client (13 January 2004, Flash 6 / ActionScript 1), ported to TypeScript for the browser, plus a
 lightweight Rust server. The original files are in `dofus-5b/` (read-only).

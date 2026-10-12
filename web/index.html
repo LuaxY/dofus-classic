@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=780" />
-    <title>Dofus Nostalgie — bêta</title>
+    <title>Dofus Classic — bêta</title>
     <meta name="description" content="La bêta de Dofus du 13 janvier 2004, rejouable dans le navigateur : pour la nostalgie des premiers joueurs, et pour les curieux qui n'ont jamais vu le jeu à ses débuts." />
     <link rel="icon" href="/site/favicon.ico" />
     <link rel="stylesheet" href="/site/site.css" />
     <script>
-      // FR/EN: ?lang= wins, then the last choice, then the browser's language.
+      // FR/EN: ?lang= wins, then the last choice, then French.
       (function (l) {
         document.documentElement.lang = l = l === "fr" ? "fr" : "en";
-        localStorage.setItem("site-lang", l);
-      })(new URLSearchParams(location.search).get("lang") || localStorage.getItem("site-lang") || navigator.language.slice(0, 2));
+        localStorage.setItem("lang", l);
+      })(new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "fr");
     </script>
   </head>
   <body>
     <div class="general">
       <header class="banner">
-        <a class="home" href="/" title="Dofus Nostalgie"></a>
+        <a class="home" href="/" title="Dofus Classic"></a>
         <div class="toptab">
           <a href="?lang=fr">FR</a> · <a href="?lang=en">EN</a> ·
           <button id="music-toggle" type="button">♪ <span lang="fr">Musique</span><span lang="en">Music</span></button>
@@ -227,14 +227,14 @@
         <img src="/site/star.gif" alt="" />
         <a href="https://x.com/intent/user?screen_name=luax0" target="_blank" rel="noopener"><span lang="fr">Suivre @luax0 sur X</span><span lang="en">Follow @luax0 on X</span></a>
         <img src="/site/star.gif" alt="" />
-        <a href="https://github.com/LuaxY/dofus-nostalgie" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/LuaxY/dofus-classic" target="_blank" rel="noopener">GitHub</a>
         <br />
-        <span lang="fr">Dofus Nostalgie est open source : le client, le serveur et les outils de conversion sont sur GitHub.</span>
-        <span lang="en">Dofus Nostalgie is open source: the client, the server and the conversion tools are on GitHub.</span>
+        <span lang="fr">Dofus Classic est open source : le client, le serveur et les outils de conversion sont sur GitHub.</span>
+        <span lang="en">Dofus Classic is open source: the client, the server and the conversion tools are on GitHub.</span>
       </p>
       <p class="disclaimer">
-        <span lang="fr">Dofus Nostalgie est un projet de fans non officiel, fait par nostalgie, pour les premiers joueurs et pour les curieux. Il n'est ni affilié à Ankama, ni approuvé par Ankama. DOFUS et Ankama sont des marques d'Ankama. Les noms, illustrations, logos et captures de l'univers DOFUS présentés ici sont © 2003-2026 Ankama, tous droits réservés, et sont reproduits à titre d'hommage. Nos créations originales sont signalées comme telles. Tout élément sera retiré sur simple demande d'Ankama. Jeu officiel : www.dofus.com</span>
-        <span lang="en">Dofus Nostalgie is an unofficial fan project, made out of nostalgia for the early players and for the curious. It is not affiliated with or endorsed by Ankama. DOFUS and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and screenshots shown here are © 2003-2026 Ankama, all rights reserved, and are used as a tribute. Our own creations are marked as such, and any element will be removed at Ankama's request. Official game: www.dofus.com</span>
+        <span lang="fr">Dofus Classic est un projet de fans non officiel, fait par nostalgie, pour les premiers joueurs et pour les curieux. Il n'est ni affilié à Ankama, ni approuvé par Ankama. DOFUS et Ankama sont des marques d'Ankama. Les noms, illustrations, logos et captures de l'univers DOFUS présentés ici sont © 2003-2026 Ankama, tous droits réservés, et sont reproduits à titre d'hommage. Nos créations originales sont signalées comme telles. Tout élément sera retiré sur simple demande d'Ankama. Jeu officiel : www.dofus.com</span>
+        <span lang="en">Dofus Classic is an unofficial fan project, made out of nostalgia for the early players and for the curious. It is not affiliated with or endorsed by Ankama. DOFUS and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and screenshots shown here are © 2003-2026 Ankama, all rights reserved, and are used as a tribute. Our own creations are marked as such, and any element will be removed at Ankama's request. Official game: www.dofus.com</span>
         <br />www.DOFUS.com © 2004 Ankama Studio. Tous droits réservés.
       </p>
     </div>
@@ -245,7 +245,7 @@
         a.addEventListener("click", (e) => {
           e.preventDefault();
           document.documentElement.lang = a.search.slice(6);
-          localStorage.setItem("site-lang", a.search.slice(6));
+          localStorage.setItem("lang", a.search.slice(6));
         });
       // Optional music, off by default: starts only from the click (browsers block autoplay anyway).
       const music = document.getElementById("music"), toggle = document.getElementById("music-toggle");

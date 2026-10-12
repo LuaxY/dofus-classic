@@ -174,7 +174,7 @@ with the extracted Verdana too.
 
 Built: no banner. The page is the client's own Amakna panorama (`Interfaces.swf/8.jpg`, copied as `sky.jpg`), scaled
 to cover, blurred 3 px and darkened towards the bottom. In the middle, one column: a 64 px bar (the 1.0 banner's Dofus
-logo, "Nostalgie" in Della Respira, the date line, and a parchment pill with Accueil · Aide · FR EN), the canvas in a
+logo, "Classic" in Della Respira, the date line, and a parchment pill with Accueil · Aide · FR EN), the canvas in a
 cream frame with a dark edge, a soft halo and a drop shadow, then two lines of footer (creator links, short
 disclaimer). The class artwork (`guilds/artwork/big/50.swf/1.png`, split at its empty columns into `heroes-left.png`
 and `heroes-right.png`) stands on the hills at both sides, sized to the room the frame leaves, hidden under 1200 px.
@@ -202,7 +202,7 @@ Constraints from the runtime (`web/src/runtime/player.ts`):
 
 1. **Pages**: plain HTML + one shared `web/public/site/site.css`, no framework. Both languages sit side by side as
    `<span lang="fr">` / `<span lang="en">` pairs; a one-line head script sets `<html lang>` from `?lang=`, then the last
-   choice (`localStorage` `site-lang`), then the browser language, and CSS hides the other language. The banner is
+   choice (`localStorage` `lang`), then French, and CSS hides the other language. The banner is
    duplicated in both pages (no templating). Changing a 2004 image: edit `scripts/site/assets.ts` and run
    `bun scripts/site/assets.ts` (needs `web/public/assets/` generated).
 2. **Multi-page build**: `web/vite.config.ts` lists `index.html` and `jouer.html` as inputs (dev serves any `.html`
@@ -235,12 +235,12 @@ French (*vous*) and English. Facts from `README.md`, `docs/BRIEF.md`, `docs/cont
   13 janvier 2004. »
 - **Creator** (under the footer, and in the game page footer): « Un projet de Luax : luax.dev · Suivre @luax0 sur X ·
   GitHub », with the X link `https://x.com/intent/user?screen_name=luax0` (a follow link, keep it as is), and « Dofus
-  Nostalgie est open source : le client, le serveur et les outils de conversion sont sur GitHub. » The GitHub URL
-  `https://github.com/LuaxY/dofus-nostalgie` is a placeholder until the repository is published.
+  Classic est open source : le client, le serveur et les outils de conversion sont sur GitHub. » The GitHub URL
+  `https://github.com/LuaxY/dofus-classic` is a placeholder until the repository is published.
 
 Disclaimer (footer, every page):
 
-> Dofus Nostalgie est un projet de fans non officiel, fait par nostalgie, pour les premiers joueurs et pour les curieux.
+> Dofus Classic est un projet de fans non officiel, fait par nostalgie, pour les premiers joueurs et pour les curieux.
 > Il n'est ni affilié à Ankama, ni approuvé par Ankama. DOFUS et Ankama sont des marques d'Ankama. Les noms, illustrations, logos et captures de l'univers DOFUS
 > présentés ici sont © 2003-2026 Ankama, tous droits réservés, et sont reproduits à titre d'hommage. Nos créations
 > originales sont signalées comme telles. Tout élément sera retiré sur simple demande d'Ankama. Jeu officiel :
@@ -248,7 +248,7 @@ Disclaimer (footer, every page):
 
 English version:
 
-> Dofus Nostalgie is an unofficial fan project, made out of nostalgia for the early players and for the curious. It is
+> Dofus Classic is an unofficial fan project, made out of nostalgia for the early players and for the curious. It is
 > not affiliated with or endorsed by Ankama. DOFUS and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and screenshots shown here are © 2003-2026
 > Ankama, all rights reserved, and are used as a tribute. Our own creations are marked as such, and any element will be
 > removed at Ankama's request. Official game: www.dofus.com

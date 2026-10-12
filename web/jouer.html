@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=780" />
-    <title>Dofus Nostalgie — bêta</title>
+    <title>Dofus Classic — bêta</title>
     <link rel="icon" href="/site/favicon.ico" />
     <link rel="stylesheet" href="/site/site.css" />
     <script>
-      // FR/EN: ?lang= wins, then the last choice, then the browser's language.
+      // FR/EN: ?lang= wins, then the last choice, then French.
       (function (l) {
         document.documentElement.lang = l = l === "fr" ? "fr" : "en";
-        localStorage.setItem("site-lang", l);
-      })(new URLSearchParams(location.search).get("lang") || localStorage.getItem("site-lang") || navigator.language.slice(0, 2));
+        localStorage.setItem("lang", l);
+      })(new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "fr");
     </script>
   </head>
   <body class="play">
@@ -19,9 +19,9 @@
       <img class="heroes" src="/site/heroes-left.png" alt="" />
       <div class="column">
         <header class="playbar">
-          <a class="logo" href="/" title="Dofus Nostalgie"><img src="/site/logo.png" width="110" height="60" alt="DOFUS" /></a>
+          <a class="logo" href="/" title="Dofus Classic"><img src="/site/logo.png" width="110" height="60" alt="DOFUS" /></a>
           <div class="titles">
-            <strong>Nostalgie</strong>
+            <strong>Classic</strong>
             <span lang="fr">La bêta du 13 janvier 2004, en français d'époque</span>
             <span lang="en">The beta of 13 January 2004, in its original French</span>
           </div>
@@ -37,7 +37,7 @@
             <span lang="fr">Un projet de Luax :</span><span lang="en">A project by Luax:</span>
             <a href="https://luax.dev/" target="_blank" rel="noopener">luax.dev</a> ·
             <a href="https://x.com/intent/user?screen_name=luax0" target="_blank" rel="noopener"><span lang="fr">Suivre @luax0 sur X</span><span lang="en">Follow @luax0 on X</span></a> ·
-            <a href="https://github.com/LuaxY/dofus-nostalgie" target="_blank" rel="noopener"><span lang="fr">Code source sur GitHub</span><span lang="en">Source code on GitHub</span></a>
+            <a href="https://github.com/LuaxY/dofus-classic" target="_blank" rel="noopener"><span lang="fr">Code source sur GitHub</span><span lang="en">Source code on GitHub</span></a>
           </p>
           <p>
             <span lang="fr">Projet de fans non officiel, ni affilié à Ankama ni approuvé par Ankama. DOFUS © 2003-2026 Ankama.</span>
@@ -53,7 +53,7 @@
         a.addEventListener("click", (e) => {
           e.preventDefault();
           document.documentElement.lang = a.search.slice(6);
-          localStorage.setItem("site-lang", a.search.slice(6));
+          localStorage.setItem("lang", a.search.slice(6));
         });
     </script>
     <script type="module" src="/src/main.ts"></script>

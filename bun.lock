@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "dofus-nostalgie",
+      "name": "dofus-classic",
       "devDependencies": {
         "@napi-rs/canvas": "^0.1.80",
         "@types/bun": "latest",
