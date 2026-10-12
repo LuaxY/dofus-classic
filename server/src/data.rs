@@ -163,6 +163,8 @@ pub struct Rules {
     /// `SPELL_BOOST_BONUS` (Dofus.Kernel.Init.as:58): bonus points to raise a spell from level i.
     pub spell_boost_bonus: Vec<i32>,
     pub village_map: u32,
+    /// Where players appear on `village_map` (the free walkable cell nearest it).
+    pub village_cell: i64,
     pub default_channel: String,
     pub max_characters: usize,
     /// More than `spam_lines` `BM` within `spam_ms` → `M10`, the line dropped.
@@ -265,6 +267,9 @@ impl GameData {
     fn validate(&self) -> Result<(), String> {
         if !self.world.contains_key(&self.rules.village_map) {
             return Err(format!("rules.village_map {} not in maps.json world", self.rules.village_map));
+        }
+        if !self.world[&self.rules.village_map].map.walkable(self.rules.village_cell) {
+            return Err(format!("rules.village_cell {} is not walkable on map {}", self.rules.village_cell, self.rules.village_map));
         }
         // The arrival cell must exist on the map left too: the walker gets its new `GM` entry before the new map.
         for w in self.world.values() {

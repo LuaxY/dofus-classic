@@ -993,13 +993,15 @@ impl World {
         format!("GDM|{}|{}|{}|1|{}|{}", m.id, m.width, m.height, m.background, m.data)
     }
 
-    /// The free walkable cell of world map `map` nearest `target` (the middle of the map is in view, unlike the fight
-    /// placement cells at its edges); never an occupied one: both path-finders treat occupied cells as blocked.
+    /// The free walkable cell of world map `map` nearest `target` (`rules.village_cell`, or a plate); never an occupied one
+    /// (both path-finders treat occupied cells as blocked) and, other than `target` itself, preferably none next to an
+    /// occupant: arrivals packed around one cell walled the first one in.
     fn free_cell_near(&self, map: u32, target: i64) -> i64 {
         let (taken, m) = (self.village_cells(map), &self.data.world[&map].map);
+        let w = m.width as i64;
         (0..m.cells.len() as i64)
             .filter(|c| m.walkable(*c) && !taken.contains(c))
-            .min_by_key(|&c| distance(c, target, m.width as i64))
+            .min_by_key(|&c| (c != target && taken.iter().any(|&t| distance(c, t, w) == 1), distance(c, target, w)))
             .unwrap_or(target)
     }
 
@@ -1012,15 +1014,15 @@ impl World {
         if spot.is_none() {
             self.leave_place(sid, true);
         }
-        let middle = self.data.world[&village].map.cells.len() as i64 / 2;
+        let entry = self.data.rules.village_cell;
         if !social {
             self.send(sid, self.map_frame(village));
-            self.send(sid, format!("GM|{}", Self::solo_entry(&self.store.characters[&me], (self.free_cell_near(village, middle), 1))));
+            self.send(sid, format!("GM|{}", Self::solo_entry(&self.store.characters[&me], (self.free_cell_near(village, entry), 1))));
             self.sessions.get_mut(&sid).unwrap().social = true;
             return self.send(sid, format!("GAx;3;{me}"));
         }
         if spot.is_none() {
-            let cell = self.free_cell_near(village, middle);
+            let cell = self.free_cell_near(village, entry);
             let s = self.sessions.get_mut(&sid).unwrap();
             (s.place, s.spot, s.walk) = (Place::Village, Some((village, cell, 1)), Vec::new());
         }

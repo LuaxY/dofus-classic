@@ -438,7 +438,7 @@ the village (`Game.state == 1`):
 
 | Client | Server |
 |---|---|
-| `GD` (after `GCK\|1`) | `GDM\|…\|1\|…`, then **one** `GM\|+a\|+b…` with every occupant, itself included, solo layout `…;cell;dir`; `GM\|+me` to the other occupants; **no** `GAx;3`. Spawn: the free walkable cell nearest the middle of the map |
+| `GD` (after `GCK\|1`) | `GDM\|…\|1\|…`, then **one** `GM\|+a\|+b…` with every occupant, itself included, solo layout `…;cell;dir`; `GM\|+me` to the other occupants; **no** `GAx;3`. Spawn: the free walkable cell nearest `rules.village_cell` (open grass left of the cart on map 567), preferably one next to no occupant |
 | `GA001<path>` | the server's own path to the path's last cell (out-of-fight rules: length ≤ 500, every occupant blocks); `GA<n>;1;<id>;<startCode><path>` to every occupant, the mover included, which answers `GKK<n>`. No `GAS`/`GAF` around it. Refused (no path, occupied end cell): `GAF<id>` to the mover alone |
 | `GKE<n>\|<cell>` | the mover stopped on `cell` (a cell of its last walk): stored as its position, the `GA001` that follows starts there |
 | `GKK<n>` standing on a map-change plate | travel to the linked map (below) |

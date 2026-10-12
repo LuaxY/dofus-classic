@@ -861,6 +861,8 @@ async fn social_village_map() {
     let gm = enter_social(&mut b, "PASocb|2|1|-1|-1|-1\n", "Socb").await;
     let p1 = cell(&gm);
     assert!(p1 != p0 && map.walkable(p0) && map.walkable(p1), "spawn cells {p0}, {p1}");
+    assert_eq!(p0, data.rules.village_cell, "the first arrival spawns on rules.village_cell");
+    assert!(distance(p0, p1, map.width as i64) > 1, "B spawned next to A ({p0}, {p1}): packed arrivals wall players in");
     let entry_b = format!("+{};Socb;1;2;1;21;-1;-1;-1;;{p1};1", b.id);
     assert_eq!(gm, format!("GM|+{};Soca;1;1;0;10;-1;-1;-1;;{p0};1|{entry_b}", a.id));
     assert_eq!(a.expect("GM|").await, format!("GM|{entry_b}"));
