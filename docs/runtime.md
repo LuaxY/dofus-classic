@@ -327,6 +327,30 @@ plus whatever the port puts on `_global`.
 port calls its classes' registration and `Kernel.Init` itself), then `p.start(canvas)`.
 `Kernel.init`'s `DOFUS.createEmptyMovieClip("Interfaces", 3).loadMovie("modules/Interfaces.swf")` works as is.
 
+**Boot downloads and the loading bar.** What the browser fetches before the login screen (measured, sizes of
+`web/public/assets/swf/`): `main.ts` first waits for every face of `media/fonts.css`; `boot` awaits `AKSClient.json`
+(1.08 MB); `kernelInit` then requests, in the same tick and in parallel, `modules/Interfaces.json` (1.85 MB + 7 bitmaps,
+0.13 MB), `modules/Sound.json` (16 KB), `clips/ground.json` (0.95 MB + 101 bitmaps, 0.88 MB) and `clips/objects.json`
+(12.55 MB + 137 bitmaps, 1.81 MB; `Object1`/`Object2` share one load). Each SWF's bitmaps are requested once its JSON is
+parsed; `/lang/fr.json` (40 KB) once Interfaces.swf has run frame 1. About 19.3 MB in all. Nothing gives the total up
+front: there is no manifest, each file's `Content-Length` arrives with its headers, bitmaps are known only after their
+JSON. After login, the sprites of the characters shown (`clips/sprites/<gfx>.json`, `weapons/weapons.json`, faces,
+smileys, spell icons, ~1.2 MB for one character) still load on demand through `loadMovie`.
+The bar is the client's own `Interface::ProgressBar` through `INTERFACE.showProgressBar()` / `updateProgressBar` /
+`hideProgressBar` (150×11 at the stage centre, no text, on AKSClient's black stage), reused, not authored. The original
+lang SWF is lost, but `KERNEL.onLangOK` starts with `hideProgressBar()`, and the 2004 web launcher (`DofusLogin.swf`,
+`decompiled/xml/DofusLogin/scripts/frame_1/DoAction.as`) shows the same bar without text while it loads the lang file.
+The port's lang stand-in `checkLanguage` (`web/src/game/kernel/kernel.ts`) shows the bar. Every 40 ms it fills it from
+`SwfLoader.progress` (`browserLoader` counts the bytes as they stream in; the total is the sum of the `Content-Length`
+headers; the bar never moves back while bitmaps add to the total). It calls `onLangOK` (hide the bar, draw the login
+screen) only once the lang is in and `mapLibrariesLoaded()` (`client.ts`: ground/objects have run frame 1). That wait
+is a port addition: the login screen now comes after the ~16 MB map libraries, not before. The first ~3 MB (AKSClient,
+Interfaces) show the empty black stage, because the bar's symbols are in Interfaces.swf (Flash also showed nothing while
+the client SWF loaded). Headless (`web/src/dev/headless-client.ts`), the file loader has no `progress`, so the bar stays
+empty and the wait lasts ~40 ms of runtime. `Headless.boot({ wrap })` lets `replay.test.ts` hold `objects.json` back,
+check that the login screen waits, and save `port-preview/kernel/00-loading.png`. Limit: behind gzip or chunked
+responses, `Content-Length` does not match the bytes counted, so the bar fills early (clamped at full).
+
 **Classes.** The AS1 pattern `Class_X = function(){ this.init(); }; Class_X.prototype = new MovieClip();
 Object.registerClass("Dofus::X", Class_X)` becomes:
 

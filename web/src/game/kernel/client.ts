@@ -42,6 +42,12 @@ export type ParsedFriend = Extract<ServerEvent, { type: "friendsList" }>["friend
 
 type Socket = { send(data: string): void; close(): void };
 
+/** Port addition: clips/ground.swf and clips/objects.swf have run frame 1 in BATTLEFIELD.Container (true without one). */
+export function mapLibrariesLoaded(): boolean {
+  const c = G.BATTLEFIELD?.Container;
+  return !c || [c.Ground, c.Object1, c.Object2].every((l) => typeof l?.attach === "function");
+}
+
 export class Client {
   // Client.as:6-8 prototype callbacks + those Events.AKS.as assigns
   onConnect?: (success: boolean, msg?: string) => void;
@@ -109,8 +115,9 @@ export class Client {
   /**
    * Port addition: Map.build and Container.clear need clips/ground.swf and clips/objects.swf loaded into
    * BATTLEFIELD.Container (loadMovie at boot, Container.as:7-47). Flash had them long before the first map; the browser
-   * fetches ~13.5 MB of JSON (docs/assets-format.md §11), so from a map frame (`GDM`) on, frames wait in order until
-   * the three layers have run frame 1.
+   * fetches ~16 MB for them (docs/assets-format.md §11). The login screen already waits for them (kernel.ts
+   * `checkLanguage`); as a safety net, from a map frame (`GDM`) on, frames still wait in order until the three layers
+   * have run frame 1.
    */
   private receive(ev: ServerEvent, raw: string): void {
     this.inbox.push([ev, raw]);
@@ -118,8 +125,8 @@ export class Client {
   }
   private flushInbox(): void {
     for (let head = this.inbox[0]; head; head = this.inbox[0]) {
-      const c = G.BATTLEFIELD?.Container, [ev, raw] = head;
-      if (ev.type === "mapData" && c && ![c.Ground, c.Object1, c.Object2].every((l) => typeof l?.attach === "function")) {
+      const [ev, raw] = head;
+      if (ev.type === "mapData" && !mapLibrariesLoaded()) {
         this.inboxTimer ??= setInterval(() => this.flushInbox(), 40);
         return;
       }

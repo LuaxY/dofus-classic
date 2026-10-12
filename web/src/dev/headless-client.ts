@@ -9,7 +9,7 @@ import type { LangData } from "../core/lang.ts";
 import { parseServerMessage } from "../core/protocol.ts";
 import { drawNode } from "../runtime/object.ts";
 import { Button, DisplayObject, MovieClip, type Player, TextField } from "../runtime/player.ts";
-import { NO_CX } from "../swf/render.ts";
+import { NO_CX, type SwfLoader } from "../swf/render.ts";
 import { G } from "../game/globals.ts";
 import { Cell } from "../game/battlefield/interaction.ts";
 import { boot } from "../game/kernel/boot.ts";
@@ -92,8 +92,9 @@ export class Headless {
   /**
    * Boot like main.ts. `realTime`: the runtime clock follows the wall clock (as requestAnimationFrame would);
    * otherwise `run(ms)` advances it as fast as file loads allow (replay test). `shotDir`: where `shot()` writes PNGs.
+   * `wrap`: wraps the file loader (the replay test holds a file back to see the boot loading bar).
    */
-  static async boot(o: { serverURL: string; realTime?: boolean; shotDir?: string }): Promise<Headless> {
+  static async boot(o: { serverURL: string; realTime?: boolean; shotDir?: string; wrap?: (l: SwfLoader) => SwfLoader }): Promise<Headless> {
     if (o.shotDir) mkdirSync(o.shotDir, { recursive: true });
     langSource.load = async () => (existsSync(LANG) ? (JSON.parse(readFileSync(LANG, "utf8")) as LangData) : {});
     const rec = { sent: [] as string[], received: [] as string[], unparsed: [] as string[] };
@@ -114,8 +115,9 @@ export class Headless {
       Object.setPrototypeOf(Rec, Real);
       (globalThis as { WebSocket: unknown }).WebSocket = Rec;
     }
+    const files: SwfLoader = { json: async (f) => JSON.parse(readFileSync(join(SWF, f), "utf8")), image: async (f) => (await loadImage(join(SWF, f))) as unknown as CanvasImageSource };
     const p = await boot({
-      loader: { json: async (f) => JSON.parse(readFileSync(join(SWF, f), "utf8")), image: async (f) => (await loadImage(join(SWF, f))) as unknown as CanvasImageSource },
+      loader: o.wrap?.(files) ?? files,
       createCanvas: (w, h) => createCanvas(w, h),
       serverURL: o.serverURL,
     });

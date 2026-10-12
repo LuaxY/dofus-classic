@@ -4,6 +4,7 @@
 // Every player action is a mouse click (or typing into a focused input field) through the runtime's own input path,
 // on the clip a player would click; the test checks the mouse really lands on it.
 import { afterAll, expect, test } from "bun:test";
+import { statSync } from "node:fs";
 import { join } from "node:path";
 import type { MovieClip } from "../runtime/player.ts";
 import { G } from "../game/globals.ts";
@@ -48,11 +49,35 @@ afterAll(() => {
 
 test("replay: connect → login → village → lobby → placement → move, spell, end turn → game end", async () => {
   installReplay();
-  h = await Headless.boot({ serverURL: "replay:fight" });
+  // clips/objects.json is held back, and the loader counts file sizes as its bytes (browserLoader streams them)
+  const progress = { loaded: 0, total: 0 }, size = (f: string) => statSync(join(ROOT, "web/public/assets/swf", f)).size;
+  let release!: () => void;
+  const held = new Promise<void>((r) => (release = r));
+  h = await Headless.boot({
+    serverURL: "replay:fight",
+    wrap: (l) => ({
+      progress,
+      json: async (f) => {
+        progress.total += size(f);
+        if (f === "clips/objects.json") await held;
+        const json = await l.json(f);
+        progress.loaded += size(f);
+        return json;
+      },
+      image: (f) => l.image(f),
+    }),
+  });
   const DC = () => G.DATACENTER;
 
-  // ---- boot: Interfaces.swf → lang → login screen; Sound.swf → SOMA ----
+  // ---- boot: Interfaces.swf → lang + map libraries (INTERFACE's progress bar) → login screen; Sound.swf → SOMA ----
+  await until("loading bar", () => G.INTERFACE?.MainLayer_mc?.progressBar);
+  await run(400);
+  expect(G.INTERFACE.CommonLayer_mc.loginInterface).toBeUndefined(); // the login screen waits for objects.swf
+  expect(G.INTERFACE.MainLayer_mc.progressBar!.bar.front._visible).toBe(true);
+  shot("00-loading.png");
+  release();
   await until("login screen", () => G.INTERFACE?.CommonLayer_mc?.loginInterface);
+  expect(G.INTERFACE.MainLayer_mc.progressBar).toBeUndefined(); // onLangOK hid it
   expect(G.INTERFACE).toBeDefined();
   expect(G.BATTLEFIELD).toBeDefined();
   await until("SOMA", () => G.SOMA);

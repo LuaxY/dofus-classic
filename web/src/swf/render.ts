@@ -10,6 +10,8 @@ export interface SwfLoader {
   /** `path` is relative to the assets/swf root, e.g. "clips/sprites/10.json". */
   json(path: string): Promise<SwfFile>;
   image(path: string): Promise<CanvasImageSource>;
+  /** Bytes received / announced so far, over every file this loader fetched (the boot loading bar reads it). */
+  progress?: { loaded: number; total: number };
 }
 
 export interface LoadedSwf {
@@ -42,11 +44,25 @@ export async function loadSwf(src: string, loader: SwfLoader, cache = new Map<st
   return p;
 }
 
-/** Browser loader: fetches from `base` (default "/assets/swf/"). */
-export const browserLoader = (base = "/assets/swf/"): SwfLoader => ({
-  json: async (p) => (await fetch(base + p)).json(),
-  image: async (p) => createImageBitmap(await (await fetch(base + p)).blob()),
-});
+/**
+ * Browser loader: fetches from `base` (default "/assets/swf/"), counting the bytes into `progress` as they stream in.
+ * ponytail: `total` sums each file's Content-Length, exact for uncompressed responses (Vite dev/preview); a gzip or
+ * chunked host makes `loaded` overshoot it, so readers clamp; a byte manifest of the boot files would fix that.
+ */
+export const browserLoader = (base = "/assets/swf/"): SwfLoader => {
+  const progress = { loaded: 0, total: 0 };
+  const get = async (p: string) => {
+    const r = await fetch(base + p);
+    progress.total += Number(r.headers.get("Content-Length")) || 0;
+    const count = new TransformStream<Uint8Array, Uint8Array>({ transform: (c, out) => ((progress.loaded += c.length), out.enqueue(c)) });
+    return new Response(r.body?.pipeThrough(count), { headers: { "Content-Type": r.headers.get("Content-Type") ?? "" } });
+  };
+  return {
+    progress,
+    json: async (p) => (await get(p)).json(),
+    image: async (p) => createImageBitmap(await (await get(p)).blob()),
+  };
+};
 
 // ---- math -------------------------------------------------------------------------------------
 export const ID: Matrix = [1, 0, 0, 1, 0, 0];

@@ -368,6 +368,6 @@ archived client up to v1_0 and stay missing.
   object 835 (v1_0) and checks the manifest; the 90 world maps and the 49 fight maps render headless for 60 frames
   with no runtime error.
 - **Size**: `ground.json` 865,851 → 953,601 bytes, `objects.json` 5,636,513 → 12,553,982; bitmap directories
-  656 KB → 1.1 MB and 800 KB → 2.0 MB. The client fetches both libraries whole before the first map
-  (`web/src/game/kernel/client.ts` `flushInbox`): ≈ 16.6 MB instead of ≈ 7.9 MB. Not done: loading ids on demand, or
-  filling only the ids the maps reference.
+  656 KB → 1.1 MB and 800 KB → 2.0 MB. The client fetches both libraries whole before the login screen, behind the
+  boot loading bar (`web/src/game/kernel/kernel.ts` `checkLanguage`, `docs/runtime.md` §4.6): ≈ 16.6 MB instead of
+  ≈ 7.9 MB. Not done: loading ids on demand, or filling only the ids the maps reference.

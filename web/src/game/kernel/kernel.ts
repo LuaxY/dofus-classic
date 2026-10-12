@@ -13,9 +13,11 @@ import type { CCData } from "../../core/datacenter/player.ts";
 import { getSpellObjectFromData, type Spell } from "../../core/datacenter/spell.ts";
 import { getText, type LangData, setLangData } from "../../core/lang.ts";
 import { PathFinding } from "../../core/pathfinding.ts";
-import { Mouse, type MovieClip, player } from "../../runtime/player.ts";
+import { clearInterval, Mouse, type MovieClip, player, setInterval } from "../../runtime/player.ts";
 import { G } from "../globals.ts";
+import type { Interface } from "../ui/interface.ts";
 import type { Class_InterfaceBanner } from "../ui/screens/banner.ts";
+import { mapLibrariesLoaded } from "./client.ts";
 import { GameActionsManager } from "./gameActionsManager.ts";
 import { KeyListener } from "./keyListener.ts";
 import { Sequencer } from "./sequencer.ts";
@@ -331,10 +333,25 @@ export class Kernel {
   }
 }
 
-/** The lang SWF's `checkLanguage(lang, so, iface, kernel)` (missing-content.md #1), on core/lang.ts. */
-function checkLanguage(_lang: string, _so: unknown, _iface: unknown, kernel: Kernel): void {
+/**
+ * The lang SWF's `checkLanguage(lang, so, iface, kernel)` (missing-content.md #1), on core/lang.ts. It drives
+ * INTERFACE's progress bar, which `onLangOK` hides. Port addition: `onLangOK` (→ login screen) also waits for the map
+ * libraries loading since boot (`mapLibrariesLoaded`, ~16 MB), and the bar shows the bytes the SWF loader has received.
+ */
+function checkLanguage(_lang: string, _so: unknown, iface: Interface, kernel: Kernel): void {
+  iface.showProgressBar();
+  let data: LangData | undefined, shown = 0;
   langSource
     .load()
     .catch((e: unknown) => (console.warn("lang: " + (e as Error).message), {}))
-    .then((data) => player.dispatch(() => (setLangData(data), kernel.onLangOK())));
+    .then((d) => (data = d));
+  const id = setInterval(() => {
+    const p = player.loader.progress;
+    // the total grows as each JSON reveals its bitmaps: the bar never goes back
+    if (p?.total) iface.updateProgressBar((shown = Math.max(shown, Math.min(1, p.loaded / p.total))), 1);
+    if (!data || !mapLibrariesLoaded()) return;
+    clearInterval(id);
+    setLangData(data);
+    kernel.onLangOK();
+  }, 40);
 }
