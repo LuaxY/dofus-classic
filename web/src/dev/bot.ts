@@ -361,10 +361,12 @@ async function act(log: FightLog, label: string, code: string, fire: () => void)
   return miss ? "miss" : "ok";
 }
 
-/** Click the slot, roll over the candidate cells; click the first one the client accepts. */
+/** Click the slot, roll over the candidate cells; click the first one the client accepts. Targets out of reach are
+ *  not aimed at (on video, a spell aimed at an enemy out of range and cancelled looks like a failed cast). */
 async function cast(log: FightLog, spell: Spell, targets: number[]) {
-  const c = slot(Number(spell.m_ID));
-  if (!c || !myTurn()) return false;
+  const c = slot(Number(spell.m_ID)), from = Number(me().cell);
+  targets = targets.filter((t) => Number(spell.m_Range) == 0 || inReach(spell, from, t));
+  if (!c || !myTurn() || !targets.length) return false;
   for (const t of targets.slice(0, 40)) {
     if (G.BATTLEFIELD.Interaction.type != 2) {
       h.click(`spell ${String(spell.m_ID)}`, c);
