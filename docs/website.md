@@ -78,8 +78,8 @@ The image above is a **reconstruction**, not a capture: the January HTML rendere
 
 Motifs: slanted blue 190×65 ribbon titles, each with a character cut-out; grey cards with a rounded left edge; orange
 pill buttons (70×21); a strip of 76×44 screenshot thumbnails; the "VS" medallion (the header showed two random
-characters facing off, but those character SWFs were never archived). The Tofu speech bubble in the header dates from
-the **2004-02-13** SWF (beta 6b era), not January.
+characters facing off, but those character SWFs were never archived). The Tofu rollover bubble appears in the
+**2004-02-13** header SWF (beta 6b era); its texts are already in the January SWF.
 
 Copy tone (OBSERVED): French; the main site says *vous* ("Inscrivez vous maintenant à Dofus !"), the tester portal and
 `dofus-5b/LIS-MOI.txt` say *tu* ("Accéder à ton compte"). News titles riff on French pop songs ("Oui, oui, tout a
@@ -172,7 +172,8 @@ Decorations around it, in the **margins only**: a slim 2004 header (logo on `#2F
 
 ## 7. Build plan
 
-1. **Pages** (plain HTML + one CSS file each; no React, no build-time templating):
+1. **Pages** (plain HTML + one CSS file each; no React, no build-time templating). Create `jouer.html` as a copy
+   first and replace `index.html` last, when no other work is editing `web/`:
    - `web/index.html` → the **landing page** (2004 frame: 750 px box, blue header with the logo, orange nav, grey
      cards). Its main call to action is an orange "JOUER A LA BETA" box/button linking to `/jouer.html`.
    - `web/jouer.html` → the **game page**: today's `web/index.html` body (canvas + `/src/main.ts`) inside the
