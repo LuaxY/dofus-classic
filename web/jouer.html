@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=780" />
-    <title>Dofus Nostalgie — bêta 5b</title>
+    <title>Dofus Nostalgie — bêta</title>
     <link rel="icon" href="/site/favicon.ico" />
     <link rel="stylesheet" href="/site/site.css" />
     <script>
@@ -15,32 +15,38 @@
     </script>
   </head>
   <body class="play">
-    <div class="general">
-      <header class="banner">
-        <a class="home" href="/" title="Dofus Nostalgie"></a>
-        <div class="toptab"><a href="?lang=fr">FR</a> · <a href="?lang=en">EN</a></div>
-        <div class="bubble">
-          <span lang="fr">Le jeu est en français, comme en janvier 2004</span>
-          <span lang="en">The game is in French, as it was in January 2004</span>
-        </div>
-        <a class="play" href="/jouer.html"><span lang="fr">JOUER</span><span lang="en">PLAY</span></a>
-        <nav>
-          <a href="/#decouvrir"><span lang="fr">Découvrir</span><span lang="en">Discover</span></a>
-          <a href="/#news">News</a>
-          <a href="/#aide"><span lang="fr">Aide</span><span lang="en">Help</span></a>
-          <a href="/#credits"><span lang="fr">Crédits</span><span lang="en">Credits</span></a>
-        </nav>
-      </header>
-    </div>
     <div class="stage">
-      <img class="tree" src="/site/tree-1.png" alt="" />
-      <div class="frame"><canvas id="stage" width="742" height="550"></canvas></div>
-      <img class="tree" src="/site/tree-2.png" alt="" />
+      <img class="heroes" src="/site/heroes-left.png" alt="" />
+      <div class="column">
+        <header class="playbar">
+          <a class="logo" href="/" title="Dofus Nostalgie"><img src="/site/logo.png" width="110" height="60" alt="DOFUS" /></a>
+          <div class="titles">
+            <strong>Nostalgie</strong>
+            <span lang="fr">La bêta du 13 janvier 2004, en français d'époque</span>
+            <span lang="en">The beta of 13 January 2004, in its original French</span>
+          </div>
+          <nav>
+            <a href="/"><span lang="fr">Accueil</span><span lang="en">Home</span></a> ·
+            <a href="/#aide"><span lang="fr">Aide</span><span lang="en">Help</span></a> ·
+            <a href="?lang=fr">FR</a> <a href="?lang=en">EN</a>
+          </nav>
+        </header>
+        <div class="frame"><canvas id="stage" width="742" height="550"></canvas></div>
+        <footer class="playfoot">
+          <p>
+            <span lang="fr">Un projet de Luax :</span><span lang="en">A project by Luax:</span>
+            <a href="https://luax.dev/" target="_blank" rel="noopener">luax.dev</a> ·
+            <a href="https://x.com/intent/user?screen_name=luax0" target="_blank" rel="noopener"><span lang="fr">Suivre @luax0 sur X</span><span lang="en">Follow @luax0 on X</span></a> ·
+            <a href="https://github.com/LuaxY/dofus-nostalgie" target="_blank" rel="noopener"><span lang="fr">Code source sur GitHub</span><span lang="en">Source code on GitHub</span></a>
+          </p>
+          <p>
+            <span lang="fr">Projet de fans non officiel, ni affilié à Ankama ni approuvé par Ankama. DOFUS © 2003-2026 Ankama.</span>
+            <span lang="en">Unofficial fan project, not affiliated with or endorsed by Ankama. DOFUS © 2003-2026 Ankama.</span>
+          </p>
+        </footer>
+      </div>
+      <img class="heroes" src="/site/heroes-right.png" alt="" />
     </div>
-    <p class="disclaimer">
-      <span lang="fr">Projet de fans non officiel, gratuit et non commercial, ni affilié à Ankama ni approuvé par Ankama. DOFUS © 2003-2026 Ankama.</span>
-      <span lang="en">Unofficial, free, non-commercial fan project, not affiliated with or endorsed by Ankama. DOFUS © 2003-2026 Ankama.</span>
-    </p>
     <script>
       // FR/EN without reloading (the game page would drop ?server= and the session; the landing would stop the music).
       for (const a of document.querySelectorAll('a[href^="?lang="]'))

@@ -67,8 +67,8 @@ body {
   color: #6b5b46;
 }
 
-html[lang="fr"] .toptab a[href="?lang=fr"],
-html[lang="en"] .toptab a[href="?lang=en"] {
+html[lang="fr"] a[href="?lang=fr"],
+html[lang="en"] a[href="?lang=en"] {
   font-weight: bold;
 }
 
@@ -388,46 +388,157 @@ html[lang="en"] .toptab a[href="?lang=en"] {
   text-align: justify;
 }
 
-/* ---- jouer.html: the game in a parchment frame, never scrolling (the game reads keys on window) ---- */
+.creator {
+  margin: 10px 0 0;
+  color: #d9cfa6;
+  text-align: center;
+  line-height: 17px;
+}
+
+.general .creator a {
+  font-weight: bold;
+  color: #f2c37a;
+}
+
+.creator img {
+  margin: 0 4px;
+}
+
+/* ---- jouer.html: the game framed over the client's Amakna panorama, never scrolling (the game reads keys on window).
+   Nothing may cover the canvas, and it gets no border or padding: the game maps clicks and places its text fields
+   from the canvas box. ---- */
 
 body.play {
   height: 100vh;
   overflow: hidden;
+  background: #1d5fa8;
+  color: #f6efd8;
+}
+
+body.play::before {
+  content: "";
+  position: fixed;
+  inset: -12px;
+  z-index: -1;
+  background: linear-gradient(rgba(8, 24, 48, 0.15), rgba(8, 24, 48, 0.55)), url(/site/sky.jpg) center bottom / cover;
+  filter: blur(3px);
 }
 
 .stage {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 24px;
+  height: 100vh;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  margin: 0 12px;
+}
+
+/* Header and footer take the frame's width without widening it. */
+.playbar,
+.playfoot {
+  width: 0;
+  min-width: 100%;
+}
+
+.playbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 64px;
+  margin-top: 4px;
+}
+
+.playbar .logo img {
+  display: block;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+
+.playbar .titles {
+  flex: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.playbar strong {
+  display: block;
+  font: 28px/30px "Della Respira", serif;
+  -webkit-text-stroke: 0.5px #fdf3d0;
+  color: #fdf3d0;
+}
+
+.playbar nav {
+  padding: 4px 12px;
+  border: 1px solid #b4926f;
+  border-radius: 12px;
+  background: #f2edd6;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  color: #6b5b46;
+  white-space: nowrap;
+}
+
+.playbar nav a,
+.playfoot a {
+  color: #6b4a2b;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.playbar nav a:hover,
+.playfoot a:hover {
+  text-decoration: underline;
 }
 
 .frame {
-  padding: 5px;
-  border: 1px solid #b4926f;
-  border-radius: 8px;
-  background: #fdf8e9;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  padding: 6px;
+  border: 1px solid #4a3218;
+  border-radius: 12px;
+  background: linear-gradient(#fbf4de, #e6d6ad);
+  box-shadow: inset 0 0 0 1px #fffaea, 0 0 0 4px rgba(242, 237, 214, 0.35), 0 14px 40px rgba(0, 0, 0, 0.6);
 }
 
 .frame canvas {
   display: block;
   width: auto;
-  height: min(550px, calc(100vh - 196px));
+  height: min(550px, calc(100vh - 136px)); /* 64 header + 4 + 14 frame + 54 footer */
+  outline: 1px solid #8a6a48;
   background: #000;
 }
 
-.tree {
-  margin-bottom: -4px;
+.playfoot {
+  height: 54px;
+  font-size: 10px;
+  line-height: 15px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
 }
 
-@media (max-width: 1260px) {
-  .tree {
+.playfoot p {
+  margin: 8px 0 0;
+}
+
+.playfoot p + p {
+  margin-top: 2px;
+  color: #c9d6e6;
+}
+
+.playfoot a {
+  color: #f2c37a;
+}
+
+/* The class artwork stands on the panorama's hills, in whatever room the frame leaves. */
+.heroes {
+  height: min(330px, calc((100vw - 800px) / 2.3)); /* the right group is 1.12 wide per 1 tall */
+  margin-bottom: 8px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
+}
+
+@media (max-width: 1200px) {
+  .heroes {
     display: none;
   }
-}
-
-.play .disclaimer {
-  padding: 8px 0 0;
-  text-align: center;
 }

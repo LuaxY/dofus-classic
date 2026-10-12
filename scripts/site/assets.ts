@@ -88,8 +88,8 @@ if (import.meta.main) {
     [P + "img/d1_etoilem.gif", "star.gif"],
     [B + "img/dofus.com_favicon_20030805.ico", "favicon.ico"], // 2003 dofus.com favicon (potion)
     [M + "bitmaps/clips/guilds/artwork/big/50.swf/1.png", "classes.png"], // beta 5b class group artwork
-    [M + "bitmaps/clips/objects.swf/1235.png", "tree-1.png"],
-    [M + "bitmaps/clips/objects.swf/1238.png", "tree-2.png"],
+    [P + "swf-export/logo_dofus_154x84_bandeau.png", "logo.png"], // Dofus logo of the 1.0 banner
+    [M + "bitmaps/modules/Interfaces.swf/8.jpg", "sky.jpg"], // Amakna panorama of the client, the game page backdrop
     [M + "music/04.mp3", "music.mp3"], // village theme, beta 3b music pack (26 Oct 2003)
   ];
   for (const [src, out] of copies) copyFileSync(src, OUT + out);
@@ -99,5 +99,13 @@ if (import.meta.main) {
   const v = createCanvas(94, 94);
   v.getContext("2d").drawImage(shot, 200, 60, 300, 300, 0, 0, 94, 94);
   writeFileSync(OUT + "thumbnail.png", v.toBuffer("image/png"));
+
+  // The class artwork split in two groups (empty columns at x 339-353) to flank the game frame.
+  const art = await loadImage(M + "bitmaps/clips/guilds/artwork/big/50.swf/1.png");
+  for (const [out, x0, x1] of [["heroes-left.png", 0, 339], ["heroes-right.png", 354, art.width]] as const) {
+    const c = createCanvas(x1 - x0, art.height);
+    c.getContext("2d").drawImage(art, -x0, 0);
+    writeFileSync(OUT + out, c.toBuffer("image/png"));
+  }
   console.log("web/public/site/ written");
 }

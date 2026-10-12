@@ -15,17 +15,21 @@ Owner decisions (2026-10-12):
 - **Logos:** the gold "Dofus" wordmark is used; the Ankama / Ankama Studio logos are not.
 - **Copy:** French and English (switch in the banner), *vous* in French (as on dofus.com in 2004).
 - **Music:** optional on the landing page, off by default, village theme (§6).
-- **Play page:** the game in a parchment frame under the banner (§7).
+- **Play page:** the game framed over the client's Amakna panorama (§7).
+- **Wording:** no version number next to "bêta" in the copy; the project is presented as nostalgia for the early
+  players and for the curious who never saw the game in its early days, not as "non-commercial" (§9).
+- **Creator links** at the bottom of both pages: luax.dev, the X follow link, the project's GitHub (§9).
 
 **Built** (2026-10-12): `web/index.html` (landing), `web/jouer.html` (game), `web/public/site/` (images, font, music,
 `site.css`), `scripts/site/assets.ts` (rebuilds the images from `vendor/wayback-dofus-site/` and the game assets),
-`web/vite.config.ts`. Checked in the dev server at 1024×768, 1366×768 and 1100×620: both languages, the music toggle,
-the login field overlay on the scaled canvas, no scrolling on the game page. Not checked: a production build (§8).
+`web/vite.config.ts`. Checked in the dev server at 1024×768, 1366×768 and 1100×620, and the redesigned game page at
+1100×600, 1366×680, 1440×820 and 1920×1000: both languages, the music toggle, the login field overlay on the scaled
+canvas, no scrolling on the game page. Not checked: a production build (§8).
 
 Summary:
 
 - The site wears the Sep 2004 look while the game is the Jan 2004 beta 5b. Say so once, in the footer (§9).
-- **Play page:** the game centred in a parchment frame under the same banner (§7).
+- **Play page:** the game centred in a parchment frame over the Amakna panorama, class artwork on the sides (§7).
 - **Legal:** Ankama's current terms forbid using its art and trademarks without written consent, **and** forbid
   decompiling, emulators and protocol emulation (§4). A disclaimer covers attribution and trademarks only.
 - **Build:** two static HTML pages in the existing Vite `web/` root, plain CSS, no framework (§8). One unrelated
@@ -97,13 +101,13 @@ Keep the grid; replace the commercial blocks (subscription, "semaine de test", T
 
 | 1.0 block | Size | Project content | Title / art |
 |---|---|---|---|
-| Banner | 760×138 | Logo; Tofu bubble "La bêta 5b de DOFUS, en quelques clics de souris"; top-right tab FR · EN · ♪ Musique (§6); tabs **JOUER · Découvrir · News · Aide · Crédits** (JOUER → `/jouer.html`) | The 2004 SWF frame with its labels erased (`banner.png`), HTML text on top |
-| `#flash` (hero) | 518×197 | "DOFUS, la bêta 5b est de retour !", subtitle "Jeu de rôle tactique multijoueurs — version bêta du 13 janvier 2004", intro, "GRATUIT" corner | CSS parchment with a green meadow gradient; class group artwork `clips/guilds/artwork/big/50.swf/1.png` |
-| `#abo` | 242×197 | "Jouer à la bêta 5b": big brown JOUER button → `/jouer.html` | `titre_abo.gif` with its lettering erased |
+| Banner | 760×138 | Logo; Tofu bubble "La bêta de DOFUS, en quelques clics de souris"; top-right tab FR · EN · ♪ Musique (§6); tabs **JOUER · Découvrir · News · Aide · Crédits** (JOUER → `/jouer.html`) | The 2004 SWF frame with its labels erased (`banner.png`), HTML text on top |
+| `#flash` (hero) | 518×197 | "DOFUS, la bêta est de retour !", subtitle "Jeu de rôle tactique multijoueurs — version bêta du 13 janvier 2004", intro, "GRATUIT" corner | CSS parchment with a green meadow gradient; class group artwork `clips/guilds/artwork/big/50.swf/1.png` |
+| `#abo` | 242×197 | "Jouer à la bêta": big brown JOUER button → `/jouer.html` | `titre_abo.gif` with its lettering erased |
 | `#bg` | 242 | **Jouer directement**: 94×94 thumbnail of the port + how to start. Below: **Aide** | `titre_jouer.gif`, `titre_sond.gif` (erased); thumbnail cropped from `port-preview/kernel/07-placement.png` |
-| `#bm` | 242 | **News**: dated project journal, by hand. Below: **Tout savoir sur la bêta 5b** | `titre_new.gif`, `titre_savoir.gif` (erased) |
+| `#bm` | 242 | **News**: dated project journal, by hand. Below: **Tout savoir sur la bêta** | `titre_new.gif`, `titre_savoir.gif` (erased) |
 | `#bd` | 242 | **Prochainement sur Dofus**: known gaps of the port. Below: **Crédits** (in place of "Le Comptoir") | `titre_proch.gif`, `titre_sond.gif` (erased) |
-| Footer | 763×51 + block | Links, era note, disclaimer (§9) | `footer_simple.gif` |
+| Footer | 763×51 + block | Links, era note, creator links, disclaimer (§9) | `footer_simple.gif` |
 
 Every title tab keeps its 2004 fold and monster vignette; the French lettering is erased by `scripts/site/assets.ts`
 (each row repainted with the median colour of a clean strip beside the text) and the title is HTML text in Della Respira,
@@ -168,13 +172,20 @@ with the extracted Verdana too.
 
 ## 7. The play page
 
-Built: the same olive page and banner with the game below it in a parchment frame (cream `#FDF8E9`, 5 px padding, 1 px
-`#B4926F` edge, rounded corners) and two trees from `clips/objects.swf` in the margins (hidden under 1260 px). Historical
-alternative: the beta launcher frame (`#203040` page, 2 px white frame, `dofus-5b/lancement.html`); jouer.dofus.com's
-entry page kept the `#203040` background until at least Feb 2005 (captures 2004-08-04 → 2005-02-06).
+Built: no banner. The page is the client's own Amakna panorama (`Interfaces.swf/8.jpg`, copied as `sky.jpg`), scaled
+to cover, blurred 3 px and darkened towards the bottom. In the middle, one column: a 64 px bar (the 1.0 banner's Dofus
+logo, "Nostalgie" in Della Respira, the date line, and a parchment pill with Accueil · Aide · FR EN), the canvas in a
+cream frame with a dark edge, a soft halo and a drop shadow, then two lines of footer (creator links, short
+disclaimer). The class artwork (`guilds/artwork/big/50.swf/1.png`, split at its empty columns into `heroes-left.png`
+and `heroes-right.png`) stands on the hills at both sides, sized to the room the frame leaves, hidden under 1200 px.
+External links open in a new tab so the game session survives. A first version (2026-10-12) kept the olive page and the
+banner, with two trees in the margins; the owner found it too plain. Historical alternative: the beta launcher frame
+(`#203040` page, 2 px white frame, `dofus-5b/lancement.html`); jouer.dofus.com's entry page kept the `#203040` background until at least Feb 2005 (captures 2004-08-04 → 2005-02-06).
 
-Height budget: banner 138 + 10 + frame 562 ≈ 710 px, more than some laptops show, so the canvas is CSS-scaled:
-`height: min(550px, calc(100vh - 196px))`, width from the 742×550 attributes.
+Height budget: bar 64 + 4 + frame 14 + footer 54 = 136 px around the canvas, so it is CSS-scaled when the window is
+under 686 px tall: `height: min(550px, calc(100vh - 136px))`, width from the 742×550 attributes. The frame never draws
+on the canvas itself (no border or padding: the game maps clicks and places its text fields from the canvas box; the
+inner line is an `outline`).
 
 Constraints from the runtime (`web/src/runtime/player.ts`):
 
@@ -209,8 +220,9 @@ Constraints from the runtime (`web/src/runtime/player.ts`):
 
 French (*vous*) and English. Facts from `README.md`, `docs/BRIEF.md`, `docs/content-reconstruction.md`:
 
-- **Le projet**: the beta 5b client (13 janvier 2004, Flash 6, 742×550) brought back in the browser, for the testers of
-  2003–2004 and for players who never saw it. Free, non-commercial, unofficial.
+- **Le projet**: the beta client of 13 janvier 2004 (Flash 6, 742×550) brought back in the browser, for the early
+  players' nostalgia and for the curious who never saw the game in its early days. Unofficial. The copy says "la bêta",
+  without the version number.
 - **Tout savoir sur le jeu**: a tactical arena game, not yet the MMO: channels, the "Console Multi" lobby, random and
   training fights, 10 *guildes*, max level 30, no monsters, quests or jobs (beta FAQ, late Jan 2004). About 650 external
   testers, ~360 spells (dofus.com, Jan 2004). The last era of the blue interface.
@@ -219,21 +231,25 @@ French (*vous*) and English. Facts from `README.md`, `docs/BRIEF.md`, `docs/cont
 - **Aide**: desktop browser, mouse and keyboard; S'inscrire the first time, then OK; create a character; join a channel.
 - **Crédits**: Ankama Studio (game, art, music); fan screenshots (booge, naholyr, xenografter sites); dofushistory
   (loonaire, CC BY-SA); dofedex; the Internet Archive; Della Respira (Nathan Willis, SIL OFL).
-- **Era note** (footer): « Habillage inspiré du site dofus.com de septembre 2004 (version 1.0). Le jeu est la bêta 5b
-  du 13 janvier 2004. »
+- **Era note** (footer): « Habillage inspiré du site dofus.com de septembre 2004 (version 1.0). Le jeu est la bêta du
+  13 janvier 2004. »
+- **Creator** (under the footer, and in the game page footer): « Un projet de Luax : luax.dev · Suivre @luax0 sur X ·
+  GitHub », with the X link `https://x.com/intent/user?screen_name=luax0` (a follow link, keep it as is), and « Dofus
+  Nostalgie est open source : le client, le serveur et les outils de conversion sont sur GitHub. » The GitHub URL
+  `https://github.com/LuaxY/dofus-nostalgie` is a placeholder until the repository is published.
 
 Disclaimer (footer, every page):
 
-> Dofus Nostalgie est un projet de fans non officiel, gratuit et non commercial. Il n'est ni affilié à Ankama, ni approuvé
-> par Ankama. DOFUS et Ankama sont des marques d'Ankama. Les noms, illustrations, logos et captures de l'univers DOFUS
+> Dofus Nostalgie est un projet de fans non officiel, fait par nostalgie, pour les premiers joueurs et pour les curieux.
+> Il n'est ni affilié à Ankama, ni approuvé par Ankama. DOFUS et Ankama sont des marques d'Ankama. Les noms, illustrations, logos et captures de l'univers DOFUS
 > présentés ici sont © 2003-2026 Ankama, tous droits réservés, et sont reproduits à titre d'hommage. Nos créations
 > originales sont signalées comme telles. Tout élément sera retiré sur simple demande d'Ankama. Jeu officiel :
 > www.dofus.com
 
 English version:
 
-> Dofus Nostalgie is an unofficial, free, non-commercial fan project, not affiliated with or endorsed by Ankama. DOFUS
-> and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and screenshots shown here are © 2003-2026
+> Dofus Nostalgie is an unofficial fan project, made out of nostalgia for the early players and for the curious. It is
+> not affiliated with or endorsed by Ankama. DOFUS and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and screenshots shown here are © 2003-2026
 > Ankama, all rights reserved, and are used as a tribute. Our own creations are marked as such, and any element will be
 > removed at Ankama's request. Official game: www.dofus.com
 
