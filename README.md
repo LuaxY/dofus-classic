@@ -22,9 +22,11 @@
 
 <br/>
 
-<a href="https://dofus-classic.com">
-  <img alt="Two players chatting on the village map of Dofus Classic" src="./.github/screenshot.png">
-</a>
+<p align="center">
+  <a href="https://dofus-classic.com">
+    <img alt="Two players chatting on the village map of Dofus Classic" src="./.github/screenshot.png">
+  </a>
+</p>
 
 <br/>
 
@@ -139,7 +141,7 @@ Start with [`docs/BRIEF.md`](./docs/BRIEF.md), then [`docs/protocol/`](./docs/pr
 
 ## Disclaimer
 
-Dofus Classic is an unofficial fan project, made out of nostalgia for the early players and for the curious. It is not
+Dofus Classic is an unofficial, non-profit fan project, made out of nostalgia for the early players and for the curious. It is not
 affiliated with or endorsed by Ankama. DOFUS and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and
 screenshots shown here are © 2003-2026 Ankama, all rights reserved, and are used as a tribute. Our own creations are
 marked as such, and any element will be removed at Ankama's request. Official game: [www.dofus.com](https://www.dofus.com).

@@ -240,7 +240,7 @@ French (*vous*) and English. Facts from `README.md`, `docs/BRIEF.md`, `docs/cont
 
 Disclaimer (footer, every page):
 
-> Dofus Classic est un projet de fans non officiel, fait par nostalgie, pour les premiers joueurs et pour les curieux.
+> Dofus Classic est un projet de fans non officiel et à but non lucratif, fait par nostalgie, pour les premiers joueurs et pour les curieux.
 > Il n'est ni affilié à Ankama, ni approuvé par Ankama. DOFUS et Ankama sont des marques d'Ankama. Les noms, illustrations, logos et captures de l'univers DOFUS
 > présentés ici sont © 2003-2026 Ankama, tous droits réservés, et sont reproduits à titre d'hommage. Nos créations
 > originales sont signalées comme telles. Tout élément sera retiré sur simple demande d'Ankama. Jeu officiel :
@@ -248,7 +248,7 @@ Disclaimer (footer, every page):
 
 English version:
 
-> Dofus Classic is an unofficial fan project, made out of nostalgia for the early players and for the curious. It is
+> Dofus Classic is an unofficial, non-profit fan project, made out of nostalgia for the early players and for the curious. It is
 > not affiliated with or endorsed by Ankama. DOFUS and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and screenshots shown here are © 2003-2026
 > Ankama, all rights reserved, and are used as a tribute. Our own creations are marked as such, and any element will be
 > removed at Ankama's request. Official game: www.dofus.com
