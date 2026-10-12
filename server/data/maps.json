@@ -653,8 +653,8 @@
     [
      54,
      55,
-     56,
-     57
+     68,
+     69
     ],
     [
      457,
@@ -793,8 +793,8 @@
      49
     ],
     [
-     457,
-     458,
+     452,
+     456,
      459,
      460
     ]
@@ -924,12 +924,12 @@
      45,
      46,
      47,
-     50
+     48
     ],
     [
+     442,
      452,
      456,
-     459,
      463
     ]
    ],
@@ -1049,10 +1049,10 @@
    "coverage": 0.984,
    "places": [
     [
-     46,
-     47,
      48,
-     52
+     60,
+     62,
+     63
     ],
     [
      459,
@@ -1098,9 +1098,9 @@
    "places": [
     [
      48,
-     49,
-     50,
-     51
+     51,
+     52,
+     53
     ],
     [
      460,
@@ -1227,10 +1227,10 @@
    "coverage": 0.981,
    "places": [
     [
-     46,
-     61,
-     75,
-     76
+     86,
+     126,
+     133,
+     141
     ],
     [
      461,
@@ -1240,6 +1240,30 @@
     ]
    ],
    "source": "vendor/dofedex/maps-2004/578_0412142224.swf",
+   "provenance": "post_beta_2004_partial_beta_graphics"
+  },
+  {
+   "id": 1117,
+   "width": 15,
+   "height": 17,
+   "backgroundNum": 0,
+   "mapData": "HhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHNhreaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHNhgeaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHxhgeaaaaaHNhgeaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHNhgeaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHxhreaaaaaHhhjeaaaaaHNhgeaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhhebraaaHhhheaaaaaHhhjeaaaaaHNhgeaaaaaHhhheaaaaaHhhhebraaaHhhheaaaaaHhhheaaaaaHhhgeaaaaaHhhjeaaaaaH3hreaaaaaHhhheaaaaaHNhreaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhjeaaaaaH3hreaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHxhveaaaaaH3hveaaaaaHNhreaaaaaHxhgeaaaaaHNhgeaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhjeaaaaaH3hveaaaaaHNhreaaaaaHNhreaaaaaHNhreaaaaaHhhheaaaaaHxhreaaaaaHhhjeaaaaaHNhveaaaaaHNhveaaaaaHhhjeaaaaaHNhgeaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhjeaaaaaHNhveaaaaaHNhveaaaaaHNhveaaaaaHNhgeaaaaaHhhheaaaaaHhhgeaaaaaHhhjebraaaHNhqeaaaaaHhhjeaaaaaHNhqeaaaaaHNhgeaaaaaHhhheaaaaaHhhheaaaaaHNhfeaaaaaHNhqeaaaaaHhhjeaaaaaHhhjeaaaaaHNhqeaaaaaHNhgeaaaaaHhhheaaaaaHxhveaaaaaHxhfeaaaaaHNhfeaaaaaHxhqeaaaaaH3hqeaaaaaH3hreaaaaaHhhheaaaaaHhhheaaaaaHNhuebqaaaHNhfeaaaaaHhhjeaaaaaHxhfeaaaaaHNhfeaaaaaHNhgeaaaaaHxhgeaaaaaHxhfeaaaaaHNhpeaaaaaHNhfeaaaaaHhhqeaaaaaH3hveaaaaaHhhheaaaaaHhhheaaaaaHNheeaaaaaHNhpeaaaaaHNhfeaaaaaHxhfeaaaaaHhhkeaaaaaHNhfeaaaaaHNhveaaaaaHxhfeaaaaaHxheeaaaaaHNheeaaaaaHNhfeaaaaaHhhjeaaaaaHNhgeaaaaaHhhheaaaaaHhhheaaaaaHNhteaaaaaHNheeaaaaaHNhueaaaaaHhhkeaaaaaHhhkeaaaaaH3hqeaaaaaHxhfeaaaaaHxheeaaaaaHNhoeaaaaaHNheeaaaaaHNhfebraaaHhhjeaaaaaH3hreaaaaaHhhhebraaaHNhdeaaaaaHhhleaaaaaHNheeaaaaaHhhkeaaaaaHhhkeaaaaaH3hfeaaaaaHxhfeaaabgHxheeaaaaaHxhdeaaaaaH3hoeaaaaaH3hpeaaaaaH3hqeaaaaaH3hveaaaaaHhhheaaaaaHhhheaaaaaHNNdeaaaaaHhhleaaaaaHNheeaaaaaHhhkeaaaaaH3hfeaaaaaHxhqeaaaaaHxhpeaaaaaHxhoeaaaaaH3hseaaaaaH3hteaaaaaH3hueaaaaaHhhjeaaaaaHNhgeaaaaaHhhheaaaaaHhhceaaaaaHNNdeaaaaaHhhleaaaaaH3hpeaaaaaH3hfeaaaaaHhhjeaaaaaHhhfeaaaaaHhheeaaaaaHhhdeaaaaaH3hoeaaaaaH3hpeaaaaaH3hqeaaaaaHhhjeaaaaaH3hreaaaaaHhhheaaaaaHhNceaaadDH3NoeaaaaaH3heeaaaaaH3hfeaaaaaHhhjeaaaaaHhhveaaaaaHhhfeaaaaaHhheeaaaaaHhhoeaaaaaH3heebraaaH3hfeaaaaaHhhjeaaaaaH3hveaaaaaHhhheaaaaaHhhceaaaaaH3NseaaaaaH3hteaaaaaH3hueaaaaaHhhjeaaaaaH3hveaaaaaHhhgeaaaaaHhhfeaaaaaHhheeaaaaaH3heeaaaaaH3hfeaaaaaHhhjeaaaaaHNhqeaaaaaHNhgeaaaaaHhhheaaaaaHhNceaaaaaHNNdeaaaaaHNheeaaaaaHNhfeaaaaaHhhjeaaaaaHNhgeaaaaaHhhgeaaaaaHhhfeaaaaaHhhpeaaaaaH3hfeaaaaaHhhveaaaaaHxhqeaaaaaH3hqeaaaaaH3hreaaaaaHhhceaZGaaHhNceb8aaaHNhdeneaaaHNheeaaaaaHNhfeaaaaaHhhjeaaaaaHNhgeaaaaaHhhgeaaaaaHhhfeaaaaaH3hfeaaaaaH3hgeaaaaaHhhgeaaaaaHhhqeaaaaaH3hgeaaaaaHhhheaaaaaHhNceaZGaaHhNceaaaaaH3hoeaaaaaH3hpeaaaaaH3hqeaaaaaHhhjeaaaaaHNhgeaaaaaHxhveaaaaaHhhqeaaaaaH3hveaaaaaHhhheaaabiHhhgeaaaaaH3hgeaaaaaHhhheaaaaaHhaXeaaaaaHhNceaZGaaH3NseaaaaaH3hteaaaaaH3hueaaaaaHhhjeaaaaaHhhjeaaaaaHNhveaaaaaHhhjeaaaaaHhhjeaaaaaH3hreaaaaaHhhheaaaaaHhhreaaaaaHhhheaaaaaHhhheaaaaaHhGXeaaaaaHhNcea2WaaHNNdeaaaaaHNheeaaaaaHNhfeaaaaaHhhjeaaaaaHhhjeaaaaaHNhqeaaaaaHhhjeaaaaaH3hveaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhaXem0aaaHhNcea3WaaHhNceaaaaaHNhdeaaaaaHNheebqaaaHNhfeaaaaaHNhqeaaaaaHxhfeaaaaaHNhfeaaaaaHhhjeaaaaaH3hreaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhGXem0aaaHhNceaZGaaHhNceaaaaaH3hoeaaaaaH3hpeaaaaaHNhueaaaaaHNhueaaaaaHhhkeaaaaaHNhfeaaaaaH3hveaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhaXeaaaaaHhGXem0aaaHhNcea2WaaH3NseaaaaaH3hteaaaaaHhhkeaaaaaHNhpeaaaaaHhhkeaaaaaHhhkeaaaaaH3hqeaaaaaH3hreaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhGXemHaaaHhNcea3WaaHhNceaaaaaHNNdeaaaaaHNheeaaaaaHxheeaaaaaHNheeaaaaaHhhkeaaaaaH3hfeaaaaaH3hveaaaaaHhhheaaaaaHhhheaaaaaHhhhebraaaHhhheaaaaaHhakeaaaaaHhGXemHaaaHhNcea0GaaHhNceaaaaaHNNdeaaaaaHNhteaaaaaHhhleaaaaaHNheeaaaaaH3hueaaaaaHhhjeaaaaaH3hreaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhqkeqgaaaHhGXemHaaaHhNceaZGaaHhNceaaaaaHNNdeaaaaaHNhoeaaaaaHhhleaaaaaH3hpeaaaaaH3hqeaaaaaH3hveaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhhheaaaaaHhaXemHGaaHhGkeaaaaaHhGXeaaaaaHhNceaZGaaHhNceaaaaaHNNseaaaaaHNhdeaaaaaH3hteaaaaaH3hueaaaaaHhhjeaaaaaHNhgeaaaaaHhhheaaaaaHNhreaaaaaHhhheaaaaaHxhgeaaaaaHhGXeb4WaaHhGXeb4qaaHhGXeiFaaaHhNcea0GaaHhNceaaadDHhNceaaaaaHNhdebqaaaHNheebqaaaHNhfeaaaaaHhhjeaaaaaHNhgeaaaaaHxhgeaaaaaHNhgeaaaaaHxhgeaaaaaHhaXeaaaaaHhGkeaaaaaHhGXemHaaaHhGXeaaaaaHhNceaZGaaHhNceaaaaaHhNceaaaaaH3hoeaaaaaH3hpeaaaaaH3hqeaaaaaHhhjeaaaaaHNhveaaaaaHhhveaaaaaHNhveaaaaaHhhjeaaaaaHhGXemHGaaHhqkeqgaaaHhGXemHaaaHhGXem0aaaHhNceaZGaaHhNceb8aaaH3NseaaaaaH3hteaaaaaH3hueaaaaaHhhjeaaaaaHhhjeaaaaaH3hveaaaaaHxhveaaaaaHhhjeaaaaaHhaXeaaaaaHhaXemHGaaHhakeaaaaaHhaXeaaaaaHhaXeiFaaaHhhceaZGaaHhhceaaaaaHNhdeneaaaHNheeaaaaaHNhfeaaaaaHhhjeaaaaaHhhjeaaaaaHNhveaaaaaHhhjeaaaaaHhhjeaaaaa",
+   "coverage": 0.981,
+   "places": [
+    [
+     189,
+     204,
+     218,
+     219
+    ],
+    [
+     453,
+     454,
+     455,
+     456
+    ]
+   ],
+   "source": "vendor/dofedex/maps-2004/1117_0411031659.swf",
    "provenance": "post_beta_2004_partial_beta_graphics"
   },
   {

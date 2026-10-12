@@ -3,7 +3,6 @@
 // ponytail: one task owns everything; shard per game if a single core ever becomes the limit.
 use crate::codec::{cell_code, compress_path, extract_path};
 use crate::crypt;
-use crate::data::CloseCombat;
 use crate::data::GameData;
 use crate::fight::{color, Fighter, Game, Phase, Rng};
 use crate::pathfinding::{distance, path_find};
@@ -54,6 +53,9 @@ struct Session {
     last_frame: Instant,
     /// When its recent `BM` arrived (spam check).
     chat_times: Vec<Instant>,
+    /// Close-combat AP cost sent in `ASK` part 28, the client's only source for it (`Player.setCCData`): charged in
+    /// fights until the next `PS`, even if `OM` changed the weapon since.
+    cc_ap: i32,
 }
 
 pub struct World {
@@ -134,6 +136,7 @@ impl World {
                         walk: Vec::new(),
                         last_frame: Instant::now(),
                         chat_times: Vec::new(),
+                        cc_ap: 0,
                     },
                 );
             }
@@ -439,9 +442,10 @@ impl World {
             return self.send(sid, "ASE");
         }
         self.leave_place(sid, true);
-        let s = self.sessions.get_mut(&sid).unwrap();
-        (s.character, s.social) = (Some(c.id), false);
         let class = &self.data.classes[&c.class];
+        let cc_ap = c.weapon().and_then(|(kind, _)| self.data.items.weapon_types.get(&kind)).map_or(class.cc.ap, |t| t.ap);
+        let s = self.sessions.get_mut(&sid).unwrap();
+        (s.character, s.social, s.cc_ap) = (Some(c.id), false, cc_ap);
         let (low, high) = self.xp_bounds(c.level);
         let spells: Vec<String> = c.spells.iter().map(|s| self.data.spell_entry(s.id, s.level, s.position)).collect();
         let stats: Vec<String> = [10, 11, 6, 7, 8, 9, 12, 13, 14, 15].iter().map(|&i| c.stat(i).to_string()).collect();
@@ -463,7 +467,7 @@ impl World {
             c.gold,
             stats.join("|"),
             c.bonus,
-            class.cc.ap,
+            cc_ap,
             spells.join(";"),
             c.items.iter().map(Item::entry).collect::<Vec<_>>().join(";")
         );
@@ -889,12 +893,20 @@ impl World {
 
     // ───────────── games ─────────────
 
+    /// Close combat with the weapon equipped now (its type's critical numbers, every damage effect), at the AP cost the
+    /// client got in `ASK` part 28 (`Session::cc_ap`).
     fn fighter(&self, c: &Character) -> Fighter {
         let class = &self.data.classes[&c.class];
         let spells: HashMap<u32, usize> = c.spells.iter().map(|s| (s.id, s.level)).collect();
-        // The equipped weapon's damage replaces the class dice; the AP cost stays the class one (`ASK` part 28).
-        let cc = CloseCombat { ap: class.cc.ap, dice: c.weapon_dice().unwrap_or(class.cc.dice) };
-        Fighter::new(c.id, c.name.clone(), c.level, c.class, c.sex, c.colors, self.lp_max(c), class.ap, cc, spells, c.gold)
+        let weapon = c.weapon();
+        let mut cc = class.cc.clone();
+        if let Some(t) = weapon.as_ref().and_then(|w| self.data.items.weapon_types.get(&w.0)) {
+            (cc.crit, cc.miss, cc.crit_bonus) = (t.crit, t.miss, t.crit_bonus);
+        }
+        cc.ap = self.sid_of(c.id).map_or(cc.ap, |sid| self.sessions[&sid].cc_ap);
+        let mut f = Fighter::new(c.id, c.name.clone(), c.level, c.class, c.sex, c.colors, self.lp_max(c), class.ap, cc, spells, c.gold);
+        (f.weapon, f.agility) = (weapon.map(|w| w.1), c.stat(14));
+        f
     }
 
     fn game_command(&mut self, sid: Sid, msg: &str) {
@@ -1382,12 +1394,14 @@ impl World {
                 let (kind, params) = rest.split_at_checked(3).unwrap_or(("", ""));
                 let g = self.games.get_mut(&gid).unwrap();
                 match g.act(&self.data, &mut self.rng, me, kind, params) {
-                    Some(mut frames) => {
+                    Some((mut frames, missed)) => {
                         frames.insert(0, format!("GAS{me}"));
                         frames.push(format!("GAF{me}"));
                         self.broadcast(gid, &frames);
                         if let Some(winner) = self.games[&gid].outcome() {
                             self.end_game(gid, winner);
+                        } else if missed {
+                            self.next_turn(gid); // a critical miss ends the turn
                         }
                     }
                     // A rejected request still needs an answer: `GAF` resets the client's action manager. Only for
@@ -1411,7 +1425,7 @@ impl World {
 
     fn start_fight(&mut self, gid: u32) {
         let g = self.games.get_mut(&gid).unwrap();
-        let mut frames = g.start_fight();
+        let mut frames = g.start_fight(&mut self.rng);
         frames.extend(g.begin_turn(self.turn_ms));
         let serial = g.serial;
         self.broadcast(gid, &frames);
@@ -1462,10 +1476,12 @@ impl World {
                 .map(|o| o.1 as u64)
                 .sum();
             let won = winner == Some(f.team);
-            let xp = opponents * if won { r.xp_win_per_opponent_level } else { r.xp_loss_per_opponent_level };
             let gold = if won { opponents as i64 * r.gold_win_per_opponent_level } else { 0 };
             let Some(c) = self.store.characters.get_mut(&f.id) else { continue };
             let level_before = c.level;
+            let gap = |l: usize| r.xp[l] - r.xp[l - 1];
+            let share = if won { r.xp_win_share } else { r.xp_loss_share };
+            let xp = (gap((c.level as usize).min(r.xp.len() - 1)) as f64 * share * opponents as f64 / c.level as f64).round() as u64;
             c.xp += xp;
             c.gold = (c.gold + gold + f.gold_change).max(0);
             while c.level < r.max_level && c.xp >= r.xp[c.level as usize] {

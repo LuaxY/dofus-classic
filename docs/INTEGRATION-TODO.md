@@ -108,7 +108,7 @@ _italics_.
       any `GD` outside a game answers the village.
 - [x] **White tiles** (map 101 cells 308/338, 507 cell 126, …): the opaque `Dofus::Cell` diamond under bare
       line-of-sight cells, faithful to Flash. The script clears the line-of-sight bit of those cells when they are
-      unwalkable and the change is neutral for every line of sight, else drops the map (1117, 740, 1490, 1493);
+      unwalkable and the change is neutral for every line of sight, else drops the map (740, 1490, 1493);
       `docs/server.md` "Data".
 - [ ] The channel combo shows `getText("RANDOM")` as "Al☐atoire" (its embedded font has no "é") — lang/font owner.
 - [x] `Interface.Multiplayer.Help.showLayer` had the same case-sensitive lookup (child `HelpPLayDofusStart`): fixed the

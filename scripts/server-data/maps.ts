@@ -12,8 +12,8 @@
 // $TMPDIR/dofus-maps-2004-as). Coverage = share of non-zero ground/object references of active cells (plus the
 // background) whose linkage id is exported by web/public/assets/swf/clips/{ground,objects}.json. Those libraries hold
 // beta 5b's graphics plus ids filled from later archived clients (clips/*.fill.json, docs/assets-format.md §11): the
-// fight maps are chosen, rendered and labelled with beta 5b's ids only (the filled ids are hidden from this script's
-// Player), the world maps with the filled libraries.
+// fight maps are chosen and labelled with beta 5b's ids only, the world maps with the filled libraries. Both are
+// rendered with the filled libraries, as the client draws them in game (white tiles, placement).
 // Output is deterministic (sorted by coverage desc, then id; Math.random seeded for the objects that randomise).
 //
 // White tiles: the client attaches an opaque white `Dofus::Cell` diamond under the ground layer for every
@@ -118,11 +118,7 @@ Math.random = () => (seed = (seed * 16807) % 2147483647) / 2147483647; // object
 (globalThis as { Path2D?: unknown }).Path2D ??= Path2D;
 const player = new Player({
   loader: {
-    json: async (f) => {
-      const j = readJson(f);
-      for (const k of filled[f] ?? []) delete j.exports[k]; // beta 5b graphics only (fight maps)
-      return j;
-    },
+    json: async (f) => readJson(f), // filled libraries included: the client draws them in game
     image: async (f) => (await loadImage(join(SWF, f))) as unknown as CanvasImageSource,
   },
   createCanvas: (w, h) => createCanvas(w, h),

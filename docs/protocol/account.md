@@ -266,7 +266,7 @@ Handler: `AKSClient/Dofus.Client.DataProcessor.as:153-203`. **Must split into ex
 | 16 | `GP` | decimal | gold |
 | 17-26 | `force, vitality, rFire, rAir, rWater, rEarth, charism, karma, agility, intelligence` | decimal | stats (setters `Number()`, `AKSClient/Dofus.DataCenter.Character.as:82-181`) |
 | 27 | `bonusPoints` | decimal | points to spend with `PB`/`SB` |
-| 28 | `cc` | decimal | AP cost of the close-combat attack; `DATACENTER.Player.setCCData(cc)` only if truthy (`AKSClient/Dofus.CharactersManager.as:136-139`, `AKSClient/Dofus.DataCenter.Player.as:67-75`) |
+| 28 | `cc` | decimal | AP cost of the close-combat attack; `DATACENTER.Player.setCCData(cc)` only if truthy (`AKSClient/Dofus.CharactersManager.as:136-139`, `AKSClient/Dofus.DataCenter.Player.as:67-75`); the client's only source for it (`KERNEL.switchToCC` checks it, `AKSClient/Dofus.Kernel.as:198`). This server: the AP cost of the weapon equipped at selection, else the class one |
 | 29 | `spells` | spell entries joined by `;` | each → `getSpellObjectFromData` → `Player.addSpell` (`AKSClient/Dofus.CharactersManager.as:140-147`); format in [spells.md](spells.md#spell-entry-format) |
 | 30 | `items` | item entries joined by `;` | each → `getItemObjectFromData` → `Player.addItem` (`AKSClient/Dofus.CharactersManager.as:148-158`); format in [items.md](items.md#item-entry-format) |
 

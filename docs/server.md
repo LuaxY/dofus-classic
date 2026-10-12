@@ -71,10 +71,14 @@ with non-ASCII junk in every command).
 
 ## Fight rules (server-side, mirrored on what the client checks)
 
-- **Turns**: order alternates teams in lobby-slot order (team 0 first); `GTS<id>|turn_ms`, ended by `GT` from the
-  current player or the timer (`turn_ms` 30 s, `owner`). Dead and departed fighters are skipped.
+- **Turns** (`owner`): each team sorted by initiative, the team whose best fighter has the higher initiative starts
+  (random on a tie), then the teams strictly alternate; the rest of the larger team plays last, equal initiatives keep
+  lobby-slot order (authored). Initiative = a quarter of the max LP (vitality included), scaled by LP / max LP when
+  wounded, which never applies since every fight starts at full LP; 5b has no initiative bonus, and the client never
+  shows initiative (it takes the `GTL` order as given). `GTS<id>|turn_ms`, ended by `GT` from the current player, the
+  timer (`turn_ms` 30 s, `owner`) or a critical miss. Dead and departed fighters are skipped.
 - **AP** (no movement points in this beta): each move costs one AP per cell, each spell its AP cost, close combat the
-  class `cc.ap` (also sent as `ASK` part 28). The client deducts nothing itself, so every cost is broadcast as
+  `ASK` part 28 value (see "Close combat"). The client deducts nothing itself, so every cost is broadcast as
   `GAx;102;<id>;<id>,-<n>`. A fighter's AP returns to `APinit + moderator[1]` and its timed effects tick **when its
   own turn ends** — exactly when the client runs `KERNEL.cleanPlayer(lastPlayerID)` at the next `GTS` — so AP lost
   during the opponent's turn (`GAx;101`) is missing from the victim's next turn.
@@ -89,8 +93,30 @@ with non-ASCII junk in every command).
   `GA<n>;300;<id>;<spell>,<cell>,<anim>,<level>,<launchType>,1`, `GAx;102`, then the effects. `inFront` is always
   1: with 0 the client puts every 21st spell clip at the target character's sprite depth and replaces the sprite
   (`docs/protocol/game-actions.md`, found by the playtest).
-- **Close combat** (`GA303<cell>`): moderated range 1, adjacent walkable occupied cell, line of sight; damage =
-  class `cc.dice` (+ damage moderator). `GA<n>;303;<id>;<cell>`.
+- **Close combat** (`GA303<cell>`, rules `owner`, numbers authored): the client's check whatever the weapon —
+  moderated range 1, own cell excluded, walkable occupied cell, line of sight (`Events.Battlefield.Interaction.as:126-130`).
+  Bare hands: the class `cc` (dice, AP, `crit`, `miss`, `crit_bonus`). With a weapon in slot 1: its type's AP cost and
+  critical numbers (`items.json` `weapon_types`) replace the class ones and every damage effect (100) of the weapon is
+  rolled (+ damage moderator each). The AP cost is the one sent in `ASK` part 28 at character selection: `CCData` is
+  set from it only (`Dofus.Client.DataProcessor.as:190`, `Dofus.CharactersManager.as:136-139`), `KERNEL.switchToCC`
+  refuses close combat below it (`Dofus.Kernel.as:198`) and a second `ASK` would add every spell and item again, so a
+  weapon changed by `OM` costs its own AP from the next `PS` on; its damage and criticals count at once (taken when
+  the fighter joins a game, `World::fighter`). `GA<n>;303;<id>;<cell>`. The weapon's range, minimum range, in-line and
+  line-of-sight flags have no effect (the client aims at range 1 with line of sight for every weapon), and the banner
+  tooltip keeps showing the lang `G[class].cc` (`modules_Interfaces/DefineButton2_970` `on(rollOver)`).
+- **Criticals** (mechanics `owner`, odds and bonuses authored): odds are "1 in n" (0 = never); a critical's n becomes
+  `n·e·1.1 / ln(agility + 12)` when smaller (agility = characteristic 14), never better than 1 in 2; a miss's n is
+  never below 2. A miss is rolled first, then a critical. **Critical miss**: `GA<n>;305;<id>;` (close combat) or
+  `GA<n>;302;<id>;<spell>` instead of the action, `GAx;102` (AP spent), no effect, no launch recorded (the client
+  records `300` only), then `GAF` and the server ends the turn (`GTF`, `GTS<next>`): the client never does. **Critical
+  hit**: `GAx;304;<id>;` after the `303` adds `crit_bonus` dice bare-handed, or `crit_bonus` to `p3` of every weapon
+  damage effect; `GAx;301;<id>;<spell>` after the `300` casts the level's effects with `crit_bonus` added to the fixed
+  part of their damage, drain and heal dice. Both come before the `GAx;102`. Odds: close combat bare-handed 1/20
+  critical, 1/50 miss, +1 die (every class); weapons by type (AP, critical, miss, bonus): bow 4, 1/20, 1/50, +2; wand
+  3, 1/30, 1/50, +2; staff and shovel 4, 1/30, 1/50, +3; daggers 3, 1/15, 1/40, +2; sword 3, 1/25, 1/50, +3; hammer
+  5, 1/30, 1/40, +5; every spell level
+  1/30, 1/50, +3, also sent in the spell entry's critical fields (unused by the client). The 5b lang shows no rate (the
+  spells' `l<n>[1]` critical texts are empty).
 - **Effects** (`spells.json`): `damage` → `GAx;100;<caster>;<t>,-<n>`; `heal` → `100` positive; `drain`;
   `ap_loss` → `101`; `ap_gain` → `121`; `push` → `5` (slide, stops at obstacles); `jump` → `4` (teleport the caster);
   `buff` → `111` (AP, effect 1) / `112` (damage, 16) / `117` (range, 19) with `<t>,<value>,<turns>`, tracked like
@@ -105,11 +131,13 @@ with non-ASCII junk in every command).
   `AKSClient/DofusDataProviderSymbol.as:65-98`, `Dofus.Client.Game.as:262`), so the panel shows its name
   (`web/src/game/kernel/kernel.test.ts`, integration test, playtest "disruption").
 - **Results**: `GE<lastActor>|<2 winner / 0 loser>;<id>;<level>;<dead>;<lowXp>;<xp − lowXp>;<highXp>;<won XP>;<gold>` (loser `0`: `owner`).
-  XP = `xp_win_per_opponent_level` (40) or `xp_loss_per_opponent_level` (10) × sum of opponent levels, gold for
+  XP table `owner` (`rules.json` `xp`, total XP to reach each level: 110 for level 2 … 621 600 for level 30). XP at
+  level L (authored) = `round(gap(L) × share × sum of opponent levels / L)`, `gap(L)` = XP from L to L + 1 (the last
+  gap at level 30), `share` = `xp_win_share` 0.4 or `xp_loss_share` 0.1: 2.5 wins against an equal opponent per level
+  at every level, a loss a quarter of a win; gold (`gold_win_per_opponent_level` × sum of opponent levels) for
   winners; then `AN<level>|…` on level-up (max level 30, reaching it adds `M12`) and `ABK<id>|2;<gold>`. Free games get the same XP and gold,
   but their result panel has no XP or gold column: that matches the original, whose `GameResultFree` shows name, level
   and alive/dead only (`docs/protocol/game.md` `GE`).
-- No critical hits/failures (`GA` 301/302/304/305 never sent).
 
 Action ids: numeric per game for the requested action (`GA<n>;1`, `;300`, `;303`, which the actor acknowledges with
 `GKK<n>`), `x` for the side effects. A refused request of the current player gets `GAF<id>` alone (resets the
@@ -169,7 +197,7 @@ What the 5b client does with items (`docs/protocol/items.md`) and what the serve
 | `OAK<award>` and `GA` type 10 add an item and show `Nouvel objet : <name>` (`Dofus.Client.Items.as:27-80`, `Events.AKS.Game.as:541-567`); nothing in the client ties either to an event | authored drop: at the end of a fight, after its `AN`/`ABK`, each winner gets one random `items.json` template **it can equip**, `OAKO<entry>` (one item per frame: `innerOnAdd` reuses its loop index), or `OAEF` (`INVENTORY_FULL`) once it holds `max_items` (30). `GA` type 10 is not used |
 | The inventory is a banner panel; the banner only exists in the village and in fights, where every change is refused (`isFight` in the item containers' `press`): drop on a slot → `OM<id>|<slot>`; drag off a slot onto the panel → `OM<id>|-1` (`InventoryViewer.onTestMouse`); the item a slot held before sends nothing (`onReplaceItem`) | `OM`: slot 0..5 if it takes the item's super type (1, 2, 3, 4, 3, 5, sprite 598) and, for a weapon, the type is in the class list `G[class].w` (`Item.canEquip`); the slot's previous item goes back to the bag; `-1` = back to the bag; persisted, no answer. Ignored in a game |
 | Drop zone → yes/no box → `OD<id>`; `ODK<id>` removes it (`Player.dropItem`) | `OD`: the item is destroyed, `ODK<id>` (decimal); an unknown id gets nothing. Ignored in a game |
-| Close combat: the banner tooltip reads the lang `G[class].cc`, `CCData` the `ASK` part 28 AP cost (`modules_Interfaces/DefineButton2_970`, `Player.setCCData`); `SI` is spells only. **Nothing the client shows depends on the weapon** | authored: the damage effect (100) of the weapon in slot 1 replaces the class `cc.dice`; the AP cost stays `cc.ap`. Taken when the fighter joins a game (`World::fighter`), which stays right since `OM` never comes from a game. `owner`: 100 = neutral damage `p1`D`p2`+`p3` (rolled as `p3` + `p1` rolls of 1..`p2`); an equipped karma effect (123) adds its `p1` to karma (stat 13): `ASK` part 24, `ABK<id>|13;<karma>` after `PB13` and after an `OM`/`OD` that changes it. Karma does nothing in fights (nothing in the 5b client ties it to combat) |
+| Close combat: the banner tooltip reads the lang `G[class].cc`, `CCData` the `ASK` part 28 AP cost (`modules_Interfaces/DefineButton2_970`, `Player.setCCData`); `SI` is spells only. **Nothing the client shows depends on the weapon** but the AP cost `KERNEL.switchToCC` checks, which it reads from `ASK` part 28 only | `owner`: with a weapon in slot 1, its type's AP cost and critical numbers replace the class ones and every damage effect (100) of it is rolled ("Close combat" above; numbers authored). `ASK` part 28 = the weapon's AP cost at selection, else the class `cc.ap`; that value is charged until the next `PS`. Damage and criticals are taken when the fighter joins a game (`World::fighter`), which stays right since `OM` never comes from a game. `owner`: 100 = neutral damage `p1`D`p2`+`p3` (rolled as `p3` + `p1` rolls of 1..`p2`); an equipped karma effect (123) adds its `p1` to karma (stat 13): `ASK` part 24, `ABK<id>|13;<karma>` after `PB13` and after an `OM`/`OD` that changes it. Karma does nothing in fights (nothing in the 5b client ties it to combat) |
 | Weapon on the sprite: `ASK` part 10 / `GM` field 9 `<typeHex>,<gfxHex>,<RRGGBB>` → `weapon.gfx = "<type>_<gfx>"`, attached by `WEAPONS.applyWeapon` inside the sprite SWF (`Dofus.CharactersWeapons.as:26-50`), or `OW` | the field stays empty and `OW` is never sent: the attach resolves in the sprite SWF's library and each class sprite imports only one weapon symbol, `<w[0]>_1` (`docs/logic/characters.md` §5), so any other weapon would attach nothing; an empty field falls back to the client's `G[<local class>].w[0] + "_1"` |
 
 Read from the code, not exercised: dropping an *equipped* item leaves its icon in the slot (`InventoryViewer.refresh`
@@ -179,20 +207,20 @@ fills slots but never clears one).
 
 | File | Content | Provenance |
 |---|---|---|
-| `maps.json` | 49 maps: `id, width, height, backgroundNum, mapData` (verbatim but for `losCleared`), `coverage`, `places` (4 cells per team), `losCleared` (cells whose line-of-sight bit was cleared), `source` | **post-beta 2004 maps** from `vendor/dofedex/maps-2004` (July 2004+), not beta 5b arena maps: 18 fully drawn by beta 5b graphics + 31 with ≥ 98 % coverage and a walkable area ≥ 40 cells. Placement cells and `losCleared` authored by the script, which runs the client's own `Map.build` headless (below). Generated by `bun scripts/server-data/maps.ts` (reproducible: `Math.random` is seeded for the objects that pick a random variant) |
+| `maps.json` | 50 maps: `id, width, height, backgroundNum, mapData` (verbatim but for `losCleared`), `coverage`, `places` (4 cells per team), `losCleared` (cells whose line-of-sight bit was cleared), `source` | **post-beta 2004 maps** from `vendor/dofedex/maps-2004` (July 2004+), not beta 5b arena maps: 18 fully drawn by beta 5b graphics + 32 with ≥ 98 % coverage and a walkable area ≥ 40 cells. Placement cells and `losCleared` authored by the script, which runs the client's own `Map.build` headless with the filled ground/object libraries, as drawn in game (below). Generated by `bun scripts/server-data/maps.ts` (reproducible: `Math.random` is seeded for the objects that pick a random variant) |
 | `maps.json` `world` | 90 role-play maps of the social village: `id, width, height, backgroundNum, mapData` (verbatim), `coverage`, `links` (plate cell → `[map, arrival cell]`), `source`. Not fight maps: never offered by `BL`/`GC2` or drawn for random games | same 2004 maps (coverage ≥ 95 % with the filled ground/object libraries, `docs/assets-format.md` §11); `links` `retro_emulator` (`vendor/starloco/`), see "World maps". Same script |
-| `classes.json` | per class: `lp`, `ap`, close combat `cc` (`ap`, `dice`), spell ids | `lp`/`ap`/`cc` authored (10); `cc` of Iop and Ecaflip `beta_sibling` (1D5 for 3 PA before 9b, v9b changelog) |
-| `spells.json` | 36 spells, 5 levels each: AP, range, flags, zone, effects; `anim`, `launch_type` | spell identity: 21 `beta` (guild description SWFs, icon pixel-match), 9 `beta_forum` (8 Jan 2004 post), 6 `authored`; levels: 20 `beta`, 6 `beta_forum`, 154 `authored` (levels 2-5 mostly). Ids follow the lang reconstruction (`web/public/lang/fr.json` `S`, `docs/content-reconstruction.md`) so client tooltips and server rules agree; `anim`/`launch_type` pairings authored |
-| `rules.json` | timers, XP table, level cap, bonus points, LP per level, XP/gold gains, `SPELL_BOOST_BONUS`, village map, default channel, max characters, spam limit, idle timeout | 3 `beta` (client constants), 1 `beta_faq` (max level 30), 6 `owner` (`turn_ms` 30 s, `bonus_per_level` 5, `lp_per_level` 5, `spam_lines`/`spam_ms` 5 lines in 15 s, `idle_ms` 25 min), 6 `authored` (`placement_ms` noted `owner`: challenge fights started when every player was ready, so the timer is only a safety net) |
-| `items.json` | 137 item templates (`type`, `gfx`, `effects` `[id, p1, p2, p3]`, 0 = absent), `types` (type → super type), `class_weapons` (class → weapon types), `max_items` | one template per beta 5b item icon (`dofus-5b/clips/items/<type>/<gfx>.swf`); types and class weapons from the lang reconstruction (`I.t` `retro_fr`, `G.w` beta asset); effect ids 100 (neutral damage, `p1`D`p2`+`p3`) and 123 (karma, `+p1`) are the lang `I.e` entries (texts `beta_screenshot`; ids and parameter layout `owner`, high confidence); every number authored (weapons 1D4-1D8 +0-3 by icon, others karma +gfx). Generated by `bun scripts/server-data/items.ts`, which renders every name and description through the client's `Item` and fails on a `?` |
+| `classes.json` | per class: `lp`, `ap`, close combat `cc` (`ap`, `dice`, `crit`, `miss`, `crit_bonus`), spell ids | `lp`/`ap`/`cc` authored (10); `cc` dice and AP of Iop and Ecaflip `beta_sibling` (1D5 for 3 PA before 9b, v9b changelog); critical rules `owner` |
+| `spells.json` | 36 spells, 5 levels each: AP, range, flags, zone, effects, `crit`/`miss`/`crit_bonus` (authored, critical rules `owner`); `anim`, `launch_type` | spell identity: 21 `beta` (guild description SWFs, icon pixel-match), 9 `beta_forum` (8 Jan 2004 post), 6 `authored`; levels: 20 `beta`, 6 `beta_forum`, 154 `authored` (levels 2-5 mostly). Ids follow the lang reconstruction (`web/public/lang/fr.json` `S`, `docs/content-reconstruction.md`) so client tooltips and server rules agree; `anim`/`launch_type` pairings authored |
+| `rules.json` | timers, XP table, level cap, bonus points, LP per level, XP/gold gains, `SPELL_BOOST_BONUS`, village map, default channel, max characters, spam limit, idle timeout | 3 `beta` (client constants), 1 `beta_faq` (max level 30), 7 `owner` (`turn_ms` 30 s, the `xp` table, `bonus_per_level` 5, `lp_per_level` 5, `spam_lines`/`spam_ms` 5 lines in 15 s, `idle_ms` 25 min), 5 `authored` (`xp_win_share`/`xp_loss_share`: no gain rule for player-vs-player fights is known; `placement_ms` noted `owner`: challenge fights started when every player was ready, so the timer is only a safety net) |
+| `items.json` | 137 item templates (`type`, `gfx`, `effects` `[id, p1, p2, p3]`, 0 = absent), `types` (type → super type), `class_weapons` (class → weapon types), `weapon_types` (weapon type → close-combat `ap`, `crit`, `miss`, `crit_bonus`), `max_items` | one template per beta 5b item icon (`dofus-5b/clips/items/<type>/<gfx>.swf`); types and class weapons from the lang reconstruction (`I.t` `retro_fr`, `G.w` beta asset); effect ids 100 (neutral damage, `p1`D`p2`+`p3`) and 123 (karma, `+p1`) are the lang `I.e` entries (texts `beta_screenshot`; ids and parameter layout `owner`, high confidence); every number authored (weapons 1D4-1D8 +0-3 by icon, others karma +gfx; `weapon_types` by type, no range numbers since the client aims close combat at range 1 whatever the weapon). Generated by `bun scripts/server-data/items.ts`, which renders every name and description through the client's `Item` and fails on a `?` |
 
 **Placement cells.** A character on cell n is drawn at depth n·100+50 in `Object2.clips`, so the layer-2 objects of
 cells > n are drawn over it (`docs/logic/battlefield.md` §1; layer-1 objects are under every character). The script
-renders each layer-2 object alone, keeps per pixel the highest cell covering it, and rejects cells where objects of
-later cells or the edges of the view (the Container mask within the 742×432 area above the banner) hide more than
-20 % of a standing character's body box (22×46 px above the cell centre, measured on the class sprites); `places` are
-the first and last 4 remaining cells of the largest walkable line-of-sight area. Map 1426 cell 153 (behind the table)
-is gone; 36 maps changed cells, e.g. outdoor maps whose first row put the heads above the view.
+renders each layer-2 object alone (filled ids included), keeps per pixel the highest cell covering it, and rejects
+cells where objects of later cells or the edges of the view (the Container mask within the 742×432 area above the
+banner) hide more than 20 % of a standing character's body box (22×46 px above the cell centre, measured on the class
+sprites); `places` are the first and last 4 remaining cells of the largest walkable line-of-sight area. Map 1426 cell
+153 (behind the table) is gone; 36 maps changed cells, e.g. outdoor maps whose first row put the heads above the view.
 
 **White tiles.** The client attaches an opaque white `Dofus::Cell` diamond under the ground layer for every
 line-of-sight cell of a fight map (`AKSClient/Dofus.BattleField.Map.as`, `Dofus.BattleField.Interaction.as:29-43`,
@@ -201,12 +229,13 @@ cells bare (beside the room, under furniture sticking out, wall bases), so the d
 338, map 507 cell 126 (the battlefield agent's case), 1426 cell 177, … — faithful to Flash given that data. The
 script finds them by rendering each map with and without the Interaction layer (a cell counts when ≥ 150 visible
 pixels of its ~700-pixel diamond differ; thinner slivers at wall bases stay). For each map: if a white cell is one a
-character can stand on (movement ≠ 0), the map is dropped (1117); otherwise their line-of-sight bit is cleared (no
+character can stand on (movement ≠ 0), the map is dropped (none now; 1117 was until the fight maps were rendered with
+the filled graphics, which draw ground on its bare walkable cells); otherwise their line-of-sight bit is cleared (no
 diamond, not clickable — they are unwalkable anyway) **only if** that changes no line of sight from any cell a
 character can stand on to any line-of-sight cell (checked with the client's `checkView`, both ends raised by a
 character's height, the most permissive case); else the map is dropped (740, 1490, 1493, whose bare cells are
-inside the room). 27 maps got `losCleared`. Why clearing rather than dropping every affected map: dropping all 31
-would leave 22 maps, 5 of the 19 fully covered ones; the cleared cells are unwalkable and the edit is proven
+inside the room). 27 maps got `losCleared`. Why clearing rather than dropping every affected map: dropping all 30
+would leave 23 maps, 5 of the 19 fully covered ones; the cleared cells are unwalkable and the edit is proven
 neutral for line of sight, so the only gameplay difference is that a spell can no longer target those bare cells.
 The client and the map data's other cells stay verbatim.
 
@@ -234,14 +263,15 @@ cells per map drawing nothing, 320 in all (invisible obstacles the path-finders 
 unwalkable cell of the 90 maps lacks its graphic; the only ids still missing are objects 7519, 7533, 7534 and 7535
 (40 walkable-cell references; in no archived client up to v1_0). A fallback on `mappos` neighbours + opposite-side
 plates for plates without a matching teleport was measured and adds no map to the set, so it is not implemented.
-Plates leading out of the set, and plates of fight maps, do nothing. The fight maps are still chosen, rendered and
-labelled with beta 5b's graphics only (`maps.ts` hides the filled ids from its headless client), so `maps` did not
-change; in game they draw the filled ids too. Rendered with them, 1117 would pass (its bare walkable cells get ground)
-and 6 maps would pick other placement cells because filled layer-2 objects cover > 20 % of a character there: 35, 42,
-57, 578, 671, 909.
+Plates leading out of the set, and plates of fight maps, do nothing. The fight maps are still chosen and labelled
+with beta 5b's graphics only (`coverage`, `provenance`), but `maps.ts` renders them with the filled ids, as the client
+draws them in game: that let 1117 in (its bare walkable cells get ground; its references are all drawn) and moved the
+placement cells of the 6 maps where a filled layer-2 object hid > 20 % of a character: 35, 42, 57, 578, 671, 909.
+No other map, `losCleared` or `mapData` changed.
 
 Spell entries are built by `GameData::spell_entry`: guild-tab flag `1`, element `A/W/E/F`, bar slots 1..n in class
-order, criticals `a` (unused by the client). The descriptions' `PO : -1` is encoded as range 0 + `on_itself`.
+order, the level's critical-hit and critical-miss odds in the critical fields (unused by the client, hence every
+odds ≤ 63). The descriptions' `PO : -1` is encoded as range 0 + `on_itself`.
 Spells castable on oneself never require line of sight (`checkView` of a cell to itself is false in the client).
 
 ## Tests
@@ -253,15 +283,19 @@ bun test web/src/core/pathfinding.parity.test.ts   # rewrites server/tests/fixtu
 ```
 
 - Unit (`cargo test --lib`): crypt vectors (`pass` + `abcdefghijklmnopqrstuvwxyzABCDEF` → `RFdAvFlc`,
-  `dofus2004` → `iUVvgla0ikgdhqzE`) and the login verifier under new keys; map encoding round trip on all 49 maps;
+  `dofus2004` → `iUVvgla0ikgdhqzE`) and the login verifier under new keys; map encoding round trip on all 50 maps;
   path/cell codes; pathfinding basics; turns, AP reset, AP-capped moves, spell range/AP/limits, kill, effect ticks;
-  item entries, weapon dice, equipped karma, a store file without items.
-- Parity (`tests/pathfinding_parity.rs`): 784 path cases (in and out of fights, AP 1-12, occupants, tackle zones of
-  both teams, unreachable goals) and 490 line-of-sight cases on every map, generated by the TS client port.
+  turn order by initiative (team 1 first, a coin toss on a tie), critical odds against agility, close-combat misses
+  (`305`, turn ended) and criticals (extra die bare-handed, `p3` bonus on every weapon effect), spell misses (`302`,
+  no launch recorded) and criticals (`301`, bonus) on seeds picked for them; item entries, the weapon's type and
+  damage effects, equipped karma, a store file without items.
+- Parity (`tests/pathfinding_parity.rs`): 800 path cases (in and out of fights, AP 1-12, occupants, tackle zones of
+  both teams, unreachable goals) and 500 line-of-sight cases on every map, generated by the TS client port.
 - Integration (`tests/integration.rs`): the real server on a random port and two scripted WebSocket clients sending
   the exact client frames — login, double login, bad version, character creation (incl. `undefined` sex), village,
   channel, chat with `/##` stripping, whisper, friends, whois, free game create/list/join/team, placement, a full duel
-  (moves computed with the client path-finder, spells, until a death), results, `CJ`/`CJundefined` back to the
+  (moves computed with the client path-finder, spells, until a death; a critical miss is followed by `GTF`/`GTS`),
+  results with the XP of the owner's table (44 of 110 for a level-1 win, 11 for the loss), `CJ`/`CJundefined` back to the
   channel, persistence and a second login under a new key; a second test covers the placement and turn timers,
   malformed actions in a fight and a leaver losing (listed in `GE`); a third sends non-ASCII junk to every command and
   checks the server still answers; a fourth plays random games with four clients: two solo searches matched, a leaver
@@ -282,8 +316,12 @@ bun test web/src/core/pathfinding.parity.test.ts   # rewrites server/tests/fixtu
   in a game, `OM` into a slot of another super type refused and into the right one kept across a new connection
   (`ASK` part 30), `OM…|-1`, `OD`→`ODK`, the store file; an eleventh, on a stored level-29 character holding a karma ring:
   karma in `ASK` part 24 and `ABK…|13;<karma>` after `OM` and `PB13`, `M10` for the 6th chat line within 15 s, `M12`
-  after `AN30` when a fight takes it to the max level; a twelfth drives `World` directly: a session silent for `idle_ms`
-  gets `M01` on the `Tick` and is dropped, one that just sent a frame stays. Every server frame is validated against its
+  after `AN30` when a fight takes it to the max level (836 XP from level 29); a twelfth drives `World` directly: a
+  session silent for `idle_ms` gets `M01` on the `Tick` and is dropped, one that just sent a frame stays; a thirteenth,
+  on stored characters with the critical odds raised to 1 in 2 / 1 in 4 and the world seeded: a team-1 Iop starts
+  against a Xélor (initiative 13 vs 11), the Xélor's hammer sets `ASK` part 28 to 5 AP and is charged 5, refused at
+  range 2, both its damage effects land with the critical bonus on `p3`, and criticals and misses of spells and close
+  combat all happen in the fought duel. Every server frame is validated against its
   documented format.
 - Playtest (`bun scripts/playtest.ts`, `docs/playtest.md`): the real client, headless, one process per client, driven
   only through its UI against this server: accounts, characters, chat, free games, random games (solo and team, with
@@ -313,7 +351,7 @@ bun test web/src/core/pathfinding.parity.test.ts   # rewrites server/tests/fixtu
 | Reply to `GU` on a pending invitation | none to the inviter: the waiting card already removed itself and its `Fl` gets `FlK` (any frame ends the spinner); `Gy` to the invitee. A `Gi<why>` would make `onRemoveCharacter` run on a card that is gone (count and array wrong) |
 | When placement ends | when every fighter has sent `Gp`, or `placement_ms` after `GR` was broadcast (i.e. once every client built the map; unplaced fighters get their team's first free cell) |
 | What `Gp` answers | `GIC` of the placed fighters, to everybody (to the requester only when refused) |
-| Who starts | team 0 (creator's team), then alternating |
+| Who starts | the team whose best fighter has the higher initiative (`owner`; random on a tie), then alternating |
 | How AP costs reach the client | `GAx;102` after every action (the client never deducts by itself) |
 | How moves are validated | server-side path-finding to the requested destination; the server broadcasts its own path (identical to the client's by parity) |
 | `GKK`/`GKE` | `GKK` accepted, nothing waits on it; `GKE` ignored in fights (moves are applied at once; the client cannot cancel because `GAF` arrives first); on the village map (stage 3b) it moves the stored cell to the stop cell |
@@ -342,6 +380,7 @@ bun test web/src/core/pathfinding.parity.test.ts   # rewrites server/tests/fixtu
   dereference; the TS port must guard it.
 - Spells: ids, levels and bar slots come in `ASK` part 29 (`<id>~<level>~<zone>~<15 flags>`), all class spells are
   guild-tab spells; spell animations use launch types 10, 11, 30, 31 only.
-- No criticals; `GCE`/`GJE` codes as in the table above; items as in "Items" (a winner's award box opens after `GE`).
+- Criticals: `GA` 301/304 after the 300/303, 302/305 instead of it and then `GTF`/`GTS` (the server ends the turn,
+  see "Criticals"); `GCE`/`GJE` codes as in the table above; items as in "Items" (a winner's award box opens after `GE`).
 - Random games: after `GCK|3`/`GJK|3` the creator's / party's `GM`; during a search (`Gs`) the `GM` of every fighter
   then `GPS` start the fight; `GM|+0`/`GM|-0` are the random team-mate slots.

@@ -26,6 +26,38 @@ impl Rng {
     pub fn roll(&mut self, [count, faces, bonus]: Dice) -> i32 {
         (0..count).map(|_| 1 + (self.next_u64() % faces.max(1) as u64) as i32).sum::<i32>() + bonus
     }
+    /// True once in `n` (never for 0).
+    pub fn one_in(&mut self, n: u32) -> bool {
+        n > 0 && self.next_u64().is_multiple_of(n as u64)
+    }
+}
+
+/// Critical-hit odds, 1 in `n` (0 = never), improved by agility: `n·e·1.1 / ln(agility + 12)` when smaller, never
+/// better than 1 in 2 (rule stated by the project owner).
+pub fn crit_odds(n: u32, agility: i32) -> u32 {
+    match n {
+        0 => 0,
+        _ if agility > 0 => n.min((n as f64 * std::f64::consts::E * 1.1 / ((agility + 12) as f64).ln()) as u32).max(2),
+        _ => n.max(2),
+    }
+}
+
+/// Critical-miss odds: 1 in `n` (0 = never), never more than 1 in 2 (rule stated by the project owner).
+pub fn miss_odds(n: u32) -> u32 {
+    if n == 0 {
+        0
+    } else {
+        n.max(2)
+    }
+}
+
+/// A critical's spell effect: `bonus` added to the fixed part of damage, drain and heal dice (authored).
+fn critical(e: &Effect, bonus: i32) -> Effect {
+    let mut e = e.clone();
+    if let Effect::Damage { dice } | Effect::Drain { dice } | Effect::Heal { dice } = &mut e {
+        dice[2] += bonus;
+    }
+    e
 }
 
 /// `Dofus.SpellsManager.as` for one fighter.
@@ -89,7 +121,12 @@ pub struct Fighter {
     pub lp_max: i32,
     pub ap: i32,
     pub ap_init: i32,
+    /// AP cost and critical numbers of the close combat: the class ones bare-handed, the weapon type's with a weapon.
     pub cc: CloseCombat,
+    /// Damage effects of the equipped weapon, every one rolled by a close combat; None = bare hands (`cc.dice`).
+    pub weapon: Option<Vec<Dice>>,
+    /// Characteristic 14 (critical-hit odds).
+    pub agility: i32,
     pub spells: HashMap<u32, usize>,
     pub gold: i64,
     pub gold_change: i64,
@@ -133,6 +170,8 @@ impl Fighter {
             ap,
             ap_init: ap,
             cc,
+            weapon: None,
+            agility: 0,
             spells,
             gold,
             gold_change: 0,
@@ -145,6 +184,12 @@ impl Fighter {
             reflect: None,
             launches: Launches::default(),
         }
+    }
+
+    /// Initiative (rule stated by the project owner): a quarter of the max LP (vitality included), scaled by LP / max
+    /// LP when wounded, which never applies here: everybody starts a fight with full LP. No initiative bonus in 5b.
+    pub fn initiative(&self) -> i32 {
+        self.lp_max / 4
     }
 
     fn add_effect(&mut self, kind: usize, value: i32, turns: i32, on_itself: bool) {
@@ -352,16 +397,24 @@ impl Game {
         format!("GIC|{}", e.join("|"))
     }
 
-    /// Ends placement: `GS`, `GTL|…`. Turn order alternates teams in lobby-slot order. Call `begin_turn` next.
-    pub fn start_fight(&mut self) -> Vec<String> {
+    /// Ends placement: `GS`, `GTL|…`. Turn order (rule stated by the project owner): each team sorted by initiative
+    /// (lobby slot among equals, authored), the team with the highest initiative starts (random on a tie), then the
+    /// teams alternate; the rest of the larger team plays last. Call `begin_turn` next.
+    pub fn start_fight(&mut self, rng: &mut Rng) -> Vec<String> {
         self.phase = Phase::Fight;
         let team = |t: u8| {
             let mut v: Vec<&Fighter> = self.members.iter().filter(|f| f.team == t).collect();
-            v.sort_by_key(|f| f.pos);
-            v.into_iter().map(|f| f.id).collect::<Vec<_>>()
+            v.sort_by_key(|f| (std::cmp::Reverse(f.initiative()), f.pos));
+            v.into_iter().map(|f| (f.id, f.initiative())).collect::<Vec<_>>()
         };
         let (a, b) = (team(0), team(1));
-        self.order = (0..a.len().max(b.len())).flat_map(|i| [a.get(i), b.get(i)]).flatten().copied().collect();
+        let best = |t: &[(u32, i32)]| t.first().map_or(-1, |f| f.1);
+        let (a, b) = match best(&a).cmp(&best(&b)) {
+            std::cmp::Ordering::Less => (b, a),
+            std::cmp::Ordering::Equal if rng.one_in(2) => (b, a),
+            _ => (a, b),
+        };
+        self.order = (0..a.len().max(b.len())).flat_map(|i| [a.get(i), b.get(i)]).flatten().map(|f| f.0).collect();
         self.turn = self.order.len() - 1; // begin_turn advances to the first alive fighter from here
         vec!["GS".into(), format!("GTL|{}", self.order.iter().map(|i| i.to_string()).collect::<Vec<_>>().join("|"))]
     }
@@ -425,21 +478,22 @@ impl Game {
         self.next_action - 1
     }
 
-    /// A `GA<type><params>` request of the current fighter. Returns the result frames (to wrap in `GAS`/`GAF`), or
-    /// None when the request is invalid.
-    pub fn act(&mut self, data: &GameData, rng: &mut Rng, id: u32, kind: &str, params: &str) -> Option<Vec<String>> {
+    /// A `GA<type><params>` request of the current fighter. Returns the result frames (to wrap in `GAS`/`GAF`) and
+    /// whether a critical miss ended the turn (the client never ends it itself: the caller sends `GTF`/`GTS`), or None
+    /// when the request is invalid.
+    pub fn act(&mut self, data: &GameData, rng: &mut Rng, id: u32, kind: &str, params: &str) -> Option<(Vec<String>, bool)> {
         if self.current() != Some(id) {
             return None;
         }
         let map = &data.map_index[&self.map];
-        let frames = match kind {
-            "001" => self.act_move(map, id, params),
+        let done = match kind {
+            "001" => self.act_move(map, id, params).map(|f| (f, false)),
             "300" => self.act_spell(data, map, rng, id, params),
             "303" => self.act_close_combat(map, rng, id, params),
             _ => None,
         }?;
         self.last_actor = Some(id);
-        Some(frames)
+        Some(done)
     }
 
     fn act_move(&mut self, map: &Map, id: u32, params: &str) -> Option<Vec<String>> {
@@ -458,12 +512,16 @@ impl Game {
         Some(vec![format!("GA{n};1;{id};{}{}", cell_code(start as i32), compress_path(&path)), format!("GAx;102;{id};{id},-{steps}")])
     }
 
-    fn act_close_combat(&mut self, map: &Map, rng: &mut Rng, id: u32, params: &str) -> Option<Vec<String>> {
+    /// Close combat (rules stated by the project owner): a critical miss (`305`) spends the AP and ends the turn; a
+    /// critical (`304` after the `303`) adds `crit_bonus` to the dice count bare-handed, to `p3` of every weapon damage
+    /// effect with a weapon.
+    fn act_close_combat(&mut self, map: &Map, rng: &mut Rng, id: u32, params: &str) -> Option<(Vec<String>, bool)> {
         let cell: i64 = params.parse().ok()?;
         let f = self.member(id)?;
-        let (from, cc, range_mod) = (f.cell?, f.cc.clone(), f.moderators[19]);
+        let (from, cc, weapon, range_mod, agility) = (f.cell?, f.cc.clone(), f.weapon.clone(), f.moderators[19], f.agility);
         let target = self.occupant(cell)?;
-        // Interaction.as:119-145: moderated range 1, own cell excluded, walkable occupied cell, line of sight.
+        // Interaction.as:119-145, whatever the weapon: moderated range 1, own cell excluded, walkable occupied cell,
+        // line of sight.
         if f.ap < cc.ap
             || !check_range(map.width as i64, from, cell, false, 1, range_mod as i64, false)
             || !map.walkable(cell)
@@ -473,13 +531,32 @@ impl Game {
         }
         self.member_mut(id)?.ap -= cc.ap;
         let n = self.action_id();
-        let mut out = vec![format!("GA{n};303;{id};{cell}"), format!("GAx;102;{id};{id},-{}", cc.ap)];
-        let dmg = (rng.roll(cc.dice) + self.member(id)?.moderators[16]).max(0);
-        self.damage(rng, id, target, dmg, true, &mut out);
-        Some(out)
+        let spent = format!("GAx;102;{id};{id},-{}", cc.ap);
+        if rng.one_in(miss_odds(cc.miss)) {
+            return Some((vec![format!("GA{n};305;{id};"), spent], true));
+        }
+        let crit = rng.one_in(crit_odds(cc.crit, agility));
+        let mut out = vec![format!("GA{n};303;{id};{cell}")];
+        if crit {
+            out.push(format!("GAx;304;{id};"));
+        }
+        out.push(spent);
+        let bonus = if crit { cc.crit_bonus } else { 0 };
+        let rolls = match weapon {
+            Some(dice) => dice.iter().map(|&[c, f, b]| [c, f, b + bonus]).collect(),
+            None => vec![[cc.dice[0] + bonus, cc.dice[1], cc.dice[2]]],
+        };
+        for dice in rolls {
+            let (Some(a), Some(true)) = (self.member(id).filter(|a| a.alive), self.member(target).map(|t| t.alive)) else { break };
+            let dmg = (rng.roll(dice) + a.moderators[16]).max(0);
+            self.damage(rng, id, target, dmg, true, &mut out);
+        }
+        Some((out, false))
     }
 
-    fn act_spell(&mut self, data: &GameData, map: &Map, rng: &mut Rng, id: u32, params: &str) -> Option<Vec<String>> {
+    /// Spells: a critical miss (`302` instead of the `300`) spends the AP, records no launch and ends the turn; a
+    /// critical (`301` after the `300`) casts `critical` effects (mechanics stated by the project owner).
+    fn act_spell(&mut self, data: &GameData, map: &Map, rng: &mut Rng, id: u32, params: &str) -> Option<(Vec<String>, bool)> {
         let (spell, cell) = params.split_once(';')?;
         let (spell, cell): (u32, i64) = (spell.parse().ok()?, cell.parse().ok()?);
         let f = self.member(id)?;
@@ -511,19 +588,26 @@ impl Game {
         if !ok {
             return None;
         }
-        let f = self.member_mut(id)?;
-        f.launches.add(spell, target, l);
-        f.ap -= l.ap;
+        let agility = f.agility;
+        self.member_mut(id)?.ap -= l.ap;
         let n = self.action_id();
-        let mut out = vec![
-            // inFront is always 1: with 0, Spells.launch* put the spell clip at depth `cell*100+50-20+index` (index
-            // 0..20; `+51` for shoots), which equals the target character's sprite depth `cell*100+50` (Character
-            // setPosition → chgDepth) once every 21 launches, and createEmptyMovieClip then replaces the sprite: the
-            // character vanishes and every later animation of it waits for the 10 s sequencer timeout
-            // (AKSClient/Dofus.BattleField.Spells.as:54-58,71-76; AKSClient/Dofus.Sequencer.as:41).
-            format!("GA{n};300;{id};{spell},{cell},{},{level},{},1", s.anim, s.launch_type),
-            format!("GAx;102;{id};{id},-{}", l.ap),
-        ];
+        let spent = format!("GAx;102;{id};{id},-{}", l.ap);
+        if rng.one_in(miss_odds(l.miss)) {
+            // No launch recorded: the client records a cast on `300` only (Events.AKS.Game.as:775-781).
+            return Some((vec![format!("GA{n};302;{id};{spell}"), spent], true));
+        }
+        self.member_mut(id)?.launches.add(spell, target, l);
+        let crit = rng.one_in(crit_odds(l.crit, agility));
+        // inFront is always 1: with 0, Spells.launch* put the spell clip at depth `cell*100+50-20+index` (index 0..20;
+        // `+51` for shoots), which equals the target character's sprite depth `cell*100+50` (Character setPosition →
+        // chgDepth) once every 21 launches, and createEmptyMovieClip then replaces the sprite: the character vanishes
+        // and every later animation of it waits for the 10 s sequencer timeout
+        // (AKSClient/Dofus.BattleField.Spells.as:54-58,71-76; AKSClient/Dofus.Sequencer.as:41).
+        let mut out = vec![format!("GA{n};300;{id};{spell},{cell},{},{level},{},1", s.anim, s.launch_type)];
+        if crit {
+            out.push(format!("GAx;301;{id};{spell}"));
+        }
+        out.push(spent);
         let zone: Vec<i64> = match l.zone.split_at(1) {
             ("C", r) => {
                 let r: i64 = r.parse().unwrap_or(0);
@@ -533,9 +617,10 @@ impl Game {
         };
         let targets: Vec<u32> = zone.iter().filter_map(|&c| self.occupant(c)).collect();
         for e in &l.effects {
-            self.effect(map, rng, id, cell, &targets, e, &mut out);
+            let e = if crit { critical(e, l.crit_bonus) } else { e.clone() };
+            self.effect(map, rng, id, cell, &targets, &e, &mut out);
         }
-        Some(out)
+        Some((out, false))
     }
 
     /// Applies one spell effect to every still-alive target (or the caster), appending its frames.
@@ -681,7 +766,7 @@ mod tests {
         let places = data.maps[0].places.clone();
         assert!(g.place(data, 10, places[0][0]) && g.place(data, 20, places[1][0]));
         assert!(!g.place(data, 20, places[0][1])); // not a team-1 cell
-        g.start_fight();
+        g.start_fight(&mut Rng(1));
         g.begin_turn(30000).unwrap();
         g
     }
@@ -718,7 +803,7 @@ mod tests {
             .unwrap();
         let sent = compress_path(&path.0.iter().map(|&(c, d)| (c as i32, d)).collect::<Vec<_>>());
         assert!(g.act(&data, &mut rng, 20, "001", &sent).is_none()); // not its turn
-        let frames = g.act(&data, &mut rng, 10, "001", &sent).unwrap();
+        let frames = g.act(&data, &mut rng, 10, "001", &sent).unwrap().0;
         assert_eq!(frames[0], format!("GA1;1;10;{}{sent}", cell_code(start as i32)));
         assert_eq!(frames[1], format!("GAx;102;10;10,-{}", path.1.len()));
         assert_eq!(g.members[0].cell, Some(dest));
@@ -739,7 +824,7 @@ mod tests {
         let far = g.members[1].cell.map(|_| data.maps[0].places[1][3]).unwrap();
         assert!(g.act(&data, &mut rng, 10, "300", &format!("141;{far}")).is_none()); // out of range
         assert!(g.act(&data, &mut rng, 10, "300", "999;1").is_none()); // unknown spell
-        let f = g.act(&data, &mut rng, 10, "300", &format!("141;{next}")).unwrap();
+        let f = g.act(&data, &mut rng, 10, "300", &format!("141;{next}")).unwrap().0;
         assert_eq!(f[0], format!("GA1;300;10;141,{next},801,1,11,1")); // inFront 1: see the comment in `act`
         assert_eq!(f[1], "GAx;102;10;10,-3");
         let dmg: i32 = f[2].rsplit(",-").next().unwrap().parse().unwrap();
@@ -753,7 +838,7 @@ mod tests {
         g.end_turn();
         g.begin_turn(1).unwrap();
         g.members[1].lp = 1;
-        let f = g.act(&data, &mut rng, 10, "303", &next.to_string()).unwrap();
+        let f = g.act(&data, &mut rng, 10, "303", &next.to_string()).unwrap().0;
         assert_eq!(f[0], format!("GA3;303;10;{next}"));
         assert_eq!(f.last().unwrap(), "GAx;103;10;20");
         assert_eq!(g.outcome(), Some(Some(0)));
@@ -769,7 +854,7 @@ mod tests {
         let next = map.around().iter().map(|o| iop + o).find(|&c| map.walkable(c) && (map.x2(c) - map.x2(iop)).abs() == 53).unwrap();
         g.members[1].cell = Some(next);
         g.members[1].reflect = Some(([1, 1, 2], 2)); // reflects 3
-        let f = g.act(&data, &mut rng, 10, "300", &format!("141;{next}")).unwrap();
+        let f = g.act(&data, &mut rng, 10, "300", &format!("141;{next}")).unwrap().0;
         assert!(f[2].starts_with("GAx;100;10;20,-"), "{f:?}");
         assert_eq!(f[3], "GAx;100;10;10,-3"); // actor 10 (the caster), not 20: same client sequencer as the cast
     }
@@ -807,5 +892,101 @@ mod tests {
             f.end_turn();
         }
         assert_eq!(f.moderators[19], 0);
+    }
+
+    /// Puts the Crâ next to the Iop; returns its cell.
+    fn adjacent(data: &GameData, g: &mut Game) -> i64 {
+        let map = &data.map_index[&g.map];
+        let iop = g.members[0].cell.unwrap();
+        let next = map.around().iter().map(|o| iop + o).find(|&c| map.walkable(c) && (map.x2(c) - map.x2(iop)).abs() == 53).unwrap();
+        g.members[1].cell = Some(next);
+        next
+    }
+
+    /// A seed whose first draw is (or is not) a 1-in-`n` success.
+    fn seed(n: u32, success: bool) -> u64 {
+        (1..).find(|&s| Rng(s).one_in(n) == success).unwrap()
+    }
+
+    #[test]
+    fn critical_odds_follow_agility() {
+        assert_eq!([crit_odds(30, 0), crit_odds(30, 5), crit_odds(30, 50), crit_odds(30, 100)], [30, 30, 21, 19]);
+        assert_eq!([crit_odds(0, 100), crit_odds(1, 0), crit_odds(3, 500)], [0, 2, 2]);
+        assert_eq!([miss_odds(0), miss_odds(1), miss_odds(50)], [0, 2, 50]);
+    }
+
+    #[test]
+    fn the_team_with_the_best_initiative_starts_then_teams_alternate() {
+        let data = data();
+        // Team 0: Crâ 45 LP → 11, Sram 50 → 12; team 1: Iop 55 → 13.
+        let mut g = Game::new(1, "T".into(), data.maps[0].id, [2, 1], String::new(), fighter(&data, 1, 9));
+        g.add(fighter(&data, 2, 4));
+        g.add(fighter(&data, 3, 8));
+        assert_eq!(g.members.iter().map(|f| (f.team, f.initiative())).collect::<Vec<_>>(), [(0, 11), (0, 12), (1, 13)]);
+        assert_eq!(g.start_fight(&mut Rng(1))[1], "GTL|3|2|1");
+        // Equal best initiative: a coin toss.
+        let first: HashSet<u32> = (1..20)
+            .map(|s| {
+                let mut g = Game::new(1, "T".into(), data.maps[0].id, [1, 1], String::new(), fighter(&data, 1, 8));
+                g.add(fighter(&data, 2, 8));
+                g.start_fight(&mut Rng(s));
+                g.order[0]
+            })
+            .collect();
+        assert_eq!(first, HashSet::from([1, 2]));
+    }
+
+    #[test]
+    fn close_combat_misses_end_the_turn_and_criticals_add_dice_or_p3() {
+        let data = data();
+        let mut g = duel(&data);
+        let next = adjacent(&data, &mut g).to_string();
+        g.members[0].cc.miss = 2;
+        let (f, ended) = g.act(&data, &mut Rng(seed(2, true)), 10, "303", &next).unwrap();
+        assert_eq!((f, ended), (vec!["GA1;305;10;".to_string(), "GAx;102;10;10,-3".into()], true));
+        assert_eq!((g.members[0].ap, g.members[1].lp), (3, 45));
+        // Bare hands: a critical adds crit_bonus (1) dice to the Iop's 1d5.
+        let mut g = duel(&data);
+        let next = adjacent(&data, &mut g).to_string();
+        (g.members[0].cc.miss, g.members[0].cc.crit) = (0, 2);
+        let (f, ended) = g.act(&data, &mut Rng(seed(2, true)), 10, "303", &next).unwrap();
+        assert_eq!(f[..3], [format!("GA1;303;10;{next}"), "GAx;304;10;".into(), "GAx;102;10;10,-3".into()]);
+        let dmg: i32 = f[3].rsplit(",-").next().unwrap().parse().unwrap();
+        assert!(!ended && (2..=10).contains(&dmg), "2d5 → {dmg}");
+        // A weapon: every damage effect fires, a critical adds crit_bonus to their p3.
+        let mut g = duel(&data);
+        let next = adjacent(&data, &mut g).to_string();
+        (g.members[0].cc.miss, g.members[0].cc.crit, g.members[0].cc.crit_bonus) = (0, 2, 5);
+        g.members[0].weapon = Some(vec![[1, 1, 0], [1, 1, 1]]);
+        let f = g.act(&data, &mut Rng(seed(2, true)), 10, "303", &next).unwrap().0;
+        assert_eq!(f[3..], ["GAx;100;10;20,-6", "GAx;100;10;20,-7"]);
+        g.members[0].cc.crit = 0;
+        let f = g.act(&data, &mut Rng(1), 10, "303", &next).unwrap().0;
+        assert_eq!(f[1..], ["GAx;102;10;10,-3", "GAx;100;10;20,-1", "GAx;100;10;20,-2"]);
+    }
+
+    #[test]
+    fn spell_misses_record_no_launch_and_criticals_add_their_bonus() {
+        let mut data = data();
+        let mut g = duel(&data);
+        let next = adjacent(&data, &mut g);
+        let cast = format!("141;{next}");
+        fn pression(d: &mut GameData) -> &mut SpellLevel {
+            &mut d.spells.get_mut(&141).unwrap().levels[0]
+        }
+        let l = pression(&mut data);
+        (l.delay, l.miss, l.crit) = (63, 2, 0);
+        let (f, ended) = g.act(&data, &mut Rng(seed(2, true)), 10, "300", &cast).unwrap();
+        assert_eq!((f, ended), (vec!["GA1;302;10;141".to_string(), "GAx;102;10;10,-3".into()], true));
+        assert_eq!(g.members[1].lp, 45);
+        // Not recorded (the client records `300` only): castable again despite its delay; a critical adds 3 to 1d6+2.
+        let l = pression(&mut data);
+        (l.miss, l.crit) = (0, 2);
+        let f = g.act(&data, &mut Rng(seed(2, true)), 10, "300", &cast).unwrap().0;
+        assert_eq!(f[..3], [format!("GA2;300;10;141,{next},801,1,11,1"), "GAx;301;10;141".into(), "GAx;102;10;10,-3".into()]);
+        let dmg: i32 = f[3].rsplit(",-").next().unwrap().parse().unwrap();
+        assert!((6..=11).contains(&dmg), "1d6+5 → {dmg}");
+        g.members[0].ap = 6;
+        assert!(g.act(&data, &mut Rng(1), 10, "300", &cast).is_none(), "this cast was recorded");
     }
 }

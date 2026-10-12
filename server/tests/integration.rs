@@ -154,7 +154,8 @@ fn check_frame(m: &str) {
                 || f.len() == 4 && (f[0] == "x" || is_num(f[0])) && nums(&[f[1], f[2]]) && match f[1] {
                 "1" => f[3].len() >= 4 && f[3].len().is_multiple_of(2) && is_b64(f[3]),
                 "4" | "5" | "100" | "101" | "102" | "107" | "121" => args.len() == 2 && nums(&args),
-                "103" | "130" | "303" => is_num(f[3]),
+                "103" | "130" | "303" | "301" | "302" => is_num(f[3]),
+                "304" | "305" => f[3].is_empty(),
                 "111" | "112" | "117" => args.len() == 3 && nums(&args),
                 "300" => args.len() == 6 && nums(&args),
                 _ => false,
@@ -326,6 +327,7 @@ fn choose(
     me: u32,
     foe: u32,
     spells: &[u32],
+    cc_ap: i32,
     moved: bool,
     used: &HashSet<u32>,
 ) -> Option<String> {
@@ -344,8 +346,7 @@ fn choose(
             return Some(format!("GA300{id};{target}\n"));
         }
     }
-    let cc = &data.classes[&data.classes.values().find(|c| c.spells == spells).unwrap().id].cc;
-    if ap >= cc.ap && distance(from, target, w) == 1 && check_view(map, &occ, from, target) {
+    if ap >= cc_ap && distance(from, target, w) == 1 && check_view(map, &occ, from, target) {
         return Some(format!("GA303{target}\n"));
     }
     if moved || ap <= 0 {
@@ -365,6 +366,78 @@ fn choose(
     let stop = route.1.get((ap as usize).min(route.1.len()) - 1)?.0;
     let (path, _) = path_find(map, &occ, &zones[adverse], true, ap as i64, from, stop)?;
     Some(format!("GA001{}\n", compress_path(&path.iter().map(|&(c, d)| (c as i32, d)).collect::<Vec<_>>())))
+}
+
+/// `GA<id>;<type>;…` → type.
+fn ga_type(f: &str) -> Option<&str> {
+    f.strip_prefix("GA").and_then(|r| r.split(';').nth(1))
+}
+
+/// Plays from `current`'s turn like two players clicking (`choose`) until a death within 80 turns: every action block
+/// reaches both clients identically, the actor acknowledges numeric ids, and a critical miss (`302`/`305`) ends the turn
+/// server-side (`GTF`, `GTS` right after its `GAF`). `fighters`: id → (spells it uses, close-combat AP of `ASK` part 28).
+/// Returns the `GE` and every action block.
+#[allow(clippy::too_many_arguments)]
+async fn play(
+    a: &mut Client,
+    b: &mut Client,
+    data: &GameData,
+    map: &Map,
+    board: &mut Board,
+    mut current: u32,
+    fighters: &HashMap<u32, (Vec<u32>, i32)>,
+    turn_ms: u64,
+) -> (String, Vec<Vec<String>>) {
+    let (ida, idb, w) = (a.id, b.id, map.width as i64);
+    let mut blocks = Vec::new();
+    let mut used = HashSet::new(); // once-per-fight spells (delay 63) already cast
+    for _turn in 0..80 {
+        let foe = if current == ida { idb } else { ida };
+        let (spells, cc_ap) = &fighters[&current];
+        let (mut moved, mut missed) = (false, false);
+        while let Some(req) = choose(data, map, board, current, foe, spells, *cc_ap, moved, &used) {
+            let (actor, other) = if current == ida { (&mut *a, &mut *b) } else { (&mut *b, &mut *a) };
+            actor.send(&req).await;
+            let frames = actor.until(&format!("GAF{current}")).await;
+            assert_eq!(frames[0], format!("GAS{current}"), "request accepted: {req:?} → {frames:?}");
+            assert_eq!(other.until(&format!("GAF{current}")).await, frames, "everybody gets the same action block");
+            for f in &frames {
+                board.apply(f, w);
+                if f[2..].split(';').next().is_some_and(|id| id.parse::<u32>().is_ok()) {
+                    actor.send(&format!("GKK{}\n", f[2..].split(';').next().unwrap())).await;
+                }
+            }
+            moved |= req.starts_with("GA001");
+            let cast = frames.iter().any(|f| ga_type(f) == Some("300")); // a missed spell is not recorded
+            if let Some(id) = req.strip_prefix("GA300").and_then(|r| r.split(';').next()).and_then(|s| s.parse::<u32>().ok()) {
+                if cast && data.spells[&id].levels[0].delay >= 63 {
+                    used.insert(id);
+                }
+            }
+            missed = frames.iter().any(|f| matches!(ga_type(f), Some("302" | "305")));
+            let died = frames.iter().any(|f| f.starts_with("GAx;103;"));
+            blocks.push(frames);
+            if died {
+                let ge = actor.expect("GE").await;
+                assert_eq!(other.expect("GE").await, ge);
+                return (ge, blocks);
+            }
+            if missed {
+                break;
+            }
+        }
+        if !missed {
+            if current == ida { &mut *a } else { &mut *b }.send("GT\n").await;
+        }
+        for cl in [&mut *a, &mut *b] {
+            let f = cl.until("GTS").await;
+            assert_eq!(f[0], format!("GTF{current}"));
+            assert_eq!(f[1], format!("GTS{foe}|{turn_ms}"));
+            board.apply(&f[0], w);
+        }
+        current = foe;
+    }
+    panic!("nobody died within 80 turns");
 }
 
 #[tokio::test]
@@ -393,7 +466,11 @@ async fn two_clients_play_a_full_duel() {
         ("Bobby", "8", "80", "FF0000", "00FF00")
     );
     assert_eq!((ask[14].as_str(), ask[15].as_str(), ask[28].as_str()), ("55", "6", "3"), "LP, AP, close-combat AP of an Iop");
-    assert_eq!(ask[29].split(';').next(), Some("141~1~Pb~1E000cd10aaaaab"), "Pression: range 2, 3 AP, line of sight, bar slot 1");
+    assert_eq!(
+        ask[29].split(';').next(),
+        Some("141~1~Pb~1E000cd10EYaaab"),
+        "Pression: range 2, 3 AP, line of sight, crit 1/30, miss 1/50, bar slot 1"
+    );
     assert_eq!(ask[29].split(';').count(), 3);
     enter(&mut b, "PAAli|9|1|-1|-1|undefined\n", "Ali").await;
     let (ida, idb) = (a.id, b.id);
@@ -490,58 +567,10 @@ async fn two_clients_play_a_full_duel() {
 
     // ── fight ──
     let map = &data.map_index[&map_id];
-    let w = map.width as i64;
-    let spells = |id| data.classes[&if id == ida { 8 } else { 9 }].spells.clone();
-    let mut current = ida;
-    let mut end = None;
-    let (mut moves, mut casts, mut ccs) = (0, 0, 0);
-    let mut used = HashSet::new(); // once-per-fight spells (delay 63) already cast
-    'turns: for _turn in 0..80 {
-        let foe = if current == ida { idb } else { ida };
-        let mut moved = false;
-        while let Some(req) = choose(&data, map, &board, current, foe, &spells(current), moved, &used) {
-            let (actor, other) = if current == ida { (&mut a, &mut b) } else { (&mut b, &mut a) };
-            actor.send(&req).await;
-            let frames = actor.until(&format!("GAF{current}")).await;
-            assert_eq!(frames[0], format!("GAS{current}"), "request accepted: {req:?} → {frames:?}");
-            assert_eq!(other.until(&format!("GAF{current}")).await, frames, "everybody gets the same action block");
-            for f in &frames {
-                board.apply(f, w);
-                let p: Vec<&str> = f[2..].split(';').collect();
-                if f.starts_with("GA") && p.len() == 4 && p[0].parse::<u32>().is_ok() {
-                    actor.send(&format!("GKK{}\n", p[0])).await; // the local actor acknowledges numeric ids
-                    match p[1] {
-                        "1" => moves += 1,
-                        "300" => casts += 1,
-                        "303" => ccs += 1,
-                        _ => {}
-                    }
-                }
-            }
-            moved |= req.starts_with("GA001");
-            if let Some(id) = req.strip_prefix("GA300").and_then(|r| r.split(';').next()).and_then(|s| s.parse::<u32>().ok()) {
-                if data.spells[&id].levels[0].delay >= 63 {
-                    used.insert(id);
-                }
-            }
-            if frames.iter().any(|f| f.starts_with("GAx;103;")) {
-                let ge = actor.expect("GE").await;
-                assert_eq!(other.expect("GE").await, ge);
-                end = Some(ge);
-                break 'turns;
-            }
-        }
-        let (actor, other) = if current == ida { (&mut a, &mut b) } else { (&mut b, &mut a) };
-        actor.send("GT\n").await;
-        for cl in [actor, other] {
-            let f = cl.until("GTS").await;
-            assert_eq!(f[0], format!("GTF{current}"));
-            assert_eq!(f[1], format!("GTS{foe}|60000"));
-            board.apply(&f[0], w);
-        }
-        current = foe;
-    }
-    let ge = end.expect("somebody died within 80 turns");
+    let fighters = HashMap::from([(ida, (data.classes[&8].spells.clone(), 3)), (idb, (data.classes[&9].spells.clone(), 4))]);
+    let (ge, blocks) = play(&mut a, &mut b, &data, map, &mut board, ida, &fighters, 60000).await;
+    let count = |t: &str| blocks.iter().filter(|b| b.iter().any(|f| ga_type(f) == Some(t))).count();
+    let (moves, casts, ccs) = (count("1"), count("300"), count("303"));
     assert!(moves > 0 && casts > 0, "moves {moves}, casts {casts}, close combats {ccs}");
 
     // ── results, back to the lobby ──
@@ -550,6 +579,9 @@ async fn two_clients_play_a_full_duel() {
     let winner: u32 = results.iter().find(|r| r[0] == "2").unwrap()[1].parse().unwrap();
     let loser = results.iter().find(|r| r[0] == "0").unwrap();
     assert_eq!(loser[3], "1", "the loser is dead");
+    // Level 1 against level 1: a win is round(110 × 0.4) of the 110 XP to level 2, a loss round(110 × 0.1).
+    assert_eq!(results.iter().find(|r| r[0] == "2").unwrap()[4..], ["0", "44", "110", "44", "10"]);
+    assert_eq!(loser[4..], ["0", "11", "110", "11", "0"]);
     let (win, lose) = if winner == ida { (&mut a, &mut b) } else { (&mut b, &mut a) };
     assert_eq!(win.expect("ABK").await, format!("ABK{winner}|2;10"), "gold won");
     win.expect("OAKO").await; // the winner's item
@@ -637,7 +669,7 @@ async fn timers_end_placement_and_turns_and_a_leaver_loses() {
     assert_eq!(a.expect("GTF").await, format!("GTF{idb}"));
     assert_eq!(a.expect("GM|-").await, format!("GM|-{idb}"));
     let ge = a.expect("GE").await;
-    assert_eq!(ge, format!("GE{ida}|2;{ida};1;0;0;40;100;40;10|0;{idb};1;1;0;0;100;0;0"));
+    assert_eq!(ge, format!("GE{ida}|2;{ida};1;0;0;44;110;44;10|0;{idb};1;1;0;0;110;0;0"));
     a.expect("ABK").await;
     let _ = std::fs::remove_file(&store);
 }
@@ -1247,7 +1279,10 @@ async fn matchmaking_prefers_the_nearest_level() {
 
 /// A second server on an existing store file (start_server deletes it first).
 async fn reopen_server(store: &Path) -> String {
-    let data = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+    reopen_with(store, GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap()).await
+}
+
+async fn reopen_with(store: &Path, data: GameData) -> String {
     let world = World::new(data, Store::open(Some(store.to_path_buf())), 42);
     let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
     let addr = listener.local_addr().unwrap().to_string();
@@ -1388,7 +1423,8 @@ async fn karma_items_spam_and_max_level_notices() {
         assert_eq!(a.expect("cMK|").await, format!("cMK|{ida}|Karma|ligne {i}"));
     }
     assert_eq!(a.expect("M").await, "M10", "the 6th line within 15 s: SRV_MSG_0, dropped");
-    // A wins against a leaver: 40 XP takes it to level 30 (the max level) → `AN`, then `M12`.
+    // A wins against a level-1 leaver: round(60600 × 0.4 × 1 / 29) = 836 XP (60600 = XP from 29 to 30) takes it to
+    // level 30 (the max level) → `AN`, then `M12`.
     let mut b = Client::connect(&addr).await;
     assert_eq!(b.register("karmb", "pw").await, "AlKfr");
     enter(&mut b, "PAKarmb|9|1|-1|-1|-1\n", "Karmb").await;
@@ -1405,11 +1441,130 @@ async fn karma_items_spam_and_max_level_notices() {
     b.send("GQ\n").await;
     b.expect("GV").await;
     assert_eq!(a.expect("GM|-").await, format!("GM|-{idb}"));
-    assert_eq!(a.expect("GE").await, format!("GE{ida}|2;{ida};30;0;43500;30;43500;40;10|0;{idb};1;1;0;0;100;0;0"));
-    assert_eq!(a.expect("AN").await, "AN30|43500|43530|43500|5");
+    assert_eq!(a.expect("GE").await, format!("GE{ida}|2;{ida};30;0;621600;826;621600;836;10|0;{idb};1;1;0;0;110;0;0"));
+    assert_eq!(a.expect("AN").await, "AN30|621600|622426|621600|5");
     assert_eq!(a.expect("M").await, "M12");
     assert_eq!(a.expect("ABK").await, format!("ABK{ida}|2;10"));
     a.expect("OAKO").await;
+    drop(setup);
+    let _ = std::fs::remove_file(&store);
+}
+
+/// Rules stated by the project owner, on stored characters, the critical odds raised to 1 in 2 (hit) and 1 in 4 (miss),
+/// the world RNG seeded (42): the team whose best fighter has the higher initiative (max LP / 4) starts, here team 1;
+/// a weapon's AP cost is `ASK` part 28 and is charged, its range stays the client's 1, every damage effect of it fires,
+/// a critical adds the bonus to their `p3`; criticals (`301`/`304` after `300`/`303`) and critical misses (`302`/`305`
+/// instead, AP spent, then the server ends the turn) happen in a fought duel.
+#[tokio::test]
+async fn initiative_weapon_close_combat_and_criticals() {
+    let store = std::env::temp_dir().join(format!("dofus-it-crit-{}.json", std::process::id()));
+    let first = start_server(&store, net::Overrides { turn_ms: None, placement_ms: None }).await;
+    let mut setup = Vec::new();
+    for (acc, pa) in [("wpna", "PAHammer|5|0|-1|-1|-1\n"), ("wpnb", "PABrute|8|1|-1|-1|-1\n")] {
+        let mut c = Client::connect(&first).await;
+        assert_eq!(c.register(acc, "pw").await, "AlKfr");
+        c.send(pa).await;
+        c.expect("AAK").await;
+        c.expect("ALK").await;
+        setup.push(c);
+    }
+    // The Xélor holds a hammer (type 7: 5 AP, critical bonus 5) dealing 1D1 and 1D1+1.
+    let mut saved: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(&store).unwrap()).unwrap();
+    for ch in saved["characters"].as_object_mut().unwrap().values_mut().filter(|c| c["class"] == 5) {
+        ch["items"] = serde_json::json!([{"id": 1, "type": 7, "gfx": 1, "position": 1, "effects": [[100, 1, 1, 0], [100, 1, 1, 1]]}]);
+    }
+    saved["next_item"] = 2.into();
+    std::fs::write(&store, serde_json::to_string(&saved).unwrap()).unwrap();
+    let hot = || {
+        let mut d = GameData::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data")).unwrap();
+        d.classes.values_mut().for_each(|c| (c.cc.crit, c.cc.miss) = (2, 4));
+        d.spells.values_mut().flat_map(|s| &mut s.levels).for_each(|l| (l.crit, l.miss) = (2, 4));
+        d.items.weapon_types.values_mut().for_each(|t| (t.crit, t.miss) = (2, 4));
+        d
+    };
+    let data = hot();
+    let (hammer_ap, bonus) = (data.items.weapon_types[&7].ap, data.items.weapon_types[&7].crit_bonus);
+    let addr = reopen_with(&store, hot()).await;
+    let mut cl = Vec::new();
+    for (acc, cc_ap) in [("wpna", hammer_ap), ("wpnb", data.classes[&8].cc.ap)] {
+        let mut c = Client::connect(&addr).await;
+        assert_eq!(c.login(acc, "pw").await, "AlKfr");
+        c.send("PL\n").await;
+        c.id = c.expect("ALK|").await[4..].split(';').next().unwrap().parse().unwrap();
+        c.send(&format!("PS{}\n", c.id)).await;
+        assert_eq!(c.expect("ASK|").await.split('|').nth(28), Some(cc_ap.to_string().as_str()), "close-combat AP");
+        c.send("GC1\n").await;
+        c.send("GD\n").await;
+        c.until("GAx;3;").await;
+        cl.push(c);
+    }
+    assert_ne!(hammer_ap, data.classes[&5].cc.ap, "the hammer's AP is not the Xélor's bare-hand one");
+    let [mut a, mut b] = <[Client; 2]>::try_from(cl).ok().unwrap();
+    let (ida, idb) = (a.id, b.id);
+    let map_id = data.maps[0].id;
+    a.send(&format!("GC2Crit|{map_id}|AA|\n")).await;
+    a.until("GM|+").await;
+    b.send("GJ2Crit|\n").await;
+    b.until("GM|").await;
+    a.expect("GM|+").await;
+    a.send("GS\n").await;
+    for c in [&mut a, &mut b] {
+        c.expect("GPS").await;
+        c.send("GD\n").await;
+        c.expect("GDM|").await;
+        c.send("GR\n").await;
+    }
+    for c in [&mut a, &mut b] {
+        c.expect("GR").await;
+    }
+    let places = &data.maps[0].places;
+    let mut board = Board { team: HashMap::from([(ida, 0), (idb, 1)]), ..Default::default() };
+    a.send(&format!("Gp{}\n", places[0][0])).await;
+    for c in [&mut a, &mut b] {
+        c.expect("GIC").await;
+    }
+    b.send(&format!("Gp{}\n", places[1][0])).await;
+    for c in [&mut a, &mut b] {
+        board.apply(&c.expect("GIC").await, 0);
+        c.expect("GS").await;
+        assert_eq!(c.expect("GTL").await, format!("GTL|{idb}|{ida}"), "Iop 55 LP → 13 beats Xélor 45 LP → 11");
+        c.expect(&format!("GTS{idb}|")).await;
+    }
+    b.send("GT\n").await;
+    for c in [&mut a, &mut b] {
+        c.expect(&format!("GTF{idb}")).await;
+        c.expect(&format!("GTS{ida}|")).await;
+    }
+    // A hammer does not reach farther than the client's close combat.
+    a.send(&format!("GA303{}\n", places[1][0])).await;
+    assert_eq!(a.expect("GA").await, format!("GAF{ida}"), "out of range: refused");
+    // A only walks and hits with the hammer; B uses its spells too.
+    let map = &data.map_index[&map_id];
+    let fighters = HashMap::from([(ida, (vec![], hammer_ap)), (idb, (data.classes[&8].spells.clone(), data.classes[&8].cc.ap))]);
+    let (_, blocks) = play(&mut a, &mut b, &data, map, &mut board, ida, &fighters, data.rules.turn_ms).await;
+    let has =
+        |bl: &[String], t: &str, actor: u32| bl.iter().any(|f| ga_type(f) == Some(t) && f.split(';').nth(2) == Some(&actor.to_string()));
+    let (mut hits, mut crits) = (0, 0);
+    for bl in blocks.iter().filter(|bl| has(bl, "303", ida)) {
+        assert!(bl.contains(&format!("GAx;102;{ida};{ida},-{hammer_ap}")), "{bl:?}");
+        let crit = has(bl, "304", ida);
+        assert_eq!(bl[1..3].iter().any(|f| f.starts_with("GAx;304;")), crit, "304 right after the 303: {bl:?}");
+        let dealt: Vec<i32> = bl.iter().filter_map(|f| f.strip_prefix(&format!("GAx;100;{ida};{idb},-"))?.parse().ok()).collect();
+        if !bl.iter().any(|f| f.starts_with("GAx;103;")) {
+            assert_eq!(dealt, if crit { vec![1 + bonus, 2 + bonus] } else { vec![1, 2] }, "both effects, the bonus on p3: {bl:?}");
+        }
+        (hits, crits) = (hits + 1, crits + crit as u32);
+    }
+    let misses = blocks.iter().filter(|bl| bl.iter().any(|f| matches!(ga_type(f), Some("302" | "305")))).count();
+    let spell_crits = blocks.iter().filter(|bl| has(bl, "301", idb)).count();
+    assert!(
+        hits > crits && crits > 0 && misses > 0 && spell_crits > 0,
+        "hits {hits}, critical {crits}, misses {misses}, spell criticals {spell_crits}"
+    );
+    for bl in blocks.iter().filter(|bl| bl.iter().any(|f| matches!(ga_type(f), Some("302" | "305")))) {
+        assert!(!bl.iter().any(|f| matches!(ga_type(f), Some("300" | "303" | "100"))), "a miss replaces the action, no effect: {bl:?}");
+        assert!(bl[2].starts_with("GAx;102;"), "AP spent: {bl:?}");
+    }
     drop(setup);
     let _ = std::fs::remove_file(&store);
 }

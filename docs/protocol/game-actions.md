@@ -102,6 +102,13 @@ sequencer; lang texts are missing (**UNKNOWN — not in code**), only the substi
 | 305 | (none) | close-combat critical failure (sound, chat `HAS_ATTACK_CC` + ` (CRITICAL_MISS)`, "Je suis trop nul") | `:818-824` |
 | other | — | nothing besides the ack rule | |
 
+**Criticals** (301-305): nothing in the client ends a turn or skips an action on them, and 302 does not record the cast
+(only 300 calls `addLaunchedSpell`). This server sends them in a block like the action they decorate
+(`docs/server.md` "Fight rules"): a miss **replaces** the 300/303 and carries the request's numeric id (the actor acks
+it), `GA<n>;302;<id>;<spellId>` or `GA<n>;305;<id>;`, then `GAx;102` (AP spent), `GAF`, and the server ends the turn
+(`GTF<id>`, `GTS<next>`); a critical follows its action as `GAx;301;<id>;<spellId>` / `GAx;304;<id>;`, before the
+`GAx;102` and the effects.
+
 "effect type N" = `KERNEL.addToEffectsManager(character, N, value, turns, charId == actorId)` (`AKSClient/Dofus.Kernel.as:285-293`):
 remaining turns = `turns` if the target is the actor, else `turns - 1`. Type numbers = `AKSClient/Dofus.EffectsManager.as:6-25`.
 

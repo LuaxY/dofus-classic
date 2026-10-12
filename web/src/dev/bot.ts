@@ -327,10 +327,11 @@ function inReach(spell: Spell | "cc", from: number, to: number) {
   return goalDistEstimate(from, to, w) <= r && (!spell.m_bLineOfSight || pf.checkView(from, to));
 }
 
-type FightLog = { turns: number; cast: number[]; cc: number; checks: string[]; timerExpired: number; result?: string; moves: number; refused: string[] };
+type FightLog = { turns: number; cast: number[]; cc: number; misses: number; checks: string[]; timerExpired: number; result?: string; moves: number; refused: string[] };
 
-/** Fire a UI action that should make the client send `code` (GA001 / GA300 / GA303); wait for the whole exchange. */
-async function act(log: FightLog, label: string, code: string, fire: () => void) {
+/** Fire a UI action that should make the client send `code` (GA001 / GA300 / GA303); wait for the whole exchange.
+ *  "miss": a critical miss (GA 302 / 305 instead of 300 / 303), after which the server ends the turn. */
+async function act(log: FightLog, label: string, code: string, fire: () => void): Promise<false | "ok" | "miss"> {
   const s0 = h.sent.length, r0 = h.received.length;
   fire();
   if (!(await h.until(`${label}: ${code} sent`, () => h.sent.slice(s0).some((f) => f.startsWith(code)), 1500))) {
@@ -338,8 +339,8 @@ async function act(log: FightLog, label: string, code: string, fire: () => void)
     return false;
   }
   await h.need(`${label}: GAF`, () => h.received.slice(r0).some((f) => f == "GAF" + myID()) || over(), 8000);
-  const type = { GA001: "1", GA300: "300", GA303: "303" }[code];
-  const ga = h.received.slice(r0).find((f) => new RegExp(`^GA\\d+;${type};${myID()};`).test(f));
+  const types = { GA001: "1", GA300: "300|302", GA303: "303|305" }[code];
+  const ga = h.received.slice(r0).find((f) => new RegExp(`^GA\\d+;(?:${types});${myID()};`).test(f));
   if (!ga) {
     log.refused.push(`${label}: the client sent ${h.sent.slice(s0).join(" ").trim()}, the server refused (GAF only)`);
     throw new Error(log.refused.at(-1));
@@ -347,9 +348,11 @@ async function act(log: FightLog, label: string, code: string, fire: () => void)
   // GAF already resets the action manager; the action is over once it is acknowledged (GKK<n>, end of the animation)
   // and the actor's sequencer has run the queued tail (AP update, interaction re-enabled: Events.AKS.Game.as:474-494).
   const ack = "GKK" + ga.slice(2, ga.indexOf(";")) + "\n";
-  await h.need(`${label}: ${ack.trim()} and sequencer idle`, () => over() || (h.sent.slice(s0).includes(ack) && !me().SEQUENCER_actions.isPlaying() && G.BATTLEFIELD.Interaction.isEnable()), 20000);
+  const miss = /^GA\d+;30[25];/.test(ga);
+  if (miss) log.misses++;
+  await h.need(`${label}: ${ack.trim()} and sequencer idle`, () => over() || (h.sent.slice(s0).includes(ack) && !me().SEQUENCER_actions.isPlaying() && (G.BATTLEFIELD.Interaction.isEnable() || (miss && !myTurn()))), 20000);
   await h.run(300);
-  return true;
+  return miss ? "miss" : "ok";
 }
 
 /** Click the slot, roll over the candidate cells; click the first one the client accepts. */
@@ -365,9 +368,9 @@ async function cast(log: FightLog, spell: Spell, targets: number[]) {
     h.hoverCell(t);
     if (G.BATTLEFIELD.Interaction.canLaunchSpell) {
       h.shot(`aim-${String(spell.m_ID)}`, false);
-      const ok = await act(log, `spell ${String(spell.m_ID)} on ${t}`, "GA300", () => (h.p.mouseDown(), h.p.mouseUp()));
-      if (ok) log.cast.push(Number(spell.m_ID));
-      return ok;
+      const r = await act(log, `spell ${String(spell.m_ID)} on ${t}`, "GA300", () => (h.p.mouseDown(), h.p.mouseUp()));
+      if (r == "ok") log.cast.push(Number(spell.m_ID)); // a missed spell is not recorded by the client: cast it again
+      return r;
     }
   }
   // nothing valid: a click on a refused cell leaves spell mode without sending (Events.Battlefield.Interaction.as:47-52)
@@ -385,9 +388,9 @@ async function closeCombat(log: FightLog, target: number) {
     h.clickCell("cancel close combat", target);
     return false;
   }
-  const ok = await act(log, `close combat on ${target}`, "GA303", () => (h.p.mouseDown(), h.p.mouseUp()));
-  if (ok) log.cc++;
-  return ok;
+  const r = await act(log, `close combat on ${target}`, "GA303", () => (h.p.mouseDown(), h.p.mouseUp()));
+  if (r == "ok") log.cc++;
+  return r;
 }
 async function moveTo(log: FightLog, cell: number) {
   await h.run(600); // CLICK_MINIMUM_TIMER between two cell clicks
@@ -446,7 +449,7 @@ async function diagnose() {
 }
 
 async function fight(p: Policy): Promise<Record<string, unknown>> {
-  const log: FightLog = { turns: 0, cast: [], cc: 0, checks: [], timerExpired: 0, moves: 0, refused: [] };
+  const log: FightLog = { turns: 0, cast: [], cc: 0, misses: 0, checks: [], timerExpired: 0, moves: 0, refused: [] };
   const want = [...(p.want ?? [])];
   let ccWanted = !!p.cc;
   const end = Date.now() + (p.maxMs ?? 600000);
@@ -519,7 +522,7 @@ async function fight(p: Policy): Promise<Record<string, unknown>> {
           h.clickCell("out of range target", Number(foe.cell));
         });
     }
-    const actionsBefore = log.cast.length + log.cc + log.moves;
+    const actionsBefore = log.cast.length + log.cc + log.moves + log.misses;
     for (let guard = 0; guard < 15 && myTurn() && !over(); guard++) {
       await h.need("interaction enabled", () => G.BATTLEFIELD.Interaction.isEnable() || !myTurn() || over(), 10000);
       const f = enemy();
@@ -538,16 +541,18 @@ async function fight(p: Policy): Promise<Record<string, unknown>> {
       for (const id of want) {
         const x = byId(id);
         if (!x || Number(x.m_APCost) > ap || !DC().Player.SpellsManager.checkCanLaunchSpell(String(id), undefined)) continue;
-        if (await cast(log, x, targetsOf(x))) {
-          want.splice(want.indexOf(id), 1);
+        const r = await cast(log, x, targetsOf(x));
+        if (r) {
+          if (r == "ok") want.splice(want.indexOf(id), 1);
           did = true;
           break;
         }
       }
       if (did) continue;
       const ccAP = Number(DC().Player.CCData.m_APCost);
-      if ((ccWanted || !p.passive) && ap >= ccAP && inReach("cc", here, Number(f.cell)) && (await closeCombat(log, Number(f.cell)))) {
-        ccWanted = false;
+      const cc = (ccWanted || !p.passive) && ap >= ccAP && inReach("cc", here, Number(f.cell)) && (await closeCombat(log, Number(f.cell)));
+      if (cc) {
+        if (cc == "ok") ccWanted = false;
         continue;
       }
       if (!p.passive && !want.length && !ccWanted) {
@@ -569,7 +574,7 @@ async function fight(p: Policy): Promise<Record<string, unknown>> {
       const stop = walk.find((c) => inReach(goal, c, Number(f.cell))) ?? walk.at(-1)!;
       if (!(await moveTo(log, stop))) break;
     }
-    idleRun = log.cast.length + log.cc + log.moves == actionsBefore ? idleRun + 1 : 0;
+    idleRun = log.cast.length + log.cc + log.moves + log.misses == actionsBefore ? idleRun + 1 : 0;
     if (idleRun >= 3 && !p.passive && myTurn() && !over()) throw new Error(`stalled: 3 turns without an action. ${await diagnose()}`);
     if (myTurn() && !over()) {
       await h.run(300);

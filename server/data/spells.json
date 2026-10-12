@@ -1,5 +1,5 @@
 {
- "provenance": "Per spell: `provenance` says where the name/identity comes from, `source` cites it, every level has its own `provenance` for its numbers. Ids are the client's spell ids (icon clips/spells/icons/<id>.swf, lang S[id]) as identified by the lang reconstruction (web/public/lang/fr.json, docs/content-reconstruction.md). `anim` (clips/spells/<anim>.swf) and `launch_type` are authored (the pairing is UNKNOWN in the client): types 10/11 never wait on the spell SWF, 30/31 use arc SWFs ended by launchToArc. Range 0 + on_itself = the descriptions' 'PO : -1' (self). Levels 2-5 are authored (+1 to dice bonuses per level) unless tagged otherwise.",
+ "provenance": "Per spell: `provenance` says where the name/identity comes from, `source` cites it, every level has its own `provenance` for its numbers. Ids are the client's spell ids (icon clips/spells/icons/<id>.swf, lang S[id]) as identified by the lang reconstruction (web/public/lang/fr.json, docs/content-reconstruction.md). `anim` (clips/spells/<anim>.swf) and `launch_type` are authored (the pairing is UNKNOWN in the client): types 10/11 never wait on the spell SWF, 30/31 use arc SWFs ended by launchToArc. Range 0 + on_itself = the descriptions' 'PO : -1' (self). Levels 2-5 are authored (+1 to dice bonuses per level) unless tagged otherwise. Every level's crit / miss (1 in n, 0 = never) and crit_bonus (added to the fixed part of its damage, drain and heal dice on a critical) are authored: 30 / 50 / 3 everywhere; the critical and critical-miss mechanics are owner (stated by the project owner).",
  "spells": [
   {
    "id": 1,
@@ -25,6 +25,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -42,6 +45,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -59,6 +65,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -76,6 +85,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -93,6 +105,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -129,6 +144,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta_forum"
     },
     {
@@ -153,6 +171,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -177,6 +198,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -201,6 +225,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -225,6 +252,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -256,6 +286,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -275,6 +308,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -294,6 +330,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -313,6 +352,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -332,6 +374,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -361,6 +406,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -378,6 +426,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -395,6 +446,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -412,6 +466,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -429,6 +486,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -455,6 +515,9 @@
        "value": 1
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -469,6 +532,9 @@
        "value": 1
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -483,6 +549,9 @@
        "value": 1
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -497,6 +566,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -511,6 +583,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -540,6 +615,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -557,6 +635,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -574,6 +655,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -591,6 +675,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -608,6 +695,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -637,6 +727,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -654,6 +747,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -671,6 +767,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -688,6 +787,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -705,6 +807,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -742,6 +847,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -767,6 +875,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -792,6 +903,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -817,6 +931,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -842,6 +959,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -870,6 +990,9 @@
        "turns": 3
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -886,6 +1009,9 @@
        "turns": 3
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -902,6 +1028,9 @@
        "turns": 3
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta_forum"
     },
     {
@@ -918,6 +1047,9 @@
        "turns": 4
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -934,6 +1066,9 @@
        "turns": 5
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -971,6 +1106,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -996,6 +1134,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1021,6 +1162,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1046,6 +1190,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1071,6 +1218,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -1100,6 +1250,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -1117,6 +1270,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1134,6 +1290,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1151,6 +1310,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1168,6 +1330,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -1196,6 +1361,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1213,6 +1381,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1230,6 +1401,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1247,6 +1421,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1264,6 +1441,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -1292,6 +1472,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1309,6 +1492,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1326,6 +1512,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1343,6 +1532,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1360,6 +1552,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -1386,6 +1581,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta_forum"
     },
     {
@@ -1400,6 +1598,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1414,6 +1615,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1428,6 +1632,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1442,6 +1649,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -1467,6 +1677,9 @@
        "value": 1
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -1481,6 +1694,9 @@
        "value": 1
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1495,6 +1711,9 @@
        "value": 1
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1509,6 +1728,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1523,6 +1745,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -1553,6 +1778,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -1571,6 +1799,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1589,6 +1820,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1607,6 +1841,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1625,6 +1862,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -1654,6 +1894,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -1671,6 +1914,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1688,6 +1934,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1705,6 +1954,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta_forum"
     },
     {
@@ -1722,6 +1974,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta_forum"
     }
    ]
@@ -1750,6 +2005,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1766,6 +2024,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1782,6 +2043,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1798,6 +2062,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1814,6 +2081,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -1842,6 +2112,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -1858,6 +2131,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1874,6 +2150,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1890,6 +2169,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1906,6 +2188,9 @@
        "turns": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -1935,6 +2220,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -1952,6 +2240,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1969,6 +2260,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -1986,6 +2280,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2003,6 +2300,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2033,6 +2333,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -2051,6 +2354,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2069,6 +2375,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2087,6 +2396,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2105,6 +2417,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2133,6 +2448,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -2150,6 +2468,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2167,6 +2488,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2184,6 +2508,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2201,6 +2528,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2229,6 +2559,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -2246,6 +2579,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2263,6 +2599,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2280,6 +2619,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2297,6 +2639,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2331,6 +2676,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -2353,6 +2701,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2375,6 +2726,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2397,6 +2751,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2419,6 +2776,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2447,6 +2807,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2464,6 +2827,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2481,6 +2847,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2498,6 +2867,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2515,6 +2887,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2549,6 +2924,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta_forum"
     },
     {
@@ -2571,6 +2949,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2593,6 +2974,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2615,6 +2999,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2637,6 +3024,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2665,6 +3055,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -2682,6 +3075,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2699,6 +3095,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2716,6 +3115,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2733,6 +3135,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2758,6 +3163,9 @@
        "kind": "jump"
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -2771,6 +3179,9 @@
        "kind": "jump"
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2784,6 +3195,9 @@
        "kind": "jump"
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2797,6 +3211,9 @@
        "kind": "jump"
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2810,6 +3227,9 @@
        "kind": "jump"
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2842,6 +3262,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -2863,6 +3286,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2884,6 +3310,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2905,6 +3334,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2926,6 +3358,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -2954,6 +3389,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -2971,6 +3409,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -2988,6 +3429,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3005,6 +3449,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3022,6 +3469,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -3050,6 +3500,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -3066,6 +3519,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3082,6 +3538,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3098,6 +3557,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3114,6 +3576,9 @@
        "turns": 63
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -3146,6 +3611,9 @@
        "value": 1
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "beta"
     },
     {
@@ -3167,6 +3635,9 @@
        "value": 1
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3188,6 +3659,9 @@
        "value": 1
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3209,6 +3683,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3230,6 +3707,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -3260,6 +3740,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3278,6 +3761,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3296,6 +3782,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3314,6 +3803,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3332,6 +3824,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -3360,6 +3855,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3377,6 +3875,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3394,6 +3895,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3411,6 +3915,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3428,6 +3935,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -3453,6 +3963,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3467,6 +3980,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3481,6 +3997,9 @@
        "value": 2
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3495,6 +4014,9 @@
        "value": 3
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3509,6 +4031,9 @@
        "value": 3
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]
@@ -3537,6 +4062,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3554,6 +4082,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3571,6 +4102,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3588,6 +4122,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     },
     {
@@ -3605,6 +4142,9 @@
        ]
       }
      ],
+     "crit": 30,
+     "miss": 50,
+     "crit_bonus": 3,
      "provenance": "authored"
     }
    ]

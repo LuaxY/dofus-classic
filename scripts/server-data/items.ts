@@ -7,7 +7,8 @@
 //   bun scripts/server-data/items.ts
 //
 // Effects (ids stated by the project owner, numbers authored, see PROVENANCE): weapons (super type 2) get the neutral
-// damage effect 100 (p1 D p2 + p3), whose dice replace the class close-combat dice on the server; every other item gets
+// damage effect 100 (p1 D p2 + p3), whose dice replace the class close-combat dice on the server, and their type's
+// close-combat numbers (WEAPON_TYPES: AP cost, critical odds, critical bonus on p3); every other item gets
 // the karma effect 123 (+p1 to the karma characteristic while equipped). The push effect 5
 // is not used: no server rule for it. Every template has at least one effect: an empty effects field still yields one
 // effect of type NaN (Item.as:15), whose name part is "?".
@@ -27,6 +28,19 @@ const DAMAGE = 100, KARMA = 123;
 for (const e of [DAMAGE, KARMA]) if (!fr.I.e[e]) throw new Error(`fr.json I.e has no effect ${e}`);
 const types = Object.fromEntries(Object.entries(fr.I.t).map(([t, v]) => [t, v.t]));
 const classWeapons = Object.fromEntries(Object.entries(fr.G).map(([c, v]) => [c, v.w]));
+
+// Close combat with a weapon, by lang I.t type: AP cost, crit / miss odds (1 in n), crit_bonus (added to p3 of every
+// damage effect on a critical). No range: the client aims close combat at range 1 whatever the weapon.
+const WEAPON_TYPES: Record<number, { ap: number; crit: number; miss: number; crit_bonus: number }> = {
+  2: { ap: 4, crit: 20, miss: 50, crit_bonus: 2 }, // Arc
+  3: { ap: 3, crit: 30, miss: 50, crit_bonus: 2 }, // Baguette
+  4: { ap: 4, crit: 30, miss: 50, crit_bonus: 3 }, // Bâton
+  5: { ap: 3, crit: 15, miss: 40, crit_bonus: 2 }, // Dagues
+  6: { ap: 3, crit: 25, miss: 50, crit_bonus: 3 }, // Epée
+  7: { ap: 5, crit: 30, miss: 40, crit_bonus: 5 }, // Marteau
+  8: { ap: 4, crit: 30, miss: 50, crit_bonus: 3 }, // Pelle
+};
+for (const [t, st] of Object.entries(types)) if (st == 2 && !WEAPON_TYPES[Number(t)]) throw new Error(`weapon type ${t} has no WEAPON_TYPES entry`);
 
 const items: { type: number; gfx: number; effects: number[][] }[] = [];
 for (const type of Object.keys(types).map(Number).sort((a, b) => a - b)) {
@@ -60,11 +74,15 @@ const PROVENANCE = {
     "effects [id, p1, p2, p3] (0 = absent, sent as '0', Item.as:30-32): ids 100 (neutral damage p1 D p2 + p3, 'dommages : #1{~1D}#2{~2~3+}#3') and 123 (karma +p1, '+#1 au karma') are the lang I.e entries " +
     "(texts beta_screenshot, docs/content-reconstruction.md §3; ids and parameter layout owner: stated by the project owner, confidence high); every number is authored: weapons 1D(4 + (gfx-1) mod 5) + floor((gfx-1)/5), others +gfx karma.",
   types: "type → super type, lang I.t[type].t (retro_fr); the equipment slots take super types 1, 2, 3, 4, 3, 5 (modules_Interfaces/DefineSprite_598_InventoryViewer, EquipementItemContainer on(initialize))",
+  weapon_types:
+    "weapon type → close combat with it: AP cost, crit / miss odds (1 in n, 0 = never), crit_bonus added to p3 of every damage effect on a critical; numbers authored, " +
+    "the rule that a weapon's own AP cost and critical values replace the class ones and that a critical adds its bonus to p3 is owner (stated by the project owner). " +
+    "No range, minimum range, in-line or line-of-sight numbers: the client aims close combat at range 1 (+ the range moderator) with line of sight whatever the weapon (AKSClient/Events.Battlefield.Interaction.as:119-129)",
   class_weapons: "class → weapon types it can equip, lang G[class].w (beta asset: each class sprite imports exactly one weapon, <w[0]>_1 of weapons.swf); Item.canEquip, AKSClient/Dofus.DataCenter.Item.as:107-130",
   max_items: "authored; the client has the 'inventory full' answer OAEF (AKSClient/Dofus.Client.Items.as:32-41) but no size",
 };
 writeFileSync(
   join(ROOT, "server/data/items.json"),
-  JSON.stringify({ provenance: PROVENANCE, max_items: 30, types, class_weapons: classWeapons, items }, null, 1).replace(/\[[\d,\s]+\]/g, (a) => a.replace(/\s+/g, " ").replace("[ ", "[").replace(" ]", "]")) + "\n",
+  JSON.stringify({ provenance: PROVENANCE, max_items: 30, types, class_weapons: classWeapons, weapon_types: WEAPON_TYPES, items }, null, 1).replace(/\[[\d,\s]+\]/g, (a) => a.replace(/\s+/g, " ").replace("[ ", "[").replace(" ]", "]")) + "\n",
 );
 console.log(`${items.length} item templates → server/data/items.json; e.g. "${sample(4).name}" (${sample(4).description.trim()}), "${sample(11).name}" (${sample(11).description.trim()})`);

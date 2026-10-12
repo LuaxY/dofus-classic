@@ -39,8 +39,8 @@ Parsed by `KERNEL.CharactersManager.getSpellObjectFromData` (`AKSClient/Dofus.Ch
 | 6 | `m_APCost` | B64 | AP cost, checked client-side (`AKSClient/Dofus.Kernel.as:122`) |
 | 7 | `m_bLineOfSight` | `"1"` | requires line of sight (`AKSClient/Events.Battlefield.Interaction.as:96-102`) |
 | 8 | `m_bFreeCell` | `"1"` | target must be a free walkable cell (`AKSClient/Events.Battlefield.Interaction.as:92-95`) |
-| 9 | `m_CriticalHit` | B64 | **read but unused** |
-| 10 | `m_Criticalfailure` | B64 | **read but unused** |
+| 9 | `m_CriticalHit` | B64 | **read but unused** (this server: the level's critical-hit odds, 1 in n) |
+| 10 | `m_Criticalfailure` | B64 | **read but unused** (this server: its critical-miss odds) |
 | 11 | `m_LaunchCountByTurn` | B64 | casts per turn (`AKSClient/Dofus.SpellsManager.as:74-90`) |
 | 12 | `m_LaunchCountByPlayerTurn` | B64 | casts per target per turn (`AKSClient/Dofus.SpellsManager.as:91-107`) |
 | 13 | `m_DelayBetweenLaunch` | B64 | turns between casts; ≥ 63 = never again (`AKSClient/Dofus.DataCenter.SpellLaunch.as:16-28`) |

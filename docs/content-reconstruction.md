@@ -142,8 +142,9 @@ distinctive icon.
 
 ### `M` (maps)
 
-143 entries: the 53 maps of `server/data/maps.json` (`retro_fr`, confidence low), 86 world maps (`retro_fr`, below)
-and 4 authored placeholders.
+143 entries: 53 server maps (`retro_fr`, confidence low; the 50 fight maps of `server/data/maps.json` plus 740, 1490
+and 1493, since dropped for their white tiles, `docs/server.md` "White tiles"), 86 world maps (`retro_fr`, below) and 4
+authored placeholders.
 
 **Server maps (53, `retro_fr`).** Names come from `vendor/dofedex/lang-fr/maps_fr_35.swf` (decompiled with
 `tools/ffdec.sh -format script:as`). All 53 ids are in `MA.m`, but `MA.m[id]` is only `{x, y, sa}` (104 of the
@@ -359,8 +360,11 @@ lang evidence in the sibling build.
 2. **Close combat.** Dice and AP of the eight other classes in beta 5b (`G[id].cc`); was it still 1D5 / 3 PA for
    Iop and Ecaflip in 5b?
    *Partly answered (project owner, `owner`):* the per-class dice and AP are still unknown. Mechanics: a critical hit
-   adds the critical bonus to the dice count; a critical miss spends the AP and ends the turn. Not implemented (the
-   server has no criticals).
+   adds the critical bonus to the dice count; a critical miss spends the AP and ends the turn. With a weapon, its own
+   AP cost and critical values replace the class ones, every damage effect fires, and a critical adds the bonus to
+   their `p3`. Implemented (`docs/server.md` "Close combat"); the odds and bonuses per class and weapon type are
+   `authored`. The client still aims close combat at range 1 with line of sight whatever the weapon, and its tooltip
+   shows the lang `G[id].cc`, not the weapon.
 3. **`GAME_RESULTS`.** The 4b screenshot shows `Résultat du combat`, the 5b SWF field is baked `Résultats du combat`.
    Which did 5b display?
 4. **Map names and ids** of the beta 5b fight maps (the `m` list in the Entraînement tab).

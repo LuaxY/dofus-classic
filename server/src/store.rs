@@ -72,11 +72,11 @@ impl Character {
         self.stats.get(&id).copied().unwrap_or(0)
             + if id == 13 { equipped.filter(|e| e[0] == ITEM_KARMA).map(|e| e[1] as i32).sum() } else { 0 }
     }
-    /// Close-combat dice of the weapon in slot 1 (the only slot taking weapons): its damage effect `[count, faces,
-    /// bonus]`. Server rule (authored): nothing the client shows depends on it (docs/server.md "Items").
-    pub fn weapon_dice(&self) -> Option<Dice> {
-        let weapon = self.items.iter().find(|i| i.position == Some(1))?;
-        weapon.effects.iter().find(|e| e[0] == ITEM_DAMAGE).map(|e| [e[1] as i32, e[2] as i32, e[3] as i32])
+    /// The weapon in slot 1 (the only slot taking weapons): its type and every damage effect `[count, faces, bonus]`,
+    /// which all fire on a close combat (rule stated by the project owner; docs/server.md "Close combat").
+    pub fn weapon(&self) -> Option<(u32, Vec<Dice>)> {
+        let w = self.items.iter().find(|i| i.position == Some(1))?;
+        Some((w.kind, w.effects.iter().filter(|e| e[0] == ITEM_DAMAGE).map(|e| [e[1] as i32, e[2] as i32, e[3] as i32]).collect()))
     }
 }
 
@@ -135,13 +135,13 @@ mod tests {
         // A character saved before items existed still loads.
         let old = r#"{"id":1,"account":"a","name":"Bob","class":8,"sex":0,"colors":[-1,-1,-1],"level":1,"xp":0,"gold":0,"bonus":0,"stats":{},"spells":[]}"#;
         let mut c: Character = serde_json::from_str(old).unwrap();
-        assert!(c.items.is_empty() && c.weapon_dice().is_none());
+        assert!(c.items.is_empty() && c.weapon().is_none());
         let staff = Item { id: 26, kind: 4, gfx: 3, position: None, effects: vec![[100, 1, 6, 2], [123, 10, 0, 0]] };
         assert_eq!(staff.entry(), "1a~4~3~FFFFFF~~64#1#6#2,7b#a#0#0");
         c.items.push(staff);
-        assert!(c.weapon_dice().is_none() && c.stat(13) == 0, "in the bag");
+        assert!(c.weapon().is_none() && c.stat(13) == 0, "in the bag");
         c.items[0].position = Some(1);
         assert_eq!(c.items[0].entry(), "1a~4~3~FFFFFF~1~64#1#6#2,7b#a#0#0");
-        assert_eq!((c.weapon_dice(), c.stat(13)), (Some([1, 6, 2]), 10));
+        assert_eq!((c.weapon(), c.stat(13)), (Some((4, vec![[1, 6, 2]])), 10));
     }
 }

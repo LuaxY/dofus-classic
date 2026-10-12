@@ -2,6 +2,7 @@
  "provenance": {
   "items": "One template per item icon of beta 5b (dofus-5b/clips/items/<type>/<gfx>.swf, the file Item.iconFile loads: AKSClient/Dofus.DataCenter.Item.as:38-47). type: lang I.t ids (web/public/lang/fr.json; names and super types retro_fr items_fr_13, consistent with the 5b slots and the class sprites' weapon imports). effects [id, p1, p2, p3] (0 = absent, sent as '0', Item.as:30-32): ids 100 (neutral damage p1 D p2 + p3, 'dommages : #1{~1D}#2{~2~3+}#3') and 123 (karma +p1, '+#1 au karma') are the lang I.e entries (texts beta_screenshot, docs/content-reconstruction.md §3; ids and parameter layout owner: stated by the project owner, confidence high); every number is authored: weapons 1D(4 + (gfx-1) mod 5) + floor((gfx-1)/5), others +gfx karma.",
   "types": "type → super type, lang I.t[type].t (retro_fr); the equipment slots take super types 1, 2, 3, 4, 3, 5 (modules_Interfaces/DefineSprite_598_InventoryViewer, EquipementItemContainer on(initialize))",
+  "weapon_types": "weapon type → close combat with it: AP cost, crit / miss odds (1 in n, 0 = never), crit_bonus added to p3 of every damage effect on a critical; numbers authored, the rule that a weapon's own AP cost and critical values replace the class ones and that a critical adds its bonus to p3 is owner (stated by the project owner). No range, minimum range, in-line or line-of-sight numbers: the client aims close combat at range 1 (+ the range moderator) with line of sight whatever the weapon (AKSClient/Events.Battlefield.Interaction.as:119-129)",
   "class_weapons": "class → weapon types it can equip, lang G[class].w (beta asset: each class sprite imports exactly one weapon, <w[0]>_1 of weapons.swf); Item.canEquip, AKSClient/Dofus.DataCenter.Item.as:107-130",
   "max_items": "authored; the client has the 'inventory full' answer OAEF (AKSClient/Dofus.Client.Items.as:32-41) but no size"
  },
@@ -30,6 +31,50 @@
   "8": [6],
   "9": [2],
   "10": [4]
+ },
+ "weapon_types": {
+  "2": {
+   "ap": 4,
+   "crit": 20,
+   "miss": 50,
+   "crit_bonus": 2
+  },
+  "3": {
+   "ap": 3,
+   "crit": 30,
+   "miss": 50,
+   "crit_bonus": 2
+  },
+  "4": {
+   "ap": 4,
+   "crit": 30,
+   "miss": 50,
+   "crit_bonus": 3
+  },
+  "5": {
+   "ap": 3,
+   "crit": 15,
+   "miss": 40,
+   "crit_bonus": 2
+  },
+  "6": {
+   "ap": 3,
+   "crit": 25,
+   "miss": 50,
+   "crit_bonus": 3
+  },
+  "7": {
+   "ap": 5,
+   "crit": 30,
+   "miss": 40,
+   "crit_bonus": 5
+  },
+  "8": {
+   "ap": 4,
+   "crit": 30,
+   "miss": 50,
+   "crit_bonus": 3
+  }
  },
  "items": [
   {

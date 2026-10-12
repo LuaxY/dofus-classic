@@ -40,7 +40,8 @@ over the live map, never the client's own instance), keeping the AP of the next 
 range: no `GA300`/`GA303`, back to move mode). `idleTurns` lets the server's turn timer end a turn; `giveUpAtTurn`
 uses menu → Abandonner → Oui; `say`/`hear` check the fight chat. Every action waits for the whole exchange: request
 frame sent, `GA<n>;<type>;<me>` + `GAF`, the client's `GKK<n>` after the animation, the actor's sequencer idle and the
-interaction re-enabled. After the result, an open message box (a winner's `Nouvel objet : …`, `OAKO`) is read into the
+interaction re-enabled. A critical miss (`GA<n>;302` / `305` instead of `300` / `303`) counts in `misses`: the server
+ends the turn, and a missed wanted spell or close combat is tried again on a later turn. After the result, an open message box (a winner's `Nouvel objet : …`, `OAKO`) is read into the
 step's `award` and closed, so every scenario's winners get past it.
 
 **What fails a step**: the step's own condition times out; the client logged an error; a sequencer timeout fired in a

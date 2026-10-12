@@ -376,6 +376,9 @@ the requests for `GIP`, `GIC`, `GIM` **[inference]**. A server may ignore them.
 
 Examples: `GTL|12|7\0`, `GTS12|30000\0`, `GTF12\0`.
 
+The client takes the `GTL` order as given and never shows initiative. This server orders it by initiative
+(`docs/server.md` "Turns"): the team whose best fighter has the higher initiative first, then the teams alternate.
+
 ---
 
 ## GE — game end (S→C)

@@ -174,6 +174,7 @@ for (let turn = 0; turn < 40 && !died; turn++) {
   await b.next("turnStart");
   const foe = me == a ? b : a;
   let ap = 6;
+  let missed = false; // a critical miss (GA 302) ends the turn server-side: GTF + GTS follow
   const act = async (frame: string) => {
     me.send(frame);
     for (const c of [me, foe]) {
@@ -186,6 +187,7 @@ for (let turn = 0; turn < 40 && !died; turn++) {
         if (actionType == 1 && c == me) cells.set(characterId!, extractFullPath(params!, map.width).at(-1)!);
         if (actionType == 102 && c == me) ap += Number(params!.split(",")[1]);
         if (actionType == 103 && c == me) died = true;
+        if (actionType == 302 && c == me) missed = true;
         if (c == me && characterId == me.id && !Number.isNaN(Number(id))) me.send(P.actionAck(id!));
       }
       if (!started) fail(`the server refused ${JSON.stringify(frame)}, which the TS client allowed`);
@@ -214,8 +216,8 @@ for (let turn = 0; turn < 40 && !died; turn++) {
       if (path) await act(P.sendActions(1, [path]));
     }
   }
-  for (let k = 0; k < 2 && !died && ap >= spell.ap && inRange(); k++) await act(P.sendActions(300, [spell.id, target]));
-  if (!died) me.send(P.turnEnd());
+  for (let k = 0; k < 2 && !died && !missed && ap >= spell.ap && inRange(); k++) await act(P.sendActions(300, [spell.id, target]));
+  if (!died && !missed) me.send(P.turnEnd());
 }
 if (!died) {
   b.send(P.leaveGame()); // give up: B leaves, A wins alone
