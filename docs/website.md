@@ -1,4 +1,4 @@
-# Project website: what dofus.com looked like in 2004, and how to rebuild that look
+# Project website: the 2004 dofus.com look, and how to rebuild it
 
 Research for a small fan site: a landing page that explains the project, plus a "Jouer" page that centres the 742×550
 game canvas and decorates around it. Researched 2026-10-12 from Wayback Machine captures (saved, with provenance
@@ -6,87 +6,99 @@ tables, in `vendor/wayback-dofus-site/beta/` and `vendor/wayback-dofus-site/post
 repo, and Ankama's published terms. "OBSERVED" = seen in a dated capture; "INFERRED" = deduced, with the reason given.
 The project is read here as **non-commercial** (a free fan tribute, no money involved).
 
-## 1. Summary
+## 1. Decisions and summary
 
-- **Era.** On 13 Jan 2004 (beta 5b) dofus.com was a **white page with a 750 px box: sky-blue `#2F9BDA` header with the
-  gold "Dofus" logo, an orange `#FF9900` nav bar, grey `#EFEFEF` cards, Verdana 11 px**. The parchment-on-dark-olive
-  site most players remember is the **1.0 launch site (from 23–26 Aug 2004)**, i.e. post-beta. The beta-era site's blue
-  matches the game's own blue interface, so it is the right base, and it is also the period the project recreates.
-- **Play page.** Copy the original launcher `dofus-5b/lancement.html`: `#203040` page, 2 px white frame, black box,
-  742×550 game, centred. jouer.dofus.com used the same frame in 2004 (`beta/pages/jouer.dofus.com_login.php_20040212.html`).
-- **Legal.** Ankama's current terms forbid using its art and trademarks without written consent, **and** forbid
-  decompiling, emulators and protocol emulation (§3). A disclaimer covers attribution and trademarks only.
-- **Build.** Two static HTML pages in the existing Vite `web/` root, plain CSS, no framework (§7). One unrelated
-  blocker for going live: the production build very likely drops the game's dynamically imported scripts (§7.4).
+Owner decisions (2026-10-12):
 
-## 2. What the site looked like (beta era)
+- **Design base: dofus.com version 1.0** (launched 23–26 Aug 2004, live until May 2005): parchment cards on a dark
+  olive page (§2). The beta-era site (blue/orange, live for beta 5b) is kept as background in §10.
+- **Logos:** the gold "Dofus" wordmark is used; the Ankama / Ankama Studio logos are not.
+- **Copy:** French, *vous* (as on dofus.com in 2004).
+- **Music:** optional on the landing page, off by default (§6).
 
-Full timeline, page list and CSS notes: `vendor/wayback-dofus-site/beta/README.md`.
+Summary:
 
-| Period | Site | Look |
-|---|---|---|
-| 2003-06-28 | dofus.com placeholder | "DOFUS sera bientôt disponible" |
-| 2003-08 → 2003-12 | Old ASP site, jouer.dofus.com tester portal, ASP forum | All blue: body `#37A6DF`, cells `#258DD4`, frames `#0A508E`/`#08518C`, button orange `#FF6533`, links `#FFFFAA`, Verdana 11 px white (`beta/css/dofus.com_style.css_20031202.css`) |
-| **2003-12-22 → 2004-08-29** | **New PHP site `index.php?page=…`** (the one live for 5b) | White page, 750 px box, Flash header, blue/orange (below) |
-| 2004-01 (5b day: 2004-01-13) | Forum still the old ASP one, at `forum.dofus.com` and `ankama-studio.com/forumdofus/` | Old blue skin; CSS captured 2004-01-13 |
-| 2004-02-02 | New forum | Same frame as the main site (CSS only archived from 2004-04-13) |
-| From 2004-02 | `jouer.dofus.com/login.php` | 742×550 Flash on `#203040`, 2 px white frame |
+- The site wears the Sep 2004 look while the game is the Jan 2004 beta 5b. Say so once, in the footer (§9).
+- **Play page:** the game centred in a parchment frame under the same banner (§7).
+- **Legal:** Ankama's current terms forbid using its art and trademarks without written consent, **and** forbid
+  decompiling, emulators and protocol emulation (§4). A disclaimer covers attribution and trademarks only.
+- **Build:** two static HTML pages in the existing Vite `web/` root, plain CSS, no framework (§8). One unrelated
+  blocker for going live: the production build very likely drops the game's dynamically imported scripts (§8.4).
 
-**What was live on 13 Jan 2004** (INFERRED, three agreeing observations): the 22/12/2003 news announces "un site tout beau
-tout neuf"; the first homepage capture (2004-01-22) still has that item on top; the header SWF captured 2004-01-23 is
-the only version before 2004-01-30. The 2004-01-28 HTML even links a `style_130104.css` (13/01/04) in a comment.
+## 2. The chosen design: dofus.com 1.0 (Aug 2004)
 
-![Header SWF, 23 Jan 2004](../vendor/wayback-dofus-site/beta/swf-export/bandeau_20040123/frames/2.png)
+![dofus.com homepage, 29 Aug 2004 (Flash blocks pasted back from exported frames)](../vendor/wayback-dofus-site/post-beta/renders/d1_home_20040829_COMPOSITE_flash-frames_full.png)
 
-### Layout of the 2004 homepage
+OBSERVED: the banner SWF changed between 2004-08-23 06:11 and 2004-08-26 02:04; the new homepage is first captured
+2004-08-29 (`post-beta/pages/www.dofus.com_20040829113528.html`), last 2005-05-17. Its own news: "23/08/2004 La version
+1 de DOFUS est sortie... tous à vos postes !!!". The render above is a **composite**: the saved HTML and CSS with the
+three Flash blocks replaced by JPEXS frame exports (the banner frame is from the 2004-09-16 SWF).
 
-The January 2004 stylesheet was never archived. The January HTML uses 37 class/id names; 28 of them are styled in the
-2004-04-23 CSS (`beta/css/dofus.com_style.css_20040423.css`), so that CSS is a close proxy (INFERRED).
+![1.0 banner, 16 Sep 2004 (idle frame)](../vendor/wayback-dofus-site/post-beta/swf-export/d1_bandeau_20040916_frame3.png)
 
-- OBSERVED in January: header Flash 750×139 (HTML attributes); header blue `#2F9BDA`, orange nav `#FF9900`, gold logo,
-  UK/DE flags, "VS" medallion (SWF export); nav **S'inscrire · Explorations · Informations · Forums · Bonus · Contacts**;
-  left column with teaser (170×72 Flash), STATISTIQUES (inscrits 4904, testeurs 560), Partenaires.
-- From the April CSS: `.centreur` margin-top 15 px, text centred; `.general` 750 px, `margin: 0 auto`, 1 px black border;
-  Verdana 11 px (10 px in cards).
-- Columns (from asset widths and the reconstruction): left 170 px blue column, two 190 px content columns, right 170 px
-  column (IDENTIFICATION form, T-shirt).
-- Boxes: NEWS, ON PARLE DE DOFUS, **JOUER A LA BETA**, SUR LES FORUMS, IDENTIFICATION, COMPTOIR DE DOFUS,
-  STATISTIQUES, Partenaires, TEASER.
-- Footer: "D O F U S 2003/2004 - Ankama Studio - Tous droits réservés."
+### Layout
 
-![Reconstruction of the 22 Jan 2004 homepage (approximation: April CSS, March/April title GIFs)](../vendor/wayback-dofus-site/beta/renders/RECONSTRUCTED_dofus.com_index.php_20040122_1024x768.png)
+From `post-beta/css/d1_basic.css`, `d1_home.css`, `d1_generic.css` (captured 10–15 Sep 2004):
 
-The image above is a **reconstruction**, not a capture: the January HTML rendered with the April CSS and the March/April
-`.gif` ribbon titles (January used `.jpg` versions that were not archived). Real captures with matching CSS:
-`beta/renders/dofus.com_index.php_20040516_full.png`, `beta/renders/dofus.com_root_20040727_full.png`.
+- `body` `#2A2E09`; `* { margin: 0; padding: 0; font-family: Verdana, sans-serif }`.
+- `.general`: 765 px, centred, `padding: 5px 0 0 5px`.
+- Banner: 760×138 Flash (parchment, logo, Tofu bubble, two tab bars).
+- Top row `#hg`: 760×198, `margin-bottom: 10px` = `#flash` 518×197 (left) + `#abo` 242×197 (right).
+- Three columns `#bg`, `#bm`, `#bd`: 242 px each, 17 px gaps (3 × 242 + 2 × 17 = 760).
+- Footer: 763×51 cream strip (`img/d1_home_footer_simple.gif`), links + "Copyright © 2003/2004 - Ankama Studio - Tous
+  droits réservés.", text `#555555`.
+- Boxes: rounded corners, 1 px tan edge, each topped by a 242 px title image (71 px tall for big titles).
 
-### Design tokens for the beta-era look
+### Design tokens
 
 | Token | Value | Source |
 |---|---|---|
-| Page | `#FFFFFF` | Apr 2004 CSS |
-| Box | 750 px, 1 px solid black, centred, 15 px from top | Apr 2004 CSS |
-| Main blue (header, left column, inner menus) | `#2F9BDA` | Jan 2004 header SWF + Apr CSS |
-| Orange (nav, box titles, footer, content links) | `#FF9900` | Jan 2004 header SWF + Apr CSS |
-| Ribbon titles / sub-title blue | `#1275CA` / `#2A82CE` | Apr CSS |
-| Inner sub-menu | `#57AEE1` | Apr CSS |
-| Cards | `#EFEFEF`, rounded left edge, dotted blue separators | Apr CSS + `img/dofus.com_img-bordure_fenetre`, `point_bleu` |
-| Text | `#444` / `#555` / `#666` | Apr CSS |
-| Input border | `#08518C` | Apr CSS |
-| Logo golds / outline / brown | `#EAC74C`, `#EFD68E` / `#0C0604` / `#62351F` | logo bitmap |
-| Type | `Verdana, Geneva, sans-serif` 11 px; bold white on orange/blue bars | Apr CSS |
+| Page | `#2A2E09` (dark olive) | `d1_basic.css` |
+| Banner parchment | `#FEF8E8` | sampled, banner frame |
+| Card backgrounds | `#FDF8E9` (cream), `#F2EDD6`, `#E8E2C6`, `#DCD5B6` | `img/d1_home_fond_*` |
+| Card edge | `#B4926F` / `#AF8B67`, rounded | `img/d1_home_fond_*`, `d1_basic.css` |
+| Title tab | `#DCD5B6` parchment with folded corner, lettering `#432407` | sampled, `d1_home_titre_*.gif` |
+| Banner bubble bar | `#B0A47D`, white text | sampled |
+| Banner tab bar / active tab | `#E9E2C6` / `#A89F88`, bold dark text | sampled |
+| Orange accent (active tab) | `#FD9A00` (≈ the beta-era `#FF9900`) | sampled |
+| Links | `#A37A54` 11 px, underline on hover | `d1_generic.css` |
+| Buttons | `#88501B` brown pill, white bold text (`fd_bt_voter.gif` 68×24) | `d1_home.css` |
+| Inputs | 1 px `#88501B` border, 10 px text, hover/focus `#EEEEEE` | `d1_generic.css` |
+| Tables | header `#D5CFAF`, rows `#F3F0E3` / `#E9E5D4`, hover `#CCC7B3` | `d1_generic.css` |
+| Message box | 2 px `#88501B` border, bold `#88501B` text | `d1_generic.css` |
+| Body text | black, 11 px, justified; `h1` 12 px, `h2` 10 px | `d1_home.css` |
+| List bullet | small star `img/d1_etoilem.gif` | `d1_home.css` |
 
-Motifs: slanted blue 190×65 ribbon titles, each with a character cut-out; grey cards with a rounded left edge; orange
-pill buttons (70×21); a strip of 76×44 screenshot thumbnails; the "VS" medallion (the header showed two random
-characters facing off, but those character SWFs were never archived). The Tofu rollover bubble appears in the
-**2004-02-13** header SWF (beta 6b era); its texts are already in the January SWF.
+### Fonts and motifs
 
-Copy tone (OBSERVED): French; the main site says *vous* ("Inscrivez vous maintenant à Dofus !"), the tester portal and
-`dofus-5b/LIS-MOI.txt` say *tu* ("Accéder à ton compte"). News titles riff on French pop songs ("Oui, oui, tout a
-changé et tout, tout va cartonner… Hé ! Hé !", "Voyage voyage…"). Taglines: "Jeu de rôle tactique multijoueurs",
-"Seul ou à plusieurs, découvrez un univers sans limite", "partez à la recherche des 6 précieux Dofus".
+- Body: `Verdana, Geneva, sans-serif` everywhere (as in 2004).
+- Display: **Kharon 4a** (Bold) set the title "DOFUS, rejoignez la communauté !" in `communaute_home.swf` (font name
+  from the JPEXS export). DaFont lists Kharon 4a (by Orgdot, before 2005) as free (https://www.dafont.com/kharon4a.font);
+  check the licence file in the download before shipping it. The calligraphic lettering of the `titre_*.gif` images is a
+  bitmap, font not identified. The banner's "Wide awake" exists only as a partial glyph subset.
+- Motifs: parchment cards with rounded corners; title tabs with a folded corner and a monster vignette (a Bouftou-like
+  sheep, a red fire creature, a blindfolded black creature); a yellow bird (a Tofu, INFERRED) with a speech bubble in the
+  banner; a two-dagger "Loading" preloader; brown pill buttons; star bullets. The banner also showed two random
+  characters in a "VS" duel, but those SWFs (`swf/decor.swf`, `swf/perso/*.swf`) were never archived.
+- Copy tone: chatty and exclamatory, *vous*: "S'inscrire et jouer à DOFUS en quelques clics de souris", "DOFUS,
+  rejoignez la communauté !", "Découvrez un univers sans limite et partez à la recherche des précieux Dofus !", "tous à
+  vos postes !!!". Page title: "DOFUS - Jeu de role massivement multijoueur sur Internet".
 
-## 3. Legal constraints (read before choosing assets)
+## 3. Mapping the 1.0 homepage to the project landing
+
+Keep the grid; replace the commercial blocks (subscription, "semaine de test", T-shirt shop) with project content.
+
+| 1.0 block | Size | Project content | Title / art |
+|---|---|---|---|
+| Banner | 760×138 | Logo; Tofu bubble "Retrouvez la bêta 5b de DOFUS en quelques clics de souris"; top-right tab "Musique" toggle (§6); tabs **JOUER · Découvrir · News · Aide · Crédits** (JOUER → `/jouer.html`, active tab = orange accent) | Rebuilt in HTML/CSS. Tofu, frame and tab shapes can be exported from `post-beta/swf/d1_bandeau_20040916.swf` with `tools/ffdec.sh -export image,shape` |
+| `#flash` (hero) | 518×197 | "DOFUS, la bêta 5b est de retour !" (Kharon 4a), subtitle "Jeu de rôle tactique multijoueurs — version bêta du 13 janvier 2004", class group artwork | Game asset `clips/guilds/artwork/big/50.swf/1.png` (766×369, scaled) |
+| `#abo` | 242×197 | "Jouer à la bêta 5b": big brown JOUER button → `/jouer.html`, "Gratuit, sans abonnement, dans votre navigateur" | Redrawn title (Kharon 4a on a CSS tab) |
+| `#bg` | 242 | **Jouer directement**: 94×94 thumbnail of the port + three steps (s'inscrire, créer un personnage, rejoindre un salon). Below: **Aide** (controls, desktop browser, mouse and keyboard) | Original `titre_jouer.gif`; thumbnail from `port-preview/kernel/08-fight-turn.png` |
+| `#bm` | 242 | **News**: dated project journal, by hand. Below: **Tout savoir sur le jeu Dofus**: what beta 5b was, what is original vs reconstituted | Original `titre_new.gif`, `titre_savoir.gif` |
+| `#bd` | 242 | **Prochainement sur Dofus**: the port's roadmap. Below: **Crédits** (in place of "Le Comptoir") | Original `titre_proch.gif`; redrawn "Crédits" title |
+| Footer | 763×51 + block | Links, era note, disclaimer (§9) | `footer_simple.gif` or CSS |
+
+## 4. Legal constraints (read before choosing assets)
 
 - **No fan-site charter or fan kit exists today.** Ankama Terms of Use v13 (updated Aug 2025,
   https://account.ankama.com/fr/cgu, read 2026-10-12): §13.1 Ankamaverse elements (art, characters, names) and §13.3
@@ -105,81 +117,74 @@ changé et tout, tout va cartonner… Hé ! Hé !", "Voyage voyage…"). Tagline
   which describe the project itself (decompiled client, emulated server); only Ankama's written consent does. Asking
   Ankama first is the only path that removes the risk; that is the owner's call.
 
-## 4. What most players remember (post-beta, label as such if used)
-
-Full detail: `vendor/wayback-dofus-site/post-beta/README.md`.
-
-| Design | Dates | Look | Render |
-|---|---|---|---|
-| 1.0 launch site | banner swapped 23–26 Aug 2004 → May 2005 | Dark olive page `#2A2E09`, cream parchment cards `#FDF8E9`, tan borders `#B4926F`, brown calligraphic title tabs with monster vignettes, buttons `#88501B`; nav JOUER · Découvrir · News · Télécharger · Abonnement · Aide; "5€ par mois", "semaine de test" | `post-beta/renders/d1_home_20040829_COMPOSITE_flash-frames_full.png` (reconstructed from Flash frames) |
-| Splash + full-Flash site | May 2005 → 2006 | Chocolate `#3A261B`/`#442E21`, cream `#F6F5E9`, green `#0B6A39`/`#127546`, logo in foliage with a bird, "Tactical MMORPG" | `post-beta/renders/d2a_splash_20050718_wayback_1024x768.png` |
-| Community portal | Jul 2005 → 2006 | `#3A261B` page, white panels, greens `#00863F`/`#00A755`, sky header with a class line-up, orange footer | `post-beta/renders/dc_communaute_20050727_local_full.png` |
-
-Usable for a beta page without a label: the **gold wordmark** (byte-identical bitmap in the Jan 2004 and Sep 2004
-headers) and the tagline "Jeu de rôle massivement multijoueur sur Internet" (page title by Jul 2004). Everything else
-in this table (parchment, olive, chocolate/green, monster vignettes, subscription copy) is 1.x and should carry a
-"version 1.0, 2004–2005" caption if it appears, e.g. in a "then vs. later" strip.
-
-## 5. Assets: reuse, redraw, avoid
+## 5. Assets: use, redraw, avoid
 
 Paths: `B/` = `vendor/wayback-dofus-site/beta/`, `P/` = `vendor/wayback-dofus-site/post-beta/`, `M/` =
 `web/public/assets/media/bitmaps/` (generated, gitignored). All © Ankama unless stated.
 
 | Asset | Path | Size | Verdict |
 |---|---|---|---|
-| Official logo, transparent (from the 2004 **press kit**, i.e. handed out for reuse at the time) | `B/img/dofus.com_pages-presse-kits-dofusbig_20040304.png` | 1000×521 | Reuse with credit (owner's call) |
-| Gold logo from the header | `B/swf-export/bandeau_20040123/images/22.png` | 154×84 | Same |
-| Jan 2004 header (static parts) | `B/swf-export/bandeau_20040123/frames/2.png` | 750×139 | Reference; rebuild in HTML/CSS around the logo |
-| Ribbon titles NEWS / ON PARLE / JOUER A LA BETA / SUR LES FORUMS | `B/img/dofus.com_img-titre_*_20040331.gif` | 190×65 | Character art inside → reuse with credit, or redraw the ribbon shape without characters |
-| Card edge, dotted separator, pill button | `B/img/dofus.com_img-bordure_fenetre*`, `point_bleu*` (files captured 2005, names referenced by the 2004 CSS), `btvalider*` | small | Redraw in CSS (rounded corner, `border-bottom: 1px dotted`, pill) |
-| Amakna sky panorama (game menu background) | `M/modules/Interfaces.swf/8.jpg` | 742×550 | Reuse (game asset): landing hero or play-page backdrop |
-| Menu illustrations (fighters, catapult, books…) | `M/modules/Interfaces.swf/990–995.png` | ~100–154 px | Reuse as section icons |
-| Four-class group artwork | `M/clips/guilds/artwork/big/50.swf/1.png` | 766×369 | Reuse (landing hero) |
-| Trees (margin decorations) | `M/clips/objects.swf/1235.png`, `1238.png`, `687.png`, `654.png` | 103–215 px | Reuse around the game frame |
-| Spell icons | `M/clips/spells/icons/<id>.swf/1.jpg` | 40×40 | Reuse sparingly (bullets) |
-| Port screenshots | `web/public/assets/port-preview/kernel/02-menu.png`, `03-characters.png`, `06-lobby.png`, `08-fight-turn.png` | 742×550 | Reuse: these are our own renders |
-| Beta screenshots | `vendor/wayback-dofus-2004/screenshots/booge_wp_04.jpg` (4b fight), `booge_wp_03.jpg` (lobby) | ~746×553 | Fan-owned; credit the fan site |
-| Palette, layout, Verdana, ribbon/card/pill shapes | — | — | Redraw freely: design language, not assets |
-| 1.x monster vignettes, parchment tabs, subscription copy | `P/img/d1_home_titre_*.gif` etc. | — | Avoid, or label as 1.x |
+| Gold "Dofus" wordmark (banner bitmap, byte-identical in the Jan 2004 and Sep 2004 banners) | `P/swf-export/logo_dofus_154x84_bandeau.png` | 154×84 | **Use** (decided), at 1× |
+| Same wordmark, transparent, from the 2004 press kit | `B/img/dofus.com_pages-presse-kits-dofusbig_20040304.png` | 1000×521 | **Use** for 2× screens and the hero |
+| Ankama / Ankama Studio logos | `B/img/dofus.com_pages-presse-kits-ankama*`, `B/img/dofus.com_images-accueil_r5_c1_20030806.gif` | — | **Not used** (decided). Name "Ankama Studio" as text in credits |
+| Title tabs "Jouer directement", "News", "Prochainement sur Dofus", "Tout savoir sur le jeu Dofus" | `P/img/d1_home_titre_jouer.gif`, `_new`, `_proch`, `_savoir` | 242×71 / 242×46 | Use as-is (lettering and monster vignette baked in; same footing as the logo) |
+| Other titles ("Crédits", "Jouer à la bêta 5b") | — | 242 | Redraw: CSS tab `#DCD5B6`, folded corner, Kharon 4a `#432407` |
+| Card backgrounds, footer strip, brown buttons, star bullet | `P/img/d1_home_fond_*`, `footer_simple.gif`, `fd_bt_*.gif`, `d1_etoilem.gif` | small | Use, or redraw in CSS (sharper on 2× screens) |
+| Banner frame | `P/swf-export/d1_bandeau_20040916_frame3.png` | 760×138 | Reference only (2004 labels baked in); rebuild |
+| Community hero block | `P/swf-export/d1_communaute_home_frame1.png` | 518×197 | Reference only ("GRATUIT, semaine de test" baked in) |
+| Crab "5€ par mois", "Le Comptoir" T-shirts, `vignette_jeu.gif` | `P/img/d1_home_crabe.jpg`, `d1_home_comptoir.gif`, `P/swf-export/d1_comptoir_frame1.png`, `P/img/d1_home_vignette_jeu.gif` | — | **Avoid**: commercial, or shows the 1.x interface instead of 5b |
+| Class group artwork | `M/clips/guilds/artwork/big/50.swf/1.png` | 766×369 | Use (game asset) in the hero |
+| Amakna sky panorama, menu illustrations, trees, spell icons | `M/modules/Interfaces.swf/8.jpg`, `990–995.png`; `M/clips/objects.swf/1235.png` …; `M/clips/spells/icons/<id>.swf/1.jpg` | various | Use (game assets) as decoration |
+| Port screenshots | `web/public/assets/port-preview/kernel/02-menu.png`, `03-characters.png`, `06-lobby.png`, `08-fight-turn.png` | 742×550 | Use: our own renders |
+| Beta screenshots | `vendor/wayback-dofus-2004/screenshots/booge_wp_04.jpg`, `booge_wp_03.jpg` | ~746×553 | Fan-owned; credit the fan site |
+| 2005–2006 looks (foliage logo, chocolate/green) | `P/img/d2c_*`, `d2_*`, `d3_*` | — | Not used (later era) |
 
-`web/public/assets/` is generated and gitignored, so copy the chosen files (~20, under 2 MB) into a committed
-`web/public/site/` folder.
+`web/public/assets/` is generated and gitignored, so copy the chosen files (~25, under 2 MB with the music) into a
+committed `web/public/site/` folder.
 
 **Fonts.** Do not link `/assets/media/fonts.css` from the landing page: it declares `@font-face "Verdana"` with outlines
-extracted from the SWFs (Microsoft's font). Use the system stack `Verdana, Geneva, sans-serif`. The header's "Wide awake"
-font exists only as a partial glyph subset (`B/swf-export/bandeau_20040123/fonts/`); don't build on it. `bitMini6`
-(the game's 8 px pixel font) is the only embeddable candidate, origin unknown. The game page itself already loads
-`fonts.css` (`web/src/main.ts:14`), so text around the canvas on that page renders with the extracted Verdana too.
+extracted from the SWFs (Microsoft's font). Use the system stack, plus Kharon 4a (self-hosted `.woff2`) for display
+titles. The game page already loads `fonts.css` (`web/src/main.ts:14`), so text around the canvas on that page renders
+with the extracted Verdana too.
 
-## 6. The play page
+## 6. Music (optional, off by default)
 
-Model: `dofus-5b/lancement.html` (and `jouer.dofus.com/login.php`, Feb 2004): body `#203040`, table centred
-horizontally and vertically, 2 px white frame, black box, 742×550 movie, `scroll=no`.
+- A "♪ Musique" toggle in the banner's top-right tab (where 2004 had "S'inscrire - Votre compte - Forum"). Browsers
+  block autoplay anyway, so start playback only from that click.
+- `<audio src="/site/musique.mp3" loop preload="none">`, `volume` ≈ 0.3 (the game's own music runs at 25–32 %).
+- Track: `web/public/assets/media/music/04.mp3` (village theme, 55 s, loops well) rather than `02.mp3` (character
+  select, 17 s, repetitive). Both are from the beta 3b music pack (26 Oct 2003); credit them. ~270 KB at 40 kbps.
+- Leaving for `/jouer.html` stops it (page change); the game plays its own music.
 
-Decorations around it, in the **margins only**: a slim 2004 header (logo on `#2F9BDA` + orange nav "Accueil · Le projet
-· Crédits"), trees or class artwork at the sides, a one-line footer. Constraints from the runtime
-(`web/src/runtime/player.ts`):
+## 7. The play page
+
+Recommended: the same olive page and banner (JOUER tab active) with the game below it in a parchment frame: cream
+`#FDF8E9`, 5 px padding, 1 px `#B4926F` edge, rounded corners; trees or class artwork in the side margins. Historical
+alternative: the beta launcher frame (`#203040` page, 2 px white frame, `dofus-5b/lancement.html`); jouer.dofus.com's
+entry page kept the `#203040` background until at least Feb 2005 (captures 2004-08-04 → 2005-02-06).
+
+Height budget: banner 138 + 10 + frame 562 ≈ 710 px, more than a 768 px laptop shows. Either CSS-scale the canvas
+(`height: min(550px, 100vh - <banner>)`, `aspect-ratio: 742/550`) or use only the 40 px tab bar on this page.
+
+Constraints from the runtime (`web/src/runtime/player.ts`):
 
 - Keyboard is read on `window` (`keydown`/`keyup`, no `preventDefault`): the page must not scroll (space and arrows
   would scroll it) and must not contain other text inputs.
 - In-game text fields are real `<input>`/`<textarea>` elements appended to `document.body` with `position:absolute`,
   placed every frame from `canvas.getBoundingClientRect()` plus page scroll, scaled with the canvas. So: keep
   `html`/`body` unpositioned and untransformed, no global `input`/`textarea` styles, nothing stacked over the canvas.
-- Mouse mapping and the editor overlay both follow the canvas's CSS size, so the canvas may be CSS-scaled (for example
-  `height: min(550px, 100vh - <header>)` with `aspect-ratio: 742/550`) to fit 768 px-tall laptop screens. Raising the
+- Mouse mapping and the editor overlay both follow the canvas's CSS size, so CSS scaling is safe. Raising the
   `width`/`height` attributes (e.g. ×2) gives sharp rendering on high-DPI screens with no code change.
 - Keep the canvas id `stage`; `?replay=fight` and `?server=` read `location.search` and work from any path.
 
-## 7. Build plan
+## 8. Build plan
 
-1. **Pages** (plain HTML + one CSS file each; no React, no build-time templating). Create `jouer.html` as a copy
+1. **Pages** (plain HTML + one shared CSS file; no React, no build-time templating). Create `jouer.html` as a copy
    first and replace `index.html` last, when no other work is editing `web/`:
-   - `web/index.html` → the **landing page** (2004 frame: 750 px box, blue header with the logo, orange nav, grey
-     cards). Its main call to action is an orange "JOUER A LA BETA" box/button linking to `/jouer.html`.
-   - `web/jouer.html` → the **game page**: today's `web/index.html` body (canvas + `/src/main.ts`) inside the
-     `lancement.html` frame and margin decorations of §6.
-   - `web/public/site/` → the curated assets of §5.
-   → verify: `bun run dev`, open `/`, click through to `/jouer.html`, log in, type in the chat, scale the window.
+   - `web/index.html` → the **landing page** (§2–§3).
+   - `web/jouer.html` → the **game page**: today's `web/index.html` body (canvas + `/src/main.ts`) inside §7.
+   - `web/public/site/` → the assets of §5, Kharon 4a, the music.
+   → verify: `bun run dev`, open `/`, toggle the music, click JOUER, log in, type in the chat, resize the window.
 2. **Multi-page build**: add `web/vite.config.ts` with `build.rollupOptions.input` = `{ index: "index.html", jouer:
    "jouer.html" }` (dev already serves any `.html` under `web/`; `web/runtime-demo.html` works that way).
 3. **Docs**: README "Play" says to open `http://localhost:5173`; change to `/jouer.html`.
@@ -192,24 +197,22 @@ Decorations around it, in the **margins only**: a slim 2004 header (logo on `#2F
    - Exclude `web/public/assets/port-preview/` (1.4 GB) from the deploy; regenerate `web/public/assets/` on the host
      with the README scripts.
 
-## 8. Copy
+## 9. Copy
 
-Suggested landing sections (French first; facts from `README.md`, `docs/BRIEF.md`, `docs/content-reconstruction.md`):
+French, *vous*. Facts from `README.md`, `docs/BRIEF.md`, `docs/content-reconstruction.md`:
 
-1. **Header line**: "Dofus — version bêta 5b, 13 janvier 2004". Optional nod: the ASCII banner from `LIS-MOI.txt`.
-2. **Le projet**: the beta 5b client (Flash 6, 742×550) brought back in the browser, for the testers of 2003–2004 and for
-   players who never saw it. Free, non-commercial, unofficial.
-3. **Ce qu'était la bêta 5b**: a tactical arena game, not yet the MMO: channels, the "Console Multi" lobby, random and
-   training fights, 10 *guildes*, max level 30, no monsters, quests or jobs (beta FAQ, late Jan 2004). About 650 external testers,
-   ~360 spells (dofus.com, Jan 2004). Last era of the blue interface.
-4. **Ce qui est d'origine, ce qui est reconstitué**: original client files untouched; lost texts, maps, music and the
-   login screen substituted and labelled. Link to `content-reconstruction.md` (per-item provenance).
-5. **Jouer**: the button, plus a note that the game needs a desktop browser with mouse and keyboard (742×550).
-6. **Crédits**: Ankama Studio (game, art, music); fan screenshots (booge, naholyr, xenografter sites); dofushistory
-   (loonaire, CC BY-SA); dofedex; the Internet Archive.
-
-Address: the 2004 site said *vous*; the tester portal and `LIS-MOI.txt` said *tu*. *Tu* suits a page written for former
-testers; pick one and keep it.
+- **Le projet**: the beta 5b client (13 janvier 2004, Flash 6, 742×550) brought back in the browser, for the testers of
+  2003–2004 and for players who never saw it. Free, non-commercial, unofficial.
+- **Tout savoir sur le jeu**: a tactical arena game, not yet the MMO: channels, the "Console Multi" lobby, random and
+  training fights, 10 *guildes*, max level 30, no monsters, quests or jobs (beta FAQ, late Jan 2004). About 650 external
+  testers, ~360 spells (dofus.com, Jan 2004). The last era of the blue interface.
+- **Original vs reconstituted**: original client files untouched; lost texts, maps, music and the login screen
+  substituted and labelled. Link to `content-reconstruction.md` (per-item provenance).
+- **Aide**: desktop browser, mouse and keyboard; S'inscrire the first time, then OK; create a character; join a channel.
+- **Crédits**: Ankama Studio (game, art, music); fan screenshots (booge, naholyr, xenografter sites); dofushistory
+  (loonaire, CC BY-SA); dofedex; the Internet Archive; Kharon 4a (Orgdot).
+- **Era note** (footer): « Habillage inspiré du site dofus.com de septembre 2004 (version 1.0). Le jeu est la bêta 5b
+  du 13 janvier 2004. »
 
 Disclaimer (footer, every page):
 
@@ -219,18 +222,54 @@ Disclaimer (footer, every page):
 > originales sont signalées comme telles. Tout élément sera retiré sur simple demande d'Ankama. Jeu officiel :
 > www.dofus.com
 
+English version, if the site ever gets one:
+
 > Dofus Nostalgie is an unofficial, free, non-commercial fan project, not affiliated with or endorsed by Ankama. DOFUS
 > and Ankama are trademarks of Ankama. All DOFUS names, artwork, logos and screenshots shown here are © 2003-2026
 > Ankama, all rights reserved, and are used as a tribute. Our own creations are marked as such, and any element will be
 > removed at Ankama's request. Official game: www.dofus.com
 
-Optional period footer next to it: "www.DOFUS.com © 2004 Ankama Studio. Tous droits réservés." (the line the 2004
+Optional period line next to it: "www.DOFUS.com © 2004 Ankama Studio. Tous droits réservés." (the line the 2004
 fan-site clause required).
 
-## 9. Open decisions
+## 10. Background: the other eras
 
-- Use the official logo and ribbon-title character art (credited), or redraw everything except game assets?
-- Ask Ankama for permission before publishing (§3)?
-- *Tu* or *vous*; French only, or French + English?
-- Optional music on the landing page (`web/public/assets/media/music/02.mp3`, the character-select theme, 17 s, from the
-  beta 3b pack), off by default.
+### Beta era (Dec 2003 – Aug 2004): the site live for beta 5b
+
+Full timeline, page list and CSS notes: `vendor/wayback-dofus-site/beta/README.md`.
+
+| Period | Site | Look |
+|---|---|---|
+| 2003-06-28 | dofus.com placeholder | "DOFUS sera bientôt disponible" |
+| 2003-08 → 2003-12 | Old ASP site, jouer.dofus.com tester portal, ASP forum | All blue: body `#37A6DF`, cells `#258DD4`, frames `#0A508E`/`#08518C`, button orange `#FF6533`, links `#FFFFAA`, Verdana 11 px white (`beta/css/dofus.com_style.css_20031202.css`) |
+| **2003-12-22 → 2004-08-29** | **New PHP site `index.php?page=…`** (the one live for 5b) | White page, 750 px box with 1 px black border, Flash header: sky blue `#2F9BDA` with the gold logo, orange `#FF9900` nav (S'inscrire · Explorations · Informations · Forums · Bonus · Contacts), grey `#EFEFEF` cards, slanted blue ribbon titles, Verdana 11 px |
+| 2004-01 (5b day: 2004-01-13) | Forum still the old ASP one | Old blue skin; CSS captured 2004-01-13 |
+| From 2004-02 | `jouer.dofus.com/login.php` | 742×550 Flash on `#203040`, 2 px white frame |
+
+What was live on 13 Jan 2004 (INFERRED, three agreeing observations): the 22/12/2003 news announces "un site tout beau
+tout neuf"; the first homepage capture (2004-01-22) still has that item on top; the header SWF captured 2004-01-23 is the
+only version before 2004-01-30. The January stylesheet was never archived; 28 of the 37 class/id names in the January
+HTML are styled by the 2004-04-23 CSS, which is used as a proxy. The Tofu rollover bubble appears in the 2004-02-13
+header SWF; its texts are already in the January SWF.
+
+![Reconstruction of the 22 Jan 2004 homepage (approximation: April CSS, March/April title GIFs)](../vendor/wayback-dofus-site/beta/renders/RECONSTRUCTED_dofus.com_index.php_20040122_1024x768.png)
+
+The image above is a **reconstruction**, not a capture. Real captures with matching CSS:
+`beta/renders/dofus.com_index.php_20040516_full.png`, `beta/renders/dofus.com_root_20040727_full.png`.
+
+### Later designs (2005–2006)
+
+Full detail: `vendor/wayback-dofus-site/post-beta/README.md`.
+
+| Design | Dates | Look | Render |
+|---|---|---|---|
+| Splash + full-Flash site | May 2005 → 2006 | Chocolate `#3A261B`/`#442E21`, cream `#F6F5E9`, green `#0B6A39`/`#127546`, logo in foliage with a bird, "Tactical MMORPG", Eras Demi ITC | `post-beta/renders/d2a_splash_20050718_wayback_1024x768.png` |
+| Community portal | Jul 2005 → 2006 | `#3A261B` page, white panels, greens `#00863F`/`#00A755`, sky header with a class line-up, orange footer | `post-beta/renders/dc_communaute_20050727_local_full.png` |
+| Language splash | Jun → Dec 2006 | 800×570 image on `#3A261B`, "Ankama Games" by Dec 2006 | `post-beta/renders/d3_splash_20061205_local_1024x768.png` |
+
+## 11. Open decisions
+
+- Ask Ankama for permission before publishing (§4)?
+- Play page: parchment frame under the banner (recommended) or the original `#203040` launcher frame (§7)?
+- Music track: `04.mp3` (recommended) or `02.mp3` (§6)?
+- French only (assumed) or also English?
