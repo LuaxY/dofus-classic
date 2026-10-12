@@ -17,7 +17,8 @@
     <a href="#features"><strong>Features</strong></a> ·
     <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
     <a href="#running-locally"><strong>Running Locally</strong></a> ·
-    <a href="#contributing"><strong>Contributing</strong></a>
+    <a href="#contributing"><strong>Contributing</strong></a> ·
+    <a href="#credits"><strong>Credits</strong></a>
 </p>
 
 <br/>
@@ -138,6 +139,20 @@ Start with [`docs/BRIEF.md`](./docs/BRIEF.md), then [`docs/protocol/`](./docs/pr
 
 - [Report a bug](https://github.com/LuaxY/dofus-classic/issues/new), or use the **Signaler un bug** button on the game page.
 - Make a [pull request](https://github.com/LuaxY/dofus-classic/pulls) to fix bugs or bring back more of the beta.
+
+## Credits
+
+- Dofus, its artwork and its music: [Ankama Studio](https://www.ankama.com)
+- 2004 maps and texts: [dofedex](https://github.com/dofera/dofedex), by [Dofera](https://github.com/dofera)
+- Beta 3b music and 2004 client graphics: [archive-dofus-1](https://archive.org/details/archive-dofus-1), by Lounek
+- Beta screenshots: the fan sites [booge.net](https://web.archive.org/web/20060203024812/http://www.booge.net/dofus/wp/04.jpg),
+  [naholyr](https://web.archive.org/web/20040307052535/http://naholyr.free.fr:80/bug_dofus.png) and
+  [xenografter](https://web.archive.org/web/20071022214039/http://xenografter.chez-alice.fr/Screenshots/souvenir.JPG)
+- Beta history: [dofushistory](https://loonaire.github.io/dofushistory/) ([loonaire](https://github.com/loonaire), CC BY-SA)
+- Links between the world maps: [StarLoco](https://github.com/StarLoco/StarLoco)
+- Decompilation: [JPEXS Free Flash Decompiler](https://github.com/jindrapetrik/jpexs-decompiler) ([Jindra Petřík](https://github.com/jindrapetrik))
+- Old dofus.com pages: the [Internet Archive](https://web.archive.org/)
+- Title font: [Della Respira](https://fonts.google.com/specimen/Della+Respira) (Nathan Willis, SIL OFL)
 
 ## Disclaimer
 

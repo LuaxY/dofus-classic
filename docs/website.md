@@ -229,8 +229,10 @@ French (*vous*) and English. Facts from `README.md`, `docs/BRIEF.md`, `docs/cont
 - **Original vs reconstituted**: original client files untouched; lost texts, maps, music and the login screen
   substituted and labelled. Link to `content-reconstruction.md` (per-item provenance).
 - **Aide**: desktop browser, mouse and keyboard; S'inscrire the first time, then OK; create a character; join a channel.
-- **Crédits**: Ankama Studio (game, art, music); fan screenshots (booge, naholyr, xenografter sites); dofushistory
-  (loonaire, CC BY-SA); dofedex; the Internet Archive; Della Respira (Nathan Willis, SIL OFL).
+- **Crédits**, each name linked to its site or author: Ankama Studio (game, art, music); dofedex by Dofera (2004 maps
+  and texts); archive-dofus-1 by Lounek (beta 3b music, 2004 client graphics); fan screenshots (booge, naholyr,
+  xenografter sites, linked to their Wayback captures); dofushistory (loonaire, CC BY-SA); StarLoco (world map links);
+  JPEXS (Jindra Petřík); the Internet Archive; Della Respira (Nathan Willis, SIL OFL).
 - **Era note** (footer): « Habillage inspiré du site dofus.com de septembre 2004 (version 1.0). Le jeu est la bêta du
   13 janvier 2004. »
 - **Creator** (under the footer, and in the game page footer): « Un projet de Luax : luax.dev · Suivre @luax0 sur X ·
