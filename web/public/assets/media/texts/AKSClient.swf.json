@@ -1,0 +1,29 @@
+{
+ "swf": "AKSClient.swf",
+ "texts": [
+  {
+   "id": 79,
+   "bounds": {
+    "xMin": 19.3,
+    "yMin": 2,
+    "xMax": 87.1,
+    "yMax": 10.9
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "Dofus::DataCenter"
+   ],
+   "text": "DataCenter",
+   "records": [
+    {
+     "text": "DataCenter",
+     "font": 78,
+     "color": "#000000",
+     "x": 18,
+     "y": 11,
+     "height": 12
+    }
+   ]
+  }
+ ]
+}

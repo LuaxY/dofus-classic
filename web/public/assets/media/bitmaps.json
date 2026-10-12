@@ -1,0 +1,2300 @@
+{
+ "clips/ground.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/1.jpg",
+   "width": 58,
+   "height": 30
+  },
+  {
+   "id": 9,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/9.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 11,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/11.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 13,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/13.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 15,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/15.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 17,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/17.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 19,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/19.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 21,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/21.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 23,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/23.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 25,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/25.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 27,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/27.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 29,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/29.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 31,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/31.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 33,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/33.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 35,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/35.png",
+   "width": 102,
+   "height": 70
+  },
+  {
+   "id": 38,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/38.jpg",
+   "width": 62,
+   "height": 51
+  },
+  {
+   "id": 41,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/41.jpg",
+   "width": 62,
+   "height": 51
+  },
+  {
+   "id": 46,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/46.jpg",
+   "width": 62,
+   "height": 34
+  },
+  {
+   "id": 48,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/48.jpg",
+   "width": 94,
+   "height": 49
+  },
+  {
+   "id": 50,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/50.jpg",
+   "width": 64,
+   "height": 35
+  },
+  {
+   "id": 52,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/52.jpg",
+   "width": 64,
+   "height": 34
+  },
+  {
+   "id": 54,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/54.jpg",
+   "width": 62,
+   "height": 34
+  },
+  {
+   "id": 56,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/56.jpg",
+   "width": 62,
+   "height": 34
+  },
+  {
+   "id": 61,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/61.jpg",
+   "width": 90,
+   "height": 46
+  },
+  {
+   "id": 65,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/ground.swf/65.jpg",
+   "width": 59,
+   "height": 33
+  },
+  {
+   "id": 68,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/68.jpg",
+   "width": 60,
+   "height": 33
+  },
+  {
+   "id": 72,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/ground.swf/72.png",
+   "width": 857,
+   "height": 499
+  },
+  {
+   "id": 92,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/92.jpg",
+   "width": 62,
+   "height": 36
+  },
+  {
+   "id": 111,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/111.jpg",
+   "width": 994,
+   "height": 620
+  },
+  {
+   "id": 166,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/166.png",
+   "width": 64,
+   "height": 34
+  },
+  {
+   "id": 169,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/169.png",
+   "width": 64,
+   "height": 34
+  },
+  {
+   "id": 172,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/172.png",
+   "width": 64,
+   "height": 34
+  },
+  {
+   "id": 176,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/176.png",
+   "width": 52,
+   "height": 22
+  },
+  {
+   "id": 178,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/178.png",
+   "width": 52,
+   "height": 22
+  },
+  {
+   "id": 180,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/180.png",
+   "width": 52,
+   "height": 22
+  },
+  {
+   "id": 232,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/232.png",
+   "width": 42,
+   "height": 42
+  },
+  {
+   "id": 236,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/236.png",
+   "width": 27,
+   "height": 27
+  },
+  {
+   "id": 238,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/238.png",
+   "width": 27,
+   "height": 27
+  },
+  {
+   "id": 257,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/257.png",
+   "width": 27,
+   "height": 17
+  },
+  {
+   "id": 260,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/260.png",
+   "width": 27,
+   "height": 27
+  },
+  {
+   "id": 271,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/271.png",
+   "width": 29,
+   "height": 211
+  },
+  {
+   "id": 312,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/312.png",
+   "width": 57,
+   "height": 31
+  },
+  {
+   "id": 316,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/316.png",
+   "width": 57,
+   "height": 31
+  },
+  {
+   "id": 333,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/333.png",
+   "width": 63,
+   "height": 35
+  },
+  {
+   "id": 335,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/335.png",
+   "width": 63,
+   "height": 35
+  },
+  {
+   "id": 337,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/337.png",
+   "width": 63,
+   "height": 35
+  },
+  {
+   "id": 339,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/ground.swf/339.png",
+   "width": 63,
+   "height": 35
+  },
+  {
+   "id": 342,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/ground.swf/342.jpg",
+   "width": 990,
+   "height": 618
+  },
+  {
+   "id": 345,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/ground.swf/345.jpg",
+   "width": 997,
+   "height": 612
+  }
+ ],
+ "clips/guilds/artwork/big/50.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/guilds/artwork/big/50.swf/1.png",
+   "width": 766,
+   "height": 369
+  }
+ ],
+ "clips/guilds/artwork/big/90.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/guilds/artwork/big/90.swf/1.png",
+   "width": 766,
+   "height": 369
+  }
+ ],
+ "clips/guilds/descriptions/2.swf": [
+  {
+   "id": 8,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/2.swf/8.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 11,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/2.swf/11.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 14,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/2.swf/14.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/guilds/descriptions/3.swf": [
+  {
+   "id": 8,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/3.swf/8.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 11,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/3.swf/11.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 14,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/3.swf/14.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/guilds/descriptions/5.swf": [
+  {
+   "id": 5,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/5.swf/5.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 8,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/5.swf/8.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 11,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/5.swf/11.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/guilds/descriptions/6.swf": [
+  {
+   "id": 8,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/6.swf/8.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 11,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/6.swf/11.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 14,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/6.swf/14.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/guilds/descriptions/7.swf": [
+  {
+   "id": 8,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/7.swf/8.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 11,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/7.swf/11.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 14,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/7.swf/14.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/guilds/descriptions/8.swf": [
+  {
+   "id": 4,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/8.swf/4.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 7,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/8.swf/7.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 10,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/8.swf/10.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/guilds/descriptions/9.swf": [
+  {
+   "id": 4,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/9.swf/4.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 7,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/9.swf/7.jpg",
+   "width": 40,
+   "height": 40
+  },
+  {
+   "id": 10,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/guilds/descriptions/9.swf/10.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/objects.swf": [
+  {
+   "id": 121,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/121.png",
+   "width": 94,
+   "height": 54
+  },
+  {
+   "id": 654,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/654.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 657,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/657.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 660,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/660.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 663,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/663.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 666,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/666.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 669,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/669.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 672,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/672.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 675,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/675.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 678,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/678.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 681,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/681.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 684,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/684.png",
+   "width": 103,
+   "height": 153
+  },
+  {
+   "id": 687,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/687.png",
+   "width": 138,
+   "height": 179
+  },
+  {
+   "id": 694,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/694.png",
+   "width": 41,
+   "height": 33
+  },
+  {
+   "id": 769,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/769.png",
+   "width": 80,
+   "height": 81
+  },
+  {
+   "id": 771,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/771.png",
+   "width": 82,
+   "height": 83
+  },
+  {
+   "id": 773,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/773.png",
+   "width": 84,
+   "height": 85
+  },
+  {
+   "id": 786,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/786.png",
+   "width": 73,
+   "height": 46
+  },
+  {
+   "id": 789,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/789.png",
+   "width": 60,
+   "height": 48
+  },
+  {
+   "id": 792,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/792.png",
+   "width": 86,
+   "height": 55
+  },
+  {
+   "id": 915,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/915.png",
+   "width": 35,
+   "height": 21
+  },
+  {
+   "id": 917,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/917.png",
+   "width": 35,
+   "height": 21
+  },
+  {
+   "id": 919,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/919.png",
+   "width": 35,
+   "height": 21
+  },
+  {
+   "id": 923,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/923.png",
+   "width": 58,
+   "height": 20
+  },
+  {
+   "id": 926,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/926.png",
+   "width": 60,
+   "height": 26
+  },
+  {
+   "id": 1165,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/1165.png",
+   "width": 1276,
+   "height": 408
+  },
+  {
+   "id": 1235,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/1235.png",
+   "width": 215,
+   "height": 239
+  },
+  {
+   "id": 1238,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/1238.png",
+   "width": 160,
+   "height": 275
+  },
+  {
+   "id": 1342,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/1342.png",
+   "width": 61,
+   "height": 96
+  },
+  {
+   "id": 1479,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/1479.png",
+   "width": 64,
+   "height": 148
+  },
+  {
+   "id": 1483,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/1483.png",
+   "width": 40,
+   "height": 28
+  },
+  {
+   "id": 1486,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/1486.png",
+   "width": 53,
+   "height": 30
+  },
+  {
+   "id": 1490,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/1490.png",
+   "width": 39,
+   "height": 30
+  },
+  {
+   "id": 1493,
+   "tag": "DefineBitsLossless2",
+   "file": "bitmaps/clips/objects.swf/1493.png",
+   "width": 40,
+   "height": 22
+  },
+  {
+   "id": 1501,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/objects.swf/1501.png",
+   "width": 78,
+   "height": 65
+  }
+ ],
+ "clips/spells/305.swf": [
+  {
+   "id": 4,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/clips/spells/305.swf/4.png",
+   "width": 56,
+   "height": 56
+  }
+ ],
+ "clips/spells/icons/1.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/1.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/10.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/10.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/100.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/100.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/101.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/101.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/102.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/102.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/103.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/103.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/104.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/104.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/105.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/105.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/106.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/106.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/107.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/107.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/108.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/108.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/109.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/109.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/11.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/11.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/110.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/110.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/111.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/111.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/112.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/112.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/113.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/113.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/114.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/114.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/115.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/115.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/116.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/116.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/117.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/117.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/118.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/118.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/119.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/119.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/12.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/12.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/120.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/120.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/121.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/121.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/122.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/122.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/123.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/123.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/124.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/124.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/125.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/125.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/126.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/126.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/127.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/127.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/128.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/128.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/129.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/129.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/13.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/13.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/130.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/130.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/14.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/14.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/141.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/141.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/142.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/142.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/143.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/143.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/144.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/144.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/145.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/145.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/146.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/146.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/147.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/147.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/148.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/148.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/149.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/149.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/15.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/15.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/150.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/150.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/151.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/151.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/152.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/152.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/153.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/153.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/154.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/154.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/155.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/155.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/156.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/156.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/157.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/157.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/158.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/158.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/159.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/159.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/16.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/16.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/160.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/160.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/161.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/161.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/162.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/162.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/163.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/163.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/164.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/164.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/165.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/165.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/166.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/166.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/167.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/167.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/168.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/168.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/169.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/169.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/17.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/17.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/170.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/170.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/171.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/171.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/172.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/172.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/173.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/173.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/174.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/174.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/175.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/175.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/176.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/176.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/177.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/177.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/178.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/178.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/179.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/179.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/18.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/18.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/180.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/180.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/181.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/181.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/182.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/182.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/183.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/183.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/189.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/189.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/19.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/19.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/190.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/190.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/191.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/191.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/192.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/192.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/193.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/193.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/194.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/194.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/198.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/198.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/199.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/199.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/2.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/2.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/20.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/20.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/200.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/200.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/21.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/21.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/22.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/22.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/23.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/23.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/24.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/24.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/25.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/25.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/26.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/26.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/27.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/27.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/28.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/28.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/29.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/29.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/3.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/3.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/30.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/30.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/31.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/31.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/32.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/32.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/33.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/clips/spells/icons/33.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/4.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/4.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/41.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/41.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/42.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/42.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/43.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/43.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/44.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/44.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/45.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/45.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/46.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/46.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/47.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/47.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/48.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/48.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/5.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/5.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/6.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/6.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/61.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/61.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/62.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/62.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/63.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/63.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/64.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/64.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/65.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/65.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/66.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/66.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/67.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/67.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/68.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/68.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/69.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/69.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/7.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/7.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/70.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/70.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/71.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/71.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/72.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/72.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/73.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/73.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/74.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/74.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/75.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/75.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/76.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/76.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/77.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/77.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/78.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/78.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/79.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/79.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/8.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/8.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/80.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/80.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/81.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/81.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/82.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/82.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/83.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/83.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/84.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/84.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/85.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/85.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/86.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/86.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/87.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/87.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/88.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/88.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/89.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/89.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/9.swf": [
+  {
+   "id": 1,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/9.swf/1.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/90.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/90.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/91.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/91.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/92.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/92.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/93.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/93.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/94.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/94.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/95.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/95.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/96.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/96.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/97.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/97.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/98.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/98.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "clips/spells/icons/99.swf": [
+  {
+   "id": 2,
+   "tag": "DefineBits",
+   "file": "bitmaps/clips/spells/icons/99.swf/2.jpg",
+   "width": 40,
+   "height": 40
+  }
+ ],
+ "modules/Interfaces.swf": [
+  {
+   "id": 8,
+   "tag": "DefineBitsJPEG2",
+   "file": "bitmaps/modules/Interfaces.swf/8.jpg",
+   "width": 742,
+   "height": 550
+  },
+  {
+   "id": 990,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/modules/Interfaces.swf/990.png",
+   "width": 100,
+   "height": 66
+  },
+  {
+   "id": 991,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/modules/Interfaces.swf/991.png",
+   "width": 98,
+   "height": 109
+  },
+  {
+   "id": 992,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/modules/Interfaces.swf/992.png",
+   "width": 106,
+   "height": 109
+  },
+  {
+   "id": 993,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/modules/Interfaces.swf/993.png",
+   "width": 116,
+   "height": 81
+  },
+  {
+   "id": 994,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/modules/Interfaces.swf/994.png",
+   "width": 153,
+   "height": 105
+  },
+  {
+   "id": 995,
+   "tag": "DefineBitsJPEG3",
+   "file": "bitmaps/modules/Interfaces.swf/995.png",
+   "width": 154,
+   "height": 110
+  }
+ ]
+}

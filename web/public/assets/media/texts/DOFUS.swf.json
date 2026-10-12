@@ -1,0 +1,31 @@
+{
+ "swf": "DOFUS.swf",
+ "texts": [
+  {
+   "id": 3,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 328.95,
+    "yMax": 59.75
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#000000ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Test des path",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "(root)"
+   ]
+  }
+ ]
+}

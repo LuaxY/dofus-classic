@@ -1,0 +1,6099 @@
+{
+ "swf": "modules/Interfaces.swf",
+ "texts": [
+  {
+   "id": 5,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 23,
+    "yMax": 16.65
+   },
+   "font": 4,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "fps",
+   "text": "fps",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "fpsDetectorSymbol"
+   ]
+  },
+  {
+   "id": 6,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 22.95,
+    "yMax": 17.9
+   },
+   "font": 4,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "<p align=\"left\"><font face=\"_sans\" size=\"12\" color=\"#ffffff\"><b>fps</b></font></p>",
+   "flags": [
+    "multiline",
+    "readOnly",
+    "noSelect",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "fpsDetectorSymbol"
+   ]
+  },
+  {
+   "id": 12,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 281.95,
+    "yMax": 21.45
+   },
+   "font": 2,
+   "height": 14,
+   "color": "#b9e3f4ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 15,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 275.8,
+    "yMax": 102.7
+   },
+   "font": 14,
+   "height": 9,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 0,
+   "variable": "",
+   "text": "\r\r\r\r\r",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 17,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 584.05,
+    "yMax": 23.9
+   },
+   "font": 16,
+   "height": 18,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 32,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 112.45,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 40,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 42,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 44,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 46,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 48,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 50,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 52,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 54,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 56,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 58,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 142.05,
+    "yMax": 17.35
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "guilde 1",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 67,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 114.3,
+    "yMax": 16.5
+   },
+   "font": 66,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 81,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 114.3,
+    "yMax": 16.5
+   },
+   "font": 66,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 102,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 114.3,
+    "yMax": 16.5
+   },
+   "font": 66,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 104,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 153.95,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#003366ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nom du personnage",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 106,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 153,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#000000ff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 109,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 253.4,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "dofus::graphics::gui::UICreateCharacter"
+   ]
+  },
+  {
+   "id": 110,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 303.3,
+    "yMax": 19.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "SpellViewerCreate"
+   ]
+  },
+  {
+   "id": 111,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 267.4,
+    "yMax": 59.75
+   },
+   "font": 14,
+   "height": 9,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "SpellViewerCreate"
+   ]
+  },
+  {
+   "id": 112,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 143.3,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "SpellViewerCreate"
+   ]
+  },
+  {
+   "id": 113,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 143.3,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "SpellViewerCreate"
+   ]
+  },
+  {
+   "id": 155,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 40.4,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Window"
+   ]
+  },
+  {
+   "id": 158,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 99.95,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Bo",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::TeamWatcherCharacter"
+   ]
+  },
+  {
+   "id": 159,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 99.95,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Bo",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::TeamWatcherCharacter"
+   ]
+  },
+  {
+   "id": 204,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 136,
+    "yMax": 14.95
+   },
+   "font": 3,
+   "height": 8,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "FFriendsListOfflineItem"
+   ]
+  },
+  {
+   "id": 212,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 243.45,
+    "yMax": 14.95
+   },
+   "font": 3,
+   "height": 8,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "FChatListItemSymbol"
+   ]
+  },
+  {
+   "id": 214,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 243.45,
+    "yMax": 14.95
+   },
+   "font": 3,
+   "height": 8,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "FFriendsListItemSymbol"
+   ]
+  },
+  {
+   "id": 215,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 36.95,
+    "yMax": 13.95
+   },
+   "font": 3,
+   "height": 8,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "FFriendsListItemSymbol"
+   ]
+  },
+  {
+   "id": 219,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 137.8,
+    "yMax": 15.45
+   },
+   "font": 218,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer"
+   ]
+  },
+  {
+   "id": 231,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 377,
+    "yMax": 18.2
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#000000ff",
+   "maxLength": 200,
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer"
+   ]
+  },
+  {
+   "id": 232,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 469,
+    "yMax": 234
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "chatContent",
+   "text": "<p align=\"left\"></p>",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer"
+   ]
+  },
+  {
+   "id": 253,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 153.05,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Ajouter ",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofus_TeamMateFree"
+   ]
+  },
+  {
+   "id": 261,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 326.35,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Parties aléatoires",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofusStart"
+   ]
+  },
+  {
+   "id": 262,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 393.9,
+    "yMax": 107.9
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "<p align=\"left\"><font face=\"Verdana\" size=\"11\" color=\"#ffffff\">- description</font></p><p align=\"left\"><font face=\"Verdana\" size=\"11\" color=\"#ffffff\">sdfsdf</font></p><p align=\"left\"><font face=\"Verdana\" size=\"11\" color=\"#ffffff\">- sdfsdfsdsf</font></p><p align=\"left\"><font face=\"Verdana\" size=\"11\" color=\"#ffffff\">sdfsd</font></p><p align=\"left\"></p>",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofusStart"
+   ]
+  },
+  {
+   "id": 266,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 124,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 272,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 153.05,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Ajouter ",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofus_TeamMateChoose"
+   ]
+  },
+  {
+   "id": 274,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 326.35,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Critères de recherche de parties aléatoires",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 278,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 378.25,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Recherche en cours ...",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 287,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 80.8,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nom de Partie",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 288,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 32.1,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Carte",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 289,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 206,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 290,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 205.9,
+    "yMax": 17
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 291,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 75.1,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Mot de passe",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 292,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 99,
+    "yMax": 16
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 294,
+   "bounds": {
+    "xMin": 0.6,
+    "yMin": 2.65,
+    "xMax": 44.55,
+    "yMax": 11.15
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ],
+   "text": "Guilde",
+   "records": [
+    {
+     "text": "Guilde",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 11,
+     "height": 11
+    }
+   ]
+  },
+  {
+   "id": 295,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 2.75,
+    "xMax": 31.4,
+    "yMax": 11
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ],
+   "text": "Niv.",
+   "records": [
+    {
+     "text": "Niv.",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 11,
+     "height": 11
+    }
+   ]
+  },
+  {
+   "id": 296,
+   "bounds": {
+    "xMin": 0.25,
+    "yMin": 2.75,
+    "xMax": 52.25,
+    "yMax": 11.15
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ],
+   "text": "Joueurs",
+   "records": [
+    {
+     "text": "Joueurs",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 11,
+     "height": 11
+    }
+   ]
+  },
+  {
+   "id": 298,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 88.15,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Niveaux d'écart",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 299,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 100,
+    "yMax": 16
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 300,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 87.4,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Temps par tour",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 301,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 86,
+    "yMax": 16
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 302,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 108.45,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nombre de joueurs",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 303,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 99,
+    "yMax": 16
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 310,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 165.4,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Ajouter",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 312,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 45.05,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Compte",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 315,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 135.9,
+    "yMax": 15.4
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 316,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 32.55,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Perso",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 317,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 135.9,
+    "yMax": 15.4
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 319,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 234.55,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Compte (Nom)",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 320,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 40.05,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Niveau",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 322,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 345.35,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Connectés",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 324,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 123.55,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Compte",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 325,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 163.35,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Non connectés",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 329,
+   "bounds": {
+    "xMin": 1.5,
+    "yMin": 3.05,
+    "xMax": 10.5,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ],
+   "text": "",
+   "records": []
+  },
+  {
+   "id": 330,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 80.8,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nom de Partie",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 331,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 75.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Mot de passe",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 332,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 135.9,
+    "yMax": 15.4
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "maxLength": 10,
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "password"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 333,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 182.05,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Rejoindre une partie",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 334,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 121.1,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Créer une partie",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 335,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 80.8,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nom de Partie",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 336,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 75.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Mot de passe",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 337,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 121.55,
+    "yMax": 15.45
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "aa",
+   "flags": [],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 338,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 120.55,
+    "yMax": 15.4
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "maxLength": 10,
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "password"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 339,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 108.45,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nombre de joueurs",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 340,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 32.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Carte",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 341,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 87.4,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Temps par tour",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 342,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 88.15,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Niveaux d'écart",
+   "flags": [
+    "readOnly"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::MultiPlayer::Tabs"
+   ]
+  },
+  {
+   "id": 350,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 128,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_Podium"
+   ]
+  },
+  {
+   "id": 351,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 128,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_Podium"
+   ]
+  },
+  {
+   "id": 352,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 128,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_Podium"
+   ]
+  },
+  {
+   "id": 353,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 128,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_Podium"
+   ]
+  },
+  {
+   "id": 354,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 128,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_Podium"
+   ]
+  },
+  {
+   "id": 355,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 128,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_Podium"
+   ]
+  },
+  {
+   "id": 358,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 41.95,
+    "yMax": 14.95
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_GlobalStats"
+   ]
+  },
+  {
+   "id": 359,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 41.95,
+    "yMax": 14.95
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_GlobalStats"
+   ]
+  },
+  {
+   "id": 360,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 41.95,
+    "yMax": 14.95
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_GlobalStats"
+   ]
+  },
+  {
+   "id": 361,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 128,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Stats Dofus",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_GlobalStats"
+   ]
+  },
+  {
+   "id": 362,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 106.3,
+    "yMax": 14.55
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_GlobalStats"
+   ]
+  },
+  {
+   "id": 363,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 106.3,
+    "yMax": 14.85
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_GlobalStats"
+   ]
+  },
+  {
+   "id": 364,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 106.3,
+    "yMax": 15.1
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_GlobalStats"
+   ]
+  },
+  {
+   "id": 367,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 128,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Stats perso",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_SelfStats"
+   ]
+  },
+  {
+   "id": 368,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 112.95,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_SelfStats"
+   ]
+  },
+  {
+   "id": 369,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 112.95,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabStart_SelfStats"
+   ]
+  },
+  {
+   "id": 460,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 83,
+    "yMax": 16.5
+   },
+   "font": 459,
+   "height": 12,
+   "color": "#000000ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "<p align=\"left\"><font face=\"_sans\" size=\"12\" color=\"#000000\"> </font></p>",
+   "flags": [
+    "readOnly",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "FLabelSymbol"
+   ]
+  },
+  {
+   "id": 493,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 260.7,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nom du joueur",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::PlayerInfos"
+   ]
+  },
+  {
+   "id": 495,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 99,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Expérience",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::PlayerInfos"
+   ]
+  },
+  {
+   "id": 496,
+   "bounds": {
+    "xMin": 16.3,
+    "yMin": -2,
+    "xMax": 119.15,
+    "yMax": 16.9
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "18",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::PlayerInfos"
+   ]
+  },
+  {
+   "id": 497,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 64.65,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "xp",
+   "text": "200",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::PlayerInfos"
+   ]
+  },
+  {
+   "id": 499,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Points de vie",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::PlayerInfos"
+   ]
+  },
+  {
+   "id": 500,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 176.5,
+    "yMax": 15.25
+   },
+   "font": 2,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Caractéristiques",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::PlayerInfos"
+   ]
+  },
+  {
+   "id": 501,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Points d'action",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::PlayerInfos"
+   ]
+  },
+  {
+   "id": 502,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::PlayerInfos"
+   ]
+  },
+  {
+   "id": 503,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::PlayerInfos"
+   ]
+  },
+  {
+   "id": 507,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 260.7,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nom du joueur",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 508,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 99,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Expérience",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 509,
+   "bounds": {
+    "xMin": 16.3,
+    "yMin": -2,
+    "xMax": 119.15,
+    "yMax": 16.9
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "18",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 510,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 64.65,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "xp",
+   "text": "200",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 512,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Points de vie",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 513,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 176.5,
+    "yMax": 15.25
+   },
+   "font": 2,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Caractéristiques",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 514,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Points d'action",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 515,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Feu",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 520,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Air",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 522,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Eau",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 524,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Terre",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 526,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Force",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 528,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Charisme",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 530,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Karma",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 532,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Agilité",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 534,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Intelligence",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 536,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 176.6,
+    "yMax": 15.25
+   },
+   "font": 2,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Résistances",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 537,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 538,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 539,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 540,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 541,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 542,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 543,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 544,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 545,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 546,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 547,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 548,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 2,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Bonus",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 549,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 2,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 550,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 113.1,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Vitalité",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 552,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 52.6,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 592,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 184.25,
+    "yMax": 44.25
+   },
+   "font": 3,
+   "height": 9,
+   "color": "#000000ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "ObjectInfosViewer"
+   ]
+  },
+  {
+   "id": 593,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 182.35,
+    "yMax": 28.2
+   },
+   "font": 2,
+   "height": 9,
+   "color": "#02416fff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "ObjectInfosViewer"
+   ]
+  },
+  {
+   "id": 601,
+   "bounds": {
+    "xMin": 19.55,
+    "yMin": -2,
+    "xMax": 61,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -2,
+   "variable": "",
+   "text": "99999",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Inventory"
+   ]
+  },
+  {
+   "id": 636,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 123.75,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "name",
+   "text": "bb",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Characters::Choice"
+   ]
+  },
+  {
+   "id": 637,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 123.75,
+    "yMax": 12.9
+   },
+   "font": 3,
+   "height": 9,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "level",
+   "text": "bb",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Characters::Choice"
+   ]
+  },
+  {
+   "id": 643,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 584.05,
+    "yMax": 23.9
+   },
+   "font": 16,
+   "height": 18,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Characters"
+   ]
+  },
+  {
+   "id": 701,
+   "bounds": {
+    "xMin": 44.45,
+    "yMin": -2,
+    "xMax": 55.55,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "F",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "AnimUICreateCharacterSymbol"
+   ]
+  },
+  {
+   "id": 702,
+   "bounds": {
+    "xMin": 43.4,
+    "yMin": -2,
+    "xMax": 56.6,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "H",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "AnimUICreateCharacterSymbol"
+   ]
+  },
+  {
+   "id": 714,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 118,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#000000ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "nomPerso",
+   "text": "",
+   "flags": [],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "AnimUICreateCharacterSymbol"
+   ]
+  },
+  {
+   "id": 716,
+   "bounds": {
+    "xMin": 1.1,
+    "yMin": 3.05,
+    "xMax": 50.55,
+    "yMax": 12.25
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "AnimUICreateCharacterSymbol"
+   ],
+   "text": "Nom :",
+   "records": [
+    {
+     "text": "Nom :",
+     "font": 2,
+     "color": "#ffffff",
+     "y": 12,
+     "height": 12
+    }
+   ]
+  },
+  {
+   "id": 720,
+   "bounds": {
+    "xMin": 1.5,
+    "yMin": 3.35,
+    "xMax": 243.5,
+    "yMax": 21.8
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "AnimUICreateCharacterSymbol"
+   ],
+   "text": "réez votre personnage",
+   "records": [
+    {
+     "text": "réez votre personnage",
+     "font": 16,
+     "color": "#ffffff",
+     "y": 18,
+     "height": 18
+    }
+   ]
+  },
+  {
+   "id": 721,
+   "bounds": {
+    "xMin": 0.9,
+    "yMin": 4.6,
+    "xMax": 28.8,
+    "yMax": 18.35
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "AnimUICreateCharacterSymbol"
+   ],
+   "text": "C",
+   "records": [
+    {
+     "text": "C",
+     "font": 16,
+     "color": "#ffffff",
+     "y": 18,
+     "height": 18
+    }
+   ]
+  },
+  {
+   "id": 728,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 161.95,
+    "yMax": 62
+   },
+   "font": 3,
+   "height": 8,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "<p align=\"left\"></p>",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::ToolTip"
+   ]
+  },
+  {
+   "id": 766,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 296,
+    "yMax": 100.95
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#33ff00ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "chatContent",
+   "text": "<p align=\"left\"></p>",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Main"
+   ]
+  },
+  {
+   "id": 771,
+   "bounds": {
+    "xMin": 1.9,
+    "yMin": -2,
+    "xMax": 23.8,
+    "yMax": 21.75
+   },
+   "font": 770,
+   "height": 16,
+   "color": "#00000033",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::ButtonSpellBanner"
+   ]
+  },
+  {
+   "id": 787,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 48.55,
+    "yMax": 50.6
+   },
+   "font": 2,
+   "height": 40,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "5",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Chrono"
+   ]
+  },
+  {
+   "id": 790,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 317.8,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#000000ff",
+   "maxLength": 200,
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "consoleContent",
+   "text": "",
+   "flags": [],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Main"
+   ]
+  },
+  {
+   "id": 799,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 191.65,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#3a3d66ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 801,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 45.15,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ff6600ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 802,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 45.15,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ff6600ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 803,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 45.15,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#006699ff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 804,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 45.15,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#006699ff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 806,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 109.9,
+    "yMax": 60.55
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#006699ff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 807,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 110.25,
+    "yMax": 60.55
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ff6600ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 808,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 110.05,
+    "yMax": 15.7
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#006699ff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 809,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 110.05,
+    "yMax": 15.7
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#ff6600ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 810,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 191.65,
+    "yMax": 15.25
+   },
+   "font": 2,
+   "height": 11,
+   "color": "#3a3d66ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::BoostInfos"
+   ]
+  },
+  {
+   "id": 813,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 191.65,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#3a3d66ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::Infos"
+   ]
+  },
+  {
+   "id": 814,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 134.7,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#3a3d66ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::Infos"
+   ]
+  },
+  {
+   "id": 815,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 213.65,
+    "yMax": 102.6
+   },
+   "font": 14,
+   "height": 9,
+   "color": "#000000ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::Infos"
+   ]
+  },
+  {
+   "id": 816,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 143.3,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#3a3d66ff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::Infos"
+   ]
+  },
+  {
+   "id": 817,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 143.3,
+    "yMax": 14.05
+   },
+   "font": 2,
+   "height": 10,
+   "color": "#3a3d66ff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::Infos"
+   ]
+  },
+  {
+   "id": 820,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 50.15,
+    "yMax": 15.25
+   },
+   "font": 2,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "0",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 821,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 63.6,
+    "yMax": 15.25
+   },
+   "font": 2,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Bonus",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 822,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 96.15,
+    "yMax": 28.1
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 823,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 98,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "cout : 9",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 832,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 177.25,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "Sorts d'Eau",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::Water"
+   ]
+  },
+  {
+   "id": 845,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 177.25,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "Sorts de Feu",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 847,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 177.25,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "Sorts de Terre",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 849,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 177.25,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "Sorts d'Air",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::Air"
+   ]
+  },
+  {
+   "id": 851,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 177.25,
+    "yMax": 16.5
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "Sorts de Guilde",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells::Guild"
+   ]
+  },
+  {
+   "id": 853,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 53,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "mmmm",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 854,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 53,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "mmmm",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 855,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 53,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "mmmm",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 856,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 53,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "mmmm",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 857,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 53,
+    "yMax": 17.8
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "mmmm",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::Spells"
+   ]
+  },
+  {
+   "id": 868,
+   "bounds": {
+    "xMin": -4.3,
+    "yMin": -2,
+    "xMax": 29.1,
+    "yMax": 23.95
+   },
+   "font": 867,
+   "height": 18,
+   "color": "#000000ff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "999",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Heart"
+   ]
+  },
+  {
+   "id": 874,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 122.95,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 8,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabGameJoined_Player"
+   ]
+  },
+  {
+   "id": 875,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 41.3,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 8,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabGameJoined_Player"
+   ]
+  },
+  {
+   "id": 876,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 72.85,
+    "yMax": 13.7
+   },
+   "font": 3,
+   "height": 8,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabGameJoined_Player"
+   ]
+  },
+  {
+   "id": 882,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 124,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofus_TeamMateWaiting"
+   ]
+  },
+  {
+   "id": 883,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 123.45,
+    "yMax": 15.6
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "En attente ...",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofus_TeamMateWaiting"
+   ]
+  },
+  {
+   "id": 885,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 124.9,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "hoho",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofus_TeamMate"
+   ]
+  },
+  {
+   "id": 887,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 75.95,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#3686c2ff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofus_TeamMate"
+   ]
+  },
+  {
+   "id": 888,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 75.95,
+    "yMax": 15.25
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#3686c2ff",
+   "align": "right",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofus_TeamMate"
+   ]
+  },
+  {
+   "id": 889,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 41.65,
+    "yMax": 81
+   },
+   "font": 2,
+   "height": 64,
+   "color": "#84bddfff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "?",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabPlayDofus_TeamMate"
+   ]
+  },
+  {
+   "id": 891,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 78.3,
+    "yMax": 14.05
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#00ff00ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "vide",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "TabGameJoined_PlayerEmpty"
+   ]
+  },
+  {
+   "id": 894,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 382.05,
+    "yMax": 57
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#000000ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "boxWhisper"
+   ]
+  },
+  {
+   "id": 896,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 276.65,
+    "yMax": 65.8
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "boxYesNo"
+   ]
+  },
+  {
+   "id": 904,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 68,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Musiques",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "boxOptions"
+   ]
+  },
+  {
+   "id": 905,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 68,
+    "yMax": 16.5
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Sons",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "boxOptions"
+   ]
+  },
+  {
+   "id": 908,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 277.05,
+    "yMax": 89
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "<p align=\"center\"></p>",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "boxMessage"
+   ]
+  },
+  {
+   "id": 924,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 139,
+    "yMax": 18.9
+   },
+   "font": 3,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": -1,
+   "variable": "",
+   "text": "Joueur suivant",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::NextTurn"
+   ]
+  },
+  {
+   "id": 927,
+   "bounds": {
+    "xMin": 14.05,
+    "yMin": -2,
+    "xMax": 32.25,
+    "yMax": 26.3
+   },
+   "font": 2,
+   "height": 20,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::ChronoVerti"
+   ]
+  },
+  {
+   "id": 930,
+   "bounds": {
+    "xMin": 1.1,
+    "yMin": 3.05,
+    "xMax": 47.7,
+    "yMax": 12.25
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "Interface::BugReport"
+   ],
+   "text": "BUGS",
+   "records": [
+    {
+     "text": "BUGS",
+     "font": 2,
+     "color": "#ffffff",
+     "y": 12,
+     "height": 12
+    }
+   ]
+  },
+  {
+   "id": 937,
+   "bounds": {
+    "xMin": -0.95,
+    "yMin": -2,
+    "xMax": 25.05,
+    "yMax": 28.85
+   },
+   "font": 936,
+   "height": 20,
+   "color": "#0000ffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "99",
+   "flags": [
+    "readOnly",
+    "noSelect",
+    "useOutlines"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::ActionPoints"
+   ]
+  },
+  {
+   "id": 939,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 136.6,
+    "yMax": 18.3
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nom",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResult::PlayerFree"
+   ]
+  },
+  {
+   "id": 940,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 110,
+    "yMax": 19
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "dead",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResult::PlayerFree"
+   ]
+  },
+  {
+   "id": 941,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 114.3,
+    "yMax": 18.9
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Niveau 150",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResult::PlayerFree"
+   ]
+  },
+  {
+   "id": 943,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 136.6,
+    "yMax": 18.3
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Nom",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResult::PlayerRandom"
+   ]
+  },
+  {
+   "id": 944,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 65.35,
+    "yMax": 19.5
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "xp",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResult::PlayerRandom"
+   ]
+  },
+  {
+   "id": 945,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 72,
+    "yMax": 18.95
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "gold",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResult::PlayerRandom"
+   ]
+  },
+  {
+   "id": 946,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 110,
+    "yMax": 19
+   },
+   "font": 3,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "dead",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResult::PlayerRandom"
+   ]
+  },
+  {
+   "id": 947,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 114.3,
+    "yMax": 18.9
+   },
+   "font": 2,
+   "height": 12,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Niveau 150",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResult::PlayerRandom"
+   ]
+  },
+  {
+   "id": 952,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 239.05,
+    "yMax": 16.5
+   },
+   "font": 951,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Gagnants",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResultRandom"
+   ]
+  },
+  {
+   "id": 953,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 239.05,
+    "yMax": 16.5
+   },
+   "font": 951,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Perdants",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResultRandom"
+   ]
+  },
+  {
+   "id": 954,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 662.15,
+    "yMax": 26.2
+   },
+   "font": 951,
+   "height": 20,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Résultats du combat",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResultRandom"
+   ]
+  },
+  {
+   "id": 955,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 239.05,
+    "yMax": 16.5
+   },
+   "font": 951,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Statistiques",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResultRandom"
+   ]
+  },
+  {
+   "id": 958,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 239.05,
+    "yMax": 16.5
+   },
+   "font": 951,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Gagnants",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResultFree"
+   ]
+  },
+  {
+   "id": 959,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 239.05,
+    "yMax": 16.5
+   },
+   "font": 951,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Perdants",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResultFree"
+   ]
+  },
+  {
+   "id": 960,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 662.15,
+    "yMax": 26.2
+   },
+   "font": 951,
+   "height": 20,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Résultats du combat",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResultFree"
+   ]
+  },
+  {
+   "id": 961,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 239.05,
+    "yMax": 16.5
+   },
+   "font": 951,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "center",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "Statistiques",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::Banner::Panel::GameResultFree"
+   ]
+  },
+  {
+   "id": 963,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 640,
+    "yMax": 25.35
+   },
+   "font": 2,
+   "height": 13,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "<p align=\"left\"><font face=\"Verdana\" size=\"13\" color=\"#ffffff\"><b>Titre</b></font></p>",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::NewsScrollerItem"
+   ]
+  },
+  {
+   "id": 964,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 640,
+    "yMax": 25.35
+   },
+   "font": 3,
+   "height": 10,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "<p align=\"left\"></p>",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::NewsScrollerItem"
+   ]
+  },
+  {
+   "id": 966,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 84.95,
+    "yMax": 55.85
+   },
+   "font": 3,
+   "height": 11,
+   "color": "#ffffffff",
+   "align": "justify",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "<p align=\"left\"></p>",
+   "flags": [
+    "wordWrap",
+    "multiline",
+    "readOnly",
+    "noSelect",
+    "html"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "Interface::HTMLViewer"
+   ]
+  },
+  {
+   "id": 989,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 584.05,
+    "yMax": 23.9
+   },
+   "font": 16,
+   "height": 18,
+   "color": "#ffffffff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 2,
+   "variable": "",
+   "text": "",
+   "flags": [
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "UIStartMenu"
+   ]
+  }
+ ]
+}

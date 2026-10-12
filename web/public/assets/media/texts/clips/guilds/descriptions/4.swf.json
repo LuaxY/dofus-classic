@@ -1,0 +1,28 @@
+{
+ "swf": "clips/guilds/descriptions/4.swf",
+ "texts": [
+  {
+   "id": 2,
+   "bounds": {
+    "xMin": 1.2,
+    "yMin": 3.15,
+    "xMax": 120.15,
+    "yMax": 15.65
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Non disponible",
+   "records": [
+    {
+     "text": "Non disponible",
+     "font": 1,
+     "color": "#08417b",
+     "y": 13,
+     "height": 13
+    }
+   ]
+  }
+ ]
+}

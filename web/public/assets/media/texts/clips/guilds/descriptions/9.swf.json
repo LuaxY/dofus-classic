@@ -1,0 +1,247 @@
+{
+ "swf": "clips/guilds/descriptions/9.swf",
+ "texts": [
+  {
+   "id": 3,
+   "bounds": {
+    "xMin": 0.5,
+    "yMin": 2,
+    "xMax": 392.6,
+    "yMax": 121.7
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": ">>> Guilde de l'Etendue de Crâ\rPrécision, agilité et dextérité sont les maîtres mots de cette guilde. Ces \rdisciples sont, tout simplement, des archers reconvertis. Leur arc ne suffisant \rplus à se défendre des monstres de plus en plus résistant, leur dieu, Crâ, leur \ra légué une partie de sa puissance. Crâ est certainement la divinité la plus \rproche de ses disciples, car il est le seul dieu à avoir accepté de perdre une \rpartie de son pouvoir. \r \r ",
+   "records": [
+    {
+     "text": ">>> Guilde de l'Etendue de Crâ",
+     "font": 1,
+     "color": "#ffffff",
+     "y": 11,
+     "height": 11
+    },
+    {
+     "text": "Précision, agilité et dextérité sont les maîtres mots de cette guilde. Ces ",
+     "font": 2,
+     "color": "#041f39",
+     "x": 0,
+     "y": 33,
+     "height": 10
+    },
+    {
+     "text": "disciples sont, tout simplement, des archers reconvertis. Leur arc ne suffisant ",
+     "x": 0,
+     "y": 44
+    },
+    {
+     "text": "plus à se défendre des monstres de plus en plus résistant, leur dieu, Crâ, leur ",
+     "x": 0,
+     "y": 55
+    },
+    {
+     "text": "a légué une partie de sa puissance. Crâ est certainement la divinité la plus ",
+     "x": 0,
+     "y": 66
+    },
+    {
+     "text": "proche de ses disciples, car il est le seul dieu à avoir accepté de perdre une ",
+     "x": 0,
+     "y": 78
+    },
+    {
+     "text": "partie de son pouvoir. ",
+     "x": 0,
+     "y": 89
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 111
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 122
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 358.8,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Flèche magique                       PA : 4    PO : 4   Dégâts : 2dé4 ",
+   "records": [
+    {
+     "text": "+ Flèche magique                       PA : 4    PO : 4   Dégâts : 2dé4 ",
+     "font": 13,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 1.8,
+    "xMax": 348.45,
+    "yMax": 32.1
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Cette flèche enchantée occasionne plus de dégâts que n'importe \rqu'elle autre simple flèche.",
+   "records": [
+    {
+     "text": "Cette flèche enchantée occasionne plus de dégâts que n'importe ",
+     "font": 15,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "qu'elle autre simple flèche.",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 2.4,
+    "xMax": 358.75,
+    "yMax": 12
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Tir critique                                PA : 4    + aux coups critiques",
+   "records": [
+    {
+     "text": "+ Tir critique                                PA : 4    + aux coups critiques",
+     "font": 13,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "bounds": {
+    "xMin": 0.65,
+    "yMin": 1.8,
+    "xMax": 348.5,
+    "yMax": 32.1
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Sort d'attaque qui occasionne des dégâts directs et fait perdre des \rpoints d'action.",
+   "records": [
+    {
+     "text": "Sort d'attaque qui occasionne des dégâts directs et fait perdre des ",
+     "font": 15,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "points d'action.",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 358.9,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Flèche glacée             PA : 3    PO : 3    dégâts : 1dé3 +-1 PA    ",
+   "records": [
+    {
+     "text": "+ Flèche glacée             PA : 3    PO : 3    dégâts : 1dé3 +-1 PA    ",
+     "font": 13,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 1.8,
+    "xMax": 348.75,
+    "yMax": 23.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Une fois le tir critique lancé, les disciples de cette guilde bénéficient \rd'un bonus aux coups critique pendant toute la partie. ",
+   "records": [
+    {
+     "text": "Une fois le tir critique lancé, les disciples de cette guilde bénéficient ",
+     "font": 15,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "d'un bonus aux coups critique pendant toute la partie. ",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 2.4,
+    "xMax": 173.8,
+    "yMax": 12
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Sorts disponibles au niveau 1",
+   "records": [
+    {
+     "text": "Sorts disponibles au niveau 1",
+     "font": 13,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  }
+ ]
+}

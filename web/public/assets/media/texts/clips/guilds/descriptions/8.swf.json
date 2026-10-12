@@ -1,0 +1,227 @@
+{
+ "swf": "clips/guilds/descriptions/8.swf",
+ "texts": [
+  {
+   "id": 3,
+   "bounds": {
+    "xMin": 0.3,
+    "yMin": 2.65,
+    "xMax": 392.35,
+    "yMax": 79.55
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": ">>> Guilde du coeur d'Iop\rIop, dieu de la puissance et du pouvoir, méprise les faibles et ses disciples \rqui ne doivent pas s'attendre à le voir intervenir à tout moment. Ce dieu ne \rvient en aide qu'aux plus braves.\rLe courage et la confiance en soi sont les deux qualités premières pour faire \rpartie de la guilde d'Iop. ",
+   "records": [
+    {
+     "text": ">>> Guilde du coeur d'Iop",
+     "font": 1,
+     "color": "#ffffff",
+     "y": 11,
+     "height": 11
+    },
+    {
+     "text": "Iop, dieu de la puissance et du pouvoir, méprise les faibles et ses disciples ",
+     "font": 2,
+     "color": "#041f39",
+     "x": 0,
+     "y": 33,
+     "height": 10
+    },
+    {
+     "text": "qui ne doivent pas s'attendre à le voir intervenir à tout moment. Ce dieu ne ",
+     "x": 0,
+     "y": 44
+    },
+    {
+     "text": "vient en aide qu'aux plus braves.",
+     "x": 0,
+     "y": 55
+    },
+    {
+     "text": "Le courage et la confiance en soi sont les deux qualités premières pour faire ",
+     "x": 0,
+     "y": 66
+    },
+    {
+     "text": "partie de la guilde d'Iop. ",
+     "x": 0,
+     "y": 78
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 358.5,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Pression                             PA : 3    PO : 2   Dégâts : 1dé6 +2 ",
+   "records": [
+    {
+     "text": "+ Pression                             PA : 3    PO : 2   Dégâts : 1dé6 +2 ",
+     "font": 13,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 1.8,
+    "xMax": 348.75,
+    "yMax": 32.1
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Ce sort permet d'augmenter considérablement les dégâts infligés par \rles disciples de cette guilde. ",
+   "records": [
+    {
+     "text": "Ce sort permet d'augmenter considérablement les dégâts infligés par ",
+     "font": 15,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "les disciples de cette guilde. ",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 2.4,
+    "xMax": 354.1,
+    "yMax": 10.15
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Bond                                                                  PA : 4    PO : 6",
+   "records": [
+    {
+     "text": "+ Bond                                                                  PA : 4    PO : 6",
+     "font": 13,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 2.35,
+    "xMax": 228.05,
+    "yMax": 21.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Ce sort permet de faire reculer un ennemi. ",
+   "records": [
+    {
+     "text": "Ce sort permet de faire reculer un ennemi. ",
+     "font": 15,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 354.5,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Intimidation                PA : 2    PO : 1    dégâts : 1    recul : 2",
+   "records": [
+    {
+     "text": "+ Intimidation                PA : 2    PO : 1    dégâts : 1    recul : 2",
+     "font": 13,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 2.4,
+    "xMax": 348.4,
+    "yMax": 32.1
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Ce sort permet de sauter pour attaquer un ennemi plus vite. En cas \rd'échec, le joueur passe son tour. ",
+   "records": [
+    {
+     "text": "Ce sort permet de sauter pour attaquer un ennemi plus vite. En cas ",
+     "font": 15,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "d'échec, le joueur passe son tour. ",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 2.4,
+    "xMax": 173.8,
+    "yMax": 12
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Sorts disponibles au niveau 1",
+   "records": [
+    {
+     "text": "Sorts disponibles au niveau 1",
+     "font": 13,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  }
+ ]
+}

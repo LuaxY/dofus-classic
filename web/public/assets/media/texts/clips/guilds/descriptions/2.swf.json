@@ -1,0 +1,247 @@
+{
+ "swf": "clips/guilds/descriptions/2.swf",
+ "texts": [
+  {
+   "id": 2,
+   "bounds": {
+    "xMin": 0.9,
+    "yMin": 1.8,
+    "xMax": 347.55,
+    "yMax": 23.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Le Cri de l’ours permet de retirer des PA à plusieurs cibles dans un \rrayon délimité.",
+   "records": [
+    {
+     "text": "Le Cri de l’ours permet de retirer des PA à plusieurs cibles dans un ",
+     "font": 1,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "rayon délimité.",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 2.4,
+    "xMax": 173.8,
+    "yMax": 12
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Sorts disponibles au niveau 1",
+   "records": [
+    {
+     "text": "Sorts disponibles au niveau 1",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 2.35,
+    "xMax": 393,
+    "yMax": 153.65
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": ">>> Guilde du fouet d'Osamodas\rLes disciples de cette guilde élèvent des créatures et les dressent pour \rqu'elles combattent pour eux. Ils possèdent une parfaite connaissance de la \rnature. Leur dieu, Osamodas est le maître de trois dragons rouges qui \rrègnent sur toutes les créatures du monde. \r \r  \r \r \r ",
+   "records": [
+    {
+     "text": ">>> Guilde du fouet d'Osamodas",
+     "font": 5,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "Les disciples de cette guilde élèvent des créatures et les dressent pour ",
+     "font": 6,
+     "color": "#041f39",
+     "x": 0,
+     "y": 32,
+     "height": 10
+    },
+    {
+     "text": "qu'elles combattent pour eux. Ils possèdent une parfaite connaissance de la ",
+     "x": 0,
+     "y": 43
+    },
+    {
+     "text": "nature. Leur dieu, Osamodas est le maître de trois dragons rouges qui ",
+     "x": 0,
+     "y": 54
+    },
+    {
+     "text": "règnent sur toutes les créatures du monde. ",
+     "x": 0,
+     "y": 65
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 76
+    },
+    {
+     "text": "  ",
+     "x": 0,
+     "y": 87
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 109
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 143
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 154
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 356.45,
+    "yMax": 10.15
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Chien                                                  PO : 3    PA : 4   1dé5+2",
+   "records": [
+    {
+     "text": "+ Chien                                                  PO : 3    PA : 4   1dé5+2",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "bounds": {
+    "xMin": 1,
+    "yMin": 1.8,
+    "xMax": 213.35,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Le chien inflige des dégâts aux ennemis.",
+   "records": [
+    {
+     "text": "Le chien inflige des dégâts aux ennemis.",
+     "font": 1,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 357.35,
+    "yMax": 10.15
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Chat                                                    PO : 3    PA : 4   1dé3+2",
+   "records": [
+    {
+     "text": "+ Chat                                                    PO : 3    PA : 4   1dé3+2",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 2.4,
+    "xMax": 358.9,
+    "yMax": 10.15
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Cri de l'ours                                                          PO : 6 PA : 4         ",
+   "records": [
+    {
+     "text": "+ Cri de l'ours                                                          PO : 6 PA : 4         ",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "bounds": {
+    "xMin": 0.5,
+    "yMin": 1.8,
+    "xMax": 348.35,
+    "yMax": 21.2
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Le chat peut toucher 2 cibles différentes dans un rayon inférieur 5 \rcases.",
+   "records": [
+    {
+     "text": "Le chat peut toucher 2 cibles différentes dans un rayon inférieur 5 ",
+     "font": 1,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "cases.",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  }
+ ]
+}

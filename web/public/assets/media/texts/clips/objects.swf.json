@@ -1,0 +1,33 @@
+{
+ "swf": "clips/objects.swf",
+ "texts": [
+  {
+   "id": 449,
+   "bounds": {
+    "xMin": -2,
+    "yMin": -2,
+    "xMax": 18.35,
+    "yMax": 33.9
+   },
+   "font": 448,
+   "height": 25,
+   "color": "#624012ff",
+   "align": "left",
+   "leftMargin": 0,
+   "rightMargin": 0,
+   "indent": 0,
+   "leading": 0,
+   "variable": "",
+   "text": "y\r",
+   "flags": [
+    "multiline",
+    "readOnly",
+    "noSelect"
+   ],
+   "tag": "DefineEditText",
+   "usedIn": [
+    "432"
+   ]
+  }
+ ]
+}

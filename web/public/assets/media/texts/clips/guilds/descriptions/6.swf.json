@@ -1,0 +1,242 @@
+{
+ "swf": "clips/guilds/descriptions/6.swf",
+ "texts": [
+  {
+   "id": 2,
+   "bounds": {
+    "xMin": 0.5,
+    "yMin": 1.8,
+    "xMax": 348.35,
+    "yMax": 23.1
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Le disciple à l'occasion une fois par tour de tenter de ne se prendre \raucun dommage sur une attaque.",
+   "records": [
+    {
+     "text": "Le disciple à l'occasion une fois par tour de tenter de ne se prendre ",
+     "font": 1,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "aucun dommage sur une attaque.",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 2.4,
+    "xMax": 173.8,
+    "yMax": 12
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Sorts disponibles au niveau 1",
+   "records": [
+    {
+     "text": "Sorts disponibles au niveau 1",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 1.8,
+    "xMax": 394.85,
+    "yMax": 142.6
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": ">>> Guilde de la pièce d'Ecaflip\rLes disciples de cette guilde sont des joueurs-nés. Ils sont capables de \rrisquer leur vie pour l'amour du jeu. Leurs sorts risquent donc à tout instant \rde se retourner contre eux. Dans la guilde Ecaflip, manquer l’incantation d’un \rsort signifie en assumer les conséquences et en subir les effets.\rLeur dieu, Ecaflip, a perdu sa compagne la déesse Tarot lors d'une partie...  \r \r \r ",
+   "records": [
+    {
+     "text": ">>> Guilde de la pièce d'Ecaflip",
+     "font": 5,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "Les disciples de cette guilde sont des joueurs-nés. Ils sont capables de ",
+     "font": 6,
+     "color": "#041f39",
+     "x": 0,
+     "y": 32,
+     "height": 10
+    },
+    {
+     "text": "risquer leur vie pour l'amour du jeu. Leurs sorts risquent donc à tout instant ",
+     "x": 0,
+     "y": 43
+    },
+    {
+     "text": "de se retourner contre eux. Dans la guilde Ecaflip, manquer l’incantation d’un ",
+     "x": 0,
+     "y": 54
+    },
+    {
+     "text": "sort signifie en assumer les conséquences et en subir les effets.",
+     "x": 0,
+     "y": 65
+    },
+    {
+     "text": "Leur dieu, Ecaflip, a perdu sa compagne la déesse Tarot lors d'une partie...  ",
+     "x": 0,
+     "y": 76
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 98
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 132
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 143
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 356.3,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Roulette             PO : -1   PA : 4  +1 dég. pour 2 PA    2 tours",
+   "records": [
+    {
+     "text": "+ Roulette             PO : -1   PA : 4  +1 dég. pour 2 PA    2 tours",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 1.8,
+    "xMax": 347.5,
+    "yMax": 23.1
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Ce sort occasionne des dégâts à tous les joueurs utilisant des PA. \rPlus le sort est puissant plus il fait mal et plus il reste en jeu. ",
+   "records": [
+    {
+     "text": "Ce sort occasionne des dégâts à tous les joueurs utilisant des PA. ",
+     "font": 1,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "Plus le sort est puissant plus il fait mal et plus il reste en jeu. ",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 358.9,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Pile ou face        PO : 6  PA : 2   1dé8 de dég. et 1dé4 de PDV",
+   "records": [
+    {
+     "text": "+ Pile ou face        PO : 6  PA : 2   1dé8 de dég. et 1dé4 de PDV",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 358.9,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Chance d'Ecaflip  PO : -1   vPA : 2    1dé4 dég. récup en PDV  ",
+   "records": [
+    {
+     "text": "+ Chance d'Ecaflip  PO : -1   vPA : 2    1dé4 dég. récup en PDV  ",
+     "font": 3,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "bounds": {
+    "xMin": 1,
+    "yMin": 1.8,
+    "xMax": 290.15,
+    "yMax": 10.15
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Enlève des PDV à l'ennemi et lui en rend en cas d'échec",
+   "records": [
+    {
+     "text": "Enlève des PDV à l'ennemi et lui en rend en cas d'échec",
+     "font": 1,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,247 @@
+{
+ "swf": "clips/guilds/descriptions/5.swf",
+ "texts": [
+  {
+   "id": 3,
+   "bounds": {
+    "xMin": 0.35,
+    "yMin": 1.8,
+    "xMax": 392.7,
+    "yMax": 142.6
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": ">>> Guilde du sablier de Xélor\rLes disciples du sablier de Xélor jouent sur les distorsions du temps. Ils \rpeuvent ralentir ou accélérer ennemis et alliés. Leur dieu Xélor a, paraît-il, la \rforme d'une horloge.\rSes disciples vivent beaucoup plus longtemps que des êtres humains \rordinaires - ils ont une moyenne d'âge de 150 ans. Cette longévité leur vient \rde leur connaissance du temps et de l'évolution des entités.\r \r \r ",
+   "records": [
+    {
+     "text": ">>> Guilde du sablier de Xélor",
+     "font": 1,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "Les disciples du sablier de Xélor jouent sur les distorsions du temps. Ils ",
+     "font": 2,
+     "color": "#041f39",
+     "x": 0,
+     "y": 32,
+     "height": 10
+    },
+    {
+     "text": "peuvent ralentir ou accélérer ennemis et alliés. Leur dieu Xélor a, paraît-il, la ",
+     "x": 0,
+     "y": 43
+    },
+    {
+     "text": "forme d'une horloge.",
+     "x": 0,
+     "y": 54
+    },
+    {
+     "text": "Ses disciples vivent beaucoup plus longtemps que des êtres humains ",
+     "x": 0,
+     "y": 65
+    },
+    {
+     "text": "ordinaires - ils ont une moyenne d'âge de 150 ans. Cette longévité leur vient ",
+     "x": 0,
+     "y": 76
+    },
+    {
+     "text": "de leur connaissance du temps et de l'évolution des entités.",
+     "x": 0,
+     "y": 87
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 98
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 132
+    },
+    {
+     "text": " ",
+     "x": 0,
+     "y": 143
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 358.5,
+    "yMax": 10.15
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Ralentissement                     PA : 1  PO : 4  - 1 PA à l'ennemi ",
+   "records": [
+    {
+     "text": "+ Ralentissement                     PA : 1  PO : 4  - 1 PA à l'ennemi ",
+     "font": 14,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 1.8,
+    "xMax": 348.15,
+    "yMax": 32.1
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Retire des PA à une cible unique. Un même joueur ne peut être ciblé \rqu'une fois par tour par ce sort.",
+   "records": [
+    {
+     "text": "Retire des PA à une cible unique. Un même joueur ne peut être ciblé ",
+     "font": 16,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "qu'une fois par tour par ce sort.",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 356.35,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Contre                   PA : 2    PO : 10   Dégâts : 1dé2 retournés",
+   "records": [
+    {
+     "text": "+ Contre                   PA : 2    PO : 10   Dégâts : 1dé2 retournés",
+     "font": 14,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "bounds": {
+    "xMin": 0.65,
+    "yMin": 1.8,
+    "xMax": 256.9,
+    "yMax": 21.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Sort d'attaque qui occasionne des dégâts directs.",
+   "records": [
+    {
+     "text": "Sort d'attaque qui occasionne des dégâts directs.",
+     "font": 16,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "bounds": {
+    "xMin": 1.05,
+    "yMin": 1.8,
+    "xMax": 358.9,
+    "yMax": 12.05
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "+ Aiguille                              PA : 4    PO : 6    dégâts : 1dé6 +2     ",
+   "records": [
+    {
+     "text": "+ Aiguille                              PA : 4    PO : 6    dégâts : 1dé6 +2     ",
+     "font": 14,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "bounds": {
+    "xMin": 0.9,
+    "yMin": 1.8,
+    "xMax": 347.95,
+    "yMax": 23.1
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Le disciple de cette guilde peut renvoyer des dégâts à son ennemi \rlorsque ce dernier lui lance une attaque magique ou de CAC.",
+   "records": [
+    {
+     "text": "Le disciple de cette guilde peut renvoyer des dégâts à son ennemi ",
+     "font": 16,
+     "color": "#041f39",
+     "y": 10,
+     "height": 10
+    },
+    {
+     "text": "lorsque ce dernier lui lance une attaque magique ou de CAC.",
+     "x": 0,
+     "y": 21
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "bounds": {
+    "xMin": 0.55,
+    "yMin": 2.4,
+    "xMax": 173.8,
+    "yMax": 12
+   },
+   "tag": "DefineText",
+   "usedIn": [
+    "(root)"
+   ],
+   "text": "Sorts disponibles au niveau 1",
+   "records": [
+    {
+     "text": "Sorts disponibles au niveau 1",
+     "font": 14,
+     "color": "#ffffff",
+     "y": 10,
+     "height": 10
+    }
+   ]
+  }
+ ]
+}

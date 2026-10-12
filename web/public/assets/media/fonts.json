@@ -1,0 +1,436 @@
+{
+ "AKSClient.swf": {
+  "1": {
+   "name": "bitMini6",
+   "bold": false,
+   "italic": false,
+   "glyphs": 1108,
+   "linkage": "Font3",
+   "file": "fonts/bitMini6-477eb65d.woff",
+   "ttf": "fonts/bitMini6-477eb65d.ttf"
+  },
+  "2": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 1108,
+   "linkage": "Font2",
+   "file": "fonts/Verdana-bold-a1ed6d4e.woff",
+   "ttf": "fonts/Verdana-bold-a1ed6d4e.ttf"
+  },
+  "3": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 1108,
+   "linkage": "Font1",
+   "file": "fonts/Verdana-c2158db2.woff",
+   "ttf": "fonts/Verdana-c2158db2.ttf"
+  },
+  "78": {
+   "name": "Arial",
+   "bold": false,
+   "italic": false,
+   "glyphs": 7,
+   "file": "fonts/Arial-34820898.woff",
+   "ttf": "fonts/Arial-34820898.ttf"
+  }
+ },
+ "DOFUS.swf": {
+  "2": {
+   "name": "Times New Roman",
+   "bold": false,
+   "italic": false,
+   "glyphs": 0,
+   "device": true,
+   "fallback": "\"Times New Roman\", serif"
+  }
+ },
+ "clips/guilds/descriptions/1.swf": {
+  "1": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 11,
+   "file": "fonts/Verdana-bold-b142bba7.woff",
+   "ttf": "fonts/Verdana-bold-b142bba7.ttf"
+  }
+ },
+ "clips/guilds/descriptions/10.swf": {
+  "1": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 11,
+   "file": "fonts/Verdana-bold-b142bba7.woff",
+   "ttf": "fonts/Verdana-bold-b142bba7.ttf"
+  }
+ },
+ "clips/guilds/descriptions/2.swf": {
+  "1": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 32,
+   "file": "fonts/Verdana-2a720a9a.woff",
+   "ttf": "fonts/Verdana-2a720a9a.ttf"
+  },
+  "3": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 31,
+   "file": "fonts/Verdana-bold-f5ee2194.woff",
+   "ttf": "fonts/Verdana-bold-f5ee2194.ttf"
+  },
+  "5": {
+   "name": "verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 16,
+   "file": "fonts/verdana-bold-2ed43172.woff",
+   "ttf": "fonts/verdana-bold-2ed43172.ttf"
+  },
+  "6": {
+   "name": "verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 30,
+   "file": "fonts/verdana-7cedec59.woff",
+   "ttf": "fonts/verdana-7cedec59.ttf"
+  }
+ },
+ "clips/guilds/descriptions/3.swf": {
+  "1": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 31,
+   "file": "fonts/Verdana-ad3dc5af.woff",
+   "ttf": "fonts/Verdana-ad3dc5af.ttf"
+  },
+  "3": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 31,
+   "file": "fonts/Verdana-bold-69e1b7be.woff",
+   "ttf": "fonts/Verdana-bold-69e1b7be.ttf"
+  },
+  "5": {
+   "name": "verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 18,
+   "file": "fonts/verdana-bold-e05bce11.woff",
+   "ttf": "fonts/verdana-bold-e05bce11.ttf"
+  },
+  "6": {
+   "name": "verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 32,
+   "file": "fonts/verdana-8601703e.woff",
+   "ttf": "fonts/verdana-8601703e.ttf"
+  }
+ },
+ "clips/guilds/descriptions/4.swf": {
+  "1": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 11,
+   "file": "fonts/Verdana-bold-b142bba7.woff",
+   "ttf": "fonts/Verdana-bold-b142bba7.ttf"
+  }
+ },
+ "clips/guilds/descriptions/5.swf": {
+  "1": {
+   "name": "verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 15,
+   "file": "fonts/verdana-bold-2764f777.woff",
+   "ttf": "fonts/verdana-bold-2764f777.ttf"
+  },
+  "2": {
+   "name": "verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 39,
+   "file": "fonts/verdana-55193dec.woff",
+   "ttf": "fonts/verdana-55193dec.ttf"
+  },
+  "14": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 36,
+   "file": "fonts/Verdana-bold-7e3629b2.woff",
+   "ttf": "fonts/Verdana-bold-7e3629b2.ttf"
+  },
+  "16": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 35,
+   "file": "fonts/Verdana-ebe64ab6.woff",
+   "ttf": "fonts/Verdana-ebe64ab6.ttf"
+  }
+ },
+ "clips/guilds/descriptions/6.swf": {
+  "1": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 34,
+   "file": "fonts/Verdana-247b1db0.woff",
+   "ttf": "fonts/Verdana-247b1db0.ttf"
+  },
+  "3": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 39,
+   "file": "fonts/Verdana-bold-7a3476c5.woff",
+   "ttf": "fonts/Verdana-bold-7a3476c5.ttf"
+  },
+  "5": {
+   "name": "verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 15,
+   "file": "fonts/verdana-bold-b64de8cc.woff",
+   "ttf": "fonts/verdana-bold-b64de8cc.ttf"
+  },
+  "6": {
+   "name": "verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 34,
+   "file": "fonts/verdana-88c470ae.woff",
+   "ttf": "fonts/verdana-88c470ae.ttf"
+  }
+ },
+ "clips/guilds/descriptions/7.swf": {
+  "1": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 28,
+   "file": "fonts/Verdana-5034d92e.woff",
+   "ttf": "fonts/Verdana-5034d92e.ttf"
+  },
+  "3": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 34,
+   "file": "fonts/Verdana-bold-d2baaa9d.woff",
+   "ttf": "fonts/Verdana-bold-d2baaa9d.ttf"
+  },
+  "5": {
+   "name": "verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 16,
+   "file": "fonts/verdana-bold-18cb665f.woff",
+   "ttf": "fonts/verdana-bold-18cb665f.ttf"
+  },
+  "6": {
+   "name": "verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 28,
+   "file": "fonts/verdana-c68ec5cb.woff",
+   "ttf": "fonts/verdana-c68ec5cb.ttf"
+  }
+ },
+ "clips/guilds/descriptions/8.swf": {
+  "1": {
+   "name": "verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 14,
+   "file": "fonts/verdana-bold-76ae1f27.woff",
+   "ttf": "fonts/verdana-bold-76ae1f27.ttf"
+  },
+  "2": {
+   "name": "verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 30,
+   "file": "fonts/verdana-585676f8.woff",
+   "ttf": "fonts/verdana-585676f8.ttf"
+  },
+  "13": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 34,
+   "file": "fonts/Verdana-bold-a2ab44c7.woff",
+   "ttf": "fonts/Verdana-bold-a2ab44c7.ttf"
+  },
+  "15": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 29,
+   "file": "fonts/Verdana-98ca1482.woff",
+   "ttf": "fonts/Verdana-98ca1482.ttf"
+  }
+ },
+ "clips/guilds/descriptions/9.swf": {
+  "1": {
+   "name": "verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 15,
+   "file": "fonts/verdana-bold-270d01e1.woff",
+   "ttf": "fonts/verdana-bold-270d01e1.ttf"
+  },
+  "2": {
+   "name": "verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 29,
+   "file": "fonts/verdana-54f24557.woff",
+   "ttf": "fonts/verdana-54f24557.ttf"
+  },
+  "13": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 38,
+   "file": "fonts/Verdana-bold-51bfcaec.woff",
+   "ttf": "fonts/Verdana-bold-51bfcaec.ttf"
+  },
+  "15": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 30,
+   "file": "fonts/Verdana-7dc1f3f7.woff",
+   "ttf": "fonts/Verdana-7dc1f3f7.ttf"
+  }
+ },
+ "clips/objects.swf": {
+  "448": {
+   "name": "Arial",
+   "bold": true,
+   "italic": false,
+   "glyphs": 0,
+   "device": true,
+   "fallback": "\"Arial\", sans-serif"
+  }
+ },
+ "modules/Interfaces.swf": {
+  "1": {
+   "name": "bitMini6",
+   "bold": false,
+   "italic": false,
+   "glyphs": 1108,
+   "linkage": "Font3",
+   "file": "fonts/bitMini6-477eb65d.woff",
+   "ttf": "fonts/bitMini6-477eb65d.ttf"
+  },
+  "2": {
+   "name": "Verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 1108,
+   "linkage": "Font2",
+   "file": "fonts/Verdana-bold-a1ed6d4e.woff",
+   "ttf": "fonts/Verdana-bold-a1ed6d4e.ttf"
+  },
+  "3": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 1108,
+   "linkage": "Font1",
+   "file": "fonts/Verdana-c2158db2.woff",
+   "ttf": "fonts/Verdana-c2158db2.ttf"
+  },
+  "4": {
+   "name": "_sans",
+   "bold": true,
+   "italic": false,
+   "glyphs": 0,
+   "device": true,
+   "fallback": "sans-serif"
+  },
+  "14": {
+   "name": "Verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 0,
+   "device": true,
+   "fallback": "\"Verdana\", sans-serif"
+  },
+  "16": {
+   "name": "verdana",
+   "bold": true,
+   "italic": false,
+   "glyphs": 14,
+   "file": "fonts/verdana-bold-126b8cf6.woff",
+   "ttf": "fonts/verdana-bold-126b8cf6.ttf"
+  },
+  "66": {
+   "name": "verdana",
+   "bold": false,
+   "italic": false,
+   "glyphs": 0,
+   "device": true,
+   "fallback": "\"verdana\", sans-serif"
+  },
+  "218": {
+   "name": "Times New Roman",
+   "bold": false,
+   "italic": false,
+   "glyphs": 0,
+   "device": true,
+   "fallback": "\"Times New Roman\", serif"
+  },
+  "459": {
+   "name": "_sans",
+   "bold": false,
+   "italic": false,
+   "glyphs": 0,
+   "device": true,
+   "fallback": "sans-serif"
+  },
+  "770": {
+   "name": "Lithograph",
+   "bold": false,
+   "italic": false,
+   "glyphs": 11,
+   "file": "fonts/Lithograph-61d5ff0a.woff",
+   "ttf": "fonts/Lithograph-61d5ff0a.ttf"
+  },
+  "867": {
+   "name": "impact",
+   "bold": false,
+   "italic": false,
+   "glyphs": 11,
+   "file": "fonts/impact-0efaf6f5.woff",
+   "ttf": "fonts/impact-0efaf6f5.ttf"
+  },
+  "936": {
+   "name": "impact",
+   "bold": true,
+   "italic": false,
+   "glyphs": 11,
+   "file": "fonts/impact-bold-a3f8d0d8.woff",
+   "ttf": "fonts/impact-bold-a3f8d0d8.ttf"
+  },
+  "951": {
+   "name": "Arial",
+   "bold": true,
+   "italic": false,
+   "glyphs": 0,
+   "device": true,
+   "fallback": "\"Arial\", sans-serif"
+  }
+ }
+}
