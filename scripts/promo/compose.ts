@@ -47,11 +47,14 @@ function shadow(c: SKRSContext2D, blur = 18, color = "rgba(0, 0, 0, 0.7)", dy = 
   c.shadowOffsetX = 0;
   c.shadowOffsetY = dy;
 }
-/** Text centred on (x, y) with `track` em of letter spacing; `fill` a colour, or "gold" (vertical gradient). */
+/** Text centred on (x, y) (its ink, not its em box) with `track` em of letter spacing; `fill` a colour, or "gold"
+ *  (vertical gradient). */
 function tracked(c: SKRSContext2D, s: string, x: number, y: number, font: string, size: number, track: number, fill: string) {
   c.font = `${size}px ${font}`;
   c.textAlign = "left";
-  c.textBaseline = "middle";
+  c.textBaseline = "alphabetic";
+  const m = c.measureText(s);
+  y += (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2;
   const ws = [...s].map((ch) => c.measureText(ch).width);
   let at = x - (ws.reduce((a, b) => a + b, 0) + track * size * (ws.length - 1)) / 2;
   if (fill == "gold") {
@@ -93,10 +96,7 @@ function caption(c: SKRSContext2D, s: string, alpha: number, low = false) {
   c.lineWidth = 4;
   c.strokeStyle = "#ff7a00";
   c.stroke();
-  c.fillStyle = "#fff";
-  c.textAlign = "center";
-  c.textBaseline = "middle";
-  c.fillText(s, W / 2, y + h / 2 + 2);
+  tracked(c, s, W / 2, y + h / 2, "VerdanaB", 44, 0, "#fff");
   c.restore();
 }
 
@@ -206,7 +206,7 @@ async function endCard(c: SKRSContext2D, i: number, from?: number) {
   c.fillStyle = "rgba(255, 255, 255, 0.22)";
   c.fill();
   shadow(c, 8, "rgba(120, 40, 0, 0.6)", 2);
-  tracked(c, "dofus-classic.com", 0, 4, "VerdanaB", 68, 0.01, "#ffffff");
+  tracked(c, "dofus-classic.com", 0, 0, "VerdanaB", 68, 0.01, "#ffffff");
   c.restore();
   c.save();
   c.globalAlpha = 0.62 * ease((i - 48) / 16);

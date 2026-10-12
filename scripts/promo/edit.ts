@@ -15,7 +15,7 @@ export type Plan = { take: string; frames: string; fade: number; items: Item[] }
 
 const FPS = 30, FADE = 10, RATE = 48000;
 const OUT = join(import.meta.dir, "../../web/public/assets/port-preview/promo"), TAKE = join(OUT, "take"); // record.ts
-const MUSIC = join(import.meta.dir, "../../web/public/assets/media/music/08.mp3");
+const MUSIC = join(import.meta.dir, "../../web/public/assets/media/music/11.mp3"); // the fastest of the fight tracks
 
 /** The cut, in the camera's ticks (steps.jsonl gives each step's range). */
 const CUT: Shot[] = [
@@ -30,14 +30,14 @@ const CUT: Shot[] = [
   { from: 1895, to: 1960, speed: 1.5 }, // the menu: « Aller aux combats »
   { from: 2040, to: 2110, caption: "Le salon : chat, amis, parties", zoom: [[0, 280, 360]] }, // "Qui est partant pour un duel ?"
   { from: 2110, to: 2290, speed: 2, caption: "Créez une partie et défiez vos amis" },
-  { from: 2335, to: 2440, speed: 1.5 }, // Flechette joins, start
-  { from: 2450, to: 2540, caption: "Combats tactiques au tour par tour" }, // placement on the bridge map
-  { from: 2560, to: 2700, speed: 1.5, zoom: [[100, 0, 540]] }, // Bond onto the bridge
-  { from: 3938, to: 3995, zoom: [[150, 60, 520]] }, // an arrow
-  { from: 4045, to: 4445, speed: 2.5, zoom: [[180, 100, 480]] }, // the charge, Pression
-  { from: 4815, to: 5010, speed: 1.5, zoom: [[270, 130, 420]] }, // critical hits
-  { from: 5590, to: 5648, zoom: [[270, 130, 420]] }, // the last blow
-  { from: 5648, to: 5800, speed: 1.3, caption: "Victoire… et un objet en butin !", low: true }, // a new item, the result
+  { from: 2350, to: 2490, speed: 2.5 }, // Flechette joins, start
+  { from: 2490, to: 2575, caption: "Combats tactiques au tour par tour" }, // placement on the bridge map
+  { from: 2630, to: 2700, zoom: [[100, 0, 540]] }, // Bond onto the bridge
+  { from: 3305, to: 3365, zoom: [[150, 100, 480]] }, // an arrow
+  { from: 3535, to: 3590, zoom: [[150, 100, 480]] }, // Pression
+  { from: 3865, to: 4070, speed: 2, zoom: [[270, 130, 420]] }, // critical hits
+  { from: 4680, to: 4760, zoom: [[270, 130, 420], [0, 0, 742]] }, // the last blow, a new item
+  { from: 4760, to: 4864, caption: "Victoire… et un objet en butin !", low: true },
   { card: "end", frames: 165, from: 700 },
 ];
 
