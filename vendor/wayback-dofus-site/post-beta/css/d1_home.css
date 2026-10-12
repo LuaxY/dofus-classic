@@ -1,0 +1,215 @@
+.columnHome a{text-decoration: none}
+.columnHome a:hover {text-decoration:underline}
+.floatR{
+float: right;
+margin: 0;
+}
+.floatL{
+float: left;
+margin: 0;
+}
+h1{
+font-size: 12px;	
+}
+h2{
+font-size: 10px;
+margin: 5px 5px 10px 10px;
+}
+p{
+color: #000000;
+padding: 0px 10px 10px 10px;
+font-size: 11px;
+text-align: justify;
+}
+a.floatR{
+margin-right: 10px;
+margin-bottom: 5px;
+}
+img.vign{
+float: left;
+margin: 1px 10px -10px 10px;
+}
+html>body img.vign{
+margin: 5px 10px 5px 10px;	
+}
+#hg{
+width: 760px;
+height: 198px;
+margin-bottom: 10px;
+/*background: url(../img/home/fond_hg.gif) repeat-y;
+background-position: 450px 0px;*/
+}
+#bg, #bm, #bd{
+width: 242px;
+height: 490px;
+/*background: #DCD6B6;*/
+/*border: 1px solid white;*/
+}
+#bg,#bm{
+float: left;
+margin-right: 5px;
+voice-family: "\"}\""; 
+voice-family:inherit;
+margin-right: 17px;
+}
+#bm{
+margin-left: 10px;
+voice-family: "\"}\""; 
+voice-family:inherit;
+margin-left: 0px;
+}
+#bd{
+float: right;
+margin-right: 5px;
+}
+html>body #bg,#bm{
+margin-right: 17px;	
+}
+#flash{
+float: left;
+}
+#abo{
+float: right;
+width: 240px;
+height: 197px;
+background: url(../img/home/fond_abo.gif) no-repeat/*#FCF9EA*/;
+background-position: 0px 30px;
+}
+html>body #abo{
+width: 242px;	
+}
+#abo img.center{
+margin: -5px 0 0 30px;	
+}
+#jouer{
+height: 180px;
+background: url(../img/home/fond_jouer.gif) no-repeat;	
+background-position: 0px 70px;
+/*border: 1px solid white;*/
+}
+html>body #jouer{
+width: 242px;	
+}
+/*bug ???*/
+#jouer .h2{
+	color: #f00;
+font-size: 14px;
+margin: 5px 5px 10px 10px;	
+}
+#jouer p{
+position:relative;
+padding: 5px 10px 0px 10px;
+}
+#ami{
+height: 70px;	
+background: url(../img/home/fond_ami.gif) no-repeat/*#FCF9EA*/;
+/*border: 1px solid white;*/
+}
+#ami label{
+display: none;	
+}
+#ami input{
+margin: 10px 0px 10px 15px;
+width: 135px;
+}
+#ami input.valider{
+width: 50px;
+margin-bottom: 5px;
+}
+html>body #ami input.valider{
+margin-bottom: 15px;	
+}
+#sond{
+height: 225px;
+background: url(../img/home/fond_new.png) repeat-y;
+margin-top: -10px;
+}
+html>body #sond{
+margin-top: 0px;	
+height: 235px;
+}
+#sond h2{
+font-size: 10px;
+margin: 5px 5px 10px 10px;
+}
+#sond p{
+font-size: 10px;
+}
+#sond span.label{
+font-size: 10px;
+margin-left: 10px;
+width: 192px;
+float: left;
+}
+#sond input{
+border: none;	
+}
+#bassond{
+/*clear: both;*/
+width: 242px;
+height: 14px;
+/*position: relative;
+bottom: 0px;*/
+background: url(../img/home/fond_sond.gif) no-repeat/*#FCF9EA*/;
+/*border: 1px solid white;*/
+}
+#new{
+width: 242px;
+height: /*270px*/340px;	
+background: url(../img/home/fond_new.png) repeat-y/*#FCF9EA*/;
+}
+#new a{
+color: #000000;	
+}
+#savoir{
+height: 160px;	
+background: url(../img/home/fond_savoir.gif) no-repeat;
+background-position: 0px 46px;
+}
+#savoir a{
+width: 100px;
+margin: 10px;
+}
+#proch{
+height: 280px;
+margin-bottom: 10px;	
+background: url(../img/home/fond_proch.gif) repeat-y;
+/*background-position: 0px 100px;*/
+}
+#proch p, #proch ul{
+position: relative;	
+}
+#proch ul{
+	
+}
+#proch li{
+	margin-left: -30px;
+list-style-type: none;
+background: url(../img/etoilem.gif) no-repeat;
+background-position: 40px/*0px*/ 5px;
+/*margin-left: 0px;*/
+/*height: 10px;*/
+padding: 0 10px 0 50px/*10px*/;
+line-height: 15px;	
+}
+#comptoir h1,#comptoir p{
+display: none;	
+}
+.voter, .valider{
+height: 30px;
+text-align: center;
+color: #FFF;
+font-weight: bold;
+}
+.voter, .voter:hover, .voter:focus{
+width: 70px;
+background: url(../img/home/fd_bt_voter.gif) no-repeat;
+background-position: 0px 4px;
+margin-right: 15px;
+margin-bottom: 5px;
+float: right;
+}
+.valider, .valider:hover, .valider:focus{
+background: url(../img/home/fd_bt_valider.gif) no-repeat;
+background-position: 0px 4px;
+}

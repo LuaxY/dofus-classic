@@ -1,0 +1,5 @@
+200 Document https://web.archive.org/web/20030818130504if_/http://www.ankama-studio.com:80/accueil.html
+200 Stylesheet https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3
+200 Stylesheet https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv
+200 Image https://web.archive.org/web/20030818130504im_/http://www.ankama-studio.com/accueil.html
+404 Other https://web.archive.org/web/20030814192228im_/http://www.ankama-studio.com/favicon.ico

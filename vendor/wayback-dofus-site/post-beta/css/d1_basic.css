@@ -1,0 +1,103 @@
+/*basic.css - Seulement les definitions des blocs*/
+* {
+margin: 0px;
+padding: 0px;
+border: none;
+text-align: left;
+font-family: Verdana, sans-serif;
+}
+body{
+background: #2A2E09 /*#AEBC45*/;	
+}
+.centreur {
+width: 100%;
+height: 100%;
+text-align: center;
+/*margin: 15px 0 0 0;*/
+}
+.general {
+border: 1px solid #2A2E09;
+width: 765px;
+margin: 0px auto;
+padding: 5px 0px 0px 5px;
+/*padding: 10px 0px 0px 5px;*/
+/*background: url(../img/fond.gif) no-repeat;
+background-position: -250px -90px;*/
+}
+.general {
+\width: 767px; 
+w\idth: 765px;
+}
+/* div#top .flow a supprimer apres modif du bandeau (noembed à remettre)*/
+div#top,div#top .flow{
+width: 760px;
+/*background: #fff;*/
+/*width: 750px;*/
+height: 138px;
+}
+div#top .flow{
+overflow: hidden;
+}
+div#bottom, div#bottomHome {
+float: left;
+width: 765px;
+text-align: center;
+color: #555555;
+font-size: 11px;
+}
+div#bottom{
+/**/height: 100px;
+padding-top: 75px;
+background: url(../img/footer.gif) no-repeat /*#FDF8E9*/;
+/*background-position: -1px 0px;*/	
+}
+div#bottomHome{
+height:50px;
+padding-top: 10px;
+background: url(../img/home/footer_simple.gif) no-repeat;
+margin-top: -10px;
+}
+html>body div#bottomHome{
+margin-top: 15px;	
+}
+#main1 {
+float: left;
+background: url(../img/ligne_fond_menu.gif) top left repeat-y;
+}
+#main,#main2 {
+float: left;
+}
+.columnleft {
+float: left;
+width: 170px;
+background: #E5DDB5;
+margin-right:11px;
+padding:0;
+border-left: 1px solid #AF8B67;
+}
+.column, .columnHome{
+float: left;
+margin-top: 10px;
+}
+.column{
+/*float: right;
+margin-right: 3px;*/
+width: 580px;
+/*width: 570px;*/
+background: url(../img/fond_column.gif) repeat-y /*#ffffff*/;
+background-position: 2px 0px;
+}
+/*.columnHome{
+	border: 1px solid white;
+width: 765px;	
+}
+.columnHome{
+\width: 767px; 
+w\idth: 765px;
+}*/
+.clear { 
+clear: both;
+}
+.hidden{
+visibility: hidden;	
+}

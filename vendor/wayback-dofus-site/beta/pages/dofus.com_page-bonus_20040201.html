@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3c.org/TR/html4/strict.dtd">
+
+<html>
+
+<head>
+	<title>DOFUS - Jeu de r&ocirc;le massivement multijoueur sur Internet</title>
+	<!--<link rel="stylesheet" HREF="style_130104.css" type="text/css">-->
+	<link rel="stylesheet" HREF="style.css" type="text/css">
+<!--scripts pour gestion des commandes de t-shirt-->	
+<script language="javascript">
+	
+	function assur() {
+		
+	var montant_articles = parseFloat(document.getElementById('montant').value);
+	var frais_port = parseFloat(document.getElementById('frais_port').value);
+	var frais_assurance = parseFloat(document.getElementById('frais_assur').value);
+			
+	if (document.getElementById('assurance').checked) {
+	document.getElementById('tot').value = (montant_articles + frais_port + frais_assurance) + " euros";		
+	}
+	else
+	document.getElementById('tot').value = (montant_articles + frais_port) + " euros";
+}
+	function ajouter(ref,guilde) {
+		
+		var taille_guilde = "taille_"+guilde;
+		var qte_guilde = "qte_"+guilde;
+		
+		//if (document.getElementByID){ // IE5+  NN6+  OP5+
+			var taille = document.getElementById(taille_guilde).value;
+			var qte = document.getElementById(qte_guilde).value;
+		/*}
+		else {
+			if (document.all) { //IE4x
+			var taille = document.all[taille_guilde].value;
+			var qte = document.all[qte_guilde].value;			
+			}
+			
+			else  { //NN4x
+			var taille = document.layers[taille_guilde].value;
+			var qte = document.layers[qte_guilde].value;	
+			}
+		}*/
+
+		
+		window.location.href = "index.php?page=comptoir&action=ajouter&ref="+ref+"&taille="+taille+"&qte="+qte+"&mod="+guilde;	
+	}
+	
+	function supprimer(hashcode) {
+		window.location.href = "index.php?page=comptoir&action=supprimer&hash="+hashcode;
+	}
+	
+	function verif(frm) {
+		if (frm.elements['nom'].value == "") {
+			alert ("Veuillez saisir votre nom svp");
+			frm.elements['nom'].focus();
+			return false;
+		}
+		if (frm.elements['prenom'].value == "") {
+			alert ("Veuillez saisir votre prenom svp");
+			frm.elements['prenom'].focus();
+			return false;
+		}
+		if (frm.elements['email'].value == "") {
+			alert ("Veuillez saisir votre adresse e-mail svp");
+			frm.elements['mail'].focus();
+			return false;
+		}
+		else {
+			var adresse = frm.elements['email'].value;
+			var aro = adresse.indexOf("@",1); 
+			var point = adresse.indexOf(".",aro+1);  
+			if ((aro < 1)||(adresse.length < 5)||(point < 1)) {
+				alert ("Votre adresse e-mail n'est pas valide")
+				frm.elements['email'].focus();
+				return false;
+			}
+		}
+		if ((frm.elements['adresse'].value=="")||(frm.elements['ville'].value=="")||(frm.elements['cp'].value=="")||(frm.elements['pays'].value=="")) {
+			alert ("Veuillez saisir votre adresse postale svp");
+			frm.elements['adresse'].focus();
+			return false;
+		}
+		
+		
+	}
+
+</script>
+
+</head>
+
+<body>
+<div class="centreur">
+	<div class="clear"></div>
+<div class="general">
+	<div class="clear"></div>
+<!-- Bandeau du haut contenant le menu en flash-->
+	<div id="top">
+		<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="750" height="139" id="bandeau" align="middle">
+		<param name="allowScriptAccess" value="sameDomain" />
+		<param name="movie" value="swf/bandeau.swf?choix1=12&choix2=1" />
+		<param name="quality" value="high" />
+		<param name="bgcolor" value="#ffffff" />
+		<embed src="swf/bandeau.swf?choix1=12&choix2=1" quality="high" bgcolor="#ffffff" width="750" height="139" name="bandeau" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+		</object>
+	</div>
+<div id="main2"><div id="main1">
+			<div class="columnleft">
+				<div class="menupageconteneur">
+					<div class="clear"></div>
+					<div class="titremenupage">
+						<a href="?page=bonus"><img src="img/titre_bonus.gif" border="0"/></a>
+					</div>
+					<div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=bonus&rubrique=genese&contenu=genese">Gen&egrave;se de Dofus</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=bonus&rubrique=videos&contenu=videos">Vid&eacute;os</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=bonus&rubrique=fonds&contenu=fonds">Fonds d&acute;&eacute;crans</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=bonus&rubrique=chat&contenu=chat">Chat IRC</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="clear"></div>
+			</div>
+			<div class="fondmenupage">
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div><div class="columncenter"><h1><img src="pages/img/marque1.gif" border="0" align="middle">&nbsp;Les bonus Dofus</h1>
+<p>
+Dans cette rubrique, qui s&rsquo;&eacute;toffera au fur et &agrave; mesure, vous retrouverez toutes les vid&eacute;os, tous les fonds d&rsquo;&eacute;crans, tous les screens shots de Dofus.
+</p>
+<p>
+Mais encore, une histoire sur la cr&eacute;ation du jeu (avec foultitude de dessins in&eacute;dits et d&rsquo;anecdotes croustillantes), toutes les cr&eacute;ations de nos potes, une rubrique fan arts (d&rsquo;ailleurs si vous  voulez contribuer, envoyez-nous vos cr&eacute;ations &agrave; <a href="mailto:info@dofus.com">info@dofus.com</a>) et toutes les autres choses qui nous passeront par la t&ecirc;te ou que vous nous proposerez.
+</p>
+<p>
+Bref, cette rubrique sera pour nous le moyen de vous faire partager l&rsquo;aventure Dofus et pour vous, si vous le souhaitez, de t&eacute;moigner de votre int&eacute;r&ecirc;t pour le jeu.
+</p>
+<div><img src="pages/bonus/img/vlad-crounch.gif"></div>
+<h6><div align="center">Artwork: M. et S. Trabut</div></h6>
+</div><div class="columnright">
+
+						<div class="contenugris">
+		<div class="titreR">
+			<img src="img/pct_id.gif" /><h1>IDENTIFICATION</h1>
+		</div>
+			<div class="ident">
+		<form action="/" method="post">
+			<input class="textfield" type="text" name="user" value="Pseudo" onfocus="if (this.value=='Pseudo') this.value='';" /><br />
+			<input class="textfield" type="password" name="pass" value="****" onfocus="if (this.value=='****') this.value='';" /><br /><br />
+			<input class="submitident" type="image" name="submit" src="/img/btvalider.gif" value="" />
+		</form>
+		<a href="/?page=inscription&contenu=forgetPass">Identifiants oubli&eacute;s ?</a>
+		</div>
+		<!--<div class="idbottom">&nbsp;</div>-->
+		</div>
+		<div class="bordureBlanc"></div>
+
+	
+				<div class="frameconteneur">
+					<div class="titreR">
+						<img src="img/pct_comptoir.gif" /><h1>COMPTOIR DOFUS</h1>
+					</div>
+					<div class="contenugris">
+						<a href="index.php?page=comptoir"><img src="img/t-shirt.gif" /></a>
+					</div>
+				</div>
+				<div class="bordureBlanc"></div>
+				<div class="frameconteneur">
+					<div class="titreR">
+						<img src="img/pct_sondage.gif" /><h1>SONDAGE</h1>
+					</div>
+						<div class="conteneursondage">
+							<!-- Mettre le code -->
+							<form name="sondage" action="?page=accueil" method="get"><h1>Votre avis sur le nouveau site :</h1>
+				<div class="conteneursondage">
+				<input class="inputsondage" type="radio" name="choix_vote" value="1" /><span>G&eacute;nial</span>
+				<br /></div>
+				
+				<div class="conteneursondage">
+				<input class="inputsondage" type="radio" name="choix_vote" value="2" /><span>Bien</span>
+				<br /></div>
+				
+				<div class="conteneursondage">
+				<input class="inputsondage" type="radio" name="choix_vote" value="3" /><span>Moyen</span>
+				<br /></div>
+				
+				<div class="conteneursondage">
+				<input class="inputsondage" type="radio" name="choix_vote" value="4" /><span>Bof</span>
+				<br /></div>
+				
+				<div class="conteneursondage">
+				<input class="inputsondage" type="radio" name="choix_vote" value="5" /><span>Nul</span>
+				<br /></div>
+				
+			<input class="btsondage" type="image" src="/img/btvoter.gif" name="submit" value="" />
+			<input type="hidden" name="NumSondage" value="0">
+			</form>
+									</div>
+				</div>
+				<div class="bordure2"></div>
+				<div class="contenugris">
+						<p>&nbsp;</p>
+						<a class="titreplan" href="index.php?page=plan"><img src="img/pct_plan.gif" /></a>
+						<a class="titrepresse" href="?page=presse" title="Espace Presse"><img src="img/pct_presse.gif" /></a>
+				</div>
+<div class="clear"></div>
+</div><div class="clear"></div></div><div class="clear"></div>
+</div>
+<div id="bottom"><a href="javascript:window.open('pages/conditions.php','popfile','scrollbars=yes,width=600 ,height=500,statusbar=no,menubar=no,toolbar=no,resizable=yes,top='+((screen.height-500)/2)+',left='+((screen.width-600)/2)+''); reset()">Conditions d'utilisation</a> - <a href="javascript:window.open('pages/confidentialite.php','popfile','scrollbars=yes,width=600 ,height=500,statusbar=no,menubar=no,toolbar=no,resizable=yes,top='+((screen.height-500)/2)+',left='+((screen.width-600)/2)+''); reset()">Politique de confidentialit&eacute;</a><br>
+D O F U S 2003/2004 - <a href="http://www.ankama-studio.com" target="_blank">Ankama Studio</a> - Tous droits r&eacute;serv&eacute;s.
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+</body>
+</html>
+

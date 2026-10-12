@@ -1,0 +1,15 @@
+200 Document https://web.archive.org/web/20040203162522if_/http://forum.dofus.com:80/Autres/Divers
+200 Stylesheet https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3
+200 Stylesheet https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv
+200 Stylesheet https://web.archive.org/web/20040413120834cs_/http://forum.dofus.com/style/default/default.css
+200 Image https://web.archive.org/web/20110723231415im_/http://forum.dofus.com/res/logo_Dofus.gif
+200 Image https://web.archive.org/web/20110723231415im_/http://forum.dofus.com/res/Puce_Menu_bande_orange.gif
+200 Image https://web.archive.org/web/20110723231416im_/http://forum.dofus.com/res/Bouton_GO.gif
+200 Image https://web.archive.org/web/20110723231437im_/http://forum.dofus.com/style/images/bt_ajoutersujet.gif
+200 Image https://web.archive.org/web/20120211005908im_/http://www.dofus.com/fr
+200 Image https://web.archive.org/web/20110723231417im_/http://forum.dofus.com/res/bandeau_anim_dofus.gif
+200 Image https://web.archive.org/web/20110723231417im_/http://forum.dofus.com/res/Fond_vague.gif
+200 Image https://web.archive.org/web/20110723231416im_/http://forum.dofus.com/res/Bande_Titre_Debut.png
+200 Image https://web.archive.org/web/20110723231416im_/http://forum.dofus.com/res/Bande_Orange_01_page2.gif
+200 Image https://web.archive.org/web/20110723231439im_/http://forum.dofus.com/res/Bande_Orange_02_page2.gif
+404 Other https://web.archive.org/favicon.ico

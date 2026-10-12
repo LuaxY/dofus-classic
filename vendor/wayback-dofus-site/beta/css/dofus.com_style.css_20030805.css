@@ -1,0 +1,142 @@
+@charset "iso-8859-1";
+body {
+	font-family: Verdana, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+	margin: 0px;
+	color: #FFFFFF;
+	background-color: #37A6DF;
+}
+body.ami {
+	font-family: Verdana, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+	margin: 0px;
+	color: #FFFFFF;
+	background-color: #258DD4;
+}
+td {
+	font-family: Verdana, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+}
+td.justify {
+	font-family: Verdana, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+	text-align: justify;
+}
+td.blue {
+	background-color: #37A6DF;
+	text-align: center;
+}
+td.blueleft {
+	background-color: #258DD4;
+	text-align: left;
+}
+td.blueright {
+	background-color: #258DD4;
+	text-align: right;
+}
+td.lightblue {
+	font-weight: bold;
+	background-color: #258DD4;
+	text-align: center;
+}
+a			{ color:#FFFFAA; text-decoration:none; font-weight:normal; }
+a:link		{ color:#ffffff; }
+a:visited	{ color:#ffffff; }
+a:active	{ color:#ffffff; }
+a:hover		{ color:#ffffff; text-decoration:underline}
+
+a.music { color:#FFFFFF; text-decoration:none; font-weight:bold; }
+a.music:active { color:#FFFFAA; text-decoration:none; font-weight:bold; }
+a.music:hover { color:#FFFFFF; text-decoration:underline; font-weight:bold; }
+
+.sideMenu {
+	font-family: Verdana;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.titre {
+	color: #08518C;
+	font-family: Verdana;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+A:link.sideMenu, A:visited.sideMenu {
+	text-decoration: none;
+}
+A:hover.sideMenu, A:active.sideMenu {
+	text-decoration: underline;
+}
+A:link.lienshaut, A:visited.lienshaut {
+	color: #37A6DF;
+	text-decoration: none;
+}
+A:hover.lienshaut, A:active.lienshaut {
+	color: #37A6DF;
+	text-decoration: underline;
+}
+
+input.pseudo {
+          BACKGROUND-COLOR: #FFFFFF;
+          BORDER: #08518C 1px solid;
+          COLOR: #08518C;
+          FONT-FAMILY: Geneva, Arial, Helvetica;
+          FONT-SIZE: 10px;
+          WIDTH: 100px;
+}
+input.mdp {
+          BACKGROUND-COLOR: #FFFFFF;
+          BORDER: #08518C 1px solid;
+          COLOR: #08518C;
+          FONT-FAMILY: Geneva, Arial, Helvetica;
+          FONT-SIZE: 10px;
+          WIDTH: 80px;
+}
+input.sinscrire {
+          BACKGROUND-COLOR: #FFFFFF;
+          BORDER: #08518C 1px solid;
+          COLOR: #08518C;
+          FONT-FAMILY: Geneva, Arial, Helvetica;
+          FONT-SIZE: 12px;
+          WIDTH: 180px;
+}
+input.sinscrire2 {
+          BACKGROUND-COLOR: #FFFFFF;
+          BORDER: #08518C 1px solid;
+          COLOR: #08518C;
+          FONT-FAMILY: Geneva, Arial, Helvetica;
+          FONT-SIZE: 12px;
+          WIDTH: 343px;
+}
+
+.select {
+color:#08518C;
+background-color:#FFFFFF;
+width: 180px;
+height: 16px;
+font-size:8pt;
+font-family: Verdana;
+}
+
+div.phrase {
+	font-family: Verdana, sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+input.bouton {
+          BACKGROUND-COLOR: #FF6533;
+          BORDER: #FFFFFF 1px solid;
+          COLOR: #FFFFFF;
+          FONT-FAMILY: Verdana,Geneva, Arial, Helvetica;
+          FONT-SIZE: 9px;
+}
+
+h1 {
+	margin:0px;
+}

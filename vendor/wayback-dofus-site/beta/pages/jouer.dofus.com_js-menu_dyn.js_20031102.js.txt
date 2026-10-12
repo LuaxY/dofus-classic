@@ -1,0 +1,97 @@
+﻿posYmenu = 101;
+posXmenu = 0;
+bgcolor='#08518C';
+bgcolor2='#FF6100';
+bgcolor3='#1F7AB9';
+var TimeoutID=0;
+var dofusSite = "http://www.dofus.com";
+var dofusSite2 = "http://jouer.dofus.com";
+
+zlien = new Array;
+
+zlien[0] = new Array;
+
+zlien[1] = new Array;
+addlien(1,0, dofusSite  + "/lejeu/presentation.asp","Présentation du jeu");
+addlien(1,1, dofusSite  + "/actualite/carnet_bord.asp","Carnet de bord");
+addlien(1,2, dofusSite  + "/actualite/concours.asp","Concours/Sondage");
+addlien(1,3, dofusSite  + "/sinscrire/newsletter.asp","Inscription newsletter");
+addlien(1,4, dofusSite2  + "/sinscrire/betatest.php","Inscription bêta-tests");
+	
+zlien[2] = new Array;
+addlien(2,0, dofusSite  + "/lejeu/histoire.asp","L'histoire");
+addlien(2,1, dofusSite  + "/univers/guildes.asp","Les guildes");
+addlien(2,2, dofusSite  + "/univers/monde.asp","Le monde");
+addlien(2,3, dofusSite  + "/univers/bestiaire.asp","Le bestiaire");
+addlien(2,4, dofusSite  + "/univers/population.asp","La population");
+
+zlien[3] = new Array;
+
+zlien[4] = new Array;
+addlien(4,0, dofusSite  + "/bonus/screenshots.asp","Screenshots");
+addlien(4,1, dofusSite  + "/bonus/fondecran.asp","Fonds d'écran");
+addlien(4,2, dofusSite  + "/bonus/animation.asp","Animations");
+addlien(4,3, dofusSite  + "/bonus/figurines.asp","Figurines");
+addlien(4,4, dofusSite  + "/bonus/irc.asp","Chat IRC");
+
+//addlien(0,2, dofusSite  + "/lejeu/demo.asp","La démo");
+
+var nava = (document.layers);
+var dom = (document.getElementById);
+var iex = (document.all);
+if (nava) { skn = document.topdeck }
+else if (dom) { skn = document.getElementById("topdeck").style }
+else if (iex) { skn = topdeck.style }
+skn.top = posYmenu+22;
+
+
+function mOvr(src,clrOver){
+	clearTimeout(TimeoutID);
+	src.style.cursor = 'hand';
+	src.bgColor = clrOver;
+}
+function mOut(src,clrIn){
+	src.style.cursor = 'default';
+	src.bgColor = clrIn;
+	TimeoutID=setTimeout("kill()", 500);
+}
+function pop(msg,pos)
+{
+skn.visibility = "hidden";
+a=true
+skn.left = posXmenu+pos;
+var content ="<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 WIDTH=150><TR><TD><TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=1>";
+pass = 0
+while (pass < msg.length)
+{
+	content += "<TR><TD BGCOLOR="+bgcolor2+" onMouseOver=\"javascript:mOvr(this, '"+bgcolor3+"');\" onMouseOut=\"javascript:mOut(this, '"+bgcolor2+"');\" HEIGHT=19 onClick=\"location.href='"+msg[pass][1]+"'\"><B>&nbsp;&nbsp;"+msg[pass][0]+"&nbsp;&nbsp;</B></TD></TR>";
+	pass++;
+}
+content += "</TABLE></TD></TR></TABLE>";
+if (nava)
+  {
+    skn.document.write(content);
+	  skn.document.close();
+	  skn.visibility = "visible";
+  }
+    else if (dom)
+  {
+	  document.getElementById("topdeck").innerHTML = content;
+	  skn.visibility = "visible";
+  }
+    else if (iex)
+  {
+	  document.all("topdeck").innerHTML = content;
+	  skn.visibility = "visible";
+  }
+}
+function kill()
+{
+	skn.visibility = "hidden";
+}
+function addlien(i, j, l, t)
+{
+zlien[i][j] = ['<A HREF="'+l+'" CLASS=ejsmenu>'+t+'</A>', l];
+}
+
+document.onclick = kill;

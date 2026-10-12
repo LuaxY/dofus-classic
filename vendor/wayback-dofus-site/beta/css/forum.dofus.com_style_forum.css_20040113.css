@@ -1,0 +1,98 @@
+TABLE.forumListe {
+	background-color: #0D528D;
+}
+
+TABLE.forumListe TD {
+	font-family: Verdana;
+	font-size: 11px;
+}
+
+TABLE.forumListe TD.forumTitre {
+	background-color: #0D528D;
+	color: White;
+}
+
+TABLE.forumListe TD {
+	background-color: #258dd4;
+}
+TABLE.forumListe TR.static TD {
+	background-color: #0099ff;
+}
+
+TABLE.forumListeMsg {
+	border: solid 1px #0D528D;
+}
+
+TABLE.forumListeMsg TD.forumTitre {
+	background-color: #0D528D;
+	color: White;
+}
+
+TABLE.forumListeMsg TR.msg0 {
+	background-color: #258DD4;
+}
+TABLE.forumListeMsg TR.msg1 {
+	background-color: #1777C0;
+}
+
+
+TABLE.forumSaisie {
+	border: solid 1px #0D528D;
+	background-color: #258DD4;
+	
+}
+TABLE.forumSaisie TD.forumTitre {
+	background-color: #0D528D;
+	color: White;
+}
+
+.size12 {
+	font-size: 12px;
+}
+
+DIV.msgQuote {
+    color: #CCCCCC;
+    width: 500px;
+    padding-left: 30px;
+    border-bottom: solid 1px #CCCCCC;
+    border-top: solid 1px #CCCCCC;
+}
+
+DIV.forumYahooPath {
+	color: #0D528D;
+	font-weight: bold;
+	font-size: 14px;
+}
+DIV.forumYahooPath A:link, DIV.forumYahooPath A:hover, DIV.forumYahooPath A:visited {
+	font-weight: bold;
+}
+
+INPUT.forum, SELECT.forum {
+	font-family: Verdana;
+	font-size: 11px;
+	height: 18px;
+	width: 550px;
+	valign: center;
+	color: #0D528D;
+	border: solid 1px #0D528D;
+	background-color: White;
+}
+TEXTAREA.forum {
+	font-family: Verdana;
+	font-size: 11px;
+	valign: center;
+	width: 550px;
+	color: #0D528D;
+	border: solid 1px #0D528D;
+	background-color: White;
+}
+
+TABLE.forumListe TD.forumAdmin {
+	background-color: #D4D0C8 ;
+	color: Black;
+}
+
+TD.msg A:link, TD.msg A:hover, TD.msg A:visited {
+	text-decoration: underline;
+	color: #00ff00;
+}

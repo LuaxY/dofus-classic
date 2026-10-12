@@ -1,0 +1,6 @@
+200 Document https://web.archive.org/web/20040108215712if_/http://www.ankama-studio.com:80/forumdofus/
+200 Stylesheet https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3
+200 Stylesheet https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv
+200 Stylesheet https://web.archive.org/web/20040109204509cs_/http://www.ankama-studio.com/forumdofus/style.css
+200 Stylesheet https://web.archive.org/web/20040121044602cs_/http://www.ankama-studio.com/forumdofus/style_forum.css
+404 Other https://web.archive.org/favicon.ico

@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3c.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Dofus</title>
+	<link rel="stylesheet" HREF="style.css" type="text/css">
+	
+<!--script pour gestion des commandes-->	
+<script language="javascript">
+<!--
+	function ajouter(ref,guilde) {
+		var taille = document.getElementById("taille_"+guilde).value;
+		var qte = document.getElementById("qte_"+guilde).value;
+		window.location.href = "index.php?page=comptoir&action=ajouter&ref="+ref+"&taille="+taille+"&qte="+qte+"&mod="+guilde;	
+	}
+	function supprimer(hashcode) {
+		window.location.href = "index.php?page=comptoir&action=supprimer&hash="+hashcode;
+	}
+-->
+</script>
+
+</head>
+
+<body>
+<div class="centreur">
+	<div class="clear"></div>
+<div class="general">
+	<div class="clear"></div>
+<!-- Bandeau du haut contenant le menu en flash-->
+	<div id="top">
+		<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="750" height="139" id="bandeau" align="middle">
+		<param name="allowScriptAccess" value="sameDomain" />
+		<param name="movie" value="swf/bandeau.swf?choix1=19&choix2=7" />
+		<param name="quality" value="high" />
+		<param name="bgcolor" value="#ffffff" />
+		<embed src="swf/bandeau.swf?choix1=19&choix2=7" quality="high" bgcolor="#ffffff" width="750" height="139" name="bandeau" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+		</object>
+	</div>
+<div id="main2">
+				<div class="columnleft2c"><SCRIPT LANGUAGE="JavaScript">
+function VerifForm()
+	{
+	nom = document.krucial.nom.value;
+	prenom = document.krucial.prenom.value;
+	pays = document.krucial.pays.value;
+	adresse = document.krucial.mail.value;
+	age = document.krucial.age.value;
+	question = document.krucial.question.value;
+
+	if (nom.length == 0)
+	{
+		alert('Veuillez saisir votre nom.');
+		return;
+	}
+		
+	if (prenom.length == 0)
+	{
+		alert('Veuillez saisir votre pr&eacute;nom.');
+		return;
+	}
+
+	var place = adresse.indexOf("@",1);
+	var point = adresse.indexOf(".",place+1);
+	if (!((place > -1)&&(adresse.length >2)&&(point > 1)))
+	{
+		alert('Veuillez entrez une adresse e-mail valide !');
+		return;
+	}
+
+	if (pays.length == 0)
+	{
+		alert('Veuillez saisir votre pays.');
+		return;
+	}
+
+	if (age == 0)
+	{
+		alert('Veuillez saisir votre &acirc;ge.');
+		return;
+	}
+
+	if (question == 0)
+	{
+		alert('Veuillez nous dire comment vous avez connu Dofus ? Cest assez important pour nous ! merci !');
+		return;
+	}
+	
+	document.krucial.submit();
+	}
+	
+	function showLayer(layerNom, bVisible) {
+	var NS6=(document.getElementById&&!document.all)?1:0
+	if(document.all) {
+		document.all.item(layerNom).style.visibility = bVisible ? "visible" : "hidden";
+	}
+	else if(NS6) 
+		document.getElementById(layerNom).style.visibility = bVisible ? "visible" : "hidden";
+	else {
+		document[layerNom].visibility = bVisible ? "visible" : "hidden";
+	}	
+	
+}
+	
+</SCRIPT>
+<h1><img src="pages/img/marque1.gif" border="0" align="middle">&nbsp;S'inscrire aux b&ecirc;ta-tests de Dofus</h1>
+	<FORM ACTION="?page=inscription&rubrique=betaInscription&contenu=betaInscription" METHOD="post" NAME="krucial">
+	<table width="550" border="0">
+	<tr>
+		<td>&nbsp;&nbsp;</td>
+		<td class="justify">
+<p><strong>Les b&ecirc;ta-tests ont commenc&eacute;. Actuellement, 650 joueurs s&eacute;lectionn&eacute;s testent Dofus ! Venez les rejoindre !</strong><br><br>
+Inscrivez vous maintenant &agrave; Dofus ! Nous ferons appel &agrave; vous prochainement pour tester Dofus. <br>
+Nous vous remercions de bien vouloir remplir ces quelques champs. Cela nous permettra de mieux vous conna&icirc;tre, et surtout, de bien situer sur quels types de plates-formes tournera le jeu.</p>
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td valign="top">
+					<table cellpadding="1" cellspacing="0" border="0" height="100%" bgcolor="#0A508E">
+					<tr>
+						<td valign="top">
+						<table border="0" cellpadding="6" cellspacing="0">
+						<tr>
+							<td colspan="2" bgcolor="#0A508E" valign="middle"><b>Votre profil</b><br></td>
+						</tr>
+						<tr>
+							<td class="blueleft">Nom&nbsp;<font color="red">*</font></td>
+							<td class="blueleft"><input type="text" name="nom" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Pr&eacute;nom&nbsp;<font color="red">*</font></td>
+							<td class="blueleft"><input type="text" name="prenom" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">e-mail&nbsp;<font color="red">*</font></td>
+							<td class="blueleft"><input type="text" name="mail" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Soci&eacute;t&eacute;</td>
+							<td class="blueleft"><input type="text" name="societe" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Ville</td>
+							<td class="blueleft"><input type="text" name="ville" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Pays&nbsp;<font color="red">*</font></td>
+							<td class="blueleft"><input type="text" name="pays" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Age&nbsp;<font color="red">*</font></td>
+							<td class="blueleft">
+								<select name="age" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">moins de 14</option>
+						      	<option value="2">14 - 17</option>
+						      	<option value="3">18 - 21</option>
+						      	<option value="4">22 - 30</option>
+						      	<option value="5">31 - 35</option>
+						      	<option value="6">36 - 40</option>
+						      	<option value="7">+ de 40</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft" colspan="2">&nbsp;<br><br><br></td>
+						</tr>
+						</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+				<td valign="top">
+					<table cellpadding="1" cellspacing="0" border="0" bgcolor="#0A508E" height="100%">
+					<tr>
+						<td>
+						<table cellpadding="6" cellspacing="0" border="0" height="100%">
+						<tr>
+							<td colspan="2"><b>Votre machine</b><br></td>
+						</tr>
+						<tr>
+							<td class="blueleft">Processeur (en Mhz)</td>
+							<td class="blueleft">
+								<select name="hard_cpu" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">moins de 500</option>
+						      	<option value="2">500 - 1000</option>
+						      	<option value="3">1001 - 1300</option>
+						      	<option value="4">1301 - 1500</option>
+						      	<option value="5">1501 - 2000</option>
+						      	<option value="6">plus de 2000</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">M&eacute;moire vive (en Mo)</td>
+							<td class="blueleft">
+								<select name="hard_ram" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">moins de 64</option>
+						      	<option value="2">64 - 128</option>
+						      	<option value="3">129 - 256</option>
+						      	<option value="4">257 - 384</option>
+						      	<option value="5">385 - 512</option>
+						      	<option value="6">plus de 512</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">Connexion Internet</td>
+							<td class="blueleft">
+								<select name="hard_net" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">modem 28.8 ou 33.6K</option>
+						      	<option value="2">modem 56K</option>
+						      	<option value="3">modem 128K</option>
+						      	<option value="4">ISDN</option>
+						      	<option value="5">ADSL 128</option>
+						      	<option value="6">ADSL 512</option>						      	
+						      	<option value="7">ADSL 1024</option>
+						      	<option value="8">modem c&acirc;ble</option>
+						      	<option value="9">T1</option>
+						      	<option value="10">T3 ou +</option>
+						      	<option value="11">Autre</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">Syst&egrave;me d'exploitation</td>
+							<td class="blueleft">
+								<select name="hard_os" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">Windows 95</option>
+						      	<option value="2">Windows 98</option>
+						      	<option value="3">Windows Me</option>
+						      	<option value="4">Windows NT</option>
+						      	<option value="5">Windows 2000</option>
+						      	<option value="6">Windows XP</option>
+						      	<option value="7">Mac OS 9.x</option>
+						      	<option value="8">Mac OS X</option>
+						      	<option value="9">Linux</option>
+						      	<option value="10">Autre</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">Navigateur</td>
+							<td class="blueleft">
+								<select name="hard_browser" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">Internet Explorer 5</option>
+						      	<option value="2">Internet Explorer 6</option>
+						      	<option value="3">Netscape 4</option>
+						      	<option value="4">Netscape 6</option>
+						      	<option value="5">Netscape 7</option>
+						      	<option value="6">Opera</option>
+						      	<option value="7">Mozilla</option>
+						      	<option value="8">Autre</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">Comment avez-vous connu Dofus ? &nbsp;<font color="red">*</font></td>
+							<td class="blueleft">
+								<select name="question" class="select" onchange="if (form.question.selectedIndex == 2 || form.question.selectedIndex == 3 || form.question.selectedIndex == 7 || form.question.selectedIndex == 8 || form.question.selectedIndex == 9) showLayer('com',true); else showLayer('com',false)">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">par le site Ankama Studio</option>
+						      	<option value="2">par un forum fran&ccedil;ais</option>
+						      	<option value="3">par un forum &eacute;tranger</option>
+						      	<option value="4">par un ami</option>
+						      	<option value="5">par le bouche &agrave; oreille</option>
+						      	<option value="6">par Google</option>
+						      	<option value="7">par un moteur de recherche</option>
+						      	<option value="8">par un journal...</option>
+								<option value="9">par autre chose...</option>
+						      	</select>
+						
+					      	</td>
+						</tr>
+						
+						<tr>
+							<td colspan="2" class="blueleft">
+								
+								<div name="com" id="com">		
+									<table>
+										
+										<tr>
+										<td class="blueleft">... et qui est exactement : &nbsp;&nbsp;&nbsp;</td>
+										<td class="blueleft"><input type="text" name="question2" size="40" maxlength="256" class="sinscrire">
+										</tr>
+									</table>	
+								</div>
+							</td>
+								<script>showLayer('com',false)</script>
+								
+					      	</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="blueright" height="100%">
+							<a href="javascript:VerifForm();"><img src="pages/inscription/img/btnsinscrire.gif" border="0"></a>
+							</td>
+						</tr>
+						</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</table>
+<p><strong>Note :</strong><br>
+Vos informations personnelles ne seront utilis&eacute;es que par Ankama Studio, cr&eacute;ateur du jeu Dofus.Elles ne pourront jamais &ecirc;tre c&eacute;d&eacute;es &agrave; des tiers.
+</p>
+
+		<table width="550" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		
+		<td>
+			<p>
+			<strong>Mentions l&eacute;gales :</strong>
+			Conform&eacute;ment &agrave; l'article 34 de la loi " Informatique et libert&eacute;s ", tu disposes d'un droit de modification, de rectification et de suppression des donn&eacute;es qui te concernent.
+			Ankama Studio s'engage &agrave; ne pas divulguer tes informations personnelles &agrave; des tiers.
+			</p>
+		</td>		
+	<tr>			
+</table>
+
+		</td>
+	</tr>
+	</table>
+	</form>
+</div><div class="columnright">
+				<div class="idconteneur">
+					<div class="idtitre"><h1>IDENTIFICATION</h1></div>
+										<div class="idform">
+						<form action="/index.php" method="post">
+							<input class="textfield" type="text" name="user" value="Pseudo" onfocus="if (this.value=='Pseudo') this.value='';" /><br />
+							<input class="textfield" type="password" name="pass" value="****" onfocus="if (this.value=='****') this.value='';" /><br /><br />
+							<!--<input class="bouton" type="submit" name="submit" value="" />-->
+							
+						</form>
+					</div>
+					<div class="idcontenu">
+						<center>Rubrique disponible prochainement<br><br>
+					
+						<a href="?page=inscription"><strong>et en attendant <br>inscrivez vous &agrave; la b&ecirc;ta</strong></a><br><br>
+						</center>
+					</div>					
+					<div class="idbottom"></div>
+				
+									</div>
+				<div class="frameconteneur">
+					<div class="titregris">
+						<h1 class="titresondage">COMPTOIR DE DOFUS</h1>
+					</div>
+					<div class="contenugris">
+						<a href="index.php?page=comptoir"><img border="0" src="img/t-shirt.jpg" /></a>
+					</div>
+					<div class="bottomgris"></div>
+				</div>
+				<div class="frameconteneur">
+					<div class="titregris">
+						<a href="index.php?page=plan"><h1 class="titreplan">Plan du Site</h1></a>
+					</div>
+					<div class="bottomgris"></div>
+				</div>
+				<div class="frameconteneur">
+					<div class="titregris">
+					<script>
+					function winopen(page, w, h)
+					{
+						window.open(page,'pop','scrollbars=no,width='+w+',height='+h+',statusbar=no,menubar=no,toolbar=no,resizable=no,top=50,left=50');
+					}
+					</script>
+						<a href="javascript:winopen('pages/presse/espace_presse.php',750,700)" title="Espace Presse"><h1 class="titrepresse">Espace Presse</h1></a>
+					</div>
+					<div class="bottomgris2"></div>
+				</div>
+<div class="clear"></div>
+</div><div class="clear"></div><div class="clear"></div>
+</div>
+<div id="bottom"><a href="pages/conditions.php" target="_blank">Conditions d'utilisation</a> - <a href="pages/confidentialite.php" target="_blank">Politique de confidentialit&eacute;</a><br>
+D O F U S 2003/2004 - <a href="http://www.ankama-studio.com" target="_blank">Ankama Studio</a> - Tous droits r&eacute;serv&eacute;s.
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+
+</body>
+</html>

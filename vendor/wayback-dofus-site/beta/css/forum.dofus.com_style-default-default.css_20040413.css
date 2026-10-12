@@ -1,0 +1,830 @@
+/* Type CSS rules here and they will be applied
+to pages from 'editcss'
+immediately as long as you keep this window open. */
+
+/**** LINK-tag style sheet default.css ****/
+
+/***********
+General
+***************/
+
+*
+{
+/*border: 1px black solid;*/
+}
+img{
+border: none;
+}
+
+div.clear{
+clear:both;
+height: 0px;
+overflow: hidden;
+}
+
+a{
+text-decoration:none;
+color: #1275ca;
+}
+a:hover{
+text-decoration:underline;
+}
+
+
+
+hr{
+height:1px;
+}
+
+body {
+	font-family: Verdana, sans-serif;
+	font-size: 11px;
+	margin: 0;
+	padding: 0;
+	color: #525252;
+	background-color: #fff;
+}
+
+img.smiley{
+margin:0 5px;
+vertical-align: middle;
+}
+
+/*******************
+Tout le contenu, pour largeur et centrage
+****************/
+#all{
+width:750px;
+margin: auto;
+margin-top: 15px;
+margin-bottom: 15px;
+border:1px black solid;
+}
+
+/***************
+Haut de page avec bandeau
+*******************/
+
+#top{
+background-color: #F90;
+padding:0;
+margin:0;
+background: url("/res/bandeau_anim_dofus.gif");
+}
+#top h1{
+margin: 0px;
+padding:10px;
+}
+
+
+/****************
+Menu orange
+**************/
+
+#menu{
+background-color: #F90;
+}
+
+#menu ul{
+margin:0;
+padding:5px 0px;
+border-top:1px #999 solid;
+width: 100%;
+text-align: right;
+}
+
+#menu li {
+  display:inline;
+  padding-right: 30px;
+}
+#menu li.main{
+display:inline;
+/*padding-right:150px;*/
+float:left;
+}
+#menu li img{
+margin-right:5px;
+vertical-align: top;
+}
+#menu li a{
+color: #fff;
+font-weight: bold;
+}
+
+
+/**************
+Barre grise de login
+*****************/
+#login {
+width: 100%;
+margin:0;
+padding:0;
+margin-bottom:5px;
+text-align: right;
+}
+#login form{
+padding:0;
+margin:0;
+margin-top:5px;
+margin-right:10px;
+}
+#login label{
+font-weight: bold;
+color: #525252;
+margin:0 3px 0 10px;
+padding:0;
+padding-left:10px;
+}
+#login input#user, input#pass {
+border: 1px black solid;
+height: 12px;
+font-size:11px;
+vertical-align: middle;
+}
+#login input#submit{
+vertical-align:bottom;
+}
+#login .msgLog{
+margin:0;
+float:right;
+text-align:right;
+}
+
+#login .msgLog, #login .msgLog a{
+font-size:11px;
+font-weight:bold;
+background-color: #ccc;
+padding:10px;
+}
+#login .msgLog {
+color: #525252;
+}
+
+/**************
+Cotenu principal avec fond en gris
+****************/
+#content{
+background: url("/res/Fond_vague.gif") no-repeat #EFEFEF;
+margin: 0;
+padding:0;
+padding-bottom:10px;
+line-height:1.1;
+}
+
+/***************
+Bas de page - copyright
+*******************/
+#copyright{
+background-color: #f90;
+margin:0;
+padding:0;
+}
+#copyright p{
+color: #525252;
+text-align: center;
+margin:0;
+padding:0;
+}
+#copyright p a{
+color:#525252;
+}
+
+/****************
+Conteneur principal
+*******************/
+#page{
+margin:0;
+padding:10px;
+}
+
+.old{
+margin:0;
+margin-top:5px;
+padding:0;
+text-align:center;
+}
+
+.old a{
+/*color: #1275ca;*/
+font-weight: bold;
+}
+
+
+/*************
+Groupement des cat et sous cat
+*****************/
+.groupCat{
+margin:0;
+padding:0;
+margin-bottom:10px;
+}
+
+/**********************
+Affichage du titre de categorie
+***********************/
+
+.categorie, .catDesc,  .catDescThread{
+margin: 0px;
+height:53px;
+padding-left:40px;
+background: url("/res/Bande_Titre_Debut.png") no-repeat;
+background-color: #1375c9;
+}
+.categorie h2, .catDesc .path, .catDescThread .path{
+display: inline;
+font-size:17px;
+font-weight: bold;
+color: #fff;
+}
+
+.catDescThread .path{
+display:block;
+}
+
+.categorie h2 a, .catDesc .path a, .catDescThread .path a{
+color: #fff;
+font-size:17px;
+font-weight: bold;
+}
+.categorie p {
+display: inline;
+color: #fff;
+font-weight: bold;
+margin-left: 10px;
+}
+.catDesc p{
+float: left;
+color: #fff;
+padding: 0;
+margin:0;
+width: 400px;
+margin-top: 3px;
+margin-left: 50px;
+font-weight: bold;
+}
+
+.catDesc .links{
+/*display:block;*/
+float: right;
+text-align: right;
+margin-right:5px;
+}
+
+
+
+/**********************
+Liste des sous categorie
+***********************/
+
+div.sscategorie {
+border-bottom:1px #999 solid;
+margin-bottom:1px;
+background-color:#fff;
+margin:0;
+padding:0;
+}
+
+.sscategorie .blocksscat{
+float: left;
+width: 60%;
+margin:0;
+padding:0;
+/*
+background-color:#fff;
+height:60px;
+border-bottom:1px #999 solid;
+*/
+}
+
+
+.sscategorie .blocksscat h3{
+padding:0;
+padding-left: 30px;
+padding-right: 50px;
+padding-top: 5px;
+margin:0;
+color: #525252;
+font-size: 14px;
+}
+.sscategorie .blocksscat h3 a{
+/*color: #525252;*/
+font-size: 14px;
+}
+
+.sscategorie .blocksscat p{
+font-size: 11px;
+padding-left: 30px;
+padding-right: 50px;
+margin:0 0 3px 0;
+}
+
+
+.sscategorie .lastTopic{
+float:left;
+padding: 3px 0;
+padding-left:10px;
+border-left: 1px #999 dashed;
+/*background-color:#fff;
+height:54px;*/
+
+width:38.5%;
+/*border-bottom:1px #999 solid;*/
+
+
+margin:0;
+overflow: hidden;
+}
+
+
+
+.sscategorie .lastTopic span{
+display:block;
+}
+.sscategorie .lastTopic .nbReponse{
+color:#f90;
+font-weight: bold;
+margin:5px 0;
+}
+.sscategorie .lastTopic .topic{
+display:block;
+}
+.sscategorie .lastTopic .topic a{
+/*color:#1275ca;*/
+font-weight: bold;
+}
+.sscategorie .lastTopic .date{
+color: #525252;
+margin:2px 0 5px 0;
+}
+
+
+
+
+/********************
+List des topics
+********************/
+
+table#listTopics {
+border-collapse:collapse;
+border-bottom: 1px #0D528D solid;
+width: 100%;
+font-size:11px;
+}
+
+#listTopics td {
+  border: 1px #999 solid;
+  background-color: #258dd4;
+  text-align:center;
+  padding: 5px;
+}
+
+#listTopics th {
+background: #f90;
+color: #525252;
+text-align: left;
+padding: 3px;
+border: 1px #999 solid;
+}
+
+#listTopics th.status {
+background: url("/res/Bande_Orange_01_page2.gif") no-repeat;
+border-left: none;
+border-top: none;
+width:16px;
+}
+#listTopics th.lastMessage{
+background: url("/res/Bande_Orange_02_page2.gif") right no-repeat;
+border-right: none;
+border-top: none;
+background-color: #f90;
+}
+
+
+#listTopics th.titre {
+width:50%;
+color: #fff;
+}
+
+#listTopics td, #listTopics td a{
+/*color: #525252;*/
+}
+#listTopics td a{
+font-weight: bold;
+}
+
+
+#listTopics td.auteur, #listTopics td.auteur a{
+/*color: #1275ca;*/
+}
+
+#listTopics td.cat {
+width:20%;
+}
+
+
+#listTopics span.date{
+display:block;
+font-size: 9px;
+font-weight:normal;
+}
+
+#listTopics tr.topic0 td{
+background: #fff;
+}
+#listTopics tr.topic1 td{
+background: #efefef;
+}
+#listTopics tr.static td{
+background: #c5c5c5;
+}
+
+#listTopics td.titre
+{
+text-align:left;
+}
+
+#listTopics td a.lienLastPage, #listTopics tr.static td a.lienLastPage{
+color:#3095d9;
+font-size:10px;
+font-weight:normal;
+}
+
+#listTopics td.status{
+}
+
+
+#nav{
+text-align: center;
+margin-top:5px;
+font-size:14px;
+color: #525252;
+font-weight: bold;
+}
+#nav a{
+/*color: #1275ca;*/
+font-size:12px;
+font-weight: bold;
+}
+
+/****************
+Thread
+*******************/
+
+.topicHeader{
+overflow: visible;
+background: url("/res/Bande_Orange_01_page2.gif") no-repeat top left;
+height: 20px;
+padding-left:10px;
+}
+
+.topicHeader .perso{
+background-color: #f90;
+padding:0;
+padding-bottom:5px;
+padding-top:4px;
+margin:0;
+color: #fff;
+font-weight:bold;
+width:110px;
+}
+.topicHeader .postContent{
+background-color: #f90;
+padding:4px 0;
+padding-bottom:5px;
+width:596px;
+padding-left: 10px;
+color: #525252;
+font-weight:bold;
+border-right: 2px #f90 solid;
+}
+
+
+.post0{
+background-color:#fff;
+margin:0;
+padding:0;
+border:1px #999 solid;
+border-top:0;
+}
+
+.post1{
+background-color:#efefef;
+border:1px #999 solid;
+border-top:0;
+margin:0;
+padding:0;
+}
+.postDeleted{
+background-color:#FEE;
+border:1px #999 solid;
+border-top:0;
+margin:0;
+padding:0;
+}
+.postDeleted .postContent .linkDelete{
+	position:relative;
+	float:right;
+}
+.postDeleted .postContent div{
+	position:relative;
+	float:left;
+}
+.perso{
+float: left;
+width:15%;
+padding-top: 5px;
+padding-left: 10px;
+display:block;
+
+}
+
+.perso span{
+display:block;
+color: #525252;
+font-size:10px;
+}
+.perso img{
+	margin:10px 0 3px 0;
+}
+.perso strong{
+display:block;
+margin-bottom: 10px;
+font-size:11px;
+}
+
+.postContent{
+float: left;
+width:80%;
+padding:0;
+padding-left: 10px;
+padding-top:5px;
+margin: 0;
+border-left: 2px #999 solid;
+
+}
+
+.postContent h2, .postContent h2 a{
+margin:0;
+padding:0;
+font-size:12px;
+}
+
+.postContent h2{
+border-bottom: 1px #999 dotted;
+padding-bottom: 2px;
+color:#1275ca;
+}
+
+.postContent h2 img{
+padding-right:5px;
+vertical-align: top;
+}
+
+.postContent p{
+
+}
+
+.postContent cite{
+display:block;
+margin-top:10px;
+}
+
+.postContent p.date{
+color: #525252;
+font-size: 9px;
+padding-bottom:10px;
+border-bottom: 1px #999 dotted;
+margin-bottom: 5px;
+}
+
+.postContent p.signature{
+color: #525252;
+float: left;
+margin:0 0 4px 0;
+}
+
+.postContent p.reply{
+float:right;
+text-align: right;
+margin:0;
+margin-bottom:3px;
+padding:0;
+vertical-align:top;
+}
+.postContent p.reply input{
+}
+
+.postContent input, .postContent select, .postContent form{
+display:inline;
+margin:2px 0 2px 5px;
+padding:0;
+float:right;
+}
+.postContent optgroup{
+color: #1275ca;
+}
+.postContent option{
+color: #222222;
+}
+
+.postContent .msgEdit{
+display:block;
+color: #525252;
+margin-top:2px;
+}
+
+/*.postContent input, .postContent select {
+border: 1px #999 solid;
+background-color: #f90;
+color: #fff;
+}*/
+
+.noresponse{
+border:1px #999 solid;
+border-top:0;
+padding:5px;
+font-size:11px;
+color:#525252;
+font-weight: bold;
+}
+
+.new{
+color:red;
+display:inline;
+}
+
+
+.error a{
+font-weight: bold;
+/*color: #000;*/
+}
+
+.error{
+margin:0;
+padding:0;
+padding-top:0px;
+margin-top: 0px;
+margin-left: 30px;
+width: 400px;
+}
+
+/********************
+Formulaires
+*********************/
+#divFormPost, #formProfil{
+padding:10px;
+}
+.search{
+clear:both;
+margin:0;
+padding:0;
+}
+
+#divFormPost img{
+margin:2px;
+}
+
+.search form{
+padding:0;
+margin:0;
+}
+
+#divFormPost legend, #formProfil legend, .search legend{
+vertical-align:top;
+font-size: 18px;
+font-weight bold;
+background-color:#2a82ce;
+color: #fff;
+padding:5px;
+margin:0px;
+border:1px #999 solid;
+}
+
+
+#divFormPost fieldset, #formProfil fieldset, .search fieldset {
+   border: 1px #999 solid;
+   background-color: #fff;
+}
+
+p.row {
+clear: both;
+margin:5px;
+}
+
+#divFormPost label, #formProfil label, p.row label, #divFormPost h4{
+display: block;
+font-weight: bold;
+color: #1275ca;
+padding-bottom:3px;
+}
+
+#divFormPost h4{
+font-size: 11px;
+}
+
+p.row label{
+display:inline;
+}
+
+p.row label{
+float: left;
+width: 320px;
+text-align: right;
+margin-right:5px;
+padding-top:5px;
+}
+
+
+#divFormPost .nolabel label, #formProfil .nolabel label
+{
+display: inline;
+font-weight: normal;
+color: #000;
+}
+
+#divFormPost p, #formProfil p{
+margin:10px;
+padding:0;
+}
+
+#divFormPost textarea, #formProfil textarea{
+border: 1px #999 solid;
+
+font-family: Verdana, sans-serif;
+font-size: 11px;
+padding:5px;
+margin:0;
+background-color: #efefef;
+}
+
+#divFormPost input.text, #formProfil input.text, p.row input.text{
+border: 1px #999 solid;
+background-color: #fff;
+font-size: 11px;
+padding:2px;
+padding-left:5px;
+}
+
+#divFormPost input.submit, #formProfil input.submit{
+border: 1px #999 solid;
+background-color: #f90;
+color: #fff;
+}
+
+#divFormPost span.error, #formProfil span.error{
+display: block;
+color: red;
+margin:0;
+margin-bottom:5px;
+padding:0;
+}
+#divFormPost span.required, #formProfil span.required{
+color: red;
+font-weight: bold;
+}
+.search span.error{
+color: red;
+font-weight: bold;
+padding:0;
+margin:0;
+}
+
+
+
+.result{
+padding:10px;
+}
+
+p.row span.formw {
+  float: right;
+  text-align: left;
+ }
+
+p.rowgroup{
+padding:0;
+margin:0;
+width:100%;
+}
+
+p.rowgroup label{
+font-weight: bold;
+color: #1275ca;
+margin-right: 5px;
+}
+p.rowgroup {
+text-align:center;
+}
+
+#aidewiki{
+margin-left:20px;
+}
+
+#aidewiki dl dd{
+margin:10px;
+}
+
+#faq h2{
+margin:0;
+padding-top:25px;
+margin-bottom:30px;
+}

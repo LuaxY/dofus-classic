@@ -1,0 +1,9 @@
+200 Document https://web.archive.org/web/20040124160053if_/http://dofus.com:80/?page=informations&rubrique=betatests&contenu=betatests
+200 Stylesheet https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3
+200 Stylesheet https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv
+200 Stylesheet https://web.archive.org/web/20031202232147cs_/http://dofus.com/style.css
+200 Image https://web.archive.org/web/20110404043310im_/http://www.dofus.com/it
+200 Image https://web.archive.org/web/20110404043310im_/http://www.dofus.com/it
+200 Image https://web.archive.org/web/20110404043310im_/http://www.dofus.com/it
+200 Image https://web.archive.org/web/20110404043310im_/http://www.dofus.com/it
+404 Other https://web.archive.org/favicon.ico

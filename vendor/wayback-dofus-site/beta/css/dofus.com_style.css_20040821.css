@@ -1,0 +1,340 @@
+/* style des page de contenu*/
+.columncenter h1, .columnleft2c h1 {
+color: #444444;
+padding: 10px 0px 5px 5px;
+font-size: 14px;
+}
+.columncenter h2, .columnleft2c h2 {
+color: #555555;
+padding: 5px 0px 5px 10px;
+font-size: 13px;
+}
+.columncenter h4, .columnleft2c h4 {
+color: #555555;
+padding: 5px 0px 5px 10px;
+font-size: 11px;
+}
+.columncenter h3, .columnleft2c h3 {
+color: #666666;
+padding-left: 25px;
+font-size: 12px;
+}
+.columncenter p, .columnleft2c p {
+color: #666666;
+padding: 0px 10px 10px 10px;
+font-size: 11px;
+text-align: justify;
+}
+.columncenter span, .columnleft2c span {
+color: #666666;
+padding: 0px 10px 10px 10px;
+font-size: 11px;
+text-align: justify;
+}
+.columncenter lightblue, .columnleft2c lightblue {
+font-weight: bold;
+background-color: #258DD4;
+text-align: center;
+}
+.news {
+color: #666666;
+font-size: 11px;
+text-align: justify;
+padding: 5px;
+margin: 3px 0px 0px 0px;
+}
+.news h2	 {
+font-weight: bold;
+color: #555555;
+font-size: 11px;
+padding: 0 0 0 10px;
+margin: 15px 0px 0px 0px;
+}
+.news h3 {
+font-weight: bold;
+color: #555555;
+font-size: 11px;
+padding: 0 0 0 10px;
+margin: 0px 0px 10px 0px;
+}
+.news p {
+color: #666666;
+font-size: 11px;
+text-align: justify;
+padding: 0px 5px 0px 10px;
+margin: 0px 0px 10px 10px;
+}
+td.justify {
+	text-align: justify;
+}
+td.blue {
+	background-color: #37A6DF;
+	text-align: center;
+}
+td.textblack {
+	color: #555555;
+	text-align: center;
+}
+td.blueleft {
+	background-color: #258DD4;
+	text-align: left;
+}
+td.blueright {
+	background-color: #258DD4;
+	text-align: right;
+}
+td.lightblue {
+	font-weight: bold;
+	background-color: #258DD4;
+	text-align: center;
+}
+#cache {
+visibility : hidden;
+width : 180px;
+color: black;
+font-size: 12px;
+}
+form#formTest, form#mailTest {
+margin-left: 20px;
+}
+input.sinscrire {
+background-color: #FFFFFF;
+border: #08518C 1px solid;
+color: #000;
+font-family: Geneva, Arial, Helvetica,sans-serif;
+font-size: 12px;
+width: 180px;
+}
+input.sinscrire2 {
+background-color: #FFFFFF;
+border: #08518C 1px solid;
+color: #08518C;
+font-family: Geneva, Arial, Helvetica,sans-serif;
+font-size: 12px;
+width: 343px;
+}
+textarea{
+background-color: #FFFFFF;
+border: #08518C 1px solid;
+color: #000;
+font-family: Geneva, Arial, Helvetica,sans-serif;
+font-size: 12px;
+width: 180px;
+padding:2px;
+}
+.select {
+color:#08518C;
+background-color:#FFFFFF;
+width: 150px;
+height: 16px;
+font-size:8pt;
+font-family: Verdana,sans-serif;
+}
+.columncenter a, .columnleft2c a { color: #ff9900;}
+.columncenter a:link, .columnleft2c a:link { color:#ff9900; }
+.columncenter a:visited, .columnleft2c a:visited { color:#ff9900; }
+.columncenter a:active, .columnleft2c a:active { color:#ff9900; }
+.columncenter a:hover, .columnleft2c a:hover { color:#ff9900; text-decoration:underline}
+.columncenter div, .columnleft2c div {
+text-align: center;
+}
+/*classe pour le bestiaire*/
+.bestiaireconteneur {
+float: left;
+width: 400px;
+}
+.bestiairetext {
+float: left;
+width: 290px;
+margin: 0 0 0 5px;
+}
+.bestiairetext h1 {
+text-align: left;
+}
+.bestiaireconteneur img {
+float: right;
+}
+/*Classe pour la population*/
+.populationconteneur {
+float: left;
+width: 135px;
+height: 140px;
+text-align: center;
+}
+.populationconteneur p {
+color: black;
+text-align: center;
+font-size: 11px;
+}
+/*Classe pour les guildes*/
+.tableausorts td{
+text-align: center;
+}
+td.critique {
+font-size: 10px;
+background-color: #f90;
+}
+td.niveau {
+background-color: #999;
+}
+tr.donnees {
+background-color: #f90;
+}
+a.lienbas {
+padding-left: 55px;
+}
+td.legendetd {
+background-color: #ccc;
+}
+/*comptoir*/
+.center {
+width: 570px;
+text-align: center;
+}
+.comptoir {
+width: 500px;
+font-size: 11px;
+border: 1px solid black;
+}
+.comptoir img {
+float: left;
+}
+.comptoir p {
+color: black;
+padding:5px 0 5px 0;
+}
+.comptoir span {
+float: left;
+padding:0px 25px 0px 25px;
+}
+table.comptoir {
+background-color: #99ccff;
+width:100%;
+margin: 0px;
+}
+table.comptoir th {
+font-size: 15px;
+text-align:center;
+height:30px;	
+}
+table.comptoir td.texte {
+font-size: 10px;
+color: Black;	
+padding-right: 20px;
+padding-left: 20px;
+}
+table.comptoir a:link { text-decoration:none; color: red; }
+table.comptoir a:visited { text-decoration:none; color: red; }
+table.comptoir a:hover { text-decoration:none; color: blue; }
+table.panier {
+background-color: #ffffff;
+font-size: 10px;
+border:solid 1px black;
+margin: 0px;
+}
+table.panier th  {
+background-color: #6699ff;
+width:100%;
+color:black;
+height:20px;
+} 
+table.panier td.titre {
+color:#6699Ff;
+text-align:center;
+border:1px solid grey;
+height:25px;
+} 
+table.panier td.article {
+background-color: #99ccff;
+color:black;
+text-align:center;	
+}
+table.panier td.valid {
+height:50px;
+color:black;
+text-align:right;
+padding-right:30px;	
+}  
+table.article {
+background-color:#ffffff;
+border:solid 1px black;
+margin: 0px;
+}
+table.identification {
+background-color:#99ccff;
+font-size: 10px;
+margin: 0px;
+}
+table.identification th  {
+background-color: #6699ff;
+width:100%;
+color:black;
+height:20px;
+} 
+table.identification td  {
+height:18px;
+color:black;
+} 
+input.valider {
+background-color:white;
+color:#f90;
+font-weight:bold;
+text-align:center;
+}
+input.identification {
+background-color:#99ccff;
+font-size:12px;
+height:5px;
+}
+/*Plan du site*/
+.plansite {
+width: 100px;
+text-align: left;
+padding: 0 0 0 10px;
+}
+a.plansitetitre1 {
+display : block;
+color: #000;
+text-align: left;
+font-size: 14px;
+padding: 10px 0px 5px 0px;
+}
+a.plansitetitre2 {
+display : block;
+color: #000;
+text-align: left;
+font-size: 11px;
+}
+a.plansitetitre2:link, a.plansitetitre1:link		{ color:#000; }
+a.plansitetitre2:visited, a.plansitetitre1:link 		{ color:#000; }
+a.plansitetitre2:active, a.plansitetitre1:link 		{ color:#000; }
+a.plansitetitre2:hover, a.plansitetitre1:link 		{ color:#000;}
+/*formulaire d'inscription*/
+.submitemail {
+border:0px;
+margin-left:50px;
+}
+/*e-commerce*/
+table.panierCommande {
+background-color: Black;
+}
+table.panierCommande th {
+padding: 2px;
+background-color: #99ccff;
+font-size: 11px;
+color: Black;
+}
+table.panierCommande td {
+background-color: White;
+color: Black;
+padding-left: 1px 2px 1px 2px;
+text-align:center;
+}
+table.panierCommande a.validation {
+padding-left: 20px;
+}
+table.panierCommande td.total {
+padding: 2px;
+background-color: #99ccff;
+font-weight: bold;
+}

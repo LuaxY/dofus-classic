@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3c.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Dofus</title>
+	<link rel="stylesheet" HREF="style.css" type="text/css">
+	
+<!--script pour gestion des commandes-->	
+<script language="javascript">
+<!--
+	function ajouter(ref,guilde) {
+		var taille = document.getElementById("taille_"+guilde).value;
+		var qte = document.getElementById("qte_"+guilde).value;
+		window.location.href = "index.php?page=comptoir&action=ajouter&ref="+ref+"&taille="+taille+"&qte="+qte+"&mod="+guilde;	
+	}
+	function supprimer(hashcode) {
+		window.location.href = "index.php?page=comptoir&action=supprimer&hash="+hashcode;
+	}
+-->
+</script>
+
+</head>
+
+<body>
+<div class="centreur">
+	<div class="clear"></div>
+<div class="general">
+	<div class="clear"></div>
+<!-- Bandeau du haut contenant le menu en flash-->
+	<div id="top">
+		<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="750" height="139" id="bandeau" align="middle">
+		<param name="allowScriptAccess" value="sameDomain" />
+		<param name="movie" value="swf/bandeau.swf?choix1=15&choix2=14" />
+		<param name="quality" value="high" />
+		<param name="bgcolor" value="#ffffff" />
+		<embed src="swf/bandeau.swf?choix1=15&choix2=14" quality="high" bgcolor="#ffffff" width="750" height="139" name="bandeau" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+		</object>
+	</div>
+<div id="main2"><div id="main1">
+			<div class="columnleft">
+				<div class="menupageconteneur">
+					<div class="clear"></div>
+					<div class="titremenupage">
+						<a href="?page=informations"><img src="img/titre_informations.gif" border="0"/></a>
+					</div>
+					<div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=informations&rubrique=informations&contenu=informations">News</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=informations&rubrique=presentation&contenu=presentation">Pr&eacute;sentation de Dofus</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=informations&rubrique=betatests&contenu=betatests">Actuellement en <br>b&ecirc;ta-tests</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=informations&rubrique=abonnement&contenu=abonnement">Abonnement</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=informations&rubrique=sondages&contenu=sondages">Sondages</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=informations&rubrique=screenshots&contenu=screenshots">Screenshots</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="clear"></div>
+			</div>
+			<div class="fondmenupage">
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div><div class="columncenter"><h1><img src="pages/img/marque1.gif" border="0" align="middle">&nbsp;Toutes les news de Dofus</h1>
+<div class="news"><h2><img src="pages/img/marque3.gif" border="0" align="middle">&nbsp;22/12/2003</h2>
+<p><a href="?page=informations&rubrique=news1&contenu=news1">Oui, oui, tout a chang&eacute;… et tout, tout va cartonner…  H&eacute; ! H&eacute; !</a></p></div>
+
+<div class="news"><h2><img src="pages/img/marque3.gif" border="0" align="middle">&nbsp;03/12/2003</h2>
+<p><a href="?page=informations&rubrique=news2&contenu=news2">Dirladada aux E-Magiciens de Galaswinda… Bip Bip… yeah !!!</a></p></div>
+
+<div class="news"><h2><img src="pages/img/marque3.gif" border="0" align="middle">&nbsp;03/12/2003</h2>
+<p><a href="?page=informations&rubrique=news3&contenu=news3">Dofus… Voyage voyage plus loin que les E-magiciens &agrave; Valenciennes...</a></p></div>
+
+<div class="news"><h2><img src="pages/img/marque3.gif" border="0" align="middle">&nbsp;03/12/2003</h2>
+<p><a href="?page=informations&rubrique=news4&contenu=news4">Tu veux ou tu veux pas du logo Dofus. Si tu veux c'est bien. Si tu veux pas tant pis...</a></p></div>
+
+<div class="news">
+<p>Les archives des news de Dofus, prochainement...</p></div>
+
+<div><img src="pages/informations/img/infos.jpg" border="0"></div></div><div class="columnright">
+				<div class="idconteneur">
+					<div class="idtitre"><h1>IDENTIFICATION</h1></div>
+										<div class="idform">
+						<form action="/index.php" method="post">
+							<input class="textfield" type="text" name="user" value="Pseudo" onfocus="if (this.value=='Pseudo') this.value='';" /><br />
+							<input class="textfield" type="password" name="pass" value="****" onfocus="if (this.value=='****') this.value='';" /><br /><br />
+							<!--<input class="bouton" type="submit" name="submit" value="" />-->
+							
+						</form>
+					</div>
+					<div class="idcontenu">
+						<center>Rubrique disponible prochainement<br><br>
+					
+						<a href="?page=inscription"><strong>et en attendant <br>inscrivez vous &agrave; la b&ecirc;ta</strong></a><br><br>
+						</center>
+					</div>					
+					<div class="idbottom"></div>
+				
+									</div>
+				<div class="frameconteneur">
+					<div class="titregris">
+						<h1 class="titresondage">COMPTOIR DE DOFUS</h1>
+					</div>
+					<div class="contenugris">
+						<a href="index.php?page=comptoir"><img border="0" src="img/t-shirt.jpg" /></a>
+					</div>
+					<div class="bottomgris"></div>
+				</div>
+				<div class="frameconteneur">
+					<div class="titregris">
+						<a href="index.php?page=plan"><h1 class="titreplan">Plan du Site</h1></a>
+					</div>
+					<div class="bottomgris"></div>
+				</div>
+				<div class="frameconteneur">
+					<div class="titregris">
+					<script>
+					function winopen(page, w, h)
+					{
+						window.open(page,'pop','scrollbars=no,width='+w+',height='+h+',statusbar=no,menubar=no,toolbar=no,resizable=no,top=50,left=50');
+					}
+					</script>
+						<a href="javascript:winopen('pages/presse/espace_presse.php',750,700)" title="Espace Presse"><h1 class="titrepresse">Espace Presse</h1></a>
+					</div>
+					<div class="bottomgris2"></div>
+				</div>
+<div class="clear"></div>
+</div><div class="clear"></div></div><div class="clear"></div>
+</div>
+<div id="bottom"><a href="pages/conditions.php" target="_blank">Conditions d'utilisation</a> - <a href="pages/confidentialite.php" target="_blank">Politique de confidentialit&eacute;</a><br>
+D O F U S 2003/2004 - <a href="http://www.ankama-studio.com" target="_blank">Ankama Studio</a> - Tous droits r&eacute;serv&eacute;s.
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+
+</body>
+</html>

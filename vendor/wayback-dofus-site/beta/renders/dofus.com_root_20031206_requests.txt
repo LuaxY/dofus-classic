@@ -1,0 +1,12 @@
+200 Document https://web.archive.org/web/20031206232741if_/http://dofus.com:80/
+200 Stylesheet https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3
+200 Stylesheet https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv
+200 Stylesheet https://web.archive.org/web/20031202232147cs_/http://dofus.com/style.css
+200 Image https://web.archive.org/web/20110402021857im_/http://www.dofus.com/en
+200 Image https://web.archive.org/web/20110402021857im_/http://www.dofus.com/en
+200 Image https://web.archive.org/web/20120319011258im_/http://www.dofus.com/pt
+200 Image https://web.archive.org/web/20130114021904im_/http://www.dofus.com/en
+200 Image https://web.archive.org/web/20060307024734im_/http://www.dofus.com/images/1x1px.gif
+200 Image https://web.archive.org/web/20130114021904im_/http://www.dofus.com/en
+404 Image https://web.archive.org/web/20110331184338im_/http://www.dofus.com/accueil/images/entrer.jpg
+200 Image https://web.archive.org/web/20031221230405im_/http://dofus.com/accueil/images/cop.gif

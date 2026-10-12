@@ -1,0 +1,6 @@
+200 Document https://web.archive.org/web/20040110223639if_/http://forum.dofus.com:80/
+200 Stylesheet https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3
+200 Stylesheet https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv
+200 Stylesheet https://web.archive.org/web/20040113222132cs_/http://forum.dofus.com/style.css
+200 Stylesheet https://web.archive.org/web/20040113222553cs_/http://forum.dofus.com/style_forum.css
+404 Other https://web.archive.org/favicon.ico

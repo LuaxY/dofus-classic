@@ -1,0 +1,4 @@
+200 Document https://web.archive.org/web/20040225071733if_/http://jouer.dofus.com:80/
+200 Stylesheet https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3
+200 Stylesheet https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv
+404 Other https://web.archive.org/favicon.ico

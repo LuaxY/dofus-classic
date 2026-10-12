@@ -1,0 +1,428 @@
+
+<html>
+<head>
+<title> Dofus - S'inscrire aux b&ecirc;ta-tests de DOFUS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="robots" content="index, follow">
+<LINK REL=stylesheet TYPE="text/css" HREF="../style.css">
+<SCRIPT LANGUAGE="JavaScript">
+function VerifForm()
+	{
+	nom = document.krucial.nom.value;
+	prenom = document.krucial.prenom.value;
+	pays = document.krucial.pays.value;
+	adresse = document.krucial.mail.value;
+	age = document.krucial.age.value;
+	question = document.krucial.question.value;
+
+	if (nom.length == 0)
+	{
+		alert('Veuillez saisir votre nom.');
+		return;
+	}
+		
+	if (prenom.length == 0)
+	{
+		alert('Veuillez saisir votre prénom.');
+		return;
+	}
+
+	var place = adresse.indexOf("@",1);
+	var point = adresse.indexOf(".",place+1);
+	if (!((place > -1)&&(adresse.length >2)&&(point > 1)))
+	{
+		alert('Veuillez entrez une adresse e-mail valide !');
+		return;
+	}
+
+	if (pays.length == 0)
+	{
+		alert('Veuillez saisir votre pays.');
+		return;
+	}
+
+	if (age == 0)
+	{
+		alert('Veuillez saisir votre âge.');
+		return;
+	}
+
+	if (question == 0)
+	{
+		alert('Veuillez nous dire comment vous avez connu Dofus ? Cest assez important pour nous ! merci !');
+		return;
+	}
+	
+	document.krucial.submit();
+	}
+	
+	function showLayer(layerNom, bVisible) {
+	var NS6=(document.getElementById&&!document.all)?1:0
+	if(document.all) {
+		document.all.item(layerNom).style.visibility = bVisible ? "visible" : "hidden";
+	}
+	else if(NS6) 
+		document.getElementById(layerNom).style.visibility = bVisible ? "visible" : "hidden";
+	else {
+		document[layerNom].visibility = bVisible ? "visible" : "hidden";
+	}	
+	
+}
+	
+</SCRIPT>
+</head>
+<body bottommargin="0" leftmargin="0" marginheight="0" marginwidth="0" rightmargin="0" topmargin="0">
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><script>
+function winopen(page, w, h)
+{
+	window.open(page,'pop','scrollbars=no,width='+w+',height='+h+',statusbar=no,menubar=no,toolbar=no,resizable=no,top=50,left=50');
+}
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="123">
+	<tr>
+	<td background="../images/accueil_r1_c8.gif" valign="top" rowspan="2"><a href="http://www.dofus.com/home/home.asp"><img name="../images/accueil_r1_c1" src="../images/accueil_r1_c1.gif" width="177" height="103" border="0" alt=""></a></td>
+	<td width="100%" background="../images/haut_bleu_court.gif" valign="middle" align="right" height="20">
+			&nbsp;
+		</td>
+		<td><img src="../images/haut_bleu_droite.gif" height="20"></td>
+	</tr>
+	<tr>
+		<td height="103" colspan="2">
+		<table cellpadding="0" cellspacing="0" width="100%" border="0">
+		<tr>
+			<td width="100%">
+				<table cellpadding="0" cellspacing="0" height="100%" width="100%" border="0">
+				<tr>
+					<td height="51" background="../images/milieu_centre_haut.gif" colspan="2"><img src="../images/milieu_centre_haut.gif"></td>
+				</tr>
+				<tr>
+					<td height="22" align="left" bgcolor="#1465A2" colspan="2"><h1><div class='phrase'><strong>&nbsp;&nbsp;&nbsp;Jeu de r&ocirc;le tactique multijoueurs - B&ecirc;ta-test ouverte le 15 octobre 2003</strong></div></h1></td>
+				</tr>
+				<tr>
+					<td height="30" background="../images/milieu_centre_bas.gif" width="80%"><img src="../images/milieu_centre_bas.gif" width="80%" height="30"></td>
+					<td align="right" width="150" background="../images/milieu_centre_bas.gif">
+										&nbsp;
+					</td>
+				</tr>
+				</table>
+			</td>
+			<td width="194"><img name="../images/accueil_r1_c9" src="../images/accueil_r1_c9.gif" width="194" height="103" border="0" alt=""></td>
+		</tr>
+		</table>
+		</td>
+    </tr>
+</table></td>
+  </tr>
+  <tr>
+    <td height="100%">
+
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td colspan="2">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr> 
+			<td width="18%" valign="bottom"><img src="images/titre_beta.gif" alt="DOFUS - Jeu multijoueur en ligne"></td>
+
+			<td valign="top" align="right">
+				<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td height="31" align="right" valign="top"><a href="http://www.dofus.com/galerie/galerie.asp"><img src="../images/bt_galerie.gif" height="31" width="118" border="0"></a></td>
+				</tr>
+				<tr>
+					<td height="30" align="right" valign="top"><a href="http://www.dofus.com/musiques/musiques.asp"><img src="../images/bt_musiques.gif" height="30" width="45" border="0"></a></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+			</td>
+  </tr>
+  <tr> 
+    <td width="123" height="100%"><img src="images/fond_gauche.gif" height="100%" width="123"></td>
+    <td width="100%" valign="top">
+	<FORM ACTION="betaInscription.php" METHOD="post" NAME="krucial">
+	<table width="620" border="0">
+	<tr>
+		<td>&nbsp;&nbsp;</td>
+		<td class="justify">
+<br>	<strong>Les b&ecirc;ta-tests ont commenc&eacute;. Actuellement, plus de 500 joueurs s&eacute;lectionn&eacute;s testent Dofus ! Venez les rejoindre !</strong><br><br>
+			Inscrivez vous maintenant &agrave; Dofus ! Nous ferons appel &agrave; vous prochainement pour tester Dofus. <br>
+			Nous vous remercions de bien vouloir remplir ces quelques champs. Cela nous permettra de mieux vous conna&icirc;tre, et surtout, de bien situer sur quels types de plates-formes tournera le jeu.<br>
+			<br>	
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td valign="top">
+					<table cellpadding="1" cellspacing="0" border="0" height="100%" bgcolor="#0A508E">
+					<tr>
+						<td valign="top">
+						<table border="0" cellpadding="6" cellspacing="0">
+						<tr>
+							<td colspan="2" bgcolor="#0A508E" valign="middle"><b>Votre profil</b><br></td>
+						</tr>
+						<tr>
+							<td class="blueleft">Nom&nbsp;<font color="red">*</font></td>
+							<td class="blueleft"><input type="text" name="nom" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Pr&eacute;nom&nbsp;<font color="red">*</font></td>
+							<td class="blueleft"><input type="text" name="prenom" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">e-mail&nbsp;<font color="red">*</font></td>
+							<td class="blueleft"><input type="text" name="mail" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Soci&eacute;t&eacute;</td>
+							<td class="blueleft"><input type="text" name="societe" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Ville</td>
+							<td class="blueleft"><input type="text" name="ville" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Pays&nbsp;<font color="red">*</font></td>
+							<td class="blueleft"><input type="text" name="pays" size="40" maxlength="256" class="sinscrire">
+						</tr>
+						<tr>
+							<td class="blueleft">Age&nbsp;<font color="red">*</font></td>
+							<td class="blueleft">
+								<select name="age" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">moins de 14</option>
+						      	<option value="2">14 - 17</option>
+						      	<option value="3">18 - 21</option>
+						      	<option value="4">22 - 30</option>
+						      	<option value="5">31 - 35</option>
+						      	<option value="6">36 - 40</option>
+						      	<option value="7">+ de 40</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft" colspan="2">&nbsp;<br><br><br></td>
+						</tr>
+						</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+				<td valign="top">
+					<table cellpadding="1" cellspacing="0" border="0" bgcolor="#0A508E" height="100%">
+					<tr>
+						<td>
+						<table cellpadding="6" cellspacing="0" border="0" height="100%">
+						<tr>
+							<td colspan="2"><b>Votre machine</b><br></td>
+						</tr>
+						<tr>
+							<td class="blueleft">Processeur (en Mhz)</td>
+							<td class="blueleft">
+								<select name="hard_cpu" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">moins de 500</option>
+						      	<option value="2">500 - 1000</option>
+						      	<option value="3">1001 - 1300</option>
+						      	<option value="4">1301 - 1500</option>
+						      	<option value="5">1501 - 2000</option>
+						      	<option value="6">plus de 2000</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">M&eacute;moire vive (en Mo)</td>
+							<td class="blueleft">
+								<select name="hard_ram" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">moins de 64</option>
+						      	<option value="2">64 - 128</option>
+						      	<option value="3">129 - 256</option>
+						      	<option value="4">257 - 384</option>
+						      	<option value="5">385 - 512</option>
+						      	<option value="6">plus de 512</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">Connexion Internet</td>
+							<td class="blueleft">
+								<select name="hard_net" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">modem 28.8 ou 33.6K</option>
+						      	<option value="2">modem 56K</option>
+						      	<option value="3">modem 128K</option>
+						      	<option value="4">ISDN</option>
+						      	<option value="5">ADSL 128</option>
+						      	<option value="6">ADSL 512</option>						      	
+						      	<option value="7">ADSL 1024</option>
+						      	<option value="8">modem c&acirc;ble</option>
+						      	<option value="9">T1</option>
+						      	<option value="10">T3 ou +</option>
+						      	<option value="11">Autre</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">Syst&egrave;me d'exploitation</td>
+							<td class="blueleft">
+								<select name="hard_os" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">Windows 95</option>
+						      	<option value="2">Windows 98</option>
+						      	<option value="3">Windows Me</option>
+						      	<option value="4">Windows NT</option>
+						      	<option value="5">Windows 2000</option>
+						      	<option value="6">Windows XP</option>
+						      	<option value="7">Mac OS 9.x</option>
+						      	<option value="8">Mac OS X</option>
+						      	<option value="9">Linux</option>
+						      	<option value="10">Autre</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">Navigateur</td>
+							<td class="blueleft">
+								<select name="hard_browser" class="select">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">Internet Explorer 5</option>
+						      	<option value="2">Internet Explorer 6</option>
+						      	<option value="3">Netscape 4</option>
+						      	<option value="4">Netscape 6</option>
+						      	<option value="5">Netscape 7</option>
+						      	<option value="6">Opera</option>
+						      	<option value="7">Mozilla</option>
+						      	<option value="8">Autre</option>
+						      	</select>
+					      	</td>
+						</tr>
+						<tr>
+							<td class="blueleft">Comment avez-vous connu Dofus ? &nbsp;<font color="red">*</font></td>
+							<td class="blueleft">
+								<select name="question" class="select" onchange="if (form.question.selectedIndex == 2 || form.question.selectedIndex == 3 || form.question.selectedIndex == 7 || form.question.selectedIndex == 8 || form.question.selectedIndex == 9) showLayer('com',true); else showLayer('com',false)">
+						      	<option value="0">Choisir</option>
+						      	<option value="1">par le site Ankama Studio</option>
+						      	<option value="2">par un forum fran&ccedil;ais</option>
+						      	<option value="3">par un forum &eacute;tranger</option>
+						      	<option value="4">par un ami</option>
+						      	<option value="5">par le bouche &agrave; oreille</option>
+						      	<option value="6">par Google</option>
+						      	<option value="7">par un moteur de recherche</option>
+						      	<option value="8">par un journal...</option>
+								<option value="9">par autre chose...</option>
+						      	</select>
+						
+					      	</td>
+						</tr>
+						
+						<tr>
+							<td colspan="2" class="blueleft">
+								
+								<div name="com" id="com">		
+									<table>
+										
+										<tr>
+										<td class="blueleft">... et qui est exactement : &nbsp;&nbsp;&nbsp;</td>
+										<td class="blueleft"><input type="text" name="question2" size="40" maxlength="256" class="sinscrire">
+										</tr>
+									</table>	
+								</div>
+							</td>
+								<script>showLayer('com',false)</script>
+								
+					      	</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="blueright" height="100%">
+							<a href="javascript:VerifForm();"><img src="images/btnsinscrire.gif" border="0"></a>
+							</td>
+						</tr>
+						</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</table>
+<br>Note :<br>
+Vos informations personnelles ne seront utilis&eacute;es que par Ankama Studio, cr&eacute;ateur du jeu Dofus.<br>
+Elles ne pourront jamais &ecirc;tre c&eacute;d&eacute;es &agrave; des tiers.  <br>
+
+		<br>
+<table width="550" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		
+		<td>
+			<font size="1">
+			<br><b>Mentions l&eacute;gales :</b>
+			Conform&eacute;ment &agrave; l'article 34 de la loi " Informatique et libert&eacute;s ", tu disposes d'un droit de modification, de rectification et de suppression des donn&eacute;es qui te concernent.
+			Ankama Studio s'engage &agrave; ne pas divulguer tes informations personnelles &agrave; des tiers.
+			</font>
+		</td>		
+	<tr>			
+</table>
+<br>		</td>
+	</tr>
+	</table>
+	</form>
+</td>
+  </tr>
+ </table>
+	</td>
+  </tr>
+  <tr>
+    <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+	<td><a href="http://www.ankama-studio.com" target="_blank"><img name="../images/accueil_r5_c1" src="../images/accueil_r5_c1.gif" width="326" height="90" border="0" alt=""></a></td>
+	<td width="100%" bgcolor="37A6DF">&nbsp;</td>
+	<td><img name="../images/accueil_r5_c6" src="../images/accueil_r5_c6.gif" width="412" height="90" border="0" alt=""></td>
+</tr></table></td>
+  </tr>
+</table>
+<SCRIPT LANGUAGE=JavaScript>
+if(document.getElementById)
+	document.write('<DIV class=popper id=topdeck></DIV>');
+</SCRIPT>
+<style type="text/css">
+.popper { POSITION: absolute; top:0px; VISIBILITY: hidden; z-index:3; }
+#topgauche { position:absolute; top:101px; left:0px; z-index:10; }
+A:hover.ejsmenu {color:#FFFFFF; text-decoration:none;}
+A.ejsmenu {color:#FFFFFF; text-decoration:none;}
+</style>
+<DIV class=popper id=topdeck></DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../js/menu_dyn.js"></SCRIPT><DIV ID=topgauche>
+	<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 BGCOLOR='#1F7AB9' WIDTH=570>
+		<TR>
+			<TD>
+				<TABLE CELLPADING=0 CELLSPACING=1 BORDER=0 WIDTH=100% HEIGHT=22>
+					<TR>
+					
+<TD WIDTH=130 ALIGN=center BGCOLOR="#08518C" onMouseOver="javascript:mOvr(this, '#1F7AB9');pop(zlien[0],0)" onMouseOut="javascript:mOut(this, '#08518C')" onClick="location.href='../betatest/index.php'">
+<A href="../betatest/index.php" CLASS=ejsmenu><FONT SIZE=1 FACE="Verdana"><B>Acc&egrave;s au b&ecirc;ta-tests</B></FONT></a></TD>
+
+<TD WIDTH=80 ALIGN=center BGCOLOR="#08518C" onMouseOver="javascript:mOvr(this, '#1F7AB9');pop(zlien[1],134)" onMouseOut="javascript:mOut(this, '#08518C')">
+<A onClick="return(false)" onMouseOver="pop(zlien[1],140)" href="#" CLASS=ejsmenu>
+<FONT SIZE=1 FACE="Verdana"><B>Infos</B></FONT></a></TD>
+
+<TD WIDTH=80 ALIGN=center BGCOLOR="#08518C" onMouseOver="javascript:mOvr(this, '#1F7AB9');pop(zlien[2],215)" onMouseOut="javascript:mOut(this, '#08518C')">
+<A onClick="return(false)" onMouseOver="pop(zlien[2],210)" href=# CLASS=ejsmenu>
+<FONT SIZE=1 FACE="Verdana"><B>L'univers</B></FONT></a></TD>
+
+<TD WIDTH=80 ALIGN=center BGCOLOR="#08518C" onMouseOver="javascript:mOvr(this, '#1F7AB9');pop(zlien[3],300)" onMouseOut="javascript:mOut(this, '#08518C')" onClick="location.href='http://www.dofus.com/forum/default.asp'">
+<A href="http://www.dofus.com/forum/default.asp" CLASS=ejsmenu><FONT SIZE=1 FACE="Verdana"><B>Forums</B></FONT></a></TD>
+
+<TD WIDTH=80 ALIGN=center BGCOLOR="#08518C" onMouseOver="javascript:mOvr(this, '#1F7AB9');pop(zlien[4],382)" onMouseOut="javascript:mOut(this, '#08518C')">
+<A onClick="return(false)" onMouseOver="pop(zlien[4],380)" href=# CLASS=ejsmenu>
+<FONT SIZE=1 FACE="Verdana"><B>Bonus</B></FONT></a></TD>
+
+<TD WIDTH=100 ALIGN=center BGCOLOR="#08518C" onMouseOver="javascript:mOvr(this, '#1F7AB9');pop(zlien[3],300)" onMouseOut="javascript:mOut(this, '#08518C')" onClick="location.href='http://www.dofus.com/contact/contact.asp'">
+<A href="http://www.dofus.com/contact/contact.asp" CLASS=ejsmenu><FONT SIZE=1 FACE="Verdana"><B>Contactez-nous</B></FONT></a></TD>
+					</TR>
+				</TABLE>
+			</TD>
+		</TR>
+	</TABLE>
+</DIV>
+</body>
+</html>

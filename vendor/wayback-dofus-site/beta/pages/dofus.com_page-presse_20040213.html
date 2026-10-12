@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3c.org/TR/html4/strict.dtd">
+
+<html>
+
+<head>
+	<title>DOFUS - Jeu de role massivement multijoueur sur Internet</title>
+	<!--<link rel="stylesheet" HREF="style_130104.css" type="text/css">-->
+	<link rel="stylesheet" HREF="style.css" type="text/css">
+<!--scripts pour gestion des commandes de t-shirt-->	
+<script language="javascript">
+	
+	function assur() {
+		
+	var montant_articles = parseFloat(document.getElementById('montant').value);
+	var frais_port = parseFloat(document.getElementById('frais_port').value);
+	var frais_assurance = parseFloat(document.getElementById('frais_assur').value);
+			
+	if (document.getElementById('assurance').checked) {
+	document.getElementById('tot').value = (montant_articles + frais_port + frais_assurance) + " euros";		
+	}
+	else
+	document.getElementById('tot').value = (montant_articles + frais_port) + " euros";
+}
+	function ajouter(ref,guilde) {
+		
+		var taille_guilde = "taille_"+guilde;
+		var qte_guilde = "qte_"+guilde;
+		
+		//if (document.getElementByID){ // IE5+  NN6+  OP5+
+			var taille = document.getElementById(taille_guilde).value;
+			var qte = document.getElementById(qte_guilde).value;
+		/*}
+		else {
+			if (document.all) { //IE4x
+			var taille = document.all[taille_guilde].value;
+			var qte = document.all[qte_guilde].value;			
+			}
+			
+			else  { //NN4x
+			var taille = document.layers[taille_guilde].value;
+			var qte = document.layers[qte_guilde].value;	
+			}
+		}*/
+
+		
+		window.location.href = "index.php?page=comptoir&action=ajouter&ref="+ref+"&taille="+taille+"&qte="+qte+"&mod="+guilde;	
+	}
+	
+	function supprimer(hashcode) {
+		window.location.href = "index.php?page=comptoir&action=supprimer&hash="+hashcode;
+	}
+	
+	function verif(frm) {
+		if (frm.elements['nom'].value == "") {
+			alert ("Veuillez saisir votre nom svp");
+			frm.elements['nom'].focus();
+			return false;
+		}
+		if (frm.elements['prenom'].value == "") {
+			alert ("Veuillez saisir votre prenom svp");
+			frm.elements['prenom'].focus();
+			return false;
+		}
+		if (frm.elements['email'].value == "") {
+			alert ("Veuillez saisir votre adresse e-mail svp");
+			frm.elements['mail'].focus();
+			return false;
+		}
+		else {
+			var adresse = frm.elements['email'].value;
+			var aro = adresse.indexOf("@",1); 
+			var point = adresse.indexOf(".",aro+1);  
+			if ((aro < 1)||(adresse.length < 5)||(point < 1)) {
+				alert ("Votre adresse e-mail n'est pas valide")
+				frm.elements['email'].focus();
+				return false;
+			}
+		}
+		if ((frm.elements['adresse'].value=="")||(frm.elements['ville'].value=="")||(frm.elements['cp'].value=="")||(frm.elements['pays'].value=="")) {
+			alert ("Veuillez saisir votre adresse postale svp");
+			frm.elements['adresse'].focus();
+			return false;
+		}
+		
+		
+	}
+
+</script>
+
+</head>
+	<noembed>
+		<center><font face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular"><font size=+4>Jeu de role</center></font></font>
+		<h1><a href="http://www.dofus.com/index.php?page=informations&rubrique=presentation&contenu=presentation" title="jeu de role">Jeu de role</a></h1>
+		<h2>Jeu de role massivement multijoueur sur internet.</h2>
+		<h3>Dofus est un jeu de role massivement multijoueur sur internet, r&eacute;alis&eacute; en Flash.</h3>
+		<br>
+		<br>
+		Dofus est un <b>jeu de role</b> de type <b>mmorpg</b>, <b>tactical rpg</b>.
+		
+		<br>
+		
+		<br>Le premier jeu de role Internet single et multiplayers d&eacute;velopp&eacute; int&eacute;gralement en Flash MX : une nouvelle dimension du Jeu sur Internet.
+		Con&ccedil;u pour l'Internet, DOFUS est le premier <a href="http://www.dofus.com/index.php?page=informations&rubrique=presentation&contenu=presentation" title="jeu de role"><b>jeu de role</b></a> single et multiplayers d&eacute;velopp&eacute; int&eacute;gralement en Flash MX. Seul ou &agrave; plusieurs, d&eacute;couvrez un univers sans limite.
+		Un pays en proie au plus grand d&eacute;sordre, des cr&eacute;atures mal&eacute;fiques surgissant de toute part, une population, hier si paisible, devenue l&acirc;che et haineuse. Quelle force d&eacute;moniaque peut bien se cacher derri&egrave;re ces ph&eacute;nom&agrave;nes &eacute;tranges ?
+		<b>Dofus est un jeu de role</b> : la r&eacute;flexion et la tactique sont de mise pour mener &agrave; bien de nombreuses qu&ecirc;tes. L'internaute choisit son h&eacute;ros dot&eacute; de caract&eacute;ristiques pr&eacute;cises parmi 10 guildes diff&eacute;rentes. Il emmagasine au cours du jeu des objets magiques et des sorts qui enrichissent et modifient sa psychologie.
+		Le personnage et ses pouvoirs &eacute;voluent continuellement.
+		<br>
+		<br>
+		<a href="http://www.dofus.com/index.php?page=explorations" title="Exploration de la province d'Amakna">Exploration de la province d'Amakna</a>
+		<a href="http://www.dofus.com/index.php?page=explorations&rubrique=histoire&contenu=histoire" title="Histoire de Dofus">Histoire de Dofus</a>
+		<a href="http://www.dofus.com/index.php?page=explorations&rubrique=province&ssrubrique=province_dofus&contenu=province_dofus" title="Les Dofus">Les Dofus</a>
+		<a href="http://www.dofus.com/index.php?page=explorations&rubrique=guildes&contenu=guildes" title="Guildes de Dofus">Guildes de Dofus</a>
+		<a href="http://www.dofus.com/index.php?page=explorations&rubrique=bestiaire&contenu=bestiaire" title="Bestiaire Dofus">Bestiaire Dofus</a>
+		<a href="http://www.dofus.com/index.php?page=informations&rubrique=betatests&contenu=betatests" title="Beta test Dofus">Beta test Dofus</a>
+		<a href="http://www.dofus.com/index.php?page=informations&rubrique=screenshots&contenu=screenshots" title="Screen shot Dofus">Screen shot Dofus</a>
+		<a href="http://forum.dofus.com/" title="Forum jeu Dofus">Forum jeu Dofus</a>
+		<a href="http://www.dofus.com/index.php?page=presse" title="Espace presse Dofus">Espace presse Dofus</a>
+	</noembed>
+<body>
+<div class="centreur">
+	<div class="clear"></div>
+<div class="general">
+	<div class="clear"></div>
+<!-- Bandeau du haut contenant le menu en flash-->
+	<div id="top">
+		<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="750" height="139" id="bandeau" align="middle">
+		<param name="allowScriptAccess" value="sameDomain" />
+		<param name="movie" value="swf/bandeau.swf?choix1=2&choix2=15" />
+		<param name="quality" value="high" />
+		<param name="bgcolor" value="#ffffff" />
+		<embed src="swf/bandeau.swf?choix1=2&choix2=15" quality="high" bgcolor="#ffffff" width="750" height="139" name="bandeau" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+		</object>
+	</div>
+<div id="main2"><div id="main1">
+			<div class="columnleft">
+				<div class="menupageconteneur">
+					<div class="clear"></div>
+					<div class="titremenupage">
+						<a href="?page=presse"><img src="img/titre_presse.gif" border="0"/></a>
+					</div>
+					<div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=presse&rubrique=documents&contenu=documents">Documents Presse</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=presse&rubrique=communiques&contenu=communiques">Communiqu&eacute;s</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=presse&rubrique=onparle&contenu=onparle">Revue de Presse</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=presse&rubrique=iconographie&contenu=iconographie">Iconographie</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=presse&rubrique=videos&contenu=videos">Vid&eacute;os</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="menupagecontenu">
+		<h1><a href="?page=presse&rubrique=partenaires&contenu=partenaires">Partenaires</a><div class="clear"></div></h1>
+		<div class="clear"></div>
+		</div><div class="borduremenupage"></div><div class="clear"></div>
+			</div>
+			<div class="fondmenupage">
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div><div class="columncenter"><h1><img src="pages/img/marque1.gif" border="0" align="middle">&nbsp;Espace Presse</h1>
+<p>Dans cette rubrique, vous trouverez un certain nombre d'informations concernant Dofus.<br> Si celles-ci s'av&eacute;raient insuffisantes, n'h&eacute;sitez pas &agrave; nous contacter. Nous nous ferions une joie de vous r&eacute;pondre.</p>
+<p></p>
+<div class="aligncenter">
+<p><img src="pages/presse/img/ankama.gif" alt="Ankama Studio" width="200" height="60" border="0"></p>
+<p><a href="http://www.ankama-studio.com" target="_blanc"><strong><u>www.ankama-studio.com</u></strong></a></p>
+<p>31, rue de la fonderie</p>
+<p>59203 TOURCOING Cedex</p>
+<p>FRANCE</p>
+<p>Tel. : 03 20 36 01 13</p>
+<p>Fax : 03 20 36 67 67</p>
+<p><a href="mailto:presse@ankama-studio.com"><strong><u>presse@ankama-studio.com</u></strong></a></p>
+</div></div><div class="columnright">
+
+						<div class="contenugris">
+		<div class="titreR">
+			<img src="img/pct_id.gif" alt="Identification Dofus" title="Identification Dofus" /><h1>IDENTIFICATION</h1>
+		</div>
+			<div class="ident">
+		<form action="/" method="post">
+			<input class="textfield" type="text" name="user" value="Pseudo" onfocus="if (this.value=='Pseudo') this.value='';" /><br />
+			<input class="textfield" type="password" name="pass" value="****" onfocus="if (this.value=='****') this.value='';" /><br />
+			<img src="/img/pix_transparent.gif" width="1" height="5" border="0" alt="jeu de role" title="jeu de role" /><br />
+			<input class="submitident" type="image" name="submit" src="/img/btvalider.gif" value="" />
+		</form>
+		<a href="/?page=inscription&contenu=forgetPass">[Identifiants oubli&eacute;s ?]</a>
+		</div>
+		<!--<div class="idbottom">&nbsp;</div>-->
+		</div>
+		<div class="bordureBlanc"></div>
+
+	
+				
+				<div class="frameconteneur">
+					<div class="titreR">
+					<img src="img/pct_ami.gif" alt="Recommander Dofus à un ami" title="Recommander Dofus à un ami" />
+					<h1>COMMUNIQUER</h1>
+					</div>
+					<div class="contenugris">
+						<div class="ident"><a href="index.php?page=sendToFriend">Recommander Dofus<br />&agrave; un ami</a></div>
+					</div>
+				</div>
+				<div class="bordureBlanc"></div>
+				<div class="frameconteneur">
+					<div class="titreR">
+						<img src="img/pct_comptoir.gif" alt="Comptoir Dofus" title="Comptoir Dofus" /><h1>COMPTOIR DOFUS</h1>
+					</div>
+					<div class="contenugris">
+						<a href="index.php?page=comptoir"><img src="img/t-shirt.gif" alt="Tshirt Dofus" title="Tshirt Dofus" /></a>
+					</div>
+				</div>
+				<div class="bordureBlanc"></div>
+				<div class="frameconteneur">
+					<div class="titreR">
+						<img src="img/pct_sondage.gif" alt="Sondage Dofus" title="Sondage Dofus" /><h1>SONDAGE</h1>
+					</div>
+						<div class="conteneursondage">
+							<!-- Mettre le code -->
+							<form name="sondage" action="?page=accueil" method="get"><h1>Votre avis sur le nouveau site :</h1>
+				<div class="conteneursondage">
+				<span style="width:120px;">G&eacute;nial</span><input class="inputsondage" type="radio" name="choix_vote" value="1" />
+				</div>
+				
+				<div class="conteneursondage">
+				<span style="width:120px;">Bien</span><input class="inputsondage" type="radio" name="choix_vote" value="2" />
+				</div>
+				
+				<div class="conteneursondage">
+				<span style="width:120px;">Moyen</span><input class="inputsondage" type="radio" name="choix_vote" value="3" />
+				</div>
+				
+				<div class="conteneursondage">
+				<span style="width:120px;">Bof</span><input class="inputsondage" type="radio" name="choix_vote" value="4" />
+				</div>
+				
+				<div class="conteneursondage">
+				<span style="width:120px;">Nul</span><input class="inputsondage" type="radio" name="choix_vote" value="5" />
+				</div>
+				
+			<input class="submitsondage" type="image" src="/img/btvoter.gif" name="submit" value="" />
+			<input type="hidden" name="NumSondage" value="0">
+			</form>
+									</div>
+				</div>
+				<div class="bordure2"></div>
+				<div class="contenugris">
+						<p>&nbsp;</p>
+						<a class="titreplan" href="index.php?page=plan"><img src="img/pct_plan.gif" alt="Plan du site Dofus.com" title="Plan du site Dofus.com" /></a>
+						<a class="titrepresse" href="?page=presse" title="Espace Presse"><img src="img/pct_presse.gif" alt="Espace presse Dofus" title="Espace presse Dofus" /></a>
+				</div>
+<div class="clear"></div>
+</div><div class="clear"></div></div>	<SCRIPT SRC="/js/log.js"></SCRIPT>
+	<SCRIPT>
+		DoStats("presse_accueil", "presse");
+	</SCRIPT>
+	<div class="clear"></div>
+</div>
+<div id="bottom"><a href="javascript:window.open('pages/conditions.php','popfile','scrollbars=yes,width=600 ,height=500,statusbar=no,menubar=no,toolbar=no,resizable=yes,top='+((screen.height-500)/2)+',left='+((screen.width-600)/2)+''); reset()">Conditions d'utilisation</a> - <a href="javascript:window.open('pages/confidentialite.php','popfile','scrollbars=yes,width=600 ,height=500,statusbar=no,menubar=no,toolbar=no,resizable=yes,top='+((screen.height-500)/2)+',left='+((screen.width-600)/2)+''); reset()">Politique de confidentialit&eacute;</a><br>
+D O F U S 2003/2004 - <a href="http://www.ankama-studio.com" target="_blank">Ankama Studio</a> - Tous droits r&eacute;serv&eacute;s.
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+</body>
+</html>
+

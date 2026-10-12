@@ -1,0 +1,1069 @@
+/*général*/
+
+* {
+margin: 0px;
+padding: 0px;
+border: none;
+text-align: left;
+font-family: Verdana, sans-serif;
+}
+
+table {
+margin: 0 0 0 0px;
+}
+
+td {
+color: #000;
+font-size: 11px;
+}
+
+h1 {
+color: #FFF;
+font-size: 11px;
+}
+
+h2 {
+color: #FFF;
+font-size: 10px;
+}
+
+select {
+font-size:10px;
+}
+
+/* mise en forme */
+.centreur {
+width: 100%;
+height: 100%;
+text-align: center;
+margin: 15px 0 0 0;
+}
+
+.general {
+border: 1px solid;
+width: 750px;
+margin: 0px auto;
+}
+.general {
+\width: 752px; 
+w\idth: 750px;
+}
+
+div#top {
+width: 750px;
+height: 139px;
+}
+
+div#bottom {
+float: left;
+width: 750px;
+background-color: #FF9900;
+text-align: center;
+color: #555555;
+font-size: 11px;
+}
+
+.msgErreur {
+	color:red;
+	font-size:11px;
+	text-align:center;
+}
+
+
+a { font-family: verdana, sans-serif; color: #555555; font-weight: normal; font-size: 11px; text-decoration:underline;  }
+a:link { color:#555555; }
+a:visited { color:#555555; }
+a:active { color:#555555; }
+a:hover { color:#555555; text-decoration:underline}
+
+.columnleft {
+float: left;
+width: 170px;
+background-color: #2F9BDA;
+margin:0;
+padding:0;
+}
+
+.conteneur01 {
+float: right;
+width: 570px;
+padding: 0;
+margin:0px 0px 0px 10px;
+}
+
+.centerleft {
+float: left;
+width: 190px;
+}
+html>head:first-child+body .centerleft {
+margin-top: 5px;
+}
+
+.centerright {
+float: left;
+width: 190px;
+margin: 0px 0px 0px 10px;
+padding:0;
+/*border:1px red solid;*/
+}
+html>head:first-child+body .centerright{
+padding-top: 5px;
+}
+
+.columnright {
+	float: right;
+	width: 170px;
+	margin:0;
+	background-color: #fff;
+	padding: 0 0 0 5px;
+}
+.spacercollumnright {
+float: right;
+width: 170px;
+background-color: #fff;
+margin: 10px 0 0 0;
+padding:0;
+font-size:0;
+}
+
+
+.columnleft2c {
+float: left;
+width: 574px;
+margin: 5px 0px 0px 0px;
+}
+
+.columnleft2c  form{
+padding:0px 0px 0px 65px;
+}
+
+.columncenter {
+float: left;
+width: 404px;
+margin: 5px 0px 0px 0px;
+}
+/* style des page de contenu*/
+
+.columncenter h1, .columnleft2c h1 {
+color: #444444;
+padding: 10px 0px 5px 5px;
+font-size: 14px;
+}
+
+.columncenter h2, .columnleft2c h2 {
+color: #555555;
+padding: 5px 0px 5px 10px;
+font-size: 13px;
+}
+
+.columncenter h4, .columnleft2c h4 {
+color: #555555;
+padding: 5px 0px 5px 10px;
+font-size: 11px;
+}
+
+.columncenter h3, .columnleft2c h3 {
+color: #666666;
+padding-left: 25px;
+font-size: 12px;
+}
+
+.columncenter p, .columnleft2c p {
+color: #666666;
+padding: 0px 10px 10px 10px;
+font-size: 11px;
+text-align: justify;
+}
+
+.columncenter span, .columnleft2c span {
+color: #666666;
+padding: 0px 10px 10px 10px;
+font-size: 11px;
+text-align: justify;
+}
+
+.columncenter lightblue, .columnleft2c lightblue {
+font-weight: bold;
+background-color: #258DD4;
+text-align: center;
+}
+
+
+.news {
+color: #666666;
+font-size: 11px;
+text-align: justify;
+padding: 5px;
+margin: 3px 0px 0px 0px;
+}
+
+.news h2	 {
+font-weight: bold;
+color: #555555;
+font-size: 11px;
+padding: 0 0 0 10px;
+margin: 15px 0px 0px 0px;
+}
+
+.news h3 {
+font-weight: bold;
+color: #555555;
+font-size: 11px;
+padding: 0 0 0 10px;
+margin: 0px 0px 10px 0px;
+}
+
+.news p {
+color: #666666;
+font-size: 11px;
+text-align: justify;
+padding: 0px 5px 0px 10px;
+margin: 0px 0px 10px 10px;
+}
+
+td.justify {
+	text-align: justify;
+}
+td.blue {
+	background-color: #37A6DF;
+	text-align: center;
+}
+
+td.textblack {
+	color: #555555;
+	text-align: center;
+}
+
+
+td.blueleft {
+	background-color: #258DD4;
+	text-align: left;
+}
+
+td.blueright {
+	background-color: #258DD4;
+	text-align: right;
+}
+
+td.lightblue {
+	font-weight: bold;
+	background-color: #258DD4;
+	text-align: center;
+}
+
+#cache {
+visibility : hidden;
+width : 180px;
+color: black;
+FONT-SIZE: 12px;
+}
+
+form#formTest, form#mailTest {
+margin-left: 20px;
+}
+
+input.sinscrire {
+BACKGROUND-COLOR: #FFFFFF;
+BORDER: #08518C 1px solid;
+COLOR: #000;
+FONT-FAMILY: Geneva, Arial, Helvetica,sans-serif;
+FONT-SIZE: 12px;
+WIDTH: 180px;
+}
+
+input.sinscrire2 {
+BACKGROUND-COLOR: #FFFFFF;
+BORDER: #08518C 1px solid;
+COLOR: #08518C;
+FONT-FAMILY: Geneva, Arial, Helvetica,sans-serif;
+FONT-SIZE: 12px;
+WIDTH: 343px;
+}
+
+textarea{
+BACKGROUND-COLOR: #FFFFFF;
+BORDER: #08518C 1px solid;
+COLOR: #000;
+FONT-FAMILY: Geneva, Arial, Helvetica,sans-serif;
+FONT-SIZE: 12px;
+WIDTH: 180px;
+padding:2px;
+}
+
+
+.select {
+color:#08518C;
+background-color:#FFFFFF;
+width: 150px;
+height: 16px;
+font-size:8pt;
+font-family: Verdana,sans-serif;
+}
+
+.columncenter a, .columnleft2c a { color: #ff9900;}
+.columncenter a:link, .columnleft2c a:link { color:#ff9900; }
+.columncenter a:visited, .columnleft2c a:visited { color:#ff9900; }
+.columncenter a:active, .columnleft2c a:active { color:#ff9900; }
+.columncenter a:hover, .columnleft2c a:hover { color:#ff9900; text-decoration:underline}
+
+.columncenter div, .columnleft2c div {
+text-align: center;
+}
+
+
+/**astuce pour les fond coloré de colonnes**/
+
+#main1 {
+float: left;
+background: url("img/test_blue.gif") top left repeat-y;
+}
+#main2 {
+float: right;
+background-color: #EFEFEF;
+}
+
+
+/** fenetre de barre de screenshot et fenetre pour 1 screen**/
+.screenconteneur {
+width: 570px;
+margin: 3px 0px 5px 0px;
+}
+
+.screenconteneur img {
+float: left;
+margin: 0px 2px 0px 2px;
+}
+
+/** conteneur pour les fenetres centrales (news, forum, etc.)**/
+.fenetreconteneur {
+width: 190px;
+margin:0;
+}
+
+/** case de titre**/
+.titreconteneur {
+width: 190px;
+height: 65px;
+margin-bottom: -4px;
+}
+div>.titreconteneur {
+margin-bottom: 0px;
+}
+
+
+/**case d'info grise avec coté gauche arrondi**/
+.infoconteneur {
+height: 71px;
+width: 190px;
+background-color: #EFEFEF;
+background-image: url(img/bordure_fenetre.gif);
+background-repeat: no-repeat;
+}
+
+/** case d'identification **/
+.ident {
+padding:0;
+margin:0;
+padding-left:10px;
+padding-right:10px;
+padding-top:5px;
+text-align:center;
+}
+.ident form{
+text-align:center;
+}
+
+.ident input {
+padding: 0px 2px 0px 2px;
+margin: 0px 0px 0px 0px;
+}
+
+.infoconteneur h2.date, .ident h2 {
+color: #000;
+padding: 5px 0px 0px 5px;
+}
+
+.infoconteneur h2.date a{
+font-weight: bold;
+}
+
+.infoconteneur p{
+font-size: 10px;
+padding: 5px 5px 0px 10px;
+}
+h2.msgbienvenue{
+text-align: center;
+padding: 3px 0px 3px 0px;
+}
+html>head:first-child+body h2.msgbienvenue {
+padding-bottom:0px;
+}
+.ident p {
+text-align: center;
+padding: 0px 5px 0px 5px;
+}
+
+div.forum *{
+padding:0;
+color:#000;
+font-size:10px;
+margin-left:10px;
+}
+
+.infoconteneur a { color: #000000; font-size: 10px; text-decoration:none;  }
+.infoconteneur a:link { color:#000000; }
+.infoconteneur a:visited { color:#000000; }
+.infoconteneur a:active { color:#000000; }
+.infoconteneur a:hover { color:#000000; text-decoration:underline}
+
+.bordure {
+height: 1px;
+width: 184px;
+background-image: url(img/point_bleu.gif);
+background-repeat: repeat-x;
+margin-bottom: -17px;
+margin-left: 6px;
+}
+html>head:first-child+body .bordure {
+margin-bottom: 0px;
+}
+
+/**pour contenir les fenetres des frames latérales**/
+.frameconteneur {
+width: 170px;
+}
+
+.logos {
+text-align: center;
+width: 170px;
+}
+/** fenetre situé dans la frame de gauche, le titre et le contenu sur fond bleu**/
+.titreorange {
+width: 160px;
+background-color: #FF9900;
+padding: 3px 0px 3px 10px;
+font-weight: bold;
+}
+.titreorange {
+\width: 170px; 
+w\idth: 160px;
+}
+
+.titrebleu {
+width: 160px;
+background-color: #2A82CE;
+padding: 5px 0px 5px 10px;
+font-weight: bold;
+}
+.titrebleu {
+\width: 170px; 
+w\idth: 160px;
+}
+
+.contenubleu {
+width: 160px;
+color: #fff;
+font-size: 10px;
+background-color: #2F9BDA;
+padding: 5px 0 5px 10px;
+}
+.contenubleu {
+\width: 170px; 
+w\idth: 160px;
+}
+
+/**fenetre avec image de dofus sur le coté gauche**/
+.bienvenue {
+width: 170px;
+height: 362px;
+background-image: url(img/bandeau_gauche.gif);
+background-repeat: no-repeat;
+}
+
+.frameteaser {
+width: 170px;
+margin-bottom: 0px;
+}
+
+
+/** fenetres de la frame de droite**/
+
+.titreR {
+width: 170px;
+height: 25px;
+background-color: #2f9bda;
+vertical-align:top;
+}
+
+.titreR a {
+color: #FFF;
+text-decoration: none;
+}
+
+.titreR a:link		{ color:#fff; }
+.titreR a:visited		{ color:#fff; }
+.titreR a:active		{ color:#fff; }
+.titreR a:hover		{ color:#fff; text-decoration:underline;}
+
+.titreR h1, .titreR h1 a {
+margin:0;
+padding:0;
+vertical-align:text-top;
+display:inline;
+}
+
+
+.contenugris {
+width: 170px;
+color: black;
+background-color: #EFEFEF;
+padding-bottom: 7px;
+}
+html>head:first-child+body .contenugris {
+padding-bottom: 7px;
+}
+
+.bordure2 {
+height: 1px;
+width: 170px;
+background-image: url(img/point_bleu.gif);
+background-repeat: repeat-x;
+margin-bottom: -17px;
+}
+html>head:first-child+body .bordure2 {
+margin-bottom: 0px;
+}
+
+.bordureBlanc {
+height: 1px;
+width: 170px;
+background-image: url(img/point_blanc.gif);
+background-repeat: repeat-x;
+margin-bottom: -17px;
+/*margin-left: 6px;*/
+}
+html>head:first-child+body .bordureBlanc {
+margin-bottom: 0px;
+}
+
+
+/** formulaire d'inscription **/
+.submitemail {
+border:0px;
+margin-left:50px;
+}
+
+/** formulaire de sondage **/
+.conteneursondage {
+width: 170px;
+color: black;
+font-size: 11px;
+font-family: Verdana, sans-serif;
+background-color: #EFEFEF;
+padding: 0px 0px 10px 0px;
+margin:0;
+}
+
+.conteneursondage h1 {
+color: black;
+font-size: 13px;
+padding: 5px 0px 10px 10px;
+margin-bottom:5px;
+}
+
+.conteneursondage h2 {	
+font-weight: bold;
+color: black;
+font-size: 11px;
+padding: 0px 5px 0px 5px;
+text-align:left;
+margin:2px 0 0 0;
+}
+
+.conteneursondage p {
+color: black;
+width: 90%;
+padding: 0;
+clear: both;
+margin:3px;
+text-align:center;
+}
+
+.conteneursondage span {
+	
+color: black;
+padding: 0px 0px 0px 12px;
+float: left;
+margin:0px 0 10px 0;
+width:35px;
+}
+
+.conteneursondage img {
+float: left;
+position:relative;
+top:3px;
+}
+
+.inputsondage {
+display: inline;
+position: relative;
+border: none;
+float: right;
+right: 12px;
+margin:0;
+}
+
+.submitsondage {
+position: relative;
+left: 45px;
+border:0;
+}
+
+/** fenetre d'identification**/
+.idconteneur {
+width: 170px;
+background-color: #2f9bda;
+}
+
+html>head:first-child+body .idconteneur {
+margin-top: 5px;
+}
+
+.titreRid {
+width: 170px;
+height: 22px;
+background-color: #1375c9;
+}
+html>head:first-child+body .titreRid {
+padding-bottom: 3px;
+}
+
+.titreRid h1 {
+vertical-align: middle;
+display: inline;
+padding-bottom: 10px;
+}
+
+.idconteneur form {
+text-align: center;
+}
+
+.submitident{
+	border:0px;
+}
+
+.idcontenu {
+color: #FFF;
+font-size: 10px;
+padding: 0 0 10px 10px;
+text-align: center;
+}
+
+
+/** formulaire **/
+input {
+color: #000;
+border: #08518C 1px solid;
+padding:0 2px 0 2px;
+font-size: 10px;
+}
+
+.textfield {
+font-size: 12px;
+background-color: #efefef;
+}
+
+.bouton {
+height: 21px;
+width: 102px;
+background-image: url(img/bouton.gif);
+background-repeat: no-repeat;
+border: none;
+}
+.btsondage {
+margin:0px 0px 0px 49px;
+border: none;
+}
+
+/* Menu gauche page interieur*/
+
+.menupageconteneur {
+width: 170px;
+}
+
+.menupagecontenu {
+width: 170px;
+/*padding: 0 0 0 5px;*/
+background-color: #2f9bda;
+}/*
+.menupagecontenu {
+\width: 170px; 
+w\idth: 165px;
+}*/
+
+.menupagecontenu a {text-decoration:none;  }
+.menupagecontenu a:link		{ color:#fff; }
+.menupagecontenu a:visited		{ color:#fff; }
+.menupagecontenu a:active		{ color:#fff; }
+.menupagecontenu a:hover		{ color:#fff; text-decoration:underline;}
+
+a.sscategorie:link		{ color:#d2e7f4; }
+a.sscategorie:visited		{ color:#d2e7f4; }
+a.sscategorie:active		{ color:#d2e7f4; }
+a.sscategorie:hover		{ color:#d2e7f4;}
+
+.titremenupage {
+width: 170px;
+height: 70px;
+margin-bottom: -4px;
+}
+html>head:first-child+body .titremenupage {
+margin-bottom: -1px;
+}
+
+.titremenupage a {
+text-decoration:none;
+}
+
+.menupagecontenu h1 {
+width: 141px;
+min-height: 27px;
+height: auto;
+color: white;
+background-image: url(img/pct_menu_page.gif);
+background-repeat: no-repeat;
+padding: 0px 0px 0px 25px;
+}
+.menupagecontenu h1 {
+\width: 158px; 
+w\idth: 141px;
+\height: 27px;
+}
+
+.menupagecontenu h2 {
+width: 128px;
+height: 16px;
+color: black;
+background-color: #57aee1;
+padding: 0px 0px 0px 42px;
+}
+.menupagecontenu h2 {
+\width: 150px; 
+w\idth: 128px;
+}
+
+.borduremenupage {
+width: 170px;
+height: 1px;
+background-image: url(img/bordure_menu_page.gif);
+background-repeat: repeat-x;
+margin-bottom: -12px;
+}
+html>head:first-child+body  .borduremenupage {
+margin-bottom: 0px;
+}
+
+.fondmenupage {
+width: 170px;
+height: 376px;
+background-image: url(img/fond_menu_page.gif);
+background-repeat: no-repeat;
+}
+
+/** classe pour le bestiaire**/
+
+.bestiaireconteneur {
+float: left;
+width: 400px;
+}
+
+.bestiairetext {
+float: left;
+width: 290px;
+margin: 0 0 0 5px;
+}
+
+.bestiairetext h1 {
+text-align: left;
+}
+
+.bestiaireconteneur img {
+float: right;
+}
+
+/** Classe pour la population **/
+.populationconteneur {
+float: left;
+width: 135px;
+height: 140px;
+text-align: center;
+}
+
+.populationconteneur p {
+color: black;
+text-align: center;
+font-size: 11px;
+}
+
+/** Plan du site**/
+.plansite {
+width: 100px;
+text-align: left;
+padding: 0 0 0 10px;
+}
+
+a.plansitetitre1 {
+display : block;
+color: #000;
+text-align: left;
+font-size: 14px;
+padding: 10px 0px 5px 0px;
+}
+
+a.plansitetitre2 {
+display : block;
+color: #000;
+text-align: left;
+font-size: 11px;
+}
+
+a.plansitetitre2:link, a.plansitetitre1:link		{ color:#000; }
+a.plansitetitre2:visited, a.plansitetitre1:link 		{ color:#000; }
+a.plansitetitre2:active, a.plansitetitre1:link 		{ color:#000; }
+a.plansitetitre2:hover, a.plansitetitre1:link 		{ color:#000;}
+
+/*comptoir*/
+.center {
+width: 570px;
+text-align: center;
+}
+
+.comptoir {
+width: 500px;
+font-size: 11px;
+border: 1px solid black;
+}
+
+.comptoir img {
+float: left;
+}
+
+.comptoir p {
+color: black;
+padding:5px 0 5px 0;
+}
+
+.comptoir span {
+float: left;
+padding:0px 25px 0px 25px;
+}
+
+/** des petites classes utilitaires**/
+.clear { 
+clear: both;
+visibility: hidden;
+}
+
+.aligncenter {
+text-align: center;
+width: 400px;
+}
+.aligncenter p {
+text-align: center;
+}
+
+/*e-commerce*/
+table.panierCommande {
+background-color: Black;
+}
+
+table.panierCommande th {
+padding: 2px;
+background-color: #99ccff;
+font-size: 11px;
+color: Black;
+}
+
+table.panierCommande td {
+background-color: White;
+color: Black;
+padding-left: 1px 2px 1px 2px;
+text-align:center;
+}
+
+table.panierCommande a.validation {
+padding-left: 20px;
+}
+
+table.panierCommande td.total {
+padding: 2px;
+background-color: #99ccff;
+font-weight: bold;
+}
+/**********************************************************************************************/
+/*                                          COMPTOIR                                          */
+
+table.comptoir {
+background-color: #99ccff;
+width:100%;
+margin: 0px;
+}
+
+table.comptoir th {
+font-size: 15px;
+text-align:center;
+height:30px;	
+}
+
+table.comptoir td.texte {
+font-size: 10px;
+color: Black;	
+padding-right: 20px;
+padding-left: 20px;
+}
+
+table.comptoir a:link { text-decoration:none; color: red; }
+table.comptoir a:visited { text-decoration:none; color: red; }
+table.comptoir a:hover { text-decoration:none; color: blue; }
+
+table.panier {
+background-color: #ffffff;
+font-size: 10px;
+border:solid 1px black;
+margin: 0px;
+}
+
+table.panier th  {
+background-color: #6699ff;
+width:100%;
+color:black;
+height:20px;
+} 
+
+table.panier td.titre {
+color:#6699Ff;
+text-align:center;
+border:1px solid grey;
+height:25px;
+} 
+
+table.panier td.article {
+background-color: #99ccff;
+color:black;
+text-align:center;	
+}
+
+table.panier td.valid {
+height:50px;
+color:black;
+text-align:right;
+padding-right:30px;	
+}  
+
+table.article {
+background-color:#ffffff;
+border:solid 1px black;
+margin: 0px;
+}
+
+table.identification {
+background-color:#99ccff;
+font-size: 10px;
+margin: 0px;
+}
+
+table.identification th  {
+background-color: #6699ff;
+width:100%;
+color:black;
+height:20px;
+} 
+
+table.identification td  {
+height:18px;
+color:black;
+} 
+
+input.valider {
+background-color:white;
+color:#f90;
+font-weight:bold;
+text-align:center;
+}
+
+input.identification {
+background-color:#99ccff;
+font-size:12px;
+height:5px;
+}
+
+/*sondage market*/
+
+.sondageMarket {
+text-align:left;
+}
+
+.sondageMarket form{
+text-align:left;
+padding: 0px;
+margin:10px;
+text-align:left;
+}
+
+
+.sondageMarket table{
+position:relative;
+margin-left:0px;
+width:80%;
+border:0;
+}
+
+.sondageMarket h1{
+padding :5px 5px 5px 10px;
+width: 97%;
+color: white;
+background-color: #57aee1;
+margin-bottom:15px;
+}
+
+.sondageMarket h2{
+width: 97%;
+color: white;
+background-color: #57aee1;
+padding: 2px 5px 2px 10px;
+margin:0 0 5px 0;
+}
+
+.sondageMarket input{
+float:right;
+border:0;
+}
+
+.sondageMarket h3{
+margin:0;
+margin-left:9px;
+padding:0;
+font-size:11px;
+}
+
+.inputsondMarket {
+BACKGROUND-COLOR: #57aee1;
+COLOR: white;
+FONT-SIZE: 12px;
+font-weight: bold;
+width: 90px;
+margin:2px 0 40px 10px;
+}
+
+.sondageMarketup h2{
+width: 97%;
+color: white;
+background-color: #57aee1;
+padding: 2px 5px 2px 10px;
+margin:0 0 5px 0;
+}
+
+.sondageMarketup p{
+line-height:2em;
+}
+

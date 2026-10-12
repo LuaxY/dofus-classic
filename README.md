@@ -46,7 +46,7 @@ bun scripts/playtest.ts                # two headless clients play full games ag
 
 `docs/BRIEF.md` (start here), `docs/protocol/` (network protocol), `docs/logic/` (game logic), `docs/server.md`,
 `docs/runtime.md` (Flash 6 runtime), `docs/assets-format.md`, `docs/content-reconstruction.md` (lost text and what
-replaced it), `docs/missing-data-search.md`, `docs/playtest.md`.
+replaced it), `docs/missing-data-search.md`, `docs/playtest.md`, `docs/website.md` (project website: the 2004 dofus.com look and a build plan).
 
 Lost content (language files, beta maps, login screen, some sounds) is substituted with clearly labelled material:
 2004 maps and early French text from [dofedex](https://github.com/dofera/dofedex), the ground/object graphics those maps

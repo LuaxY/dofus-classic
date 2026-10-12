@@ -1,0 +1,10 @@
+200 Document https://web.archive.org/web/20040122234154if_/http://www.dofus.com:80/pages/presse/espace_presse.php
+200 Stylesheet https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3
+200 Stylesheet https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv
+200 Stylesheet https://web.archive.org/web/20040130031835cs_/http://www.dofus.com/pages/presse/style.css
+200 Image https://web.archive.org/web/20040124060950im_/http://www.dofus.com/pages/presse/images/haut.jpg
+404 Image https://web.archive.org/web/20040122234154im_/http://www.dofus.com/pages/presse/images/bt_fermer.gif
+200 Image https://web.archive.org/web/20040124054635im_/http://www.dofus.com/pages/presse/images/frise.jpg
+404 Image https://web.archive.org/web/20040122234154im_/http://www.dofus.com/pages/presse/images/titre_presse.gif
+200 Image https://web.archive.org/web/20040124051218im_/http://www.dofus.com/pages/presse/images/fond_gauche.gif
+404 Other https://web.archive.org/favicon.ico

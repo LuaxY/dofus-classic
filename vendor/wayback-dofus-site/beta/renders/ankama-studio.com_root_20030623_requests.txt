@@ -1,0 +1,3 @@
+200 Document https://web.archive.org/web/20030623052427if_/http://www.ankama-studio.com:80/
+200 Stylesheet https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3
+200 Stylesheet https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv
