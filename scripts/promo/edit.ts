@@ -9,7 +9,7 @@ import { join } from "node:path";
  *  `low`: the caption at the bottom. */
 export type Shot =
   | { from: number; to: number; speed?: number; caption?: string; low?: boolean; title?: boolean; zoom?: [number, number, number][] }
-  | { card: "end"; frames: number };
+  | { card: "end"; frames: number; from?: number }; // `from`: the footage blurred behind the end card
 export type Item = Shot & { start: number; length: number };
 export type Plan = { take: string; frames: string; fade: number; items: Item[] };
 
@@ -19,26 +19,26 @@ const MUSIC = join(import.meta.dir, "../../web/public/assets/media/music/08.mp3"
 
 /** The cut, in the camera's ticks (steps.jsonl gives each step's range). */
 const CUT: Shot[] = [
-  { from: 5180, to: 5290, title: true, zoom: [[0, 0, 742], [150, 30, 520]] }, // village: bubble, smiley
-  { from: 30, to: 160, caption: "Le client original de 2004, dans le navigateur" }, // account, main menu
-  { from: 185, to: 420, caption: "Les 10 classes d'origine" },
-  { from: 450, to: 700, speed: 1.5 }, // sex, colours, name
-  { from: 740, to: 830, caption: "Le salon multijoueur : canaux, chat, amis" },
-  { from: 830, to: 1009, zoom: [[0, 180, 520]] }, // the chat lines
-  { from: 1009, to: 1193, speed: 1.5, caption: "Créez une partie et défiez vos amis" },
-  { from: 1380, to: 1446 }, // joined, placement on the bridge map
-  { from: 1446, to: 1530, caption: "Combats tactiques au tour par tour" },
-  { from: 1590, to: 1690, zoom: [[140, 0, 520]] }, // Bond onto the bridge
-  { from: 3480, to: 3620, zoom: [[200, 110, 440]] }, // Pression, Flèche glacée
-  { from: 4585, to: 4665, zoom: [[260, 110, 440]] }, // last close combats
-  { from: 4700, to: 4800, caption: "Victoire… et un objet en butin !", low: true },
-  { from: 5040, to: 5130, caption: "Retrouvez tout le monde au village" },
-  { from: 5340, to: 5475, zoom: [[180, 40, 440]] }, // "Qui vient explorer Amakna avec moi ?"
-  { from: 5480, to: 5640, speed: 1.5, caption: "Explorez 90 cartes d'Amakna de 2004" },
-  { from: 5650, to: 5705 }, // Sadidou follows
-  { from: 5720, to: 5910, speed: 2.5 },
-  { from: 5930, to: 6170, speed: 3 },
-  { card: "end", frames: 165 },
+  { from: 1640, to: 1760, title: true }, // a wheat field, Ioptimiste and Sadidou walking
+  { from: 190, to: 340, speed: 2, caption: "Les 10 classes d'origine" }, // Féca, Crâ, Ecaflip, Iop
+  { from: 560, to: 640, speed: 1.5 }, // the name, then the character list
+  { from: 700, to: 850, speed: 1.5, caption: "Retrouvez tout le monde au village" },
+  { from: 850, to: 960, zoom: [[70, 100, 480]] }, // "Quelle nostalgie, cette bêta !", a smiley, walks
+  { from: 1000, to: 1110, zoom: [[40, 40, 520]] }, // "Bienvenue en 2004 !", "Qui vient explorer Amakna avec moi ?"
+  { from: 1120, to: 1480, speed: 2.5, caption: "Explorez 90 cartes d'Amakna" },
+  { from: 1490, to: 1610, speed: 2 }, // Sadidou follows
+  { from: 1895, to: 1960, speed: 1.5 }, // the menu: « Aller aux combats »
+  { from: 2040, to: 2110, caption: "Le salon : chat, amis, parties", zoom: [[0, 280, 360]] }, // "Qui est partant pour un duel ?"
+  { from: 2110, to: 2290, speed: 2, caption: "Créez une partie et défiez vos amis" },
+  { from: 2335, to: 2440, speed: 1.5 }, // Flechette joins, start
+  { from: 2450, to: 2540, caption: "Combats tactiques au tour par tour" }, // placement on the bridge map
+  { from: 2560, to: 2700, speed: 1.5, zoom: [[100, 0, 540]] }, // Bond onto the bridge
+  { from: 3938, to: 3995, zoom: [[150, 60, 520]] }, // an arrow
+  { from: 4045, to: 4445, speed: 2.5, zoom: [[180, 100, 480]] }, // the charge, Pression
+  { from: 4815, to: 5010, speed: 1.5, zoom: [[270, 130, 420]] }, // critical hits
+  { from: 5590, to: 5648, zoom: [[270, 130, 420]] }, // the last blow
+  { from: 5648, to: 5800, speed: 1.3, caption: "Victoire… et un objet en butin !", low: true }, // a new item, the result
+  { card: "end", frames: 165, from: 700 },
 ];
 
 const items: Item[] = [];
