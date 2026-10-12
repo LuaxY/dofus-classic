@@ -16,7 +16,8 @@ Owner decisions (2026-10-12):
 - **Copy:** French and English (switch in the banner), *vous* in French (as on dofus.com in 2004).
 - **Music:** optional on the landing page, off by default, village theme (§6).
 - **Play page:** the game framed over the client's Amakna panorama (§7).
-- **Wording:** no version number next to "bêta" in the copy; the project is presented as nostalgia for the early
+- **Wording:** no version number next to "bêta" in the copy, except the game page's notice (« Bêta 5b », owner request
+  2026-10-12, §7); the project is presented as nostalgia for the early
   players and for the curious who never saw the game in its early days, not as "non-commercial" (§9).
 - **Creator links** at the bottom of both pages: luax.dev, the X follow link, the project's GitHub (§9).
 
@@ -174,7 +175,8 @@ with the extracted Verdana too.
 
 Built: no banner. The page is the client's own Amakna panorama (`Interfaces.swf/8.jpg`, copied as `sky.jpg`), scaled
 to cover, blurred 3 px and darkened towards the bottom. In the middle, one column: a 64 px bar (the 1.0 banner's Dofus
-logo, "Classic" in Della Respira, the date line, and a parchment pill with Accueil · Aide · FR EN, and a « Signaler un bug » pill opening a new GitHub issue), the canvas in a
+logo, "Classic" in Della Respira, the date line, and a parchment pill with Accueil · Aide · FR EN, and a « Signaler un bug » pill opening a new GitHub issue), a two-line parchment notice (beta 5b of January 2004, one of
+the very first versions: no monsters, quests or jobs yet, so an empty feel is normal; a 1.0 version is coming soon), the canvas in a
 cream frame with a dark edge, a soft halo and a drop shadow, then two lines of footer (creator links, short
 disclaimer). The class artwork (`guilds/artwork/big/50.swf/1.png`, split at its empty columns into `heroes-left.png`
 and `heroes-right.png`) stands on the hills at both sides, sized to the room the frame leaves, hidden under 1200 px.
@@ -182,8 +184,8 @@ External links open in a new tab so the game session survives. A first version (
 banner, with two trees in the margins; the owner found it too plain. Historical alternative: the beta launcher frame
 (`#203040` page, 2 px white frame, `dofus-5b/lancement.html`); jouer.dofus.com's entry page kept the `#203040` background until at least Feb 2005 (captures 2004-08-04 → 2005-02-06).
 
-Height budget: bar 64 + 4 + frame 14 + footer 54 = 136 px around the canvas, so it is CSS-scaled when the window is
-under 686 px tall: `height: min(550px, calc(100vh - 136px))`, width from the 742×550 attributes. The frame never draws
+Height budget: bar 64 + 4 + notice 44 + frame 14 + footer 54 = 180 px around the canvas, so it is CSS-scaled when the
+window is under 730 px tall: `height: min(550px, calc(100vh - 180px))`, width from the 742×550 attributes. The frame never draws
 on the canvas itself (no border or padding: the game maps clicks and places its text fields from the canvas box; the
 inner line is an `outline`).
 

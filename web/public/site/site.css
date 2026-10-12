@@ -439,8 +439,9 @@ body.play::before {
   margin: 0 12px;
 }
 
-/* Header and footer take the frame's width without widening it. */
+/* Header, notice and footer take the frame's width without widening it. */
 .playbar,
+.notice,
 .playfoot {
   width: 0;
   min-width: 100%;
@@ -472,7 +473,8 @@ body.play::before {
 }
 
 .playbar nav,
-.playbar .bug {
+.playbar .bug,
+.notice {
   padding: 4px 12px;
   border: 1px solid #b4926f;
   border-radius: 12px;
@@ -496,6 +498,15 @@ body.play::before {
   text-decoration: underline;
 }
 
+/* Two lines at every tested size (the canvas height budget counts 44 px). */
+.notice {
+  box-sizing: border-box;
+  margin: 0 0 6px;
+  line-height: 14px;
+  text-align: center;
+  white-space: normal;
+}
+
 .frame {
   padding: 6px;
   border: 1px solid #4a3218;
@@ -507,7 +518,7 @@ body.play::before {
 .frame canvas {
   display: block;
   width: auto;
-  height: min(550px, calc(100vh - 136px)); /* 64 header + 4 + 14 frame + 54 footer */
+  height: min(550px, calc(100vh - 180px)); /* 64 header + 4 + 44 notice + 14 frame + 54 footer */
   outline: 1px solid #8a6a48;
   background: #000;
 }
